@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Style-Type" content="text/css" />
+        <meta name="generator" content="pandoc" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="../style.css" type="text/css" />
+        <title>Ubuntu 14.04 安装后配置指南个人版 | Another Wiki</title>
+        <meta name="keywords" content="ubuntu, linux, another, wiki">
+    </head>
+    <body>
+        <section class="page-header">
+        <h1 class="project-name">Another</h1>
+        <h2 class="project-tagline">A personal website on GitHub Pages</h2>
+        <a href="../index.html" class="btn" title="Home">Home</a>
+        <a href="../wiki.html" class="btn" title="Wiki">Wiki</a>
+        </section>
+        <section class="main-content">
+            <h2>Ubuntu 14.04 安装后配置指南个人版</h2>
+            <code>
+            ==<a href="../wiki.html#个人原创">个人原创</a>==
+            | ubuntu, linux
+            | 2016-05-05
+            | 最近改动：2016-03-15 21:04:44
+            </code>
+            <hr/>
+<!---title:Ubuntu 14.04 安装后配置指南个人版-->
+<!---category:个人原创-->
+<!---tags:ubuntu, linux-->
+<!---time:2016-05-05-->
+
+<pre><code>#!/bin/bash
+
+# Ubuntu安装更新
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get autoremove
+sudo apt-get autoclean
+
+# 将dash改为bash
+sudo dpkg-reconfigure dash
+
+# 优化系统，加速启动
+sudo apt-get install prelink preload
+# sudo vi /etc/default/preload
+# 修改 #OPTIONS=&quot;-l /dev/null&quot; 为 OPTIONS=&quot;-l /dev/null&quot;
+# sudo vi /etc/default/prelink
+# 修改 PRELINKING=unknown 为 PRELINKING=yes
+sudo service preload restart
+sudo /etc/cron.daily/prelink
+
+# 使用tmpfs挂载/tmp，减少磁盘读写
+# sudo vi /etc/fstab
+# 末尾加入以下：
+# # /tmp was on ram during installation
+# tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=1024M 0 0
+# sudo rm -rf /tmp/*;sudo reboot
+
+# ubuntu优化软件
+sudo apt-get install ubuntu-tweak
+# 将 ~/.cache 软链接到 /tmp
+# rm -rf ~/.cache
+# ln -s /tmp ~/.cache
+
+# 安装SSH Server
+sudo apt-get install openssh-server
+sudo service sshd restart
+
+# 解决Putty ssh登录慢
+# sudo vi /etc/nsswitch.conf
+# 修改/etc/nsswitch.conf文件，将其中的一行
+# hosts: files mdns4_minimal [NOTFOUND=return] dns
+# 改为
+# hosts: files dns [NOTFOUND=return]
+
+# 配置VIM
+sudo apt-get purge vim-tiny
+sudo apt-get install vim
+sudo apt-get install exuberant-ctags
+sudo apt-get install cscope
+
+# 配置tftpd-hpa
+sudo apt-get install tftp-hpa tftpd-hpa
+# sudo vi /etc/default/tftpd-hpa
+# 修改为如下：
+# TFTP_USERNAME=&quot;tftp&quot;
+# TFTP_DIRECTORY=&quot;/var/lib/tftpboot&quot;
+# TFTP_ADDRESS=&quot;0.0.0.0:69&quot;
+# TFTP_OPTIONS=&quot;--secure -l -c -s&quot;
+# -l 参数用于自启动，-c 参数用于上传文件，-s 参数用于目录设置。
+# 修改文件夹权限：
+sudo chmod 777 /var/lib/tftpboot
+# sudo ln -s /var/lib/tftpboot /srv/tftpboot
+# 重启tftpd-hpa服务：
+sudo service tftpd-hpa restart
+
+# 配置Samba服务
+sudo apt-get install samba samba-common smbclient
+# 创建共享目录:
+# mkdir ~/project
+# 修改samba配置文件:
+# sudo vi /etc/samba/smb.conf
+# 最后面添加如下
+# [neal_project]
+# comment = neal_project
+# path = /home/neal/project
+# valid users = neal
+# public = yes
+# available = yes
+# browseable = yes
+# writable = yes
+# create mode = 0644
+# directory mode = 0755
+# 创建samba账户:
+# sudo smbpasswd -a neal
+# 重启samba服务:
+sudo service smbd restart
+# 测试:
+testparm
+
+# 配置NFS Server
+# 安装NFS Server：
+sudo apt-get install nfs-kernel-server
+# 创建NFS文件夹：
+# mkdir ~/nfs
+# sudo ln -s /srv/nfs /home/neal/nfs
+# 修改nfs配置文件：
+# sudo vi /etc/exports
+# 最后一行添加 /srv/nfs *(rw,sync,no_root_squash,no_subtree_check)
+# /srv/nfs：与nfs服务客户端共享的目录，这个路径必须和你前面设置的文件的路径一致！
+# *：允许所有的网段访问，也可以使用具体的IP
+# rw：挂接此目录的客户端对该共享目录具有读写权限
+# sync：资料同步写入内存和硬盘
+# no_root_squash：root用户具有对根目录的完全管理访问权限。
+# no_subtree_check：不检查父目录的权限
+# 保存退出。
+# 重启nfs服务：
+sudo service portmap restart
+sudo service nfs-kernel-server restart
+# 注：nfs是一个RPC程序，使用它前，需要映射好端口，通过portmap设定
+# 测试：
+showmount -e
+# 结果如下
+# Export list for Ubuntu:
+# /home/neal/nfs *
+# 本机挂载：sudo mount -t nfs localhost:/srv/nfs /mnt
+# 取消挂载：sudo umount /mnt
+# 开发板挂载要加-o nolock参数：mount -t nfs -o nolock 192.168.9.191:/srv/nfs /mnt
+
+# 配置LAMP Server
+sudo apt-get install apache2
+sudo apt-get install mysql-server
+sudo apt-get install mysql-client
+sudo apt-get install php5
+sudo apt-get install libapache2-mod-php5
+sudo apt-get install libapache2-mod-auth-mysql
+sudo apt-get install php5-mysql
+sudo apt-get install php5-gd
+# 安装phpmyadmin
+sudo apt-get install phpmyadmin
+sudo ln -s /usr/share/phpmyadmin /var/www
+# 启用apache2 rewrite模块
+sudo a2enmod rewrite
+# 启用php5 mcrypt模块
+sudo php5enmod mcrypt
+# 设置Apache支持.htm .html .php
+# sudo sh -c &quot;echo \&quot;AddType application/x-httpd-php .php .htm .html\&quot; &gt;&gt; /etc/apache2/apache2.conf&quot;
+# sudo sh -c &quot;echo \&quot;ServerName 127.0.0.1\&quot; &gt;&gt; /etc/apache2/apache2.conf&quot;
+# 重启Apache
+sudo service apache2 restart
+
+# 配置Git
+sudo apt-get install git
+# 安装pandoc
+sudo apt-get install pandoc
+# Git clone个人仓库
+git clone https://github.com/qianngchn/qianngchn.github.io.git
+
+# 安装google chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c &#39;echo &quot;deb http://dl.google.com/linux/chrome/deb/ stable main&quot; &gt;&gt; /etc/apt/sources.list.d/google-chrome.list&#39;
+sudo apt-get update
+sudo apt-get install google-chrome-stable
+
+# 安装google drive
+$ sudo add-apt-repository ppa:twodopeshaggy/drive
+$ sudo apt-get update
+$ sudo apt-get install drive</code></pre>
+            <hr/>
+            <code>| Author: qianngchn | Index: <a href="#">wiki/2.html</a></code>
+           <footer class="site-footer">
+                <span class="site-footer-owner">Copyright © 2015, <a href="../index.html">Another</a>. All Rights Reserved.</span>
+                <span class="site-footer-credits">Powered by <a href="https://pages.github.com">Github Pages</a>. Themed by <a href="https://github.com/jasonlong/cayman-theme">Cayman</a>.</span>
+            </footer>
+        </section>
+    </body>
+</html>
