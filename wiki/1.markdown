@@ -1,6 +1,6 @@
-<!---title:C Primer Plus——读书笔记-->
-<!---category:个人原创-->
-<!---tags:读书笔记-->
+<!---title:ReadingNotes: C Primer Plus-->
+<!---category:Notes-->
+<!---tags:readingnotes-->
 <!---time:2015-05-05-->
 
 1.这里有一句忠告，那就是应该养成在编写代码前先进行规划的习惯。

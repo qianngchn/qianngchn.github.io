@@ -1,6 +1,6 @@
-<!---title:Ubuntu 14.04 安装后配置指南个人版-->
-<!---category:个人原创-->
-<!---tags:ubuntu, linux-->
+<!---title:Ubuntu: 系统安装配置指南-->
+<!---category:Notes-->
+<!---tags:ubuntu-->
 <!---time:2016-05-05-->
 
     #!/bin/bash
