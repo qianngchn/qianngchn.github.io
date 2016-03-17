@@ -423,6 +423,9 @@ th {
   padding: 0;
 }
 
+/* Custom Style
+   ========================================================================== */
+
 * {
   box-sizing: border-box; }
 
@@ -474,46 +477,46 @@ a {
         margin-top: 1rem;
         margin-left: 0; } }
 
-.page-header {
+.site-header {
   color: #fff;
   text-align: center;
   background-color: #159957;
   background-image: linear-gradient(120deg, #159957, #00223e); }
   @media screen and (min-width: 64em) {
-    .page-header {
+    .site-header {
       padding: 5rem 6rem; } }
   @media screen and (min-width: 42em) and (max-width: 64em) {
-    .page-header {
+    .site-header {
       padding: 3rem 4rem; } }
   @media screen and (max-width: 42em) {
-    .page-header {
+    .site-header {
       padding: 2rem 1rem; } }
 
-.project-name {
+.site-name {
   margin-top: 0;
   margin-bottom: 0.1rem; }
   @media screen and (min-width: 64em) {
-    .project-name {
+    .site-name {
       font-size: 3.25rem; } }
   @media screen and (min-width: 42em) and (max-width: 64em) {
-    .project-name {
+    .site-name {
       font-size: 2.25rem; } }
   @media screen and (max-width: 42em) {
-    .project-name {
+    .site-name {
       font-size: 1.75rem; } }
 
-.project-tagline {
+.site-tagline {
   margin-bottom: 2rem;
   font-weight: normal;
   opacity: 0.7; }
   @media screen and (min-width: 64em) {
-    .project-tagline {
+    .site-tagline {
       font-size: 1.25rem; } }
   @media screen and (min-width: 42em) and (max-width: 64em) {
-    .project-tagline {
+    .site-tagline {
       font-size: 1.15rem; } }
   @media screen and (max-width: 42em) {
-    .project-tagline {
+    .site-tagline {
       font-size: 1rem; } }
 
 .main-content {

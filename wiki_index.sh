@@ -9,6 +9,7 @@ do
     touch cat$i
 done
 
+echo "Generating wiki.markdown"
 echo "<!---title:Wiki-->" > $index
 echo "<!---tags:wiki-->" >> $index
 echo >> $index

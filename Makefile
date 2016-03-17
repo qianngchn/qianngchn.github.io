@@ -1,5 +1,6 @@
 MARK=$(shell find -name "*.markdown" | sort)
 HTML=$(MARK:%.markdown=%.html)
+INDEX=$(shell find -name "*index.sh" | sort)
 
 .PHONY:
 	all index clean
@@ -7,8 +8,7 @@ HTML=$(MARK:%.markdown=%.html)
 all:index $(HTML)
 
 index:
-	@echo "Generating wiki.markdown"
-	@./wiki_index.sh
+	@for script in $(INDEX); do bash $$script; done
 
 %.html:%.markdown pandoctpl.html Makefile html_generate.sh html_check.sh
 	@echo "Checking $<"
