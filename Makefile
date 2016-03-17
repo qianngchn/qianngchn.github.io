@@ -10,11 +10,11 @@ index:
 	@echo "Generating wiki.markdown"
 	@./wiki_index.sh
 
-%.html:%.markdown pandoctpl.html Makefile html_modify.sh html_check.sh
+%.html:%.markdown pandoctpl.html Makefile html_generate.sh html_check.sh
 	@echo "Checking $<"
 	@./html_check.sh $<
 	@echo "Generating $@"
-	@./html_modify.sh $< $@
+	@./html_generate.sh $< $@
 
 clean:
 	rm $(HTML) -f
