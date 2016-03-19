@@ -2,8 +2,13 @@
 
 mark=$1
 html=$2
-sitename="Arcman"
-sitekeywords="arcman"
+site="Arcman"
+keywords="arcman"
+style="style.css"
+favicon="favicon.ico"
+index="index.html"
+wiki="wiki.html"
+
 flag+=" --css=style.css"
 flag+=" --template=pandoctpl.html"
 flag+=" --tab-stop=4"
@@ -15,11 +20,11 @@ flag+=" --from=markdown --to=html"
 
 # pandoc markdown to html
 touch temp_in_header.html temp_before_body.html temp_after_body.html
-sed -n -e "s/<\!---title:\(.\+\)-->/<title>\1 | $sitename<\/title>/p" $mark >> temp_in_header.html
-sed -n -e "s/<\!---tags:\(.\+\)-->/<meta name=\"keywords\" content=\"\1, $sitekeywords\">/p" $mark >> temp_in_header.html
+sed -n -e "s/<\!---title:\(.\+\)-->/<title>\1 | $site<\/title>/p" $mark >> temp_in_header.html
+sed -n -e "s/<\!---tags:\(.\+\)-->/<meta name=\"keywords\" content=\"\1, $keywords\">/p" $mark >> temp_in_header.html
 sed -n -e 's/<\!---title:\(.\+\)-->/<h2>\1<\/h2>/p' $mark >> temp_before_body.html
 echo "<code>" >> temp_before_body.html
-sed -n -e 's/<\!---category:\(.\+\)-->/==<a href=\"wiki.html#\l\1\">\1<\/a>==/p' $mark >> temp_before_body.html
+sed -n -e "s/<\!---category:\(.\+\)-->/==<a href=\"$wiki#\l\1\">\1<\/a>==/p" $mark >> temp_before_body.html
 sed -n -e 's/<\!---tags:\(.\+\)-->/| \1/p' $mark >> temp_before_body.html
 sed -n -e 's/<\!---time:\(.\+\)-->/| \1/p' $mark >> temp_before_body.html
 echo "| `stat $mark | tail -n2 | head -n1 | cut -d'.' -f1`" >> temp_before_body.html
@@ -31,10 +36,6 @@ pandoc $flag $mark -o $html
 rm -f temp_in_header.html temp_before_body.html temp_after_body.html
 
 # then fix html
-style="style.css"
-favicon="favicon.ico"
-index="index.html"
-wiki="wiki.html"
 src=$html
 
 while [ "`dirname ${src}`" != "." ]

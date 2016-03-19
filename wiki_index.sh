@@ -2,7 +2,7 @@
 
 srcs=`find wiki -name "*.markdown" | sort -r`
 index="wiki.markdown"
-cats=("Notes" "Life")
+cats=("个人笔记" "技术学习" "生活娱乐")
 
 for((i=0; i<${#cats[@]}; i++))
 do
