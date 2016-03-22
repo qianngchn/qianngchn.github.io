@@ -1,35 +1,36 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en_US" xml:lang="en_US">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="Content-Style-Type" content="text/css" />
         <meta name="generator" content="pandoc" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+        <meta name="author" content="qianngchn" />
+        <meta name="date" content="2016-03-22" />
         <link rel="stylesheet" href="../style.css" type="text/css" />
         <title>C Primer Plus 读书笔记 | Arcman</title>
-        <meta name="keywords" content="读书笔记, arcman">
+        <meta name="keywords" content="C语言, 读书笔记, arcman">
     </head>
     <body>
-        <section class="site-header">
-        <h1 class="site-name">Arcman</h1>
-        <h2 class="site-tagline">A personal website on GitHub Pages</h2>
-        <a href="../index.html" class="btn" title="Home">Home</a>
-        <a href="../wiki.html" class="btn" title="Wiki">Wiki</a>
-        </section>
-        <section class="main-content">
-            <h2>C Primer Plus 读书笔记</h2>
-            <code>
-            ==<a href="../wiki.html#个人笔记">个人笔记</a>==
-            | 读书笔记
-            | 2015-05-05
-            | 最近改动：2016-03-19 14:39:11
-            </code>
+        <header class="site-header">
+            <hgroup>
+                <h2 class="site-name">Arcman</h2>
+                <h2 class="site-tagline">A personal website on GitHub Pages</h2>
+            </hgroup>
+            <nav>
+                <a href="../index.html" class="btn" title="Home">Home</a>
+                <a href="../wiki.html" class="btn" title="Wiki">Wiki</a>
+            </nav>
+        </header>
+        <article class="main-content">
+            <h1>C Primer Plus 读书笔记</h1>
+            <code>Category: <a href="../wiki.html#个人笔记">个人笔记</a> | Tags: C语言, 读书笔记 ----------> <a href=../wiki.html>Back to Wiki</a></code>
             <hr/>
 <!---title:C Primer Plus 读书笔记-->
 <!---category:个人笔记-->
-<!---tags:读书笔记-->
-<!---time:2015-05-05-->
+<!---tags:C语言, 读书笔记-->
+<!---date:2015-05-05-->
 
 <p>1.这里有一句忠告，那就是应该养成在编写代码前先进行规划的习惯。</p>
 <p>2.编译器只将你所编写的代码转换为机器语言，生成目标代码文件；</p>
@@ -38,10 +39,10 @@
 <p>4.C89/C99标准的一个区别：C89要求必须在一个代码块的开始处声明变量，在这之前不允许任何其他语句；而C99则允许声明放在任何位置，但首次使用变量前必须先声明它。</p>
 <p>5.volatile被用来修饰被不同线程访问和修改的变量，用来防止代码优化时程序直接读取寄存器的备份，而实际变量的值可能已经被硬件，中断，操作系统和其他线程改变，从而导致程序的错误。它指明编译器每次访问该变量时直接读取原始内存地址，而不是代码优化直接读取寄存器的值，因为该变量随时可能发生变化。</p>
 <p>6.编译器优化的做法是：</p>
-<p>int i = 5;</p>
-<p>int a = i;</p>
-<p>……</p>
-<p>int b = i;</p>
+<pre><code>int i = 5;
+int a = i;
+……
+int b = i;</code></pre>
 <p>编译器发现两次从i读数据的代码之间，并没有对i进行过操作，它会自动把上次读的数据放在b中，而不是重新从i里面读。</p>
 <p>7.%d十进制，%o是八进制，%x是十六进制，%#o和%#x分别是带前缀的八进制和十六进制。</p>
 <p>8.1个字节是8位，那32位机和64位机数据类型所占字节数有什么区别？</p>
@@ -62,7 +63,7 @@
 <pre><code>int checkCPU()
 {
     union w
-    {   
+    {
         int  a; 
         char b; 
     }c; 
@@ -163,7 +164,6 @@ int main(void)
     long num;
     long sum=0L;
     int status;
-
     printf(&quot;Please enter an integer to be summed &quot;);
     printf(&quot;(q to quit): &quot;);
     status=scanf(&quot;%ld&quot;,&amp;num);
@@ -283,10 +283,10 @@ int num;
 <p>122.不能对未经初始化的指针取值，其结果将是未知的，请不要这样做。</p>
 <p>123.如果你不想在函数中用指针修改数组的内容，可以在声明函数参数时加上const关键字，例如 const int ar[]这样的形式参数就表明ar虽然是一个指向数组的指针，但是在函数中该数组相当于一个常量数组，数组值不能够被修改，而并不表示调用该函数时也必须使用常量数组名，这仅是种规定而已，C语言这点还真是烦呢。</p>
 <p>124.前面说函数参数可以使用int ar[]或const int ar[]来表示指向数组的指针，那么数组的形式参数该怎么表示呢？？这点不用考虑啦，因为C语言总是将一维数组名解析为指向其首元素地址的指针，所以不可能将整个数组作为参数传递给函数啦。不过二维数组的话可以，因为C语言只能将二维数组的第一维解析为指针，第二维以后就不再解析，因此以下是二维数组的形式参数表，这些很容易弄错的。</p>
-<p>———————————————————</p>
+<p>===================================================================</p>
 <p><code>数组的数组: char a[3][4]</code> 等效于 <code>数组的指针: char (*p)[10]</code></p>
 <p><code>指针数组:   char *a[5]</code> 等效于 <code>指针的指针: char **p</code></p>
-<p>———————————————————</p>
+<p>===================================================================</p>
 <p>125.<code>const int* p;</code>表示p是一个指向常量的指针，可以将常量和非常量数据的地址赋值给p，但是p不能够改变该地址的值，这正是const关键字的作用。即<code>*p=3</code>或<code>p[0]=3</code>均不可用。</p>
 <p>126.<code>int* const p;</code>表示p是一个指针常量，此时p可以用来修改它指向地址的数据，但是p再也不能指向其他地方，p的值(值是地址)是常量。即除了初始化以外，p=a均不可用。</p>
 <p>127.<code>const int* const p;</code>表示p既不能被赋值也不能用来修改指向地址的数据。即<code>p=a</code>和<code>*p=3</code>或<code>p[0]=3</code>均不可用。</p>
@@ -685,7 +685,7 @@ int printf(char *format,...)
 struct film struct1,struct2;
 struct film* head=struct1;  //head-&gt;struct1
 struct1.next=struct2;       //struct1-&gt;struct2
-struct2.next=NULL;      //struct2-&gt;NULL</code></pre>
+struct2.next=NULL;          //struct2-&gt;NULL</code></pre>
 <p>使用结构指针配合malloc的话能更加灵活的实现链表的动态存储。</p>
 <p>277.抽象数据类型ADT：对于一个问题，我们可以开发一种数据结构和操作该数据结构的函数集合，这两者的结合是构成新类型的基本要素。而对于新类型的属性和操作函数的抽象描述就是一种抽象数据类型(ADT)。</p>
 <p>278.一般来说开发一个新类型需要三个步骤：</p>
@@ -700,11 +700,11 @@ struct2.next=NULL;      //struct2-&gt;NULL</code></pre>
 <p>282.二叉树那是相当复杂啊，有时间自己写一个吧，提升自己的逻辑思维哈，其中难点是查找节点，删除节点和树的遍历。一般二叉树是按照有序原则建立的，为了便于进行二分查找，这种树叫做二叉搜索树。如果用树结构来存储随意的数据，可能会导致树的不平衡，导致查找的时间并不会减少，这种情况下我们就需要重新排列节点来使树变得平衡，但创建一个平衡树要花费更多时间，虽然它可以保证高效搜索。</p>
 <p>283.最后抽象数据类型ADT实际上类似于C++中的类，学完C语言后，向更高级的C++语言进发吧。</p>
             <hr/>
-            <code>| Author: qianngchn | Index: <a href=#>wiki/1.html</a></code>
-           <footer class="site-footer">
-                <span class="site-footer-owner">Copyright © 2015, <a href="../index.html">Arcman</a>. All Rights Reserved.</span>
-                <span class="site-footer-credits">Powered by <a href="https://pages.github.com">Github Pages</a>. Themed by <a href="https://github.com/jasonlong/cayman-theme">Cayman</a>.</span>
-            </footer>
-        </section>
+            <code>Author: qianngchn | Date: 2015-05-05 ----------> <a href=#>Go to Top</a></code>
+        </article>
+        <footer class="site-footer">
+            <span class="site-footer-owner">Copyright © 2015, <a href="../index.html">Arcman</a>. All Rights Reserved.</span>
+            <span class="site-footer-credits">Powered by <a href="https://pages.github.com">Github Pages</a>. Themed by <a href="https://github.com/jasonlong/cayman-theme">Cayman</a>.</span>
+        </footer>
     </body>
 </html>

@@ -2,34 +2,42 @@
 
 srcs=`find wiki -name "*.markdown" | sort -r`
 index="wiki.markdown"
-cats=("个人笔记" "技术学习" "生活娱乐")
+title="Wiki"
+tags="wiki"
+recent=5
 
-for((i=0; i<${#cats[@]}; i++))
-do
-    touch cat$i
-done
+echo "Generating $index"
 
-echo "Generating wiki.markdown"
-echo "<!---title:Wiki-->" > $index
-echo "<!---tags:wiki-->" >> $index
-echo >> $index
+echo "<!---title:${title}-->" > $index
+echo "<!---tags:${tags}-->" >> $index
+
+i=0
 for s in $srcs
 do
-    category=`sed -n -e 's/<\!---category:\(.\+\)-->/\1/p' $s`
-    for((i=0; i<${#cats[@]}; i++))
-    do
-        if [ "$category" == "${cats[$i]}" ]; then
-            echo "* `sed -n -e 's/<\!---time:\(.\+\)-->/\1/p' $s` [`sed -n -e 's/<\!---title:\(.\+\)-->/\1/p' $s`](`echo $s | sed -n -e 's/markdown$/html/p'`) `sed -n -e 's/<\!---tags:\(.\+\)-->/\1/p' $s`" >> cat$i
+    scategory=`sed -n '1,4s/^<\!---category:\(.*\)-->$/\1/p' $s`
+    stitle=`sed -n '1,4s/^<\!---title:\(.*\)-->$/\1/p' $s`
+    stags=`sed -n '1,4s/^<\!---tags:\(.*\)-->$/\1/p' $s`
+    sdate=`sed -n '1,4s/^<\!---date:\(.*\)-->$/\1/p' $s`
+    shtml=`echo $s | sed 's/markdown$/html/g'`
+    if [ $i -lt $recent ]; then
+        if [ $i -eq 0 ]; then
+            echo >> $index
+            echo "### Recent" >> $index
         fi
-    done
+        echo "* $sdate [$stitle]($shtml) $stags" >> $index
+        let i++
+    fi
+    touch cat-$scategory
+    echo "* $sdate [$stitle]($shtml) $stags" >> cat-$scategory
 done
-for((i=0; i<${#cats[@]}; i++));
+
+categories=`ls cat-*`
+for category in $categories
 do
-    echo "## ${cats[$i]}" >> $index
-    cat cat$i >> $index
     echo >> $index
-    rm -f cat$i
+    echo "### $category" | sed 's/cat-//g' >> $index
+    cat $category >> $index
+    rm -f $category
 done
-sed -i '$d' $index
 
 exit 0

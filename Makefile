@@ -10,10 +10,8 @@ all:index $(HTML)
 index:
 	@for script in $(INDEX); do bash $$script; done
 
-%.html:%.markdown pandoctpl.html Makefile html_generate.sh html_check.sh
-	@echo "Checking $<"
+%.html:%.markdown pandoctpl.html html_generate.sh
 	@./html_check.sh $<
-	@echo "Generating $@"
 	@./html_generate.sh $< $@
 
 clean:

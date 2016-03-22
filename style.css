@@ -551,7 +551,6 @@ a {
     font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 0.9rem;
     color: #383e41;
-    background-color: #f3f6fa;
     border-radius: 0.3rem; }
   .main-content pre {
     padding: 0.8rem;
@@ -607,10 +606,11 @@ a {
     word-break: keep-all;
     -webkit-overflow-scrolling: touch; }
     .main-content table th {
+      background-color: #dce6f0;
       font-weight: bold; }
     .main-content table th, .main-content table td {
       padding: 0.5rem 1rem;
-      border: 1px solid #e9ebec; }
+      border: 2px solid #aaa; }
   .main-content dl {
     padding: 0; }
     .main-content dl dt {
@@ -629,17 +629,19 @@ a {
     border: 0; }
 
 .site-footer {
-  padding-top: 2rem;
-  margin-top: 2rem;
+  text-align: center;
   border-top: solid 1px #eff0f1; }
   @media screen and (min-width: 64em) {
     .site-footer {
+      padding: 1rem 6rem;
       font-size: 1rem; } }
   @media screen and (min-width: 42em) and (max-width: 64em) {
     .site-footer {
+      padding: 1rem 4rem;
       font-size: 1rem; } }
   @media screen and (max-width: 42em) {
     .site-footer {
+      padding: 1rem 1rem;
       font-size: 0.9rem; } }
 
 .site-footer-owner {

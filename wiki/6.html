@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en_US" xml:lang="en_US">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Style-Type" content="text/css" />
+        <meta name="generator" content="pandoc" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+        <meta name="author" content="qianngchn" />
+        <meta name="date" content="2016-03-22" />
+        <style type="text/css">
+            table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+              margin: 0; padding: 0; vertical-align: baseline; border: none; }
+            table.sourceCode { width: 100%; line-height: 100%; }
+            td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+            td.sourceCode { padding-left: 5px; }
+            code > span.kw { color: #0000ff; }
+            code > span.ch { color: #008080; }
+            code > span.st { color: #008080; }
+            code > span.co { color: #008000; }
+            code > span.ot { color: #ff4000; }
+            code > span.al { color: #ff0000; }
+            code > span.er { font-weight: bold; }
+        </style>
+        <link rel="stylesheet" href="../style.css" type="text/css" />
+        <title>获取文件CRC32值 | Arcman</title>
+        <meta name="keywords" content="C语言, crc32, arcman">
+    </head>
+    <body>
+        <header class="site-header">
+            <hgroup>
+                <h2 class="site-name">Arcman</h2>
+                <h2 class="site-tagline">A personal website on GitHub Pages</h2>
+            </hgroup>
+            <nav>
+                <a href="../index.html" class="btn" title="Home">Home</a>
+                <a href="../wiki.html" class="btn" title="Wiki">Wiki</a>
+            </nav>
+        </header>
+        <article class="main-content">
+            <h1>获取文件CRC32值</h1>
+            <code>Category: <a href="../wiki.html#代码片段">代码片段</a> | Tags: C语言, crc32 ----------> <a href=../wiki.html>Back to Wiki</a></code>
+            <hr/>
+<!---title:获取文件CRC32值-->
+<!---category:代码片段-->
+<!---tags:C语言, crc32-->
+<!---date:2016-03-21-->
+
+<pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;stdio.h&gt;</span>
+<span class="ot">#include &lt;inttypes.h&gt;</span>
+
+<span class="ot">#define Poly 0xEDB88320L    </span><span class="co">//CRC32标准</span>
+<span class="dt">static</span> <span class="dt">uint32_t</span> crc_tab32[<span class="dv">256</span>]; <span class="co">//CRC查询表</span>
+
+<span class="dt">static</span> <span class="dt">void</span> init_crc32_tab(<span class="dt">void</span>);   <span class="co">//生成CRC查询表</span>
+<span class="dt">uint32_t</span> get_crc32(<span class="dt">uint32_t</span> crcinit, <span class="dt">uint8_t</span> * bs, <span class="dt">uint32_t</span> bssize);    <span class="co">//获得CRC</span>
+<span class="dt">uint32_t</span> GetFileCRC(FILE *fd);  <span class="co">//获得文件CRC</span>
+
+<span class="dt">static</span> <span class="dt">void</span> init_crc32_tab( <span class="dt">void</span> ) 
+{
+    <span class="dt">int</span> i, j;
+    <span class="dt">uint32_t</span> crc;
+
+    <span class="kw">for</span> (i=<span class="dv">0</span>; i&lt;<span class="dv">256</span>; i++)
+    {
+        crc = (<span class="dt">unsigned</span> <span class="dt">long</span>)i;
+        <span class="kw">for</span> (j=<span class="dv">0</span>; j&lt;<span class="dv">8</span>; j++) 
+        {
+            <span class="kw">if</span> ( crc &amp; 0x00000001L )
+                crc = ( crc &gt;&gt; <span class="dv">1</span> ) ^ Poly;
+            <span class="kw">else</span>     
+                crc = crc &gt;&gt; <span class="dv">1</span>;
+        }
+        crc_tab32[i] = crc;
+    }
+}
+
+<span class="dt">uint32_t</span> get_crc32(<span class="dt">uint32_t</span> crcinit, <span class="dt">uint8_t</span> * bs, <span class="dt">uint32_t</span> bssize)
+{
+    <span class="dt">uint32_t</span> crc = crcinit^<span class="bn">0xffffffff</span>;
+
+    init_crc32_tab();
+    <span class="kw">while</span>(bssize--)
+        crc=(crc &gt;&gt; <span class="dv">8</span>)^crc_tab32[(crc &amp; <span class="bn">0xff</span>) ^ *bs++];
+
+    <span class="kw">return</span> crc ^ <span class="bn">0xffffffff</span>;
+}
+
+<span class="dt">uint32_t</span> GetFileCRC(FILE *fd)
+{
+    <span class="dt">uint32_t</span> size = <span class="dv">16</span> * <span class="dv">1024</span>;
+    <span class="dt">uint8_t</span> crcbuf[size];
+    <span class="dt">uint32_t</span> rdlen;
+    <span class="dt">uint32_t</span> crc = <span class="dv">0</span>;   <span class="co">//CRC初始值为0</span>
+
+    <span class="kw">while</span>((rdlen = fread(crcbuf, <span class="kw">sizeof</span>(<span class="dt">uint8_t</span>), size, fd)) &gt; <span class="dv">0</span>)
+        crc = get_crc32(crc, crcbuf, rdlen);
+
+    <span class="kw">return</span> crc;
+}
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc,<span class="dt">char</span> **argv)
+{
+    FILE *fd;
+    <span class="dt">unsigned</span> <span class="dt">int</span> value=<span class="dv">0</span>;
+
+    <span class="kw">if</span>(argc&lt;<span class="dv">2</span>)
+    {
+        printf(<span class="st">&quot;Usage: %s file&quot;</span>,basename(argv[<span class="dv">0</span>]));
+        exit(<span class="dv">1</span>);
+    }
+    <span class="kw">if</span>((fd=fopen(argv[<span class="dv">1</span>],<span class="st">&quot;r&quot;</span>))==NULL)   
+    {
+        perror(<span class="st">&quot;Error:&quot;</span>);
+        exit(<span class="dv">1</span>);
+    }
+    value = GetFileCRC(fd);
+    printf(<span class="st">&quot;CRC: %X</span><span class="ch">\n</span><span class="st">&quot;</span>,value);
+
+    fclose(fd);
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+            <hr/>
+            <code>Author: qianngchn | Date: 2016-03-21 ----------> <a href=#>Go to Top</a></code>
+        </article>
+        <footer class="site-footer">
+            <span class="site-footer-owner">Copyright © 2015, <a href="../index.html">Arcman</a>. All Rights Reserved.</span>
+            <span class="site-footer-credits">Powered by <a href="https://pages.github.com">Github Pages</a>. Themed by <a href="https://github.com/jasonlong/cayman-theme">Cayman</a>.</span>
+        </footer>
+    </body>
+</html>

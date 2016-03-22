@@ -1,88 +1,80 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en_US" xml:lang="en_US">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="Content-Style-Type" content="text/css" />
         <meta name="generator" content="pandoc" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+        <meta name="author" content="qianngchn" />
+        <meta name="date" content="2016-03-22" />
         <link rel="stylesheet" href="../style.css" type="text/css" />
         <title>Ubuntu系统安装配置指南 | Arcman</title>
         <meta name="keywords" content="ubuntu, arcman">
     </head>
     <body>
-        <section class="site-header">
-        <h1 class="site-name">Arcman</h1>
-        <h2 class="site-tagline">A personal website on GitHub Pages</h2>
-        <a href="../index.html" class="btn" title="Home">Home</a>
-        <a href="../wiki.html" class="btn" title="Wiki">Wiki</a>
-        </section>
-        <section class="main-content">
-            <h2>Ubuntu系统安装配置指南</h2>
-            <code>
-            ==<a href="../wiki.html#个人笔记">个人笔记</a>==
-            | ubuntu
-            | 2015-05-05
-            | 最近改动：2016-03-19 14:39:30
-            </code>
+        <header class="site-header">
+            <hgroup>
+                <h2 class="site-name">Arcman</h2>
+                <h2 class="site-tagline">A personal website on GitHub Pages</h2>
+            </hgroup>
+            <nav>
+                <a href="../index.html" class="btn" title="Home">Home</a>
+                <a href="../wiki.html" class="btn" title="Wiki">Wiki</a>
+            </nav>
+        </header>
+        <article class="main-content">
+            <h1>Ubuntu系统安装配置指南</h1>
+            <code>Category: <a href="../wiki.html#个人笔记">个人笔记</a> | Tags: ubuntu ----------> <a href=../wiki.html>Back to Wiki</a></code>
             <hr/>
 <!---title:Ubuntu系统安装配置指南-->
 <!---category:个人笔记-->
 <!---tags:ubuntu-->
-<!---time:2015-05-05-->
+<!---date:2015-05-05-->
 
-<pre><code>#!/bin/bash
 
-# Ubuntu安装更新
-sudo apt-get update
+<p>Ubuntu安装更新</p>
+<pre><code>sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get autoremove
-sudo apt-get autoclean
-
-# 将dash改为bash
-sudo dpkg-reconfigure dash
-
-# 优化系统，加速启动
-sudo apt-get install prelink preload
+sudo apt-get autoclean</code></pre>
+<p>将dash改为bash</p>
+<pre><code>sudo dpkg-reconfigure dash</code></pre>
+<p>优化系统，加速启动</p>
+<pre><code>sudo apt-get install prelink preload
 # sudo vi /etc/default/preload
 # 修改 #OPTIONS=&quot;-l /dev/null&quot; 为 OPTIONS=&quot;-l /dev/null&quot;
 # sudo vi /etc/default/prelink
 # 修改 PRELINKING=unknown 为 PRELINKING=yes
 sudo service preload restart
-sudo /etc/cron.daily/prelink
-
-# 使用tmpfs挂载/tmp，减少磁盘读写
-# sudo vi /etc/fstab
+sudo /etc/cron.daily/prelink</code></pre>
+<p>使用tmpfs挂载/tmp，减少磁盘读写</p>
+<pre><code># sudo vi /etc/fstab
 # 末尾加入以下：
 # # /tmp was on ram during installation
 # tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=1024M 0 0
-# sudo rm -rf /tmp/*;sudo reboot
-
-# ubuntu优化软件
-sudo apt-get install ubuntu-tweak
+# sudo rm -rf /tmp/*;sudo reboot</code></pre>
+<p>Ubuntu优化软件</p>
+<pre><code>sudo apt-get install ubuntu-tweak
 # 将 ~/.cache 软链接到 /tmp
 # rm -rf ~/.cache
-# ln -s /tmp ~/.cache
-
-# 安装SSH Server
-sudo apt-get install openssh-server
-sudo service sshd restart
-
-# 解决Putty ssh登录慢
-# sudo vi /etc/nsswitch.conf
+# ln -s /tmp ~/.cache</code></pre>
+<p>安装SSH Server</p>
+<pre><code>sudo apt-get install openssh-server
+sudo service sshd restart</code></pre>
+<p>解决Putty ssh登录慢</p>
+<pre><code># sudo vi /etc/nsswitch.conf
 # 修改/etc/nsswitch.conf文件，将其中的一行
 # hosts: files mdns4_minimal [NOTFOUND=return] dns
 # 改为
-# hosts: files dns [NOTFOUND=return]
-
-# 配置VIM
-sudo apt-get purge vim-tiny
+# hosts: files dns [NOTFOUND=return]</code></pre>
+<p>配置VIM</p>
+<pre><code>sudo apt-get purge vim-tiny
 sudo apt-get install vim
 sudo apt-get install exuberant-ctags
-sudo apt-get install cscope
-
-# 配置tftpd-hpa
-sudo apt-get install tftp-hpa tftpd-hpa
+sudo apt-get install cscope</code></pre>
+<p>配置Tftpd-hpa</p>
+<pre><code>sudo apt-get install tftp-hpa tftpd-hpa
 # sudo vi /etc/default/tftpd-hpa
 # 修改为如下：
 # TFTP_USERNAME=&quot;tftp&quot;
@@ -94,10 +86,9 @@ sudo apt-get install tftp-hpa tftpd-hpa
 sudo chmod 777 /var/lib/tftpboot
 # sudo ln -s /var/lib/tftpboot /srv/tftpboot
 # 重启tftpd-hpa服务：
-sudo service tftpd-hpa restart
-
-# 配置Samba服务
-sudo apt-get install samba samba-common smbclient
+sudo service tftpd-hpa restart</code></pre>
+<p>配置Samba服务</p>
+<pre><code>sudo apt-get install samba samba-common smbclient
 # 创建共享目录:
 # mkdir ~/project
 # 修改samba配置文件:
@@ -118,10 +109,9 @@ sudo apt-get install samba samba-common smbclient
 # 重启samba服务:
 sudo service smbd restart
 # 测试:
-testparm
-
-# 配置NFS Server
-# 安装NFS Server：
+testparm</code></pre>
+<p>配置NFS Server</p>
+<pre><code># 安装NFS Server：
 sudo apt-get install nfs-kernel-server
 # 创建NFS文件夹：
 # mkdir ~/nfs
@@ -147,10 +137,9 @@ showmount -e
 # /home/neal/nfs *
 # 本机挂载：sudo mount -t nfs localhost:/srv/nfs /mnt
 # 取消挂载：sudo umount /mnt
-# 开发板挂载要加-o nolock参数：mount -t nfs -o nolock 192.168.9.191:/srv/nfs /mnt
-
-# 配置LAMP Server
-sudo apt-get install apache2
+# 开发板挂载要加-o nolock参数：mount -t nfs -o nolock 192.168.9.191:/srv/nfs /mnt</code></pre>
+<p>配置LAMP Server</p>
+<pre><code>sudo apt-get install apache2
 sudo apt-get install mysql-server
 sudo apt-get install mysql-client
 sudo apt-get install php5
@@ -169,31 +158,28 @@ sudo php5enmod mcrypt
 # sudo sh -c &quot;echo \&quot;AddType application/x-httpd-php .php .htm .html\&quot; &gt;&gt; /etc/apache2/apache2.conf&quot;
 # sudo sh -c &quot;echo \&quot;ServerName 127.0.0.1\&quot; &gt;&gt; /etc/apache2/apache2.conf&quot;
 # 重启Apache
-sudo service apache2 restart
-
-# 配置Git
-sudo apt-get install git
-# 安装pandoc
-sudo apt-get install pandoc
+sudo service apache2 restart</code></pre>
+<p>配置Git</p>
+<pre><code>sudo apt-get install git</code></pre>
+<p>配置Github Wiki</p>
+<pre><code>sudo apt-get install pandoc
 # Git clone个人仓库
-git clone https://github.com/qianngchn/qianngchn.github.io.git
-
-# 安装google chrome
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+git clone https://github.com/qianngchn/qianngchn.github.io.git</code></pre>
+<p>安装Google Chrome</p>
+<pre><code>wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c &#39;echo &quot;deb http://dl.google.com/linux/chrome/deb/ stable main&quot; &gt;&gt; /etc/apt/sources.list.d/google-chrome.list&#39;
 sudo apt-get update
-sudo apt-get install google-chrome-stable
-
-# 安装google drive
-$ sudo add-apt-repository ppa:twodopeshaggy/drive
-$ sudo apt-get update
-$ sudo apt-get install drive</code></pre>
+sudo apt-get install google-chrome-stable</code></pre>
+<p>安装Google Drive</p>
+<pre><code>sudo add-apt-repository ppa:twodopeshaggy/drive
+sudo apt-get update
+sudo apt-get install drive</code></pre>
             <hr/>
-            <code>| Author: qianngchn | Index: <a href=#>wiki/2.html</a></code>
-           <footer class="site-footer">
-                <span class="site-footer-owner">Copyright © 2015, <a href="../index.html">Arcman</a>. All Rights Reserved.</span>
-                <span class="site-footer-credits">Powered by <a href="https://pages.github.com">Github Pages</a>. Themed by <a href="https://github.com/jasonlong/cayman-theme">Cayman</a>.</span>
-            </footer>
-        </section>
+            <code>Author: qianngchn | Date: 2015-05-05 ----------> <a href=#>Go to Top</a></code>
+        </article>
+        <footer class="site-footer">
+            <span class="site-footer-owner">Copyright © 2015, <a href="../index.html">Arcman</a>. All Rights Reserved.</span>
+            <span class="site-footer-credits">Powered by <a href="https://pages.github.com">Github Pages</a>. Themed by <a href="https://github.com/jasonlong/cayman-theme">Cayman</a>.</span>
+        </footer>
     </body>
 </html>
