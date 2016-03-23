@@ -1,6 +1,7 @@
 <!---title:Markdown语法介绍-->
 <!---category:技术学习-->
 <!---tags:markdown-->
+<!---author:qianngchn-->
 <!---date:2016-03-18-->
 
 ### 概述

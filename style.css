@@ -435,7 +435,7 @@ body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  color: #606c71; }
+  color: #555; }
 
 a {
   color: #1e6bb8;
@@ -606,7 +606,7 @@ a {
     word-break: keep-all;
     -webkit-overflow-scrolling: touch; }
     .main-content table th {
-      background-color: #dce6f0;
+      background-color: #eff0f1;
       font-weight: bold; }
     .main-content table th, .main-content table td {
       padding: 0.5rem 1rem;
@@ -625,7 +625,7 @@ a {
     height: 2px;
     padding: 0;
     margin: 1rem 0;
-    background-color: #eff0f1;
+    background-color: #c0c0c0;
     border: 0; }
 
 .site-footer {

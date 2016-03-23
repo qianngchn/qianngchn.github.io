@@ -1,6 +1,7 @@
 <!---title:Linux sed命令详解-->
 <!---category:技术学习-->
 <!---tags:sed, linux, 正则表达式-->
+<!---author:qianngchn-->
 <!---date:2016-03-18-->
 
 ### 概述

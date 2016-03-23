@@ -14,10 +14,10 @@ echo "<!---tags:${tags}-->" >> $index
 i=0
 for s in $srcs
 do
-    scategory=`sed -n '1,4s/^<\!---category:\(.*\)-->$/\1/p' $s`
-    stitle=`sed -n '1,4s/^<\!---title:\(.*\)-->$/\1/p' $s`
-    stags=`sed -n '1,4s/^<\!---tags:\(.*\)-->$/\1/p' $s`
-    sdate=`sed -n '1,4s/^<\!---date:\(.*\)-->$/\1/p' $s`
+    scategory=`sed -n '1,5s/^<\!---category:\(.*\)-->$/\1/p' $s`
+    stitle=`sed -n '1,5s/^<\!---title:\(.*\)-->$/\1/p' $s`
+    stags=`sed -n '1,5s/^<\!---tags:\(.*\)-->$/\1/p' $s`
+    sdate=`sed -n '1,5s/^<\!---date:\(.*\)-->$/\1/p' $s`
     shtml=`echo $s | sed 's/markdown$/html/g'`
     if [ $i -lt $recent ]; then
         if [ $i -eq 0 ]; then
