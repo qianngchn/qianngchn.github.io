@@ -4,18 +4,18 @@
 <!---author:qianngchn-->
 <!---date:2015-05-05-->
 
-Ubuntu安装更新
+1.Ubuntu安装更新
 
     sudo apt-get update
     sudo apt-get upgrade
     sudo apt-get autoremove
     sudo apt-get autoclean
 
-将dash改为bash
+2.将dash改为bash
 
     sudo dpkg-reconfigure dash
 
-优化系统，加速启动
+3.优化系统，加速启动
 
     sudo apt-get install prelink preload
     # sudo vi /etc/default/preload
@@ -25,7 +25,7 @@ Ubuntu安装更新
     sudo service preload restart
     sudo /etc/cron.daily/prelink
 
-使用tmpfs挂载/tmp，减少磁盘读写
+4.使用tmpfs挂载/tmp，减少磁盘读写
 
     # sudo vi /etc/fstab
     # 末尾加入以下：
@@ -33,19 +33,20 @@ Ubuntu安装更新
     # tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=1024M 0 0
     # sudo rm -rf /tmp/*;sudo reboot
 
-Ubuntu优化软件
-
-    sudo apt-get install ubuntu-tweak
     # 将 ~/.cache 软链接到 /tmp
     # rm -rf ~/.cache
     # ln -s /tmp ~/.cache
 
-安装SSH Server
+5.Ubuntu优化软件
+
+    sudo apt-get install ubuntu-tweak
+
+6.安装SSH Server
 
     sudo apt-get install openssh-server
     sudo service sshd restart
 
-解决Putty ssh登录慢
+7.解决Putty ssh登录慢的问题
 
     # sudo vi /etc/nsswitch.conf
     # 修改/etc/nsswitch.conf文件，将其中的一行
@@ -53,14 +54,42 @@ Ubuntu优化软件
     # 改为
     # hosts: files dns [NOTFOUND=return]
 
-配置VIM
+8.安装Vim Ctags Cscope Tmux
 
     sudo apt-get purge vim-tiny
     sudo apt-get install vim
     sudo apt-get install exuberant-ctags
     sudo apt-get install cscope
+    sudo apt-get install tmux
 
-配置Tftpd-hpa
+9.安装Git
+
+    sudo apt-get install git
+    # Git clone个人仓库
+    git clone https://github.com/qianngchn/qianngchn.github.io.git
+
+10.安装pandoc
+
+    sudo apt-get install pandoc
+
+11.安装Docker
+
+    sudo apt-get install docker.io
+
+12.安装Google Chrome
+
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+    sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+    sudo apt-get update
+    sudo apt-get install google-chrome-stable
+
+13.安装Google Drive
+
+    sudo add-apt-repository ppa:twodopeshaggy/drive
+    sudo apt-get update
+    sudo apt-get install drive
+
+14.配置Tftpd-hpa
 
     sudo apt-get install tftp-hpa tftpd-hpa
     # sudo vi /etc/default/tftpd-hpa
@@ -76,7 +105,7 @@ Ubuntu优化软件
     # 重启tftpd-hpa服务：
     sudo service tftpd-hpa restart
 
-配置Samba服务
+15.配置Samba服务
 
     sudo apt-get install samba samba-common smbclient
     # 创建共享目录:
@@ -101,7 +130,7 @@ Ubuntu优化软件
     # 测试:
     testparm
 
-配置NFS Server
+16.配置NFS Server
 
     # 安装NFS Server：
     sudo apt-get install nfs-kernel-server
@@ -131,7 +160,7 @@ Ubuntu优化软件
     # 取消挂载：sudo umount /mnt
     # 开发板挂载要加-o nolock参数：mount -t nfs -o nolock 192.168.9.191:/srv/nfs /mnt
 
-配置LAMP Server
+17.配置LAMP Server
 
     sudo apt-get install apache2
     sudo apt-get install mysql-server
@@ -153,26 +182,3 @@ Ubuntu优化软件
     # sudo sh -c "echo \"ServerName 127.0.0.1\" >> /etc/apache2/apache2.conf"
     # 重启Apache
     sudo service apache2 restart
-
-配置Git
-
-    sudo apt-get install git
-
-配置Github Wiki
-
-    sudo apt-get install pandoc
-    # Git clone个人仓库
-    git clone https://github.com/qianngchn/qianngchn.github.io.git
-
-安装Google Chrome
-
-    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-    sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-    sudo apt-get update
-    sudo apt-get install google-chrome-stable
-
-安装Google Drive
-
-    sudo add-apt-repository ppa:twodopeshaggy/drive
-    sudo apt-get update
-    sudo apt-get install drive

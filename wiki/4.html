@@ -31,6 +31,8 @@
             <li><a href="#语法">语法</a></li>
             <li><a href="#示例">示例</a></li>
             <li><a href="#基本正则表达式">基本正则表达式</a></li>
+            <li><a href="#扩展正则表达式">扩展正则表达式</a></li>
+            <li><a href="#转义字符">转义字符</a></li>
             </ul>
 <!---title:Linux sed命令详解-->
 <!---category:技术学习-->
@@ -183,6 +185,103 @@
 <tr class="odd">
 <td align="center">\meta</td>
 <td align="left">将元字符meta转换成普通字符，以便匹配该字符本身，有$、 *、 .、 [、 \ 和 ^。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="扩展正则表达式">扩展正则表达式</h3>
+<p>扩展正则表达式除了以下元字符与基本正则表达式不同外，其余相似。</p>
+<table>
+<caption>BRE与ERE元字符对应表</caption>
+<thead>
+<tr class="header">
+<th align="center">基本正则表达式</th>
+<th align="center">扩展正则表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">\?</td>
+<td align="center">?</td>
+</tr>
+<tr class="even">
+<td align="center">\+</td>
+<td align="center">+</td>
+</tr>
+<tr class="odd">
+<td align="center">\{ \}</td>
+<td align="center">{ }</td>
+</tr>
+<tr class="even">
+<td align="center">\( \)</td>
+<td align="center">( )</td>
+</tr>
+</tbody>
+</table>
+<h3 id="转义字符">转义字符</h3>
+<table>
+<caption>转义字符表</caption>
+<thead>
+<tr class="header">
+<th align="center">转义字符</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">\a</td>
+<td align="left">匹配一个BEL字符。</td>
+</tr>
+<tr class="even">
+<td align="center">\f</td>
+<td align="left">匹配一个换页字符。</td>
+</tr>
+<tr class="odd">
+<td align="center">\n</td>
+<td align="left">匹配一个换行字符。</td>
+</tr>
+<tr class="even">
+<td align="center">\r</td>
+<td align="left">匹配一个回车字符。</td>
+</tr>
+<tr class="odd">
+<td align="center">\t</td>
+<td align="left">匹配一个水平Tab字符。</td>
+</tr>
+<tr class="even">
+<td align="center">\v</td>
+<td align="left">匹配一个垂直Tab字符。</td>
+</tr>
+<tr class="odd">
+<td align="center">\cX</td>
+<td align="left">匹配Control+X，X是任意字符。</td>
+</tr>
+<tr class="even">
+<td align="center">\dXXX</td>
+<td align="left">匹配一个ASCII码是十进制XXX的字符。</td>
+</tr>
+<tr class="odd">
+<td align="center">\oXXX</td>
+<td align="left">匹配一个ASCII码是八进制XXX的字符。</td>
+</tr>
+<tr class="even">
+<td align="center">\xXX</td>
+<td align="left">匹配一个ASCII码是十六进制XX的字符。</td>
+</tr>
+<tr class="odd">
+<td align="center">\w</td>
+<td align="left">匹配任意一个单词字符(字母、数字和下划线)。</td>
+</tr>
+<tr class="even">
+<td align="center">\W</td>
+<td align="left">匹配任意一个非单词字符。</td>
+</tr>
+<tr class="odd">
+<td align="center">\b</td>
+<td align="left">匹配一个单词的边界符：字符的左边是一个单词字符，并且右边是一个非单词字符，反之亦然。</td>
+</tr>
+<tr class="even">
+<td align="center">\B</td>
+<td align="left">匹配除单词边界符外所有字符：字符的左边和右边同时是单词字符或非单词字符。</td>
 </tr>
 </tbody>
 </table>

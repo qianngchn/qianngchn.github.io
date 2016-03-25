@@ -31,14 +31,14 @@
 <!---author:qianngchn-->
 <!---date:2015-05-05-->
 
-<p>Ubuntu安装更新</p>
+<p>1.Ubuntu安装更新</p>
 <pre><code>sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get autoremove
 sudo apt-get autoclean</code></pre>
-<p>将dash改为bash</p>
+<p>2.将dash改为bash</p>
 <pre><code>sudo dpkg-reconfigure dash</code></pre>
-<p>优化系统，加速启动</p>
+<p>3.优化系统，加速启动</p>
 <pre><code>sudo apt-get install prelink preload
 # sudo vi /etc/default/preload
 # 修改 #OPTIONS=&quot;-l /dev/null&quot; 为 OPTIONS=&quot;-l /dev/null&quot;
@@ -46,32 +46,51 @@ sudo apt-get autoclean</code></pre>
 # 修改 PRELINKING=unknown 为 PRELINKING=yes
 sudo service preload restart
 sudo /etc/cron.daily/prelink</code></pre>
-<p>使用tmpfs挂载/tmp，减少磁盘读写</p>
+<p>4.使用tmpfs挂载/tmp，减少磁盘读写</p>
 <pre><code># sudo vi /etc/fstab
 # 末尾加入以下：
 # # /tmp was on ram during installation
 # tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=1024M 0 0
-# sudo rm -rf /tmp/*;sudo reboot</code></pre>
-<p>Ubuntu优化软件</p>
-<pre><code>sudo apt-get install ubuntu-tweak
+# sudo rm -rf /tmp/*;sudo reboot
+
 # 将 ~/.cache 软链接到 /tmp
 # rm -rf ~/.cache
 # ln -s /tmp ~/.cache</code></pre>
-<p>安装SSH Server</p>
+<p>5.Ubuntu优化软件</p>
+<pre><code>sudo apt-get install ubuntu-tweak</code></pre>
+<p>6.安装SSH Server</p>
 <pre><code>sudo apt-get install openssh-server
 sudo service sshd restart</code></pre>
-<p>解决Putty ssh登录慢</p>
+<p>7.解决Putty ssh登录慢的问题</p>
 <pre><code># sudo vi /etc/nsswitch.conf
 # 修改/etc/nsswitch.conf文件，将其中的一行
 # hosts: files mdns4_minimal [NOTFOUND=return] dns
 # 改为
 # hosts: files dns [NOTFOUND=return]</code></pre>
-<p>配置VIM</p>
+<p>8.安装Vim Ctags Cscope Tmux</p>
 <pre><code>sudo apt-get purge vim-tiny
 sudo apt-get install vim
 sudo apt-get install exuberant-ctags
-sudo apt-get install cscope</code></pre>
-<p>配置Tftpd-hpa</p>
+sudo apt-get install cscope
+sudo apt-get install tmux</code></pre>
+<p>9.安装Git</p>
+<pre><code>sudo apt-get install git
+# Git clone个人仓库
+git clone https://github.com/qianngchn/qianngchn.github.io.git</code></pre>
+<p>10.安装pandoc</p>
+<pre><code>sudo apt-get install pandoc</code></pre>
+<p>11.安装Docker</p>
+<pre><code>sudo apt-get install docker.io</code></pre>
+<p>12.安装Google Chrome</p>
+<pre><code>wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c &#39;echo &quot;deb http://dl.google.com/linux/chrome/deb/ stable main&quot; &gt;&gt; /etc/apt/sources.list.d/google-chrome.list&#39;
+sudo apt-get update
+sudo apt-get install google-chrome-stable</code></pre>
+<p>13.安装Google Drive</p>
+<pre><code>sudo add-apt-repository ppa:twodopeshaggy/drive
+sudo apt-get update
+sudo apt-get install drive</code></pre>
+<p>14.配置Tftpd-hpa</p>
 <pre><code>sudo apt-get install tftp-hpa tftpd-hpa
 # sudo vi /etc/default/tftpd-hpa
 # 修改为如下：
@@ -85,7 +104,7 @@ sudo chmod 777 /var/lib/tftpboot
 # sudo ln -s /var/lib/tftpboot /srv/tftpboot
 # 重启tftpd-hpa服务：
 sudo service tftpd-hpa restart</code></pre>
-<p>配置Samba服务</p>
+<p>15.配置Samba服务</p>
 <pre><code>sudo apt-get install samba samba-common smbclient
 # 创建共享目录:
 # mkdir ~/project
@@ -108,7 +127,7 @@ sudo service tftpd-hpa restart</code></pre>
 sudo service smbd restart
 # 测试:
 testparm</code></pre>
-<p>配置NFS Server</p>
+<p>16.配置NFS Server</p>
 <pre><code># 安装NFS Server：
 sudo apt-get install nfs-kernel-server
 # 创建NFS文件夹：
@@ -136,7 +155,7 @@ showmount -e
 # 本机挂载：sudo mount -t nfs localhost:/srv/nfs /mnt
 # 取消挂载：sudo umount /mnt
 # 开发板挂载要加-o nolock参数：mount -t nfs -o nolock 192.168.9.191:/srv/nfs /mnt</code></pre>
-<p>配置LAMP Server</p>
+<p>17.配置LAMP Server</p>
 <pre><code>sudo apt-get install apache2
 sudo apt-get install mysql-server
 sudo apt-get install mysql-client
@@ -157,21 +176,6 @@ sudo php5enmod mcrypt
 # sudo sh -c &quot;echo \&quot;ServerName 127.0.0.1\&quot; &gt;&gt; /etc/apache2/apache2.conf&quot;
 # 重启Apache
 sudo service apache2 restart</code></pre>
-<p>配置Git</p>
-<pre><code>sudo apt-get install git</code></pre>
-<p>配置Github Wiki</p>
-<pre><code>sudo apt-get install pandoc
-# Git clone个人仓库
-git clone https://github.com/qianngchn/qianngchn.github.io.git</code></pre>
-<p>安装Google Chrome</p>
-<pre><code>wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c &#39;echo &quot;deb http://dl.google.com/linux/chrome/deb/ stable main&quot; &gt;&gt; /etc/apt/sources.list.d/google-chrome.list&#39;
-sudo apt-get update
-sudo apt-get install google-chrome-stable</code></pre>
-<p>安装Google Drive</p>
-<pre><code>sudo add-apt-repository ppa:twodopeshaggy/drive
-sudo apt-get update
-sudo apt-get install drive</code></pre>
             <hr/>
             <code>Author: qianngchn | Date: 2015-05-05 ----------> <a href=#>Go to Top</a></code>
         </article>
