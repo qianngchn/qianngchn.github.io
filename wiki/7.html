@@ -12,20 +12,18 @@
     </head>
     <body>
         <header class="site-header">
-            <hgroup>
-                <h2 class="site-name">Arcman</h2>
-                <h2 class="site-tagline">A personal website on GitHub Pages</h2>
-            </hgroup>
-            <nav>
-                <a href="../index.html" class="btn" title="Home">Home</a>
-                <a href="../wiki.html" class="btn" title="Wiki">Wiki</a>
+            <nav class="site-nav">
+                <h1 class="site-nav-title"><a href="../index.html">Arcman</a></h1>
+                <ul class="site-nav-list">
+                    <li class="site-nav-item"><a href="../wiki.html">Wiki</a></li>
+                </ul>
             </nav>
         </header>
         <article class="main-content">
-            <h1>Linux常用命令行小技巧</h1>
+            <h2>Linux常用命令行小技巧</h2>
             <code>Category: <a href="../wiki.html#技术学习">技术学习</a> | Tags: shell, linux ----------> <a href=../wiki.html>Back to Wiki</a></code>
             <hr/>
-            <h3>Index</h3>
+            <h3>Contents</h3>
             <ul>
             <li><a href="#必读">必读</a></li>
             <li><a href="#基础">基础</a></li>
@@ -80,7 +78,8 @@
 <li><p>返回先前的工作目录： <code>cd -</code></p></li>
 <li><p>如果你命令输入到一半，但是改变主意了，可以敲 alt-# 来添加一个 <code>#</code> 到开头，然后将该命令作为注释输入（或者使用快捷键 ctrl-a， #，enter 输入）。然后，你可以在后面通过命令历史来回到该命令。</p></li>
 <li><p>使用 <code>xargs</code>（或 <code>parallel</code>），它很强大。注意，你可以控制每行（<code>-L</code>）执行多少个项目，以及并行执行（<code>-P</code>）。如果你不确定它是否会做正确的事情，可以首先使用 <code>xargs echo</code>。同时，使用 <code>-I{}</code> 也很方便。样例：</p>
-<p>find . -name '*.py' | xargs grep some_function cat hosts | xargs -I{} ssh root@{} hostname</p></li>
+<pre><code>find . -name &#39;*.py&#39; | xargs grep some_function
+cat hosts | xargs -I{} ssh root@{} hostname</code></pre></li>
 <li><p><code>pstree -p</code> 对于显示进程树很有帮助。</p></li>
 <li><p>使用 <code>pgrep</code> 和 <code>pkill</code> 来按名称查找进程或给指定名称的进程发送信号（<code>-f</code> 很有帮助）。</p></li>
 <li><p>掌握各种可以发送给进程的信号。例如，要挂起进程，可以使用 <code>kill -STOP [pid]</code>。完整的列表可以查阅 <code>man 7 signal</code>。</p></li>

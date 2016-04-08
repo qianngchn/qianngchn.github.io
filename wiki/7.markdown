@@ -60,8 +60,8 @@
 
 * 使用 `xargs`（或 `parallel`），它很强大。注意，你可以控制每行（`-L`）执行多少个项目，以及并行执行（`-P`）。如果你不确定它是否会做正确的事情，可以首先使用 `xargs echo`。同时，使用 `-I{}` 也很方便。样例：
 
-    find . -name '*.py' | xargs grep some_function
-    cat hosts | xargs -I{} ssh root@{} hostname
+        find . -name '*.py' | xargs grep some_function
+        cat hosts | xargs -I{} ssh root@{} hostname
 
 * `pstree -p` 对于显示进程树很有帮助。
 

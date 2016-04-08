@@ -12,17 +12,15 @@
     </head>
     <body>
         <header class="site-header">
-            <hgroup>
-                <h2 class="site-name">Arcman</h2>
-                <h2 class="site-tagline">A personal website on GitHub Pages</h2>
-            </hgroup>
-            <nav>
-                <a href="../index.html" class="btn" title="Home">Home</a>
-                <a href="../wiki.html" class="btn" title="Wiki">Wiki</a>
+            <nav class="site-nav">
+                <h1 class="site-nav-title"><a href="../index.html">Arcman</a></h1>
+                <ul class="site-nav-list">
+                    <li class="site-nav-item"><a href="../wiki.html">Wiki</a></li>
+                </ul>
             </nav>
         </header>
         <article class="main-content">
-            <h1>Ubuntu系统安装配置指南</h1>
+            <h2>Ubuntu系统安装配置指南</h2>
             <code>Category: <a href="../wiki.html#个人笔记">个人笔记</a> | Tags: ubuntu ----------> <a href=../wiki.html>Back to Wiki</a></code>
             <hr/>
 <!---title:Ubuntu系统安装配置指南-->
@@ -82,10 +80,7 @@ git clone https://github.com/qianngchn/qianngchn.github.io.git</code></pre>
 <p>11.安装Docker</p>
 <pre><code>sudo apt-get install docker.io</code></pre>
 <p>12.安装Google Chrome</p>
-<pre><code>wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c &#39;echo &quot;deb http://dl.google.com/linux/chrome/deb/ stable main&quot; &gt;&gt; /etc/apt/sources.list.d/google-chrome.list&#39;
-sudo apt-get update
-sudo apt-get install google-chrome-stable</code></pre>
+<pre><code>sudo apt-get install google-chrome-stable</code></pre>
 <p>13.安装Google Drive</p>
 <pre><code>sudo add-apt-repository ppa:twodopeshaggy/drive
 sudo apt-get update

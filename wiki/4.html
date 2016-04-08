@@ -12,24 +12,35 @@
     </head>
     <body>
         <header class="site-header">
-            <hgroup>
-                <h2 class="site-name">Arcman</h2>
-                <h2 class="site-tagline">A personal website on GitHub Pages</h2>
-            </hgroup>
-            <nav>
-                <a href="../index.html" class="btn" title="Home">Home</a>
-                <a href="../wiki.html" class="btn" title="Wiki">Wiki</a>
+            <nav class="site-nav">
+                <h1 class="site-nav-title"><a href="../index.html">Arcman</a></h1>
+                <ul class="site-nav-list">
+                    <li class="site-nav-item"><a href="../wiki.html">Wiki</a></li>
+                </ul>
             </nav>
         </header>
         <article class="main-content">
-            <h1>Linux sed命令详解</h1>
+            <h2>Linux sed命令详解</h2>
             <code>Category: <a href="../wiki.html#技术学习">技术学习</a> | Tags: sed, linux, 正则表达式 ----------> <a href=../wiki.html>Back to Wiki</a></code>
             <hr/>
-            <h3>Index</h3>
+            <h3>Contents</h3>
             <ul>
             <li><a href="#概述">概述</a></li>
-            <li><a href="#语法">语法</a></li>
-            <li><a href="#示例">示例</a></li>
+            <li><a href="#语法">语法</a><ul>
+            <li><a href="#格式">格式</a></li>
+            <li><a href="#常用选项">常用选项</a></li>
+            <li><a href="#常用命令">常用命令</a></li>
+            <li><a href="#s命令替换选项">s命令替换选项</a></li>
+            <li><a href="#s命令标志选项">s命令标志选项</a></li>
+            </ul></li>
+            <li><a href="#示例">示例</a><ul>
+            <li><a href="#a命令追加行">a命令（追加行）</a></li>
+            <li><a href="#i命令插入行">i命令（插入行）</a></li>
+            <li><a href="#c命令替换行">c命令（替换行）</a></li>
+            <li><a href="#d命令删除行">d命令（删除行）</a></li>
+            <li><a href="#p命令打印行">p命令（打印行）</a></li>
+            <li><a href="#s命令替换字符串">s命令（替换字符串）</a></li>
+            </ul></li>
             <li><a href="#基本正则表达式">基本正则表达式</a></li>
             <li><a href="#扩展正则表达式">扩展正则表达式</a></li>
             <li><a href="#转义字符">转义字符</a></li>
