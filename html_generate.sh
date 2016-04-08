@@ -37,8 +37,8 @@ echo "<title>$stitle | $title</title>" >> temp_in_header.html
 echo "<meta name=\"keywords\" content=\"$stags, $keywords\">" >> temp_in_header.html
 if [[ $html == *wiki/* ]]; then
     echo "<h2>$stitle</h2>" >> temp_before_body.html
-    echo "<code>Category: <a href=\"$wiki#$scategorylink\">$scategory</a> | Tags: $stags ----------> <a href="$wiki">Back to Wiki</a></code>" >> temp_before_body.html
-    echo "<code>Author: $sauthor | Date: $sdate ----------> <a href="#">Go to Top</a></code>" >> temp_after_body.html
+    echo "<blockquote><code>Category: <a href=\"$wiki#$scategorylink\">$scategory</a> | Tags: $stags ----------> <a href="$wiki">Back to Wiki</a></code></blockquote>" >> temp_before_body.html
+    echo "<blockquote><code>Author: $sauthor | Date: $sdate ----------> <a href="#">Go to Top</a></code></blockquote>" >> temp_after_body.html
 fi
 pandoc $flag $mark -o $html
 rm -f temp_in_header.html temp_before_body.html temp_after_body.html
