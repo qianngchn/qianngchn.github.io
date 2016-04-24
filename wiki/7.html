@@ -25,14 +25,12 @@
             <hr/>
             <h3>Contents</h3>
             <ul>
-            <li><a href="#必读">必读</a></li>
-            <li><a href="#基础">基础</a></li>
+            <li><a href="#基础知识">基础知识</a></li>
             <li><a href="#日常使用">日常使用</a></li>
-            <li><a href="#处理文件和数据">处理文件和数据</a></li>
+            <li><a href="#文件处理">文件处理</a></li>
             <li><a href="#系统调试">系统调试</a></li>
             <li><a href="#单行程序">单行程序</a></li>
-            <li><a href="#晦涩难懂但却有用">晦涩难懂，但却有用</a></li>
-            <li><a href="#免责声明">免责声明</a></li>
+            <li><a href="#命令总结">命令总结</a></li>
             </ul>
 <!---title:Linux常用命令行小技巧-->
 <!---category:技术学习-->
@@ -41,21 +39,7 @@
 <!---date:2016-03-25-->
 
 <p>流畅地使用命令行是一个常被忽略的技能，或被认为是神秘的奥义。但是，它会以明显而微妙的方式改善你作为工程师的灵活度和生产力。这是我在 Linux 上工作时发现的有用的命令行使用小窍门和笔记的精粹。有些小窍门是很基础的，而有些是相当地特别、复杂、或者晦涩难懂。这篇文章不长，但是如果你可以使用并记得这里的所有内容，那么你就懂得很多了。</p>
-<p>其中大部分最初出现在Quora上，但是考虑到兴趣所在，似乎更应该放到 Github 上，这里的人比我更能提出改进建议。如果你看到一个错误，或者更好的某种东西，请提交问题或 PR！（当然，提交前请看看必读小节和已有的 PR/Issue。）</p>
-<h3 id="必读">必读</h3>
-<p>范围：</p>
-<ul>
-<li>本文是针对初学者和专业人员的，选题目标是覆盖面广（全都很重要）、有针对性（大多数情况下都给出具体实例）而简洁（避免不必要内容以及你能在其它地方轻松找到的离题的内容）。每个小窍门在某种情形下都很必需的，或者能比替代品大大节省时间。</li>
-<li>这是为 Linux 写的。绝大部分条目都可以同样应用到 MacOS（或者甚至 Cygwin）。</li>
-<li>主要针对交互式 Bash，尽管大多数小窍门也可以应用到其它 shell，以及常规 Bash 脚本。</li>
-<li>包括了“标准的”UNIX 命令以及那些需要安装的软件包（它们很重要，值得安装）。</li>
-</ul>
-<p>注意：</p>
-<ul>
-<li>为了能在一篇文章内展示尽量多的东西，一些具体的信息会被放到引用页里。你可以使用 Google 来获得进一步的内容。（如果需要的话，）你可以使用 <code>apt-get</code>/<code>yum</code>/<code>dnf</code>/<code>pacman</code>/<code>pip</code>/<code>brew</code> 来安装这些新的程序。</li>
-<li>使用 Explainshell 来获取命令、参数、管道等内容的解释。</li>
-</ul>
-<h3 id="基础">基础</h3>
+<h3 id="基础知识">基础知识</h3>
 <ul>
 <li><p>学习基本 Bash 技能。实际上，键入<code>man bash</code>，然后至少浏览一遍所有内容；它很容易理解，没那么长。其它 shell 也不错，但是 Bash 很强大，而且到处都可以找到（如果在你自己的笔记本上只学习 zsh、fish 之类，会在很多情形下受到限制，比如使用现存的服务器时）。</p></li>
 <li><p>至少学好一种基于文本的编辑器。理想的一个是 Vim（<code>vi</code>），因为在终端中编辑时随时都能找到它（即使大多数时候你在使用 Emacs、一个大型的 IDE、或一个现代的时髦编辑器）。</p></li>
@@ -75,7 +59,7 @@
 <li><p>在Bash中，使用 ctrl-w 来删除最后的单词，使用 ctrl-u 来删除整行，返回行首。使用 alt-b 和 alt-f 来逐词移动，使用 ctrl-k 来清除到行尾的内容，以及使用 ctrl-l 清屏。参见 <code>man readline</code> 来查看 Bash 中所有默认的键盘绑定，有很多。例如，alt-. 可以循环显示先前的参数，而alt- 扩展通配。</p></li>
 <li><p>另外，如果你喜欢 vi 风格的键盘绑定，可以使用 <code>set -o vi</code>。</p></li>
 <li><p>要查看最近用过的命令，请使用 <code>history</code> 。 有许多缩写形式，比如 <code>!$</code>（上次的参数）和<code>!!</code>（上次的命令），虽然使用 ctrl-r 和 alt-. 更容易些。</p></li>
-<li><p>返回先前的工作目录： <code>cd -</code></p></li>
+<li><p>返回先前的工作目录： <code>cd -</code>。</p></li>
 <li><p>如果你命令输入到一半，但是改变主意了，可以敲 alt-# 来添加一个 <code>#</code> 到开头，然后将该命令作为注释输入（或者使用快捷键 ctrl-a， #，enter 输入）。然后，你可以在后面通过命令历史来回到该命令。</p></li>
 <li><p>使用 <code>xargs</code>（或 <code>parallel</code>），它很强大。注意，你可以控制每行（<code>-L</code>）执行多少个项目，以及并行执行（<code>-P</code>）。如果你不确定它是否会做正确的事情，可以首先使用 <code>xargs echo</code>。同时，使用 <code>-I{}</code> 也很方便。样例：</p>
 <pre><code>find . -name &#39;*.py&#39; | xargs grep some_function
@@ -114,7 +98,7 @@ ControlPersist yes</code></pre></li>
 <li><p>对于基于另一个命令（如<code>git</code>）输出的文件交互，可以使用<code>fpp</code> (路径选择器)。</p></li>
 <li><p>要为当前目录（及子目录）中的所有文件构建一个简单的 Web 服务器，让网络中的任何人都可以获取，可以使用： <code>python -m SimpleHTTPServer 7777</code> （使用端口 7777 和 Python 2）。</p></li>
 </ul>
-<h3 id="处理文件和数据">处理文件和数据</h3>
+<h3 id="文件处理">文件处理</h3>
 <ul>
 <li><p>要在当前目录中按名称定位文件，<code>find . -iname '*something*'</code>（或者相类似的）。要按名称查找任何地方的文件，使用 <code>locate something</code>（但请记住，<code>updatedb</code> 可能还没有索引最近创建的文件）。</p></li>
 <li><p>对于源代码或数据文件进行的常规搜索（要比 <code>grep -r</code> 更高级），使用 <code>ag</code>。</p></li>
@@ -189,14 +173,14 @@ cat hosts | xargs -I{} ssh root@{} hostname</code></pre></li>
 <pre><code>cat access.log | egrep -o &#39;acct_id=[0-9]+&#39; | cut -d= -f2 | sort | uniq -c | sort -rn</code></pre></li>
 <li><p>运行该函数来获得来自本文的随机提示（解析Markdown并从中提取某个项目）：</p>
 <pre><code>function taocl() {
-    curl -s https://raw.githubusercontent.com/jlevy/the-art-of-command-line/master/README.md |
+    curl -s http://qianngchn.github.io/wiki/7.markdown |
     pandoc -f markdown -t html |
     xmlstarlet fo --html --dropdtd |
     xmlstarlet sel -t -v &quot;(html/body/ul/li[count(p)&gt;0])[$RANDOM mod last()+1]&quot; |
     xmlstarlet unesc | fmt -80
 }</code></pre></li>
 </ul>
-<h3 id="晦涩难懂但却有用">晦涩难懂，但却有用</h3>
+<h3 id="命令总结">命令总结</h3>
 <ul>
 <li><code>expr</code>：实施算术或布林操作，或者求正则表达式的值</li>
 <li><code>m4</code>：简单的宏处理器</li>
@@ -221,7 +205,7 @@ cat hosts | xargs -I{} ssh root@{} hostname</code></pre></li>
 <li><code>slurm</code>：网络流量可视化</li>
 <li><code>dd</code>：在文件或设备间移动数据</li>
 <li><code>file</code>：识别文件类型</li>
-<li><code>tree</code>：以树形显示目录及子目录；类似 ls，但是是递归的。</li>
+<li><code>tree</code>：以树形显示目录及子目录；类似 ls，但是是递归的</li>
 <li><code>stat</code>：文件信息</li>
 <li><code>tac</code>：逆序打印文件</li>
 <li><code>shuf</code>：从文件中随机选择行</li>
@@ -260,8 +244,6 @@ cat hosts | xargs -I{} ssh root@{} hostname</code></pre></li>
 <li><code>lsblk</code>：列出块设备，以树形展示你的磁盘和分区</li>
 <li><code>lshw</code>：硬件信息</li>
 </ul>
-<h3 id="免责声明">免责声明</h3>
-<p>除了非常小的任务外，其它都写出了代码供大家阅读。伴随力量而来的是责任。事实是，你能在Bash中做的，并不意味着是你所应该做的！；）</p>
             <hr/>
             <blockquote><code>Author: qianngchn | Date: 2016-03-25 ----------> <a href=#>Go to Top</a></code></blockquote>
         </article>

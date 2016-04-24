@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en_US" xml:lang="en_US">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Style-Type" content="text/css" />
+        <meta name="generator" content="pandoc" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="../style.css" type="text/css" />
+        <title>Linux下静态库和动态库简介及示例 | Arcman</title>
+        <meta name="keywords" content="linux, C语言, arcman">
+    </head>
+    <body>
+        <header class="site-header">
+            <nav class="site-nav">
+                <h1 class="site-nav-title"><a href="../index.html">Arcman</a></h1>
+                <ul class="site-nav-list">
+                    <li class="site-nav-item"><a href="../wiki.html">Wiki</a></li>
+                </ul>
+            </nav>
+        </header>
+        <article class="main-content">
+            <h2>Linux下静态库和动态库简介及示例</h2>
+            <blockquote><code>Category: <a href="../wiki.html#技术学习">技术学习</a> | Tags: linux, C语言 ----------> <a href=../wiki.html>Back to Wiki</a></code></blockquote>
+            <hr/>
+            <h3>Contents</h3>
+            <ul>
+            <li><a href="#静态库和动态库简介">静态库和动态库简介</a></li>
+            <li><a href="#静态库生成示例">静态库生成示例</a></li>
+            <li><a href="#动态库生成示例">动态库生成示例</a></li>
+            <li><a href="#总结">总结</a></li>
+            </ul>
+<!---title:Linux下静态库和动态库简介及示例-->
+<!---category:技术学习-->
+<!---tags:linux, C语言-->
+<!---author:qianngchn-->
+<!---date:2016-04-16-->
+
+<p>在实际的软件开发项目中，不是每一行代码都需要我们亲自写。在我们的软件产品中，有一些代码(尤其是函数)的出现频率很高，它们可以被当作公共代码来反复使用。为了避免重复劳动，我们就把这些公共代码编译为库文件，供需要的程序调用。在Linux中，库分为静态库和动态库两种。</p>
+<h3 id="静态库和动态库简介">静态库和动态库简介</h3>
+<p>众所周知，程序一般需要经过预处理、编译、汇编和链接这几个步骤才能变成可执行的程序。在实际的软件开发中，对于一些需要被许多模块反复使用的公共代码，我们就将它们编译为库文件。</p>
+<p>库是一种可执行代码的二进制形式，可以被操作系统载入内存执行。Linux支持的库分为静态库和动态库，动态库又称共享库。一般说来，Linux中的一些重要的库是存放在lib目录下的。</p>
+<blockquote>
+<p>静态库文件的后缀为.a，在Linux下一般命名为<code>libxxx.a</code>。在链接步骤中，连接器将从静态库文件中取得所需的代码，复制到生成的可执行文件中。因此，整个库中的所有函数都被编译进了目标代码中。</p>
+</blockquote>
+<blockquote>
+<p>动态库文件的后缀为.so，在Linux下一般命名为<code>libxxx.so</code>。相对于静态库，动态库在编译的时候并没有被编译进目标代码中，而是程序执行到相关函数时才调用库中对应的函数。</p>
+</blockquote>
+<p>可以看到，静态库的优点是编译后的执行程序不需要外部的函数库支持，缺点是如果静态函数库改变了，那么你的程序必须重新编译；而动态库在多个应用程序都要使用同一函数库的时候就非常适合，但前提是程序的运行环境中必须提供相应的库。 不管是静态库，还是动态库，都是由<code>*.o</code>目标文件生成的。</p>
+<h3 id="静态库生成示例">静态库生成示例</h3>
+<pre><code>~/test&gt; ll
+-rw------- 1 neal neal 96 Nov  4 16:11 main.c
+-rw------- 1 neal neal 70 Nov  4 16:04 test.h
+-rw------- 1 neal neal 84 Nov  4 16:04 test_1.c
+-rw------- 1 neal neal 84 Nov  4 16:04 test_2.c
+-rw------- 1 neal neal 84 Nov  4 16:04 test_3.c
+~/test&gt; gcc -c test_1.c test_2.c test_3.c
+~/test&gt; ll
+-rw------- 1 neal neal   96 Nov  4 16:11 main.c
+-rw------- 1 neal neal   70 Nov  4 16:04 test.h
+-rw------- 1 neal neal   84 Nov  4 16:04 test_1.c
+-rw-rw-rw- 1 neal neal 1624 Nov  4 16:15 test_1.o
+-rw------- 1 neal neal   84 Nov  4 16:04 test_2.c
+-rw-rw-rw- 1 neal neal 1624 Nov  4 16:15 test_2.o
+-rw------- 1 neal neal   84 Nov  4 16:04 test_3.c
+-rw-rw-rw- 1 neal neal 1624 Nov  4 16:15 test_3.o
+~/test&gt; ar -r libtest.a test_1.o test_2.o test_3.o
+ar: creating libtest.a
+~/test&gt; ll
+-rw------- 1 neal neal   96 Nov  4 16:11 main.c
+-rw-rw-rw- 1 neal neal 5158 Nov  4 16:15 libtest.a
+-rw------- 1 neal neal   70 Nov  4 16:04 test.h
+-rw------- 1 neal neal   84 Nov  4 16:04 test_1.c
+-rw-rw-rw- 1 neal neal 1624 Nov  4 16:15 test_1.o
+-rw------- 1 neal neal   84 Nov  4 16:04 test_2.c
+-rw-rw-rw- 1 neal neal 1624 Nov  4 16:15 test_2.o
+-rw------- 1 neal neal   84 Nov  4 16:04 test_3.c
+-rw-rw-rw- 1 neal neal 1624 Nov  4 16:15 test_3.o
+~/test&gt; gcc -o test main.c libtest.a
+~/test&gt; ll
+-rw------- 1 neal neal    96 Nov  4 16:11 main.c
+-rwxrwxrwx 1 neal neal 12008 Nov  4 16:16 test
+-rw-rw-rw- 1 neal neal  5158 Nov  4 16:15 libtest.a
+-rw------- 1 neal neal    70 Nov  4 16:04 test.h
+-rw------- 1 neal neal    84 Nov  4 16:04 test_1.c
+-rw-rw-rw- 1 neal neal  1624 Nov  4 16:15 test_1.o
+-rw------- 1 neal neal    84 Nov  4 16:04 test_2.c
+-rw-rw-rw- 1 neal neal  1624 Nov  4 16:15 test_2.o
+-rw------- 1 neal neal    84 Nov  4 16:04 test_3.c
+-rw-rw-rw- 1 neal neal  1624 Nov  4 16:15 test_3.o
+~/test&gt; ./test
+this is in test_1......
+this is in test_2......
+this is in test_3......</code></pre>
+<p>我们可以看到，生成静态库文件的命令是<code>ar -r libtest.a test_1.o test_2.o test_3.o</code>，而将静态库文件编译进代码的命令是<code>gcc -o test main.c libtest.a</code>。</p>
+<p>这样生成了静态库文件<code>libtest.a</code>之后，如果还有其他程序要调用<code>test_1.c</code>、<code>test_2.c</code>、<code>test_3.c</code>中实现的函数，只需要将<code>test.h</code>和<code>libtest.a</code>拷贝到对应的代码工程中，然后执行类似<code>gcc -o test main.c libtest.a</code>这样的命令即可。</p>
+<h3 id="动态库生成示例">动态库生成示例</h3>
+<pre><code>~/test&gt; ll
+-rw------- 1 neal neal   70 Nov  5 13:44 so_test.h
+-rw------- 1 neal neal  105 Nov  4 15:25 test.c
+-rw------- 1 neal neal   84 Nov  4 15:25 test_a.c
+-rw------- 1 neal neal   84 Nov  4 15:25 test_b.c
+-rw------- 1 neal neal   84 Nov  4 15:25 test_c.c
+~/test&gt; gcc test_a.c test_b.c test_c.c -fPIC -shared -o libtest.so
+~/test&gt; gcc test.c -L. -ltest -o test
+~/test&gt; ll
+-rwxrwxrwx 1 neal neal  8309 Nov  5 13:46 libtest.so
+-rw------- 1 neal neal    70 Nov  5 13:44 so_test.h
+-rwxrwxrwx 1 neal neal 11883 Nov  5 13:46 test
+-rw------- 1 neal neal   105 Nov  4 15:25 test.c
+-rw------- 1 neal neal    84 Nov  4 15:25 test_a.c
+-rw------- 1 neal neal    84 Nov  4 15:25 test_b.c
+-rw------- 1 neal neal    84 Nov  4 15:25 test_c.c
+~/test&gt; ./test
+this is in test_a...
+this is in test_b...
+this is in test_c...</code></pre>
+<p>注意，<code>./test</code>命令执行成功的前提是在环境变量中添加了<code>.so</code>文件所在的路径，这个路径可以在<code>.bash_profile</code>文件的<code>LD_LIBRARY_PATH</code>变量的值中添加。</p>
+<p>我们可以看到，多个文件生成动态库文件的命令是<code>gcc test_a.c test_b.c test_c.c -fPIC -shared -o libtest.so</code>，而将动态库文件编译进代码的命令是<code>gcc test.c -L. -ltest -o test</code>(<code>-L.</code>表示当前路径)。</p>
+<p>这样生成了动态库文件<code>libtest.so</code>之后，如果还有其他程序要调用<code>test_a.c</code>、<code>test_b.c</code>、<code>test_c.c</code>中实现的函数，只需要将<code>so_test.h</code>和<code>libtest.so</code>拷贝到对应的代码工程中，然后执行类似<code>gcc test.c -L. -ltest -o test</code>这样的命令即可(前提是<code>libtest.so</code>所在的路径在环境变量中设置正确)。</p>
+<h3 id="总结">总结</h3>
+<p>有关生成静态库和动态库的命令，说明如下：</p>
+<p>第一，在本文中，我们使用的生成静态库的命令形如<code>ar -r test.a test.o</code>，其中，-r是replace的意思，表示如果当前插入的模块名已经在库中存在，则替换同名的模块。我们也可以用形如<code>ar -cr test.a test.o</code>的命令来生成静态库，其中<code>-c</code>是create的意思，表示生成。</p>
+<p>第二，在本文中，我们使用的生成动态库文件的命令形如<code>gcc test_a.c -fPIC -shared -o libtest.so</code>，其中，<code>fPIC</code>表示编译为位置独立的代码，<code>shared</code>表示生成的库为共享库。将动态库文件编译进代码的命令是<code>gcc test.c -L. -ltest -o test</code>，<code>-L</code>指定库查找的位置(注意L后面还有'.')，表示在当前目录下查找(如果在当前目录下的lib目录下查找，可以写成-L./lib)；<code>-l</code>则指定函数库名，其中的lib和.so省略(如这里的<code>libtest.so</code>就简写为<code>test</code>)。</p>
+<p>第三，使用<code>ldd</code>命令可以查看一个可执行程序依赖的共享库，该命令的使用示例如下所示：</p>
+<pre><code>~/test&gt; ldd test
+        linux-vdso.so.1 =&gt;  (0x00007fff1db6e000)
+        libtest.so =&gt; /home/neal/lib/libtest.so (0x00007fdbfff21000)
+        libc.so.6 =&gt; /lib64/libc.so.6 (0x00007fdbffb95000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007fdc00124000)</code></pre>
+<p>可以看到，可执行文件<code>test</code>依赖于四个共享库，其中<code>libtest.so</code>位于当前用户的<code>lib</code>目录下。</p>
+            <hr/>
+            <blockquote><code>Author: qianngchn | Date: 2016-04-16 ----------> <a href=#>Go to Top</a></code></blockquote>
+        </article>
+        <footer class="site-footer">
+            <span class="site-footer-owner">Copyright © 2015, <a href="../index.html">Arcman</a>. All Rights Reserved.</span>
+            <span class="site-footer-credits">Powered by <a href="https://pages.github.com">Github Pages</a>. Themed by <a href="https://github.com/jasonlong/cayman-theme">Cayman</a>.</span>
+        </footer>
+    </body>
+</html>

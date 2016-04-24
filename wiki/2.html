@@ -65,12 +65,13 @@ sudo service sshd restart</code></pre>
 # hosts: files mdns4_minimal [NOTFOUND=return] dns
 # 改为
 # hosts: files dns [NOTFOUND=return]</code></pre>
-<p>8.安装Vim Ctags Cscope Tmux</p>
+<p>8.安装Vim Ctags Cscope Tmux Curl</p>
 <pre><code>sudo apt-get purge vim-tiny
 sudo apt-get install vim
 sudo apt-get install exuberant-ctags
 sudo apt-get install cscope
-sudo apt-get install tmux</code></pre>
+sudo apt-get install tmux
+sudo apt-get install curl</code></pre>
 <p>9.安装Git</p>
 <pre><code>sudo apt-get install git
 # Git clone个人仓库
@@ -80,7 +81,10 @@ git clone https://github.com/qianngchn/qianngchn.github.io.git</code></pre>
 <p>11.安装Docker</p>
 <pre><code>sudo apt-get install docker.io</code></pre>
 <p>12.安装Google Chrome</p>
-<pre><code>sudo apt-get install google-chrome-stable</code></pre>
+<pre><code>wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c &#39;echo &quot;deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main&quot; &gt;&gt; /etc/apt/sources.list.d/google-chrome.list&#39;
+sudo apt-get update
+sudo apt-get install google-chrome-stable</code></pre>
 <p>13.安装Google Drive</p>
 <pre><code>sudo add-apt-repository ppa:twodopeshaggy/drive
 sudo apt-get update

@@ -1,6 +1,6 @@
 #/bin/bash
 
-srcs=`find wiki -name "*.markdown" | sort -r`
+srcs=`find wiki -name "*.markdown" | sort -t'/' -k2 -nr`
 index="wiki.markdown"
 title="Wiki"
 tags="wiki"
