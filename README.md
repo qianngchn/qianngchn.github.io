@@ -1,7 +1,7 @@
 ### qianngchn.github.io
 A personal website on GitHub Pages
 
-### Arcman
+### Homepage
 本站地址: <http://qianngchn.github.io>
 
 #### Wiki

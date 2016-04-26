@@ -5,8 +5,8 @@ html=$2
 
 favicon="favicon.ico"
 style="style.css"
-title="Arcman"
-keywords="arcman"
+title="Neal"
+keywords="neal"
 
 index="index.html"
 wiki="wiki.html"
