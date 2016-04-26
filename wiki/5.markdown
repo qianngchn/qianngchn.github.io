@@ -123,13 +123,13 @@ Markdown 使用星号（\*）和底线（\_）作为标记强调字词的符号�
 #### 图片
 Markdown 使用一种和链接很相似的语法来标记图片，同样也允许两种样式： 行内式和参考式。
 
-    ![Alt text](../images/linux-file-system.png)
+    ![Alt text](../images/linux-file-system-hierarchy.png)
 
-    ![Alt text](../images/linux-file-system.png "Optional title")
+    ![Alt text](../images/linux-file-system-hierarchy.png "Optional title")
 
     ![Alt text][id]
 
-    [id]: ../images/linux-file-system.png  "Optional title attribute"
+    [id]: ../images/linux-file-system-hierarchy.png  "Optional title attribute"
 
 ### 其他
 #### 自动链接

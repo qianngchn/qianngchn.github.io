@@ -233,16 +233,6 @@
 
         cat access.log | egrep -o 'acct_id=[0-9]+' | cut -d= -f2 | sort | uniq -c | sort -rn
 
-* 运行该函数来获得来自本文的随机提示（解析Markdown并从中提取某个项目）：
-
-        function taocl() {
-            curl -s http://qianngchn.github.io/wiki/7.markdown |
-            pandoc -f markdown -t html |
-            xmlstarlet fo --html --dropdtd |
-            xmlstarlet sel -t -v "(html/body/ul/li[count(p)>0])[$RANDOM mod last()+1]" |
-            xmlstarlet unesc | fmt -80
-        }
-
 ### 命令总结
 
 * `expr`：实施算术或布林操作，或者求正则表达式的值

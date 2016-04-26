@@ -171,14 +171,6 @@ cat a b b | sort | uniq -u &gt; c # c 是 a 减去 b 的差集</code></pre></li>
 cat hosts | xargs -I{} ssh root@{} hostname</code></pre></li>
 <li><p>比如说，你有一个文本文件，如 Web 服务器的日志，在某些行中出现了某个特定的值，如 URL 中出现的 <code>acct_id</code> 参数。如果你想要统计有多少个 <code>acct_id</code> 的请求：</p>
 <pre><code>cat access.log | egrep -o &#39;acct_id=[0-9]+&#39; | cut -d= -f2 | sort | uniq -c | sort -rn</code></pre></li>
-<li><p>运行该函数来获得来自本文的随机提示（解析Markdown并从中提取某个项目）：</p>
-<pre><code>function taocl() {
-    curl -s http://qianngchn.github.io/wiki/7.markdown |
-    pandoc -f markdown -t html |
-    xmlstarlet fo --html --dropdtd |
-    xmlstarlet sel -t -v &quot;(html/body/ul/li[count(p)&gt;0])[$RANDOM mod last()+1]&quot; |
-    xmlstarlet unesc | fmt -80
-}</code></pre></li>
 </ul>
 <h3 id="命令总结">命令总结</h3>
 <ul>
