@@ -46,12 +46,12 @@
 <pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;stdio.h&gt;</span>
 <span class="ot">#include &lt;inttypes.h&gt;</span>
 
-<span class="ot">#define Poly 0xEDB88320L    </span><span class="co">//CRC32标准</span>
+<span class="ot">#define Poly 0xEDB88320L </span><span class="co">//CRC32标准</span>
 <span class="dt">static</span> <span class="dt">uint32_t</span> crc_tab32[<span class="dv">256</span>]; <span class="co">//CRC查询表</span>
 
-<span class="dt">static</span> <span class="dt">void</span> init_crc32_tab(<span class="dt">void</span>);   <span class="co">//生成CRC查询表</span>
-<span class="dt">uint32_t</span> get_crc32(<span class="dt">uint32_t</span> crcinit, <span class="dt">uint8_t</span> * bs, <span class="dt">uint32_t</span> bssize);    <span class="co">//获得CRC</span>
-<span class="dt">uint32_t</span> GetFileCRC(FILE *fd);  <span class="co">//获得文件CRC</span>
+<span class="dt">static</span> <span class="dt">void</span> init_crc32_tab(<span class="dt">void</span>); <span class="co">//生成CRC查询表</span>
+<span class="dt">uint32_t</span> get_crc32(<span class="dt">uint32_t</span> crcinit, <span class="dt">uint8_t</span> * bs, <span class="dt">uint32_t</span> bssize); <span class="co">//获得CRC</span>
+<span class="dt">uint32_t</span> GetFileCRC(FILE *fd); <span class="co">//获得文件CRC</span>
 
 <span class="dt">static</span> <span class="dt">void</span> init_crc32_tab( <span class="dt">void</span> ) 
 {
@@ -88,7 +88,7 @@
     <span class="dt">uint32_t</span> size = <span class="dv">16</span> * <span class="dv">1024</span>;
     <span class="dt">uint8_t</span> crcbuf[size];
     <span class="dt">uint32_t</span> rdlen;
-    <span class="dt">uint32_t</span> crc = <span class="dv">0</span>;   <span class="co">//CRC初始值为0</span>
+    <span class="dt">uint32_t</span> crc = <span class="dv">0</span>; <span class="co">//CRC初始值为0</span>
 
     <span class="kw">while</span>((rdlen = fread(crcbuf, <span class="kw">sizeof</span>(<span class="dt">uint8_t</span>), size, fd)) &gt; <span class="dv">0</span>)
         crc = get_crc32(crc, crcbuf, rdlen);
