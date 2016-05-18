@@ -4,7 +4,8 @@
 <!---author:qianngchn-->
 <!---date:2016-04-23-->
 
-![Linux File System Hierarchy](../images/linux-file-system-hierarchy.png)
+![Linux File System Hierarchy](../images/linux-file-system-hierarchy.png)\
+
 
 | 目录                | 描述                                                                                         |
 |:--------------------|:---------------------------------------------------------------------------------------------|
