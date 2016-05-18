@@ -28,7 +28,7 @@
             <li><a href="#基本配置">基本配置</a></li>
             <li><a href="#个人配置">个人配置</a></li>
             <li><a href="#优化配置">优化配置</a></li>
-            <li><a href="#服务器配置">服务器配置</a></li>
+            <li><a href="#服务配置">服务配置</a></li>
             </ul>
 <!---title:Ubuntu系统安装配置指南-->
 <!---category:个人笔记-->
@@ -79,40 +79,32 @@ sudo apt-get install tmux</code></pre>
 # 修改 PRELINKING=unknown 为 PRELINKING=yes
 sudo service preload restart
 sudo /etc/cron.daily/prelink</code></pre>
-<p>使用tmpfs挂载/tmp，减少磁盘读写</p>
-<pre><code># sudo vi /etc/fstab
-# 末尾加入以下：
-# # /tmp was on ram during installation
-# tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=512M 0 0
-# sudo rm -rf /tmp/*;sudo rm -rf /tmp/.*;sudo reboot</code></pre>
-<h3 id="服务器配置">服务器配置</h3>
-<p>安装SSH Server</p>
-<pre><code>sudo apt-get install openssh-server
-sudo service sshd restart</code></pre>
-<p>解决Putty ssh登录慢的问题</p>
+<p>优化网络，禁用mdns</p>
 <pre><code># sudo vi /etc/nsswitch.conf
 # 修改/etc/nsswitch.conf文件，将其中的一行
 # hosts: files mdns4_minimal [NOTFOUND=return] dns
 # 改为
 # hosts: files dns [NOTFOUND=return]</code></pre>
-<p>配置Tftpd-hpa</p>
-<pre><code>sudo apt-get install tftp-hpa tftpd-hpa
-# sudo vi /etc/default/tftpd-hpa
-# 修改为如下：
-# TFTP_USERNAME=&quot;tftp&quot;
-# TFTP_DIRECTORY=&quot;/var/lib/tftpboot&quot;
-# TFTP_ADDRESS=&quot;0.0.0.0:69&quot;
-# TFTP_OPTIONS=&quot;--secure -l -c -s&quot;
-# -l 参数用于自启动，-c 参数用于上传文件，-s 参数用于目录设置。
-# 修改文件夹权限：
-sudo chmod 777 /var/lib/tftpboot
-# sudo ln -s /var/lib/tftpboot /srv/tftpboot
-# 重启tftpd-hpa服务：
-sudo service tftpd-hpa restart</code></pre>
+<p>修复挂起唤醒后，wifi断开不重连</p>
+<pre><code># sudo vi /etc/default/acpi-support
+# 修改/etc/default/acpi-support文件，将其中的一行
+# STOP_SERVICES=&quot;&quot;
+# 改为
+# STOP_SERVICES=&quot;networking&quot;</code></pre>
+<p>使用tmpfs挂载/tmp，减少磁盘读写</p>
+<pre><code># sudo vi /etc/fstab
+# 末尾加入以下：
+# # /tmp was on ram during installation
+# tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=512M 0 0
+sudo rm -rf /tmp/*;sudo rm -rf /tmp/.*;sudo reboot</code></pre>
+<h3 id="服务配置">服务配置</h3>
+<p>安装SSH Server</p>
+<pre><code>sudo apt-get install openssh-server
+sudo service sshd restart</code></pre>
 <p>配置Samba服务</p>
 <pre><code>sudo apt-get install samba samba-common smbclient
 # 创建共享目录:
-# mkdir ~/project
+mkdir ~/project
 # 修改samba配置文件:
 # sudo vi /etc/samba/smb.conf
 # 最后面添加如下
@@ -127,17 +119,31 @@ sudo service tftpd-hpa restart</code></pre>
 # create mode = 0644
 # directory mode = 0755
 # 创建samba账户:
-# sudo smbpasswd -a neal
+sudo smbpasswd -a neal
 # 重启samba服务:
 sudo service smbd restart
 # 测试:
 testparm</code></pre>
+<p>配置Tftpd-hpa</p>
+<pre><code>sudo apt-get install tftp-hpa tftpd-hpa
+# sudo vi /etc/default/tftpd-hpa
+# 修改为如下：
+# TFTP_USERNAME=&quot;tftp&quot;
+# TFTP_DIRECTORY=&quot;/var/lib/tftpboot&quot;
+# TFTP_ADDRESS=&quot;0.0.0.0:69&quot;
+# TFTP_OPTIONS=&quot;--secure -l -c -s&quot;
+# -l 参数用于自启动，-c 参数用于上传文件，-s 参数用于目录设置。
+# 修改文件夹权限：
+sudo chmod 777 /var/lib/tftpboot
+sudo ln -s /var/lib/tftpboot /srv/tftpboot
+# 重启tftpd-hpa服务：
+sudo service tftpd-hpa restart</code></pre>
 <p>配置NFS Server</p>
 <pre><code># 安装NFS Server：
 sudo apt-get install nfs-kernel-server
 # 创建NFS文件夹：
-# mkdir ~/nfs
-# sudo ln -s /srv/nfs /home/neal/nfs
+mkdir ~/nfs
+sudo ln -s /srv/nfs /home/neal/nfs
 # 修改nfs配置文件：
 # sudo vi /etc/exports
 # 最后一行添加 /srv/nfs *(rw,sync,no_root_squash,no_subtree_check)
@@ -177,8 +183,8 @@ sudo a2enmod rewrite
 # 启用php5 mcrypt模块
 sudo php5enmod mcrypt
 # 设置Apache支持.htm .html .php
-# sudo sh -c &quot;echo \&quot;AddType application/x-httpd-php .php .htm .html\&quot; &gt;&gt; /etc/apache2/apache2.conf&quot;
-# sudo sh -c &quot;echo \&quot;ServerName 127.0.0.1\&quot; &gt;&gt; /etc/apache2/apache2.conf&quot;
+sudo sh -c &quot;echo \&quot;AddType application/x-httpd-php .php .htm .html\&quot; &gt;&gt; /etc/apache2/apache2.conf&quot;
+sudo sh -c &quot;echo \&quot;ServerName 127.0.0.1\&quot; &gt;&gt; /etc/apache2/apache2.conf&quot;
 # 重启Apache
 sudo service apache2 restart</code></pre>
             <hr/>
@@ -186,7 +192,7 @@ sudo service apache2 restart</code></pre>
         </article>
         <footer class="site-footer">
             <span class="site-footer-owner">Copyright © 2015, <a href="../index.html">Neal</a>. All Rights Reserved.</span>
-            <span class="site-footer-credits">Powered by <a href="https://pages.github.com">Github Pages</a>. Themed by <a href="https://github.com/jasonlong/cayman-theme">Cayman</a>.</span>
+            <span class="site-footer-credits">Powered by <a href="https://pages.github.com">Github Pages</a>. Themed by <a href="https://github.com/jasonlong/cayman-theme">Cayman</a>. Modified by <a href="../index.html">Neal</a>.</span>
         </footer>
     </body>
 </html>

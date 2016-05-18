@@ -68,22 +68,7 @@ Ubuntu安装更新
     sudo service preload restart
     sudo /etc/cron.daily/prelink
 
-使用tmpfs挂载/tmp，减少磁盘读写
-
-    # sudo vi /etc/fstab
-    # 末尾加入以下：
-    # # /tmp was on ram during installation
-    # tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=512M 0 0
-    # sudo rm -rf /tmp/*;sudo rm -rf /tmp/.*;sudo reboot
-
-### 服务器配置
-
-安装SSH Server
-
-    sudo apt-get install openssh-server
-    sudo service sshd restart
-
-解决Putty ssh登录慢的问题
+优化网络，禁用mdns
 
     # sudo vi /etc/nsswitch.conf
     # 修改/etc/nsswitch.conf文件，将其中的一行
@@ -91,27 +76,34 @@ Ubuntu安装更新
     # 改为
     # hosts: files dns [NOTFOUND=return]
 
-配置Tftpd-hpa
+修复挂起唤醒后，wifi断开不重连
 
-    sudo apt-get install tftp-hpa tftpd-hpa
-    # sudo vi /etc/default/tftpd-hpa
-    # 修改为如下：
-    # TFTP_USERNAME="tftp"
-    # TFTP_DIRECTORY="/var/lib/tftpboot"
-    # TFTP_ADDRESS="0.0.0.0:69"
-    # TFTP_OPTIONS="--secure -l -c -s"
-    # -l 参数用于自启动，-c 参数用于上传文件，-s 参数用于目录设置。
-    # 修改文件夹权限：
-    sudo chmod 777 /var/lib/tftpboot
-    # sudo ln -s /var/lib/tftpboot /srv/tftpboot
-    # 重启tftpd-hpa服务：
-    sudo service tftpd-hpa restart
+    # sudo vi /etc/default/acpi-support
+    # 修改/etc/default/acpi-support文件，将其中的一行
+    # STOP_SERVICES=""
+    # 改为
+    # STOP_SERVICES="networking"
+
+使用tmpfs挂载/tmp，减少磁盘读写
+
+    # sudo vi /etc/fstab
+    # 末尾加入以下：
+    # # /tmp was on ram during installation
+    # tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=512M 0 0
+    sudo rm -rf /tmp/*;sudo rm -rf /tmp/.*;sudo reboot
+
+### 服务配置
+
+安装SSH Server
+
+    sudo apt-get install openssh-server
+    sudo service sshd restart
 
 配置Samba服务
 
     sudo apt-get install samba samba-common smbclient
     # 创建共享目录:
-    # mkdir ~/project
+    mkdir ~/project
     # 修改samba配置文件:
     # sudo vi /etc/samba/smb.conf
     # 最后面添加如下
@@ -126,19 +118,35 @@ Ubuntu安装更新
     # create mode = 0644
     # directory mode = 0755
     # 创建samba账户:
-    # sudo smbpasswd -a neal
+    sudo smbpasswd -a neal
     # 重启samba服务:
     sudo service smbd restart
     # 测试:
     testparm
+
+配置Tftpd-hpa
+
+    sudo apt-get install tftp-hpa tftpd-hpa
+    # sudo vi /etc/default/tftpd-hpa
+    # 修改为如下：
+    # TFTP_USERNAME="tftp"
+    # TFTP_DIRECTORY="/var/lib/tftpboot"
+    # TFTP_ADDRESS="0.0.0.0:69"
+    # TFTP_OPTIONS="--secure -l -c -s"
+    # -l 参数用于自启动，-c 参数用于上传文件，-s 参数用于目录设置。
+    # 修改文件夹权限：
+    sudo chmod 777 /var/lib/tftpboot
+    sudo ln -s /var/lib/tftpboot /srv/tftpboot
+    # 重启tftpd-hpa服务：
+    sudo service tftpd-hpa restart
 
 配置NFS Server
 
     # 安装NFS Server：
     sudo apt-get install nfs-kernel-server
     # 创建NFS文件夹：
-    # mkdir ~/nfs
-    # sudo ln -s /srv/nfs /home/neal/nfs
+    mkdir ~/nfs
+    sudo ln -s /srv/nfs /home/neal/nfs
     # 修改nfs配置文件：
     # sudo vi /etc/exports
     # 最后一行添加 /srv/nfs *(rw,sync,no_root_squash,no_subtree_check)
@@ -180,7 +188,7 @@ Ubuntu安装更新
     # 启用php5 mcrypt模块
     sudo php5enmod mcrypt
     # 设置Apache支持.htm .html .php
-    # sudo sh -c "echo \"AddType application/x-httpd-php .php .htm .html\" >> /etc/apache2/apache2.conf"
-    # sudo sh -c "echo \"ServerName 127.0.0.1\" >> /etc/apache2/apache2.conf"
+    sudo sh -c "echo \"AddType application/x-httpd-php .php .htm .html\" >> /etc/apache2/apache2.conf"
+    sudo sh -c "echo \"ServerName 127.0.0.1\" >> /etc/apache2/apache2.conf"
     # 重启Apache
     sudo service apache2 restart
