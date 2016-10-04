@@ -315,7 +315,6 @@ a {
     word-wrap: normal;
     background-color: #f3f6fa;
     border: solid 1px #dce6f0;
-    border-left: 0.2rem solid #5cc26f;
     overflow: auto;
     -webkit-overflow-scrolling: touch; }
     .main-content pre > code {

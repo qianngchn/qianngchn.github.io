@@ -13,17 +13,6 @@ Ubuntu安装更新
     sudo apt-get autoremove
     sudo apt-get autoclean
 
-将dash改为bash
-
-    sudo dpkg-reconfigure dash
-
-安装Vim
-
-    sudo apt-get purge vim-tiny
-    sudo apt-get install vim
-
-### 个人配置
-
 安装Google Chrome
 
     wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -39,22 +28,43 @@ Ubuntu安装更新
     sudo apt-get update
     sudo apt-get install drive
 
-安装Git和Pandoc
+### 开发配置
 
+修改shell为bash
+
+    sudo dpkg-reconfigure dash
+
+开发工具配置
+
+    # Vim
+    sudo apt-get purge vim-tiny
+    sudo apt-get install vim
+
+    # Cscope for Vim
+    sudo apt-get install cscope
+
+    # Vundle for Vim
     sudo apt-get install git
+    sudo apt-get install curl
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+    # Markdown Wiki
     sudo apt-get install pandoc
-    # Git clone个人仓库
     git clone https://github.com/qianngchn/qianngchn.github.io.git
 
-安装Docker
-
-    sudo apt-get install docker.io
-
-安装Ctags Cscope Tmux
-
-    sudo apt-get install exuberant-ctags
-    sudo apt-get install cscope
+    # Tmux
     sudo apt-get install tmux
+
+开发环境配置
+
+    # Docker
+    sudo apt-get install docker.io
+    # C/C++
+    sudo apt-get install build-essential
+    # Lua
+    sudo apt-get install lua5.2 liblua5.2-dev
+    # Go
+    sudo apt-get install golang
 
 ### 优化配置
 

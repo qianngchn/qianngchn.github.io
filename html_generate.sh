@@ -11,6 +11,7 @@ keywords="neal"
 index="index.html"
 wiki="wiki.html"
 
+sfilename=`basename $mark`
 stitle=`sed -n '1,5s/^<\!---title:\(.*\)-->$/\1/p' $mark`
 scategory=`sed -n '1,5s/^<\!---category:\(.*\)-->$/\1/p' $mark`
 scategorylink=`echo $scategory | tr -d [:punct:] | tr [:upper:] [:lower:] | tr [=' '=] -`
@@ -37,7 +38,7 @@ echo "<title>$stitle | $title</title>" >> temp_in_header.html
 echo "<meta name=\"keywords\" content=\"$stags, $keywords\">" >> temp_in_header.html
 if [[ $html == *wiki/* ]]; then
     echo "<h2>$stitle</h2>" >> temp_before_body.html
-    echo "<blockquote><code>Category: <a href=\"$wiki#$scategorylink\">$scategory</a> | Tags: $stags ----------> <a href="$wiki">Back to Wiki</a></code></blockquote>" >> temp_before_body.html
+    echo "<blockquote><code>Category: <a href=\"$wiki#$scategorylink\">$scategory</a> | Tags: $stags | Source: <a href=\"$sfilename\">Markdown</a> ----------> <a href="$wiki">Back to Wiki</a></code></blockquote>" >> temp_before_body.html
     echo "<blockquote><code>Author: $sauthor | Date: $sdate ----------> <a href="#">Go to Top</a></code></blockquote>" >> temp_after_body.html
 fi
 pandoc $flag $mark -o $html

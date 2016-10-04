@@ -10,6 +10,8 @@ echo "Generating $index"
 
 echo "<!---title:${title}-->" > $index
 echo "<!---tags:${tags}-->" >> $index
+echo >> $index
+echo "> 置顶：本页是由Markdown文件生成，点击查看源文件（[Markdown]($index)）。" >> $index
 
 i=0
 for s in $srcs

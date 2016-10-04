@@ -21,12 +21,12 @@
         </header>
         <article class="main-content">
             <h2>Ubuntu系统安装配置指南</h2>
-            <blockquote><code>Category: <a href="../wiki.html#个人笔记">个人笔记</a> | Tags: ubuntu ----------> <a href=../wiki.html>Back to Wiki</a></code></blockquote>
+            <blockquote><code>Category: <a href="../wiki.html#个人笔记">个人笔记</a> | Tags: ubuntu | Source: <a href="2.markdown">Markdown</a> ----------> <a href=../wiki.html>Back to Wiki</a></code></blockquote>
             <hr/>
             <h3>Contents</h3>
             <ul>
             <li><a href="#基本配置">基本配置</a></li>
-            <li><a href="#个人配置">个人配置</a></li>
+            <li><a href="#开发配置">开发配置</a></li>
             <li><a href="#优化配置">优化配置</a></li>
             <li><a href="#服务配置">服务配置</a></li>
             </ul>
@@ -42,12 +42,6 @@
 sudo apt-get upgrade
 sudo apt-get autoremove
 sudo apt-get autoclean</code></pre>
-<p>将dash改为bash</p>
-<pre><code>sudo dpkg-reconfigure dash</code></pre>
-<p>安装Vim</p>
-<pre><code>sudo apt-get purge vim-tiny
-sudo apt-get install vim</code></pre>
-<h3 id="个人配置">个人配置</h3>
 <p>安装Google Chrome</p>
 <pre><code>wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c &#39;echo &quot;deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main&quot; &gt;&gt; /etc/apt/sources.list.d/google-chrome.list&#39;
@@ -59,17 +53,37 @@ rm -rf ~/.cache/google-chrome;ln -s /tmp ~/.cache/google-chrome</code></pre>
 <pre><code>sudo add-apt-repository ppa:twodopeshaggy/drive
 sudo apt-get update
 sudo apt-get install drive</code></pre>
-<p>安装Git和Pandoc</p>
-<pre><code>sudo apt-get install git
-sudo apt-get install pandoc
-# Git clone个人仓库
-git clone https://github.com/qianngchn/qianngchn.github.io.git</code></pre>
-<p>安装Docker</p>
-<pre><code>sudo apt-get install docker.io</code></pre>
-<p>安装Ctags Cscope Tmux</p>
-<pre><code>sudo apt-get install exuberant-ctags
+<h3 id="开发配置">开发配置</h3>
+<p>修改shell为bash</p>
+<pre><code>sudo dpkg-reconfigure dash</code></pre>
+<p>开发工具配置</p>
+<pre><code># Vim
+sudo apt-get purge vim-tiny
+sudo apt-get install vim
+
+# Cscope for Vim
 sudo apt-get install cscope
+
+# Vundle for Vim
+sudo apt-get install git
+sudo apt-get install curl
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+# Markdown Wiki
+sudo apt-get install pandoc
+git clone https://github.com/qianngchn/qianngchn.github.io.git
+
+# Tmux
 sudo apt-get install tmux</code></pre>
+<p>开发环境配置</p>
+<pre><code># Docker
+sudo apt-get install docker.io
+# C/C++
+sudo apt-get install build-essential
+# Lua
+sudo apt-get install lua5.2 liblua5.2-dev
+# Go
+sudo apt-get install golang</code></pre>
 <h3 id="优化配置">优化配置</h3>
 <p>优化系统，加速启动</p>
 <pre><code>sudo apt-get install prelink preload
