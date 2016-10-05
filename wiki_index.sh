@@ -1,12 +1,12 @@
 #/bin/bash
 
-srcs=`find wiki -name "*.markdown" | sort -t'/' -k2 -nr`
+srcs=`find wiki -name "*.markdown" | sort -t/ -k2 -nr`
 index="wiki.markdown"
 title="Wiki"
 tags="wiki"
 recent=5
 
-echo "Generating $index"
+echo "Indexing $index"
 
 echo "<!---title:${title}-->" > $index
 echo "<!---tags:${tags}-->" >> $index

@@ -2,8 +2,7 @@ MARK=$(shell find -name "*.markdown" | sort)
 HTML=$(MARK:%.markdown=%.html)
 INDEX=$(shell find -name "*index.sh" | sort)
 
-.PHONY:
-	all index clean
+.PHONY:all index clean
 
 all:index $(HTML)
 
