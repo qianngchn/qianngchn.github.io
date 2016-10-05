@@ -3,7 +3,7 @@
 
 > 置顶：本页是由Markdown文件生成，点击查看源文件（[Markdown](wiki.markdown)）。
 
-### Recent
+### 最新文章
 * 2016-04-23 [Linux文件系统结构图](wiki/10.html) linux
 * 2016-04-16 [Linux下静态库和动态库简介及示例](wiki/9.html) linux, C语言
 * 2016-04-16 [Ubuntu下全命令行搭建Android开发环境](wiki/8.html) ubuntu, android, shell

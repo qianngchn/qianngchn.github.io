@@ -24,7 +24,7 @@ do
     if [ $i -lt $recent ]; then
         if [ $i -eq 0 ]; then
             echo >> $index
-            echo "### Recent" >> $index
+            echo "### 最新文章" >> $index
         fi
         echo "* $sdate [$stitle]($shtml) $stags" >> $index
         let i++
