@@ -1,27 +1,38 @@
 #/bin/bash
 
-mark=$1
+markdown=$1
 html=$2
 
 favicon="favicon.ico"
-style="style.css"
-title="Neal"
-keywords="neal"
-
+css="style.css"
 index="index.html"
 wiki="wiki.html"
+src=$html
+while [ "`dirname ${src}`" != "." ]
+do
+    favicon=../${favicon}
+    css=../${css}
+    index=../${index}
+    wiki=../${wiki}
+    src=`dirname ${src}`
+done
 
-sfilename=`basename $mark`
-stitle=`sed -n '1,5s/^<\!---title:\(.*\)-->$/\1/p' $mark`
-scategory=`sed -n '1,5s/^<\!---category:\(.*\)-->$/\1/p' $mark`
+sitetitle="Neal"
+sitekeywords="neal"
+sfilename=`basename $markdown`
+stitle=`sed -n '1,5s/^<\!---title:\(.*\)-->$/\1/p' $markdown`
+scategory=`sed -n '1,5s/^<\!---category:\(.*\)-->$/\1/p' $markdown`
 scategorylink=`echo $scategory | tr -d [:punct:] | tr [:upper:] [:lower:] | tr [=' '=] -`
-stags=`sed -n '1,5s/^<\!---tags:\(.*\)-->$/\1/p' $mark`
-sauthor=`sed -n '1,5s/^<\!---author:\(.*\)-->$/\1/p' $mark`
-sdate=`sed -n '1,5s/^<\!---date:\(.*\)-->$/\1/p' $mark`
+stags=`sed -n '1,5s/^<\!---tags:\(.*\)-->$/\1/p' $markdown`
+sauthor=`sed -n '1,5s/^<\!---author:\(.*\)-->$/\1/p' $markdown`
+sdate=`sed -n '1,5s/^<\!---date:\(.*\)-->$/\1/p' $markdown`
 
 flag+=" --variable=lang:en_US"
+flag+=" --variable=favicon:$favicon"
+flag+=" --variable=index:$index"
+flag+=" --variable=wiki:$wiki"
+flag+=" --css=$css"
 flag+=" --highlight-style=haddock"
-flag+=" --css=style.css"
 flag+=" --include-in-header temp_in_header.html"
 flag+=" --include-before-body temp_before_body.html"
 flag+=" --table-of-contents"
@@ -34,30 +45,15 @@ flag+=" --from=markdown --to=html"
 echo "Generating $html"
 # pandoc markdown to html
 touch temp_in_header.html temp_before_body.html temp_after_body.html
-echo "<title>$stitle | $title</title>" >> temp_in_header.html
-echo "<meta name=\"keywords\" content=\"$stags, $keywords\">" >> temp_in_header.html
+echo "<title>$stitle | $sitetitle</title>" >> temp_in_header.html
+echo "<meta name=\"keywords\" content=\"$stags, $sitekeywords\">" >> temp_in_header.html
 if [[ $html == *wiki/* ]]; then
     echo "<h2>$stitle</h2>" >> temp_before_body.html
-    echo "<code style=\"background-color:white\">Category: <a href=\"$wiki#$scategorylink\">$scategory</a> | Tags: $stags | Source: <a href=\"$sfilename\">Markdown</a> ----------> <a href="$wiki">Back to Wiki</a></code>" >> temp_before_body.html
+    echo "<code style=\"background-color:white\">Category: <a href=\"../wiki.html#$scategorylink\">$scategory</a> | Tags: $stags | Source: <a href=\"$sfilename\">Markdown</a> ----------> <a href="../wiki.html">Back to Wiki</a></code>" >> temp_before_body.html
     echo "<code style=\"background-color:white\">Author: $sauthor | Date: $sdate ----------> <a href="#">Go to Top</a></code>" >> temp_after_body.html
 fi
-pandoc $flag $mark -o $html
+pandoc $flag $markdown -o $html
 rm -f temp_in_header.html temp_before_body.html temp_after_body.html
-
-# then fix path in html
-src=$html
-while [ "`dirname ${src}`" != "." ]
-do
-    favicon=../${favicon}
-    style=../${style}
-    index=../${index}
-    wiki=../${wiki}
-    src=`dirname ${src}`
-done
-sed -i -e "s#style.css#${style}#g" $html
-sed -i -e "s#favicon\.ico#${favicon}#g" $html
-sed -i -e "s#index\.html#${index}#g" $html
-sed -i -e "s#wiki\.html#${wiki}#g" $html
 
 # then remove links of <hn> title in toc
 sed -i -e "s#\(<h. id=\".\+\">\)<a href=\"\#.\+\">\(.\+\)</a>#\1\2#g" $html
