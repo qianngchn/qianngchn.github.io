@@ -7,6 +7,7 @@ favicon="favicon.ico"
 css="style.css"
 index="index.html"
 wiki="wiki.html"
+about="about.html"
 src=$html
 while [ "`dirname ${src}`" != "." ]
 do
@@ -14,11 +15,10 @@ do
     css=../${css}
     index=../${index}
     wiki=../${wiki}
+    about=../${about}
     src=`dirname ${src}`
 done
 
-sitetitle="Neal"
-sitekeywords="neal"
 sfilename=`basename $markdown`
 stitle=`sed -n '1,5s/^<\!---title:\(.*\)-->$/\1/p' $markdown`
 scategory=`sed -n '1,5s/^<\!---category:\(.*\)-->$/\1/p' $markdown`
@@ -31,6 +31,7 @@ flag+=" --variable=lang:en_US"
 flag+=" --variable=favicon:$favicon"
 flag+=" --variable=index:$index"
 flag+=" --variable=wiki:$wiki"
+flag+=" --variable=about:$about"
 flag+=" --css=$css"
 flag+=" --highlight-style=haddock"
 flag+=" --include-in-header temp_in_header.html"
@@ -45,8 +46,8 @@ flag+=" --from=markdown --to=html"
 echo "Generating $html"
 # pandoc markdown to html
 touch temp_in_header.html temp_before_body.html temp_after_body.html
-echo "<title>$stitle | $sitetitle</title>" >> temp_in_header.html
-echo "<meta name=\"keywords\" content=\"$stags, $sitekeywords\">" >> temp_in_header.html
+echo "<title>$stitle</title>" >> temp_in_header.html
+echo "<meta name=\"keywords\" content=\"$stags\">" >> temp_in_header.html
 if [[ $html == *wiki/* ]]; then
     echo "<h2>$stitle</h2>" >> temp_before_body.html
     echo "<code style=\"background-color:white\">Category: <a href=\"../wiki.html#$scategorylink\">$scategory</a> | Tags: $stags | Source: <a href=\"$sfilename\">Markdown</a> ----------> <a href="../wiki.html">Back to Wiki</a></code>" >> temp_before_body.html

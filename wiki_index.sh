@@ -11,7 +11,11 @@ echo "Indexing $index"
 echo "<!---title:${title}-->" > $index
 echo "<!---tags:${tags}-->" >> $index
 echo >> $index
-echo "> 置顶：本页是由Markdown文件生成，点击查看源文件（[Markdown]($index)）。" >> $index
+echo "> Key：本页是基于Markdown + Pandoc + Github搭建的在线Wiki，我在这里记录知识，积累人生。" >> $index
+echo >> $index
+echo "> Help 1：本页是由Markdown文件生成，点击查看源文件（[Markdown]($index)）。" >> $index
+echo >> $index
+echo "> Help 2：本页以Date Title Tags为索引方式，如果你有类似cVim插件，可以直接快速搜索哟。" >> $index
 
 i=0
 for s in $srcs

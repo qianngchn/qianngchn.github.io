@@ -1,7 +1,11 @@
 <!---title:Wiki-->
 <!---tags:wiki-->
 
-> 置顶：本页是由Markdown文件生成，点击查看源文件（[Markdown](wiki.markdown)）。
+> Key：本页是基于Markdown + Pandoc + Github搭建的在线Wiki，我在这里记录知识，积累人生。
+
+> Help 1：本页是由Markdown文件生成，点击查看源文件（[Markdown](wiki.markdown)）。
+
+> Help 2：本页以Date Title Tags为索引方式，如果你有类似cVim插件，可以直接快速搜索哟。
 
 ### 最新文章
 * 2016-04-23 [Linux文件系统结构图](wiki/10.html) linux
