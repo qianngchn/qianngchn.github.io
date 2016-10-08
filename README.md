@@ -1,11 +1,11 @@
 ### qianngchn.github.io
 A personal website on GitHub Pages
 
-### Homepage
-本站地址: <http://qianngchn.github.io>
+### Home
+欢迎访问我的个人主页：<http://qianngchn.github.io>
 
 ### Wiki
-本站Wiki是基于Markdown + Pandoc + Github搭建的在线Wiki，方法是用markdown写的文章，在本地建立起自己的知识架构，同时调用pandoc实现html的自动生成，然后再发布到Github上形成自己的在线Wiki。
+我的个人Wiki是基于Markdown + Pandoc + Github搭建的在线Wiki，方法是用markdown写的文章，在本地建立起自己的知识架构，同时调用pandoc实现html的自动生成，然后再发布到Github上形成自己的在线Wiki。
 
 这样做的好处在于，可以同时实现本地Markdown Wiki和在线Wiki，Wiki修改和发布极为方便。
 

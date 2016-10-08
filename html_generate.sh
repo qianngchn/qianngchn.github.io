@@ -7,7 +7,6 @@ favicon="favicon.ico"
 css="style.css"
 index="index.html"
 wiki="wiki.html"
-about="about.html"
 src=$html
 while [ "`dirname ${src}`" != "." ]
 do
@@ -15,7 +14,6 @@ do
     css=../${css}
     index=../${index}
     wiki=../${wiki}
-    about=../${about}
     src=`dirname ${src}`
 done
 
@@ -31,7 +29,6 @@ flag+=" --variable=lang:en_US"
 flag+=" --variable=favicon:$favicon"
 flag+=" --variable=index:$index"
 flag+=" --variable=wiki:$wiki"
-flag+=" --variable=about:$about"
 flag+=" --css=$css"
 flag+=" --highlight-style=haddock"
 flag+=" --include-in-header temp_in_header.html"

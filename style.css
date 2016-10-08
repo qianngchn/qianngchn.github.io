@@ -240,7 +240,7 @@ a {
 
 .site-header {
   height: 3.5rem;
-  background-color: #159957;
+  background-color: #1e6bb8;
   background-image: linear-gradient(120deg, #159957, #1e6bb8); }
   @media screen and (min-width: 64em) {
     .site-header {
@@ -255,17 +255,15 @@ a {
     color: #fff;
     text-decoration: none; }
   .site-header .site-nav {
-    max-width: 50rem;
+    max-width: 52rem;
     margin: 0 auto; }
   .site-header .site-nav-title {
-    margin: 0.1em 0;
-    padding-top: 0.2rem;
+    margin: 0.3rem 0;
     font-size: 1.8rem;
     font-weight: normal;
     float: left; }
   .site-header .site-nav-list {
-    margin: 0.1em 0;
-    padding-top: 1rem;
+    padding: 0rem 0rem;
     float: right; }
   .site-header .site-nav-item {
     font-size: 1.2rem;
@@ -342,7 +340,7 @@ a {
   .main-content blockquote {
     padding: 0 1rem;
     margin-left: 0;
-    color: #819198;
+    color: #777;
     border-left: 0.3rem solid #dce6f0; }
     .main-content blockquote > :first-child {
       margin-top: 0; }
@@ -359,7 +357,7 @@ a {
       font-weight: bold; }
     .main-content table th, .main-content table td {
       padding: 0.5rem 1rem;
-      border: 1px solid #aaa; }
+      border: 1px solid #e9ebec; }
   .main-content dl {
     padding: 0; }
     .main-content dl dt {
@@ -396,4 +394,4 @@ a {
     display: block;
     font-weight: bold; }
   .site-footer .site-footer-credits {
-    color: #819198; }
+    color: #777; }
