@@ -4,12 +4,16 @@ srcs=`find wiki -name "*.markdown" | sort -t/ -k2 -nr`
 index="wiki.markdown"
 title="Wiki"
 tags="wiki"
+author="qianngchn"
+date=`date +%F`
 recent=5
 
 echo "Indexing $index"
 
 echo "<!---title:${title}-->" > $index
 echo "<!---tags:${tags}-->" >> $index
+echo "<!---author:${author}-->" >> $index
+echo "<!---date:${date}-->" >> $index
 echo >> $index
 echo "> 本页是基于Markdown + Pandoc + Github搭建的在线Wiki，我在这里记录知识，积累人生。" >> $index
 

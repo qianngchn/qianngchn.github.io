@@ -1,5 +1,7 @@
 <!---title:Home-->
 <!---tags:home-->
+<!---author:qianngchn-->
+<!---date:2016-10-12-->
 
 > 这里是Neal's Stack，用于记录我在技术人生路上的关键点，积累属于自己的Stack。
 
