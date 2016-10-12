@@ -24,8 +24,9 @@ scategorylink=`echo $scategory | tr -d [:punct:] | tr [:upper:] [:lower:] | tr [
 stags=`sed -n '1,5s/^<\!---tags:\(.*\)-->$/\1/p' $markdown`
 sauthor=`sed -n '1,5s/^<\!---author:\(.*\)-->$/\1/p' $markdown`
 sdate=`sed -n '1,5s/^<\!---date:\(.*\)-->$/\1/p' $markdown`
+sdescription=`sed -n '1,9s/^\([^<].*\)$/\1/p' $markdown`
 
-flag+=" --variable=lang:en_US"
+flag+=" --variable=lang:zh-CN"
 flag+=" --variable=favicon:$favicon"
 flag+=" --variable=index:$index"
 flag+=" --variable=wiki:$wiki"
@@ -38,22 +39,25 @@ flag+=" --toc-depth=4"
 flag+=" --include-after-body temp_after_body.html"
 flag+=" --template=pandoctpl.html"
 flag+=" --tab-stop=4"
-flag+=" --from=markdown --to=html"
+flag+=" --from=markdown --to=html5"
 
 echo "Generating $html"
 # pandoc markdown to html
 touch temp_in_header.html temp_before_body.html temp_after_body.html
 echo "<title>$stitle</title>" >> temp_in_header.html
-echo "<meta name=\"keywords\" content=\"$stags\">" >> temp_in_header.html
+echo "<meta name=\"keywords\" content=\"$stags\" />" >> temp_in_header.html
+echo "<meta name=\"author\" content=\"$sauthor\" />" >> temp_in_header.html
+echo "<meta name=\"date\" content=\"$sdate\" />" >> temp_in_header.html
+echo "<meta name=\"description\" content=\"$sdescription\" />" >> temp_in_header.html
 if [[ $html == *wiki/* ]]; then
     echo "<h2>$stitle</h2>" >> temp_before_body.html
-    echo "<code style=\"background-color:white\">Category: <a href=\"../wiki.html#$scategorylink\">$scategory</a> | Tags: $stags | Source: <a href=\"$sfilename\">Markdown</a> ----------> <a href="../wiki.html">Back to Wiki</a></code>" >> temp_before_body.html
-    echo "<code style=\"background-color:white\">Author: $sauthor | Date: $sdate ----------> <a href="#">Go to Top</a></code>" >> temp_after_body.html
+    echo "<code style=\"background-color:white\">Category: <a href=\"../wiki.html#$scategorylink\">$scategory</a> | Tags: $stags | Source: <a href=\"$sfilename\">Markdown</a> ----------&gt; <a href="../wiki.html">Back to Wiki</a></code>" >> temp_before_body.html
+    echo "<code style=\"background-color:white\">Author: $sauthor | Date: $sdate ----------&gt; <a href="#">Go to Top</a></code>" >> temp_after_body.html
 fi
 pandoc $flag $markdown -o $html
 rm -f temp_in_header.html temp_before_body.html temp_after_body.html
 
 # then remove links of <hn> title in toc
-sed -i -e "s#\(<h. id=\".\+\">\)<a href=\"\#.\+\">\(.\+\)</a>#\1\2#g" $html
+sed -i -e "s#\(<h. id=\".*\">\)<a href=\"\#.*\">\(.*\)</a>#\1\2#g" $html
 
 exit 0

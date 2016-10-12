@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en_US" xml:lang="en_US">
+<html lang="zh-CN">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset=utf-8" />
         <meta http-equiv="Content-Style-Type" content="text/css" />
         <meta name="generator" content="pandoc" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <link rel="icon" href="../favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="../style.css" type="text/css" />
+        <link rel="stylesheet" href="../style.css"  />
         <title>Linux文件系统结构图</title>
-        <meta name="keywords" content="linux">
+        <meta name="keywords" content="linux" />
+        <meta name="author" content="qianngchn" />
+        <meta name="date" content="2016-04-23" />
+        <meta name="description" content="![Linux File System Hierarchy](../images/linux-file-system-hierarchy.png)\" />
     </head>
     <body>
         <header class="site-header">
+            <h2 style="display:none"><a href="/">Neal's Stack</a></h2>
             <nav class="site-nav">
-                <h1 class="site-nav-title"><a href="../index.html">Neal's Stack</a></h1>
+                <span class="site-nav-title"><a href="../index.html">Neal's Stack</a></span>
                 <ul class="site-nav-list">
                     <li class="site-nav-item"><a href="../wiki.html">Wiki</a></li>
                     <li class="site-nav-item"><a href="https://github.com/qianngchn">GitHub</a></li>
@@ -23,7 +27,7 @@
         <article class="main-content">
             <header>
                 <h2>Linux文件系统结构图</h2>
-                <code style="background-color:white">Category: <a href="../wiki.html#技术学习">技术学习</a> | Tags: linux | Source: <a href="10.markdown">Markdown</a> ----------> <a href=../wiki.html>Back to Wiki</a></code>
+                <code style="background-color:white">Category: <a href="../wiki.html#技术学习">技术学习</a> | Tags: linux | Source: <a href="10.markdown">Markdown</a> ----------&gt; <a href=../wiki.html>Back to Wiki</a></code>
             </header>
             <hr/>
 <!---title:Linux文件系统结构图-->
@@ -36,184 +40,184 @@
 <table>
 <thead>
 <tr class="header">
-<th align="left">目录</th>
-<th align="left">描述</th>
+<th style="text-align: left;">目录</th>
+<th style="text-align: left;">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">/</td>
-<td align="left">主层次 的根，也是整个文件系统层次结构的根目录。</td>
+<td style="text-align: left;">/</td>
+<td style="text-align: left;">主层次 的根，也是整个文件系统层次结构的根目录。</td>
 </tr>
 <tr class="even">
-<td align="left">/bin</td>
-<td align="left">存放在单用户模式可用的必要命令二进制文件，所有用户都可用，如 cat、ls、cp等等。</td>
+<td style="text-align: left;">/bin</td>
+<td style="text-align: left;">存放在单用户模式可用的必要命令二进制文件，所有用户都可用，如 cat、ls、cp等等。</td>
 </tr>
 <tr class="odd">
-<td align="left">/boot</td>
-<td align="left">存放引导加载程序文件，例如kernels、initrd等。</td>
+<td style="text-align: left;">/boot</td>
+<td style="text-align: left;">存放引导加载程序文件，例如kernels、initrd等。</td>
 </tr>
 <tr class="even">
-<td align="left">/dev</td>
-<td align="left">存放必要的设备文件，例如/dev/null。</td>
+<td style="text-align: left;">/dev</td>
+<td style="text-align: left;">存放必要的设备文件，例如/dev/null。</td>
 </tr>
 <tr class="odd">
-<td align="left">/etc</td>
-<td align="left">存放主机特定的系统级配置文件。其实这里有个关于它名字本身意义上的的争议。在贝尔实验室的UNIX实施文档的早期版本中，/etc表示是“其他（etcetera）目录”，因为从历史上看，这个目录是存放各种不属于其他目录的文件（然而，文件系统目录标准 FSH 限定 /etc 用于存放静态配置文件，这里不该存有二进制文件）。早期文档出版后，这个目录名又重新定义成不同的形式。近期的解释中包含着诸如“可编辑文本配置”或者“额外的工具箱”这样的重定义。</td>
+<td style="text-align: left;">/etc</td>
+<td style="text-align: left;">存放主机特定的系统级配置文件。其实这里有个关于它名字本身意义上的的争议。在贝尔实验室的UNIX实施文档的早期版本中，/etc表示是“其他（etcetera）目录”，因为从历史上看，这个目录是存放各种不属于其他目录的文件（然而，文件系统目录标准 FSH 限定 /etc 用于存放静态配置文件，这里不该存有二进制文件）。早期文档出版后，这个目录名又重新定义成不同的形式。近期的解释中包含着诸如“可编辑文本配置”或者“额外的工具箱”这样的重定义。</td>
 </tr>
 <tr class="even">
-<td align="left">/etc/opt</td>
-<td align="left">存储着新增包的配置文件 /opt/。</td>
+<td style="text-align: left;">/etc/opt</td>
+<td style="text-align: left;">存储着新增包的配置文件 /opt/。</td>
 </tr>
 <tr class="odd">
-<td align="left">/etc/sgml</td>
-<td align="left">存放配置文件，比如 catalogs，用于那些处理SGML(译者注：标准通用标记语言)的软件的配置文件。</td>
+<td style="text-align: left;">/etc/sgml</td>
+<td style="text-align: left;">存放配置文件，比如 catalogs，用于那些处理SGML(译者注：标准通用标记语言)的软件的配置文件。</td>
 </tr>
 <tr class="even">
-<td align="left">/etc/X11</td>
-<td align="left">X Window 系统11版本的的配置文件。</td>
+<td style="text-align: left;">/etc/X11</td>
+<td style="text-align: left;">X Window 系统11版本的的配置文件。</td>
 </tr>
 <tr class="odd">
-<td align="left">/etc/xml</td>
-<td align="left">配置文件，比如catalogs，用于那些处理XML(译者注：可扩展标记语言)的软件的配置文件。</td>
+<td style="text-align: left;">/etc/xml</td>
+<td style="text-align: left;">配置文件，比如catalogs，用于那些处理XML(译者注：可扩展标记语言)的软件的配置文件。</td>
 </tr>
 <tr class="even">
-<td align="left">/home</td>
-<td align="left">用户的主目录，包括保存的文件，个人配置，等等。</td>
+<td style="text-align: left;">/home</td>
+<td style="text-align: left;">用户的主目录，包括保存的文件，个人配置，等等。</td>
 </tr>
 <tr class="odd">
-<td align="left">/lib</td>
-<td align="left">/bin/ 和 /sbin/中的二进制文件的必需的库文件。</td>
+<td style="text-align: left;">/lib</td>
+<td style="text-align: left;">/bin/ 和 /sbin/中的二进制文件的必需的库文件。</td>
 </tr>
 <tr class="even">
-<td align="left">/lib&lt;32/64&gt;</td>
-<td align="left">备用格式的必要的库文件。 这样的目录是可选的，但如果他们存在的话肯定是有需要用到它们的程序。</td>
+<td style="text-align: left;">/lib&lt;32/64&gt;</td>
+<td style="text-align: left;">备用格式的必要的库文件。 这样的目录是可选的，但如果他们存在的话肯定是有需要用到它们的程序。</td>
 </tr>
 <tr class="odd">
-<td align="left">/media</td>
-<td align="left">可移动的多媒体(如CD-ROMs)的挂载点。</td>
+<td style="text-align: left;">/media</td>
+<td style="text-align: left;">可移动的多媒体(如CD-ROMs)的挂载点。</td>
 </tr>
 <tr class="even">
-<td align="left">/mnt</td>
-<td align="left">临时挂载的文件系统。</td>
+<td style="text-align: left;">/mnt</td>
+<td style="text-align: left;">临时挂载的文件系统。</td>
 </tr>
 <tr class="odd">
-<td align="left">/opt</td>
-<td align="left">可选的应用程序软件包。</td>
+<td style="text-align: left;">/opt</td>
+<td style="text-align: left;">可选的应用程序软件包。</td>
 </tr>
 <tr class="even">
-<td align="left">/proc</td>
-<td align="left">以文件形式提供进程以及内核信息的虚拟文件系统，在Linux中，对应进程文件系统（procfs）的挂载点。</td>
+<td style="text-align: left;">/proc</td>
+<td style="text-align: left;">以文件形式提供进程以及内核信息的虚拟文件系统，在Linux中，对应进程文件系统（procfs）的挂载点。</td>
 </tr>
 <tr class="odd">
-<td align="left">/root</td>
-<td align="left">根用户的主目录。</td>
+<td style="text-align: left;">/root</td>
+<td style="text-align: left;">根用户的主目录。</td>
 </tr>
 <tr class="even">
-<td align="left">/sbin</td>
-<td align="left">必要的系统级二进制文件，比如， init, ip, mount。</td>
+<td style="text-align: left;">/sbin</td>
+<td style="text-align: left;">必要的系统级二进制文件，比如， init, ip, mount。</td>
 </tr>
 <tr class="odd">
-<td align="left">/srv</td>
-<td align="left">系统提供的站点特定数据。</td>
+<td style="text-align: left;">/srv</td>
+<td style="text-align: left;">系统提供的站点特定数据。</td>
 </tr>
 <tr class="even">
-<td align="left">/tmp</td>
-<td align="left">临时文件 (另见 /var/tmp). 通常在系统重启后删除。</td>
+<td style="text-align: left;">/tmp</td>
+<td style="text-align: left;">临时文件 (另见 /var/tmp). 通常在系统重启后删除。</td>
 </tr>
 <tr class="odd">
-<td align="left">/usr</td>
-<td align="left">二级层级存储用户的只读数据； 包含(多)用户主要的公共文件以及应用程序。</td>
+<td style="text-align: left;">/usr</td>
+<td style="text-align: left;">二级层级存储用户的只读数据； 包含(多)用户主要的公共文件以及应用程序。</td>
 </tr>
 <tr class="even">
-<td align="left">/usr/bin</td>
-<td align="left">非必要的命令二进制文件 (在单用户模式中不需要用到的)；用于所有用户。</td>
+<td style="text-align: left;">/usr/bin</td>
+<td style="text-align: left;">非必要的命令二进制文件 (在单用户模式中不需要用到的)；用于所有用户。</td>
 </tr>
 <tr class="odd">
-<td align="left">/usr/include</td>
-<td align="left">标准的包含文件。</td>
+<td style="text-align: left;">/usr/include</td>
+<td style="text-align: left;">标准的包含文件。</td>
 </tr>
 <tr class="even">
-<td align="left">/usr/lib</td>
-<td align="left">库文件，用于/usr/bin/ 和 /usr/sbin/中的二进制文件。</td>
+<td style="text-align: left;">/usr/lib</td>
+<td style="text-align: left;">库文件，用于/usr/bin/ 和 /usr/sbin/中的二进制文件。</td>
 </tr>
 <tr class="odd">
-<td align="left">/usr/lib&lt;32/64&gt;</td>
-<td align="left">备用格式库(可选的)。</td>
+<td style="text-align: left;">/usr/lib&lt;32/64&gt;</td>
+<td style="text-align: left;">备用格式库(可选的)。</td>
 </tr>
 <tr class="even">
-<td align="left">/usr/local</td>
-<td align="left">三级层次 用于本地数据，具体到该主机上的。通常会有下一个子目录, 比如, bin/, lib/, share/。</td>
+<td style="text-align: left;">/usr/local</td>
+<td style="text-align: left;">三级层次 用于本地数据，具体到该主机上的。通常会有下一个子目录, 比如, bin/, lib/, share/。</td>
 </tr>
 <tr class="odd">
-<td align="left">/usr/local/sbin</td>
-<td align="left">非必要系统的二进制文件，比如用于不同网络服务的守护进程。</td>
+<td style="text-align: left;">/usr/local/sbin</td>
+<td style="text-align: left;">非必要系统的二进制文件，比如用于不同网络服务的守护进程。</td>
 </tr>
 <tr class="even">
-<td align="left">/usr/share</td>
-<td align="left">架构无关的 (共享) 数据。</td>
+<td style="text-align: left;">/usr/share</td>
+<td style="text-align: left;">架构无关的 (共享) 数据。</td>
 </tr>
 <tr class="odd">
-<td align="left">/usr/src</td>
-<td align="left">源代码，比如内核源文件以及与它相关的头文件。</td>
+<td style="text-align: left;">/usr/src</td>
+<td style="text-align: left;">源代码，比如内核源文件以及与它相关的头文件。</td>
 </tr>
 <tr class="even">
-<td align="left">/usr/X11R6</td>
-<td align="left">X Window系统，版本号:11，发行版本：6。</td>
+<td style="text-align: left;">/usr/X11R6</td>
+<td style="text-align: left;">X Window系统，版本号:11，发行版本：6。</td>
 </tr>
 <tr class="odd">
-<td align="left">/var</td>
-<td align="left">各式各样的（Variable）文件，一些随着系统常规操作而持续改变的文件就放在这里，比如日志文件，脱机文件，还有临时的电子邮件文件。</td>
+<td style="text-align: left;">/var</td>
+<td style="text-align: left;">各式各样的（Variable）文件，一些随着系统常规操作而持续改变的文件就放在这里，比如日志文件，脱机文件，还有临时的电子邮件文件。</td>
 </tr>
 <tr class="even">
-<td align="left">/var/cache</td>
-<td align="left">应用程序缓存数据. 这些数据是由耗时的I/O(输入/输出)的或者是运算本地生成的结果。这些应用程序是可以重新生成或者恢复数据的。当没有数据丢失的时候，可以删除缓存文件。</td>
+<td style="text-align: left;">/var/cache</td>
+<td style="text-align: left;">应用程序缓存数据. 这些数据是由耗时的I/O(输入/输出)的或者是运算本地生成的结果。这些应用程序是可以重新生成或者恢复数据的。当没有数据丢失的时候，可以删除缓存文件。</td>
 </tr>
 <tr class="odd">
-<td align="left">/var/lib</td>
-<td align="left">状态信息。这些信息随着程序的运行而不停地改变，比如，数据库，软件包系统的元数据等等。</td>
+<td style="text-align: left;">/var/lib</td>
+<td style="text-align: left;">状态信息。这些信息随着程序的运行而不停地改变，比如，数据库，软件包系统的元数据等等。</td>
 </tr>
 <tr class="even">
-<td align="left">/var/lock</td>
-<td align="left">锁文件。这些文件用于跟踪正在使用的资源。</td>
+<td style="text-align: left;">/var/lock</td>
+<td style="text-align: left;">锁文件。这些文件用于跟踪正在使用的资源。</td>
 </tr>
 <tr class="odd">
-<td align="left">/var/log</td>
-<td align="left">日志文件。包含各种日志。</td>
+<td style="text-align: left;">/var/log</td>
+<td style="text-align: left;">日志文件。包含各种日志。</td>
 </tr>
 <tr class="even">
-<td align="left">/var/mail</td>
-<td align="left">内含用户邮箱的相关文件。</td>
+<td style="text-align: left;">/var/mail</td>
+<td style="text-align: left;">内含用户邮箱的相关文件。</td>
 </tr>
 <tr class="odd">
-<td align="left">/var/opt</td>
-<td align="left">来自附加包的各种数据都会存储在 /var/opt/。</td>
+<td style="text-align: left;">/var/opt</td>
+<td style="text-align: left;">来自附加包的各种数据都会存储在 /var/opt/。</td>
 </tr>
 <tr class="even">
-<td align="left">/var/run</td>
-<td align="left">存放当前系统上次启动以来的相关信息，例如当前登入的用户以及当前运行的daemons(守护进程)。</td>
+<td style="text-align: left;">/var/run</td>
+<td style="text-align: left;">存放当前系统上次启动以来的相关信息，例如当前登入的用户以及当前运行的daemons(守护进程)。</td>
 </tr>
 <tr class="odd">
-<td align="left">/var/spool</td>
-<td align="left">该spool主要用于存放将要被处理的任务，比如打印队列以及邮件外发队列。</td>
+<td style="text-align: left;">/var/spool</td>
+<td style="text-align: left;">该spool主要用于存放将要被处理的任务，比如打印队列以及邮件外发队列。</td>
 </tr>
 <tr class="even">
-<td align="left">/var/mail</td>
-<td align="left">过时的位置，用于放置用户邮箱文件。</td>
+<td style="text-align: left;">/var/mail</td>
+<td style="text-align: left;">过时的位置，用于放置用户邮箱文件。</td>
 </tr>
 <tr class="odd">
-<td align="left">/var/tmp</td>
-<td align="left">存放重启后保留的临时文件。</td>
+<td style="text-align: left;">/var/tmp</td>
+<td style="text-align: left;">存放重启后保留的临时文件。</td>
 </tr>
 </tbody>
 </table>
             <hr/>
             <footer>
-                <code style="background-color:white">Author: qianngchn | Date: 2016-04-23 ----------> <a href=#>Go to Top</a></code>
+                <code style="background-color:white">Author: qianngchn | Date: 2016-04-23 ----------&gt; <a href=#>Go to Top</a></code>
             </footer>
         </article>
         <footer class="site-footer">
-            <span class="site-footer-owner">Copyright © 2015, <a href="../index.html">Neal's Stack</a>. All Rights Reserved.</span>
+            <span class="site-footer-owner">Copyright &copy; 2015, <a href="../index.html">Neal's Stack</a>. All Rights Reserved.</span>
             <span class="site-footer-credits">Powered by <a href="https://pages.github.com">Github Pages</a>. Themed by <a href="https://github.com/jasonlong/cayman-theme">Cayman</a>. Modified by <a href="../index.html">Neal's Stack</a>.</span>
         </footer>
     </body>

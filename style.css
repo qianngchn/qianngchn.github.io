@@ -68,7 +68,7 @@ dfn {
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 1.8em;
   margin: 0.67em 0;
 }
 
@@ -258,9 +258,8 @@ a {
     max-width: 52rem;
     margin: 0 auto; }
   .site-header .site-nav-title {
-    margin: 0.3rem 0;
     font-size: 1.8rem;
-    font-weight: normal;
+    margin: 0.3rem 0;
     float: left; }
   .site-header .site-nav-list {
     padding: 0rem 0rem;
