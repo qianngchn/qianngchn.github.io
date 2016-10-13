@@ -1,7 +1,7 @@
 <!---title:Linux文件系统结构图-->
 <!---category:技术学习-->
 <!---tags:linux-->
-<!---author:qianngchn-->
+<!---author:Neal-->
 <!---date:2016-04-23-->
 
 ![Linux File System Hierarchy](../images/linux-file-system-hierarchy.png)\

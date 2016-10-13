@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cmn-Hans">
     <head>
         <meta charset=utf-8" />
         <meta name="generator" content="pandoc" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <link rel="icon" href="../favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="../style.css"  />
+        <link rel="icon" href="../favicon.ico" />
+        <link rel="stylesheet" href="../style.css" />
         <title>Linux下静态库和动态库简介及示例</title>
         <meta name="keywords" content="linux, C语言" />
-        <meta name="author" content="qianngchn" />
+        <meta name="author" content="Neal" />
         <meta name="date" content="2016-04-16" />
         <meta name="description" content="在实际的软件开发项目中，不是每一行代码都需要我们亲自写。在我们的软件产品中，有一些代码(尤其是函数)的出现频率很高，它们可以被当作公共代码来反复使用。为了避免重复劳动，我们就把这些公共代码编译为库文件，供需要的程序调用。在Linux中，库分为静态库和动态库两种。
         ### 静态库和动态库简介" />
@@ -43,7 +43,7 @@
 <!---title:Linux下静态库和动态库简介及示例-->
 <!---category:技术学习-->
 <!---tags:linux, C语言-->
-<!---author:qianngchn-->
+<!---author:Neal-->
 <!---date:2016-04-16-->
 
 <p>在实际的软件开发项目中，不是每一行代码都需要我们亲自写。在我们的软件产品中，有一些代码(尤其是函数)的出现频率很高，它们可以被当作公共代码来反复使用。为了避免重复劳动，我们就把这些公共代码编译为库文件，供需要的程序调用。在Linux中，库分为静态库和动态库两种。</p>
@@ -141,7 +141,7 @@ this is in test_c...</code></pre>
 <p>可以看到，可执行文件<code>test</code>依赖于四个共享库，其中<code>libtest.so</code>位于当前用户的<code>lib</code>目录下。</p>
             <hr/>
             <footer>
-                <code style="background-color:white">Author: qianngchn | Date: 2016-04-16 ----------&gt; <a href=#>Go to Top</a></code>
+                <code style="background-color:white">Author: Neal | Date: 2016-04-16 ----------&gt; <a href=#>Go to Top</a></code>
             </footer>
         </article>
         <footer class="site-footer">

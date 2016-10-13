@@ -4,7 +4,7 @@ srcs=`find wiki -name "*.markdown" | sort -t/ -k2 -nr`
 index="wiki.markdown"
 title="Wiki"
 tags="wiki"
-author="qianngchn"
+author="Neal"
 date=`date +%F`
 recent=5
 

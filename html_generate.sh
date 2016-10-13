@@ -26,7 +26,7 @@ sauthor=`sed -n '1,5s/^<\!---author:\(.*\)-->$/\1/p' $markdown`
 sdate=`sed -n '1,5s/^<\!---date:\(.*\)-->$/\1/p' $markdown`
 sdescription=`sed -n '1,9s/^\([^<].*\)$/\1/p' $markdown`
 
-flag+=" --variable=lang:zh-CN"
+flag+=" --variable=lang:zh-cmn-Hans"
 flag+=" --variable=favicon:$favicon"
 flag+=" --variable=index:$index"
 flag+=" --variable=wiki:$wiki"
