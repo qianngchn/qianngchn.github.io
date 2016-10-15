@@ -6,75 +6,65 @@
 
 ````````````````````````````````````````````````````````````{.c}
 #include <stdio.h>
-#include <inttypes.h>
+#include <stdint.h>
+#include <libgen.h>
 
-#define Poly 0xEDB88320L //CRC32标准
-static uint32_t crc_tab32[256]; //CRC查询表
+#define POLY 0xEDB88320L
 
-static void init_crc32_tab(void); //生成CRC查询表
-uint32_t get_crc32(uint32_t crcinit, uint8_t * bs, uint32_t bssize); //获得CRC
-uint32_t GetFileCRC(FILE *fd); //获得文件CRC
-
-static void init_crc32_tab( void ) 
+uint32_t get_buff_crc32(uint32_t crc32init, uint8_t *buff, uint32_t buffsize)
 {
+    uint32_t crc32_tab[256];
+    uint32_t crc32;
     int i, j;
-    uint32_t crc;
 
-    for (i=0; i<256; i++)
+    for (i = 0; i < 256; i++)
     {
-        crc = (unsigned long)i;
-        for (j=0; j<8; j++) 
+        crc32 = (uint32_t)i;
+        for (j = 0; j < 8; j++) 
         {
-            if ( crc & 0x00000001L )
-                crc = ( crc >> 1 ) ^ Poly;
-            else     
-                crc = crc >> 1;
+            if (crc32 & 0x00000001L)
+                crc32 = (crc32 >> 1) ^ POLY;
+            else
+                crc32 = crc32 >> 1;
         }
-        crc_tab32[i] = crc;
+        crc32_tab[i] = crc32;
     }
+
+    crc32 = crc32init ^ 0xFFFFFFFFL;
+    while(buffsize--)
+        crc32 = (crc32 >> 8) ^ crc32_tab[(crc32 & 0x000000FFL) ^ *buff++];
+
+    return crc32 ^ 0xFFFFFFFFL;
 }
 
-uint32_t get_crc32(uint32_t crcinit, uint8_t * bs, uint32_t bssize)
-{
-    uint32_t crc = crcinit^0xffffffff;
-
-    init_crc32_tab();
-    while(bssize--)
-        crc=(crc >> 8)^crc_tab32[(crc & 0xff) ^ *bs++];
-
-    return crc ^ 0xffffffff;
-}
-
-uint32_t GetFileCRC(FILE *fd)
+uint32_t get_file_crc32(FILE *fd)
 {
     uint32_t size = 16 * 1024;
-    uint8_t crcbuf[size];
-    uint32_t rdlen;
-    uint32_t crc = 0; //CRC初始值为0
+    uint8_t buff[size];
+    uint32_t length;
+    uint32_t crc32 = 0;
 
-    while((rdlen = fread(crcbuf, sizeof(uint8_t), size, fd)) > 0)
-        crc = get_crc32(crc, crcbuf, rdlen);
+    while((length = fread(buff, sizeof(uint8_t), size, fd)) > 0)
+        crc32 = get_buff_crc32(crc32, buff, length);
 
-    return crc;
+    return crc32;
 }
 
-int main(int argc,char **argv)
+int main(int argc, char **argv)
 {
-    FILE *fd;
-    unsigned int value=0;
+    if(argc < 2)
+    {
+        printf("Usage: %s file\n", basename(argv[0]));
+        return 0;
+    }
 
-    if(argc<2)
+    FILE *fd;
+    if((fd=fopen(argv[1], "r")) == NULL)
     {
-        printf("Usage: %s file",basename(argv[0]));
-        exit(1);
+        perror("File Open Error!");
+        return 1;
     }
-    if((fd=fopen(argv[1],"r"))==NULL)   
-    {
-        perror("Error:");
-        exit(1);
-    }
-    value = GetFileCRC(fd);
-    printf("CRC: %X\n",value);
+    printf("CRC32: %X\n", get_file_crc32(fd));
 
     fclose(fd);
     return 0;

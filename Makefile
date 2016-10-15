@@ -4,7 +4,7 @@ INDEX=$(shell find -name "*index.sh" | sort)
 
 .PHONY:all index clean
 
-all:index $(HTML)
+all:$(HTML)
 
 index:
 	@for script in $(INDEX); do bash $$script; done

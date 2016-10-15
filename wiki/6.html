@@ -27,7 +27,7 @@
         <meta name="date" content="2016-03-21" />
         <meta name="description" content="````````````````````````````````````````````````````````````{.c}
         #include <stdio.h>
-        #include <inttypes.h>" />
+        #include <stdint.h>" />
     </head>
     <body>
         <header class="site-header">
@@ -53,75 +53,65 @@
 <!---date:2016-03-21-->
 
 <pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &lt;inttypes.h&gt;</span>
+<span class="ot">#include &lt;stdint.h&gt;</span>
+<span class="ot">#include &lt;libgen.h&gt;</span>
 
-<span class="ot">#define Poly 0xEDB88320L </span><span class="co">//CRC32标准</span>
-<span class="dt">static</span> <span class="dt">uint32_t</span> crc_tab32[<span class="dv">256</span>]; <span class="co">//CRC查询表</span>
+<span class="ot">#define POLY 0xEDB88320L</span>
 
-<span class="dt">static</span> <span class="dt">void</span> init_crc32_tab(<span class="dt">void</span>); <span class="co">//生成CRC查询表</span>
-<span class="dt">uint32_t</span> get_crc32(<span class="dt">uint32_t</span> crcinit, <span class="dt">uint8_t</span> * bs, <span class="dt">uint32_t</span> bssize); <span class="co">//获得CRC</span>
-<span class="dt">uint32_t</span> GetFileCRC(FILE *fd); <span class="co">//获得文件CRC</span>
-
-<span class="dt">static</span> <span class="dt">void</span> init_crc32_tab( <span class="dt">void</span> ) 
+<span class="dt">uint32_t</span> get_buff_crc32(<span class="dt">uint32_t</span> crc32init, <span class="dt">uint8_t</span> *buff, <span class="dt">uint32_t</span> buffsize)
 {
+    <span class="dt">uint32_t</span> crc32_tab[<span class="dv">256</span>];
+    <span class="dt">uint32_t</span> crc32;
     <span class="dt">int</span> i, j;
-    <span class="dt">uint32_t</span> crc;
 
-    <span class="kw">for</span> (i=<span class="dv">0</span>; i&lt;<span class="dv">256</span>; i++)
+    <span class="kw">for</span> (i = <span class="dv">0</span>; i &lt; <span class="dv">256</span>; i++)
     {
-        crc = (<span class="dt">unsigned</span> <span class="dt">long</span>)i;
-        <span class="kw">for</span> (j=<span class="dv">0</span>; j&lt;<span class="dv">8</span>; j++) 
+        crc32 = (<span class="dt">uint32_t</span>)i;
+        <span class="kw">for</span> (j = <span class="dv">0</span>; j &lt; <span class="dv">8</span>; j++) 
         {
-            <span class="kw">if</span> ( crc &amp; 0x00000001L )
-                crc = ( crc &gt;&gt; <span class="dv">1</span> ) ^ Poly;
-            <span class="kw">else</span>     
-                crc = crc &gt;&gt; <span class="dv">1</span>;
+            <span class="kw">if</span> (crc32 &amp; 0x00000001L)
+                crc32 = (crc32 &gt;&gt; <span class="dv">1</span>) ^ POLY;
+            <span class="kw">else</span>
+                crc32 = crc32 &gt;&gt; <span class="dv">1</span>;
         }
-        crc_tab32[i] = crc;
+        crc32_tab[i] = crc32;
     }
+
+    crc32 = crc32init ^ 0xFFFFFFFFL;
+    <span class="kw">while</span>(buffsize--)
+        crc32 = (crc32 &gt;&gt; <span class="dv">8</span>) ^ crc32_tab[(crc32 &amp; 0x000000FFL) ^ *buff++];
+
+    <span class="kw">return</span> crc32 ^ 0xFFFFFFFFL;
 }
 
-<span class="dt">uint32_t</span> get_crc32(<span class="dt">uint32_t</span> crcinit, <span class="dt">uint8_t</span> * bs, <span class="dt">uint32_t</span> bssize)
-{
-    <span class="dt">uint32_t</span> crc = crcinit^<span class="bn">0xffffffff</span>;
-
-    init_crc32_tab();
-    <span class="kw">while</span>(bssize--)
-        crc=(crc &gt;&gt; <span class="dv">8</span>)^crc_tab32[(crc &amp; <span class="bn">0xff</span>) ^ *bs++];
-
-    <span class="kw">return</span> crc ^ <span class="bn">0xffffffff</span>;
-}
-
-<span class="dt">uint32_t</span> GetFileCRC(FILE *fd)
+<span class="dt">uint32_t</span> get_file_crc32(FILE *fd)
 {
     <span class="dt">uint32_t</span> size = <span class="dv">16</span> * <span class="dv">1024</span>;
-    <span class="dt">uint8_t</span> crcbuf[size];
-    <span class="dt">uint32_t</span> rdlen;
-    <span class="dt">uint32_t</span> crc = <span class="dv">0</span>; <span class="co">//CRC初始值为0</span>
+    <span class="dt">uint8_t</span> buff[size];
+    <span class="dt">uint32_t</span> length;
+    <span class="dt">uint32_t</span> crc32 = <span class="dv">0</span>;
 
-    <span class="kw">while</span>((rdlen = fread(crcbuf, <span class="kw">sizeof</span>(<span class="dt">uint8_t</span>), size, fd)) &gt; <span class="dv">0</span>)
-        crc = get_crc32(crc, crcbuf, rdlen);
+    <span class="kw">while</span>((length = fread(buff, <span class="kw">sizeof</span>(<span class="dt">uint8_t</span>), size, fd)) &gt; <span class="dv">0</span>)
+        crc32 = get_buff_crc32(crc32, buff, length);
 
-    <span class="kw">return</span> crc;
+    <span class="kw">return</span> crc32;
 }
 
-<span class="dt">int</span> main(<span class="dt">int</span> argc,<span class="dt">char</span> **argv)
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)
 {
-    FILE *fd;
-    <span class="dt">unsigned</span> <span class="dt">int</span> value=<span class="dv">0</span>;
+    <span class="kw">if</span>(argc &lt; <span class="dv">2</span>)
+    {
+        printf(<span class="st">&quot;Usage: %s file</span><span class="ch">\n</span><span class="st">&quot;</span>, basename(argv[<span class="dv">0</span>]));
+        <span class="kw">return</span> <span class="dv">0</span>;
+    }
 
-    <span class="kw">if</span>(argc&lt;<span class="dv">2</span>)
+    FILE *fd;
+    <span class="kw">if</span>((fd=fopen(argv[<span class="dv">1</span>], <span class="st">&quot;r&quot;</span>)) == NULL)
     {
-        printf(<span class="st">&quot;Usage: %s file&quot;</span>,basename(argv[<span class="dv">0</span>]));
-        exit(<span class="dv">1</span>);
+        perror(<span class="st">&quot;File Open Error!&quot;</span>);
+        <span class="kw">return</span> <span class="dv">1</span>;
     }
-    <span class="kw">if</span>((fd=fopen(argv[<span class="dv">1</span>],<span class="st">&quot;r&quot;</span>))==NULL)   
-    {
-        perror(<span class="st">&quot;Error:&quot;</span>);
-        exit(<span class="dv">1</span>);
-    }
-    value = GetFileCRC(fd);
-    printf(<span class="st">&quot;CRC: %X</span><span class="ch">\n</span><span class="st">&quot;</span>,value);
+    printf(<span class="st">&quot;CRC32: %X</span><span class="ch">\n</span><span class="st">&quot;</span>, get_file_crc32(fd));
 
     fclose(fd);
     <span class="kw">return</span> <span class="dv">0</span>;

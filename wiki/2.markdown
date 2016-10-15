@@ -6,6 +6,10 @@
 
 ### 基本配置
 
+将dash修改为bash
+
+    sudo dpkg-reconfigure dash
+
 Ubuntu安装更新
 
     sudo apt-get update
@@ -27,44 +31,6 @@ Ubuntu安装更新
     sudo add-apt-repository ppa:twodopeshaggy/drive
     sudo apt-get update
     sudo apt-get install drive
-
-### 开发配置
-
-修改shell为bash
-
-    sudo dpkg-reconfigure dash
-
-开发工具配置
-
-    # Vim
-    sudo apt-get purge vim-tiny
-    sudo apt-get install vim
-
-    # Cscope for Vim
-    sudo apt-get install cscope
-
-    # Vundle for Vim
-    sudo apt-get install git
-    sudo apt-get install curl
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
-    # Markdown Wiki
-    sudo apt-get install pandoc
-    git clone https://github.com/qianngchn/qianngchn.github.io.git
-
-    # Tmux
-    sudo apt-get install tmux
-
-开发环境配置
-
-    # Docker
-    sudo apt-get install docker.io
-    # C/C++
-    sudo apt-get install build-essential
-    # Lua
-    sudo apt-get install lua5.2 liblua5.2-dev
-    # Go
-    sudo apt-get install golang
 
 ### 优化配置
 
@@ -101,6 +67,46 @@ Ubuntu安装更新
     # # /tmp was on ram during installation
     # tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=512M 0 0
     sudo rm -rf /tmp/*;sudo rm -rf /tmp/.*;sudo reboot
+
+### 开发配置
+
+安装开发工具
+
+    # Vim
+    sudo apt-get purge vim-tiny
+    sudo apt-get install vim
+
+    # Cscope for Vim
+    sudo apt-get install cscope
+
+    # Vundle for Vim
+    sudo apt-get install git
+    sudo apt-get install curl
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+    # Markdown Wiki
+    sudo apt-get install pandoc
+    git clone https://github.com/qianngchn/qianngchn.github.io.git
+
+    # Tmux
+    sudo apt-get install tmux
+
+搭建开发环境
+
+    # Docker
+    sudo apt-get install docker.io
+    # C/C++
+    sudo apt-get install build-essential
+    # Go
+    sudo apt-get install golang
+
+    # Lua
+    wget http://www.lua.org/ftp/lua-5.3.3.tar.gz
+    tar zxvf lua-5.3.3.tar.gz
+    cd lua-5.3.3
+    sudo apt-get install libreadline-dev
+    make linux test
+    make install INSTALL_TOP=$HOME/local
 
 ### 服务配置
 
