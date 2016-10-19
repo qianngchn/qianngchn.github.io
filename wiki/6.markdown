@@ -61,10 +61,10 @@ int main(int argc, char **argv)
     FILE *fd;
     if((fd=fopen(argv[1], "r")) == NULL)
     {
-        perror("File Open Error!");
+        perror("ERROR");
         return 1;
     }
-    printf("CRC32: %X\n", get_file_crc32(fd));
+    printf("CRC32: %08X\n", get_file_crc32(fd));
 
     fclose(fd);
     return 0;

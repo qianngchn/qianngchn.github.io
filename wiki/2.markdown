@@ -76,29 +76,25 @@ Ubuntu安装更新
     sudo apt-get purge vim-tiny
     sudo apt-get install vim
 
-    # Cscope for Vim
-    sudo apt-get install cscope
-
     # Vundle for Vim
     sudo apt-get install git
     sudo apt-get install curl
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-    # Markdown Wiki
-    sudo apt-get install pandoc
-    git clone https://github.com/qianngchn/qianngchn.github.io.git
-
     # Tmux
     sudo apt-get install tmux
+
+    # Github Wiki
+    sudo apt-get install pandoc
+    git clone https://github.com/qianngchn/qianngchn.github.io.git
 
 搭建开发环境
 
     # Docker
     sudo apt-get install docker.io
+
     # C/C++
     sudo apt-get install build-essential
-    # Go
-    sudo apt-get install golang
 
     # Lua
     wget http://www.lua.org/ftp/lua-5.3.3.tar.gz
