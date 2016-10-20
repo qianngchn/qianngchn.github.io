@@ -10,10 +10,10 @@
 #include <libgen.h>
 
 #define POLY 0xEDB88320L
+static uint32_t crc32_table[256];
 
-uint32_t get_buff_crc32(uint32_t crc32init, uint8_t *buff, uint32_t buffsize)
+static void init_crc32_table(void)
 {
-    uint32_t crc32_tab[256];
     uint32_t crc32;
     int i, j;
 
@@ -27,12 +27,16 @@ uint32_t get_buff_crc32(uint32_t crc32init, uint8_t *buff, uint32_t buffsize)
             else
                 crc32 = crc32 >> 1;
         }
-        crc32_tab[i] = crc32;
+        crc32_table[i] = crc32;
     }
+}
 
+static uint32_t get_buff_crc32(uint32_t crc32init, uint8_t *buff, uint32_t buffsize)
+{
+    uint32_t crc32;
     crc32 = crc32init ^ 0xFFFFFFFFL;
     while(buffsize--)
-        crc32 = (crc32 >> 8) ^ crc32_tab[(crc32 & 0x000000FFL) ^ *buff++];
+        crc32 = (crc32 >> 8) ^ crc32_table[(crc32 & 0x000000FFL) ^ *buff++];
 
     return crc32 ^ 0xFFFFFFFFL;
 }
@@ -44,6 +48,7 @@ uint32_t get_file_crc32(FILE *fd)
     uint32_t length;
     uint32_t crc32 = 0;
 
+    init_crc32_table();
     while((length = fread(buff, sizeof(uint8_t), size, fd)) > 0)
         crc32 = get_buff_crc32(crc32, buff, length);
 
