@@ -54,7 +54,6 @@
 
 <pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;stdio.h&gt;</span>
 <span class="ot">#include &lt;stdint.h&gt;</span>
-<span class="ot">#include &lt;errno.h&gt;</span>
 <span class="ot">#include &lt;libgen.h&gt;</span>
 
 <span class="ot">#define POLY 0xEDB88320L</span>
@@ -115,11 +114,6 @@
     }
 
     <span class="dt">uint32_t</span> crc32 = get_file_crc32(argv[<span class="dv">1</span>]);
-    <span class="kw">if</span>(errno == ENOENT)
-    {
-        perror(argv[<span class="dv">1</span>]);
-        <span class="kw">return</span> <span class="dv">2</span>;
-    }
     printf(<span class="st">&quot;CRC32: %08X</span><span class="ch">\n</span><span class="st">&quot;</span>, crc32);
 
     <span class="kw">return</span> <span class="dv">0</span>;
