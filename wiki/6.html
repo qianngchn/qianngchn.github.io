@@ -54,6 +54,7 @@
 
 <pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;stdio.h&gt;</span>
 <span class="ot">#include &lt;stdint.h&gt;</span>
+<span class="ot">#include &lt;errno.h&gt;</span>
 <span class="ot">#include &lt;libgen.h&gt;</span>
 
 <span class="ot">#define POLY 0xEDB88320L</span>
@@ -88,37 +89,39 @@
     <span class="kw">return</span> crc32 ^ 0xFFFFFFFFL;
 }
 
-<span class="dt">uint32_t</span> get_file_crc32(FILE *fd)
+<span class="dt">uint32_t</span> get_file_crc32(<span class="dt">const</span> <span class="dt">char</span> *file)
 {
-    <span class="dt">uint32_t</span> size = <span class="dv">16</span> * <span class="dv">1024</span>;
+    <span class="dt">uint32_t</span> size = 0x00100000L;
     <span class="dt">uint8_t</span> buff[size];
     <span class="dt">uint32_t</span> length;
     <span class="dt">uint32_t</span> crc32 = <span class="dv">0</span>;
 
+    FILE *fd = fopen(file, <span class="st">&quot;r&quot;</span>);
+    <span class="kw">if</span>(fd == NULL) <span class="kw">return</span> <span class="dv">0</span>;
     init_crc32_table();
     <span class="kw">while</span>((length = fread(buff, <span class="kw">sizeof</span>(<span class="dt">uint8_t</span>), size, fd)) &gt; <span class="dv">0</span>)
         crc32 = get_buff_crc32(crc32, buff, length);
+    fclose(fd);
 
     <span class="kw">return</span> crc32;
 }
 
 <span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)
 {
-    <span class="kw">if</span>(argc &lt; <span class="dv">2</span>)
+    <span class="kw">if</span>(argc != <span class="dv">2</span>)
     {
         printf(<span class="st">&quot;Usage: %s file</span><span class="ch">\n</span><span class="st">&quot;</span>, basename(argv[<span class="dv">0</span>]));
-        <span class="kw">return</span> <span class="dv">0</span>;
-    }
-
-    FILE *fd;
-    <span class="kw">if</span>((fd=fopen(argv[<span class="dv">1</span>], <span class="st">&quot;r&quot;</span>)) == NULL)
-    {
-        perror(<span class="st">&quot;ERROR&quot;</span>);
         <span class="kw">return</span> <span class="dv">1</span>;
     }
-    printf(<span class="st">&quot;CRC32: %08X</span><span class="ch">\n</span><span class="st">&quot;</span>, get_file_crc32(fd));
 
-    fclose(fd);
+    <span class="dt">uint32_t</span> crc32 = get_file_crc32(argv[<span class="dv">1</span>]);
+    <span class="kw">if</span>(errno == ENOENT)
+    {
+        perror(argv[<span class="dv">1</span>]);
+        <span class="kw">return</span> <span class="dv">2</span>;
+    }
+    printf(<span class="st">&quot;CRC32: %08X</span><span class="ch">\n</span><span class="st">&quot;</span>, crc32);
+
     <span class="kw">return</span> <span class="dv">0</span>;
 }</code></pre>
             <hr/>

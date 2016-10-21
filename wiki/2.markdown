@@ -96,14 +96,6 @@ Ubuntu安装更新
     # C/C++
     sudo apt-get install build-essential
 
-    # Lua
-    wget http://www.lua.org/ftp/lua-5.3.3.tar.gz
-    tar zxvf lua-5.3.3.tar.gz
-    cd lua-5.3.3
-    sudo apt-get install libreadline-dev
-    make linux test
-    make install INSTALL_TOP=$HOME/local
-
 ### 服务配置
 
 安装SSH Server
