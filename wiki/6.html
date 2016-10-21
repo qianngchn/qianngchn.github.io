@@ -56,7 +56,7 @@
 <span class="ot">#include &lt;stdint.h&gt;</span>
 <span class="ot">#include &lt;libgen.h&gt;</span>
 
-<span class="ot">#define POLY 0xEDB88320L</span>
+<span class="ot">#define POLY 0xEDB88320U</span>
 <span class="dt">static</span> <span class="dt">uint32_t</span> crc32_table[<span class="dv">256</span>];
 
 <span class="dt">static</span> <span class="dt">void</span> init_crc32_table(<span class="dt">void</span>)
@@ -69,7 +69,7 @@
         crc32 = (<span class="dt">uint32_t</span>)i;
         <span class="kw">for</span> (j = <span class="dv">0</span>; j &lt; <span class="dv">8</span>; j++) 
         {
-            <span class="kw">if</span> (crc32 &amp; 0x00000001L)
+            <span class="kw">if</span> (crc32 &amp; 0x00000001U)
                 crc32 = (crc32 &gt;&gt; <span class="dv">1</span>) ^ POLY;
             <span class="kw">else</span>
                 crc32 = crc32 &gt;&gt; <span class="dv">1</span>;
@@ -81,16 +81,16 @@
 <span class="dt">static</span> <span class="dt">uint32_t</span> get_buff_crc32(<span class="dt">uint32_t</span> crc32init, <span class="dt">uint8_t</span> *buff, <span class="dt">uint32_t</span> buffsize)
 {
     <span class="dt">uint32_t</span> crc32;
-    crc32 = crc32init ^ 0xFFFFFFFFL;
+    crc32 = crc32init ^ 0xFFFFFFFFU;
     <span class="kw">while</span>(buffsize--)
-        crc32 = (crc32 &gt;&gt; <span class="dv">8</span>) ^ crc32_table[(crc32 &amp; 0x000000FFL) ^ *buff++];
+        crc32 = (crc32 &gt;&gt; <span class="dv">8</span>) ^ crc32_table[(crc32 &amp; 0x000000FFU) ^ *buff++];
 
-    <span class="kw">return</span> crc32 ^ 0xFFFFFFFFL;
+    <span class="kw">return</span> crc32 ^ 0xFFFFFFFFU;
 }
 
 <span class="dt">uint32_t</span> get_file_crc32(<span class="dt">const</span> <span class="dt">char</span> *file)
 {
-    <span class="dt">uint32_t</span> size = 0x00100000L;
+    <span class="dt">uint32_t</span> size = 0x00100000U;
     <span class="dt">uint8_t</span> buff[size];
     <span class="dt">uint32_t</span> length;
     <span class="dt">uint32_t</span> crc32 = <span class="dv">0</span>;
