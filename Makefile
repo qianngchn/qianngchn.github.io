@@ -7,11 +7,11 @@ INDEX=$(shell find -name "*index.sh" | sort)
 all:$(HTML)
 
 index:
-	@for script in $(INDEX); do bash $$script; done
+	@for script in $(INDEX); do $$script; done
 
 %.html:%.markdown pandoctpl.html html_generate.sh
 	@./html_check.sh $<
 	@./html_generate.sh $< $@
 
 clean:
-	rm $(HTML) -f
+	rm -f $(HTML)

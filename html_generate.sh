@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 markdown=$1
 html=$2

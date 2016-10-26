@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 srcs=`find wiki -name "*.markdown" | sort -t/ -k2 -nr`
 index="wiki.markdown"

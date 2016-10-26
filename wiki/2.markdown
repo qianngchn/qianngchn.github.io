@@ -6,9 +6,10 @@
 
 ### 基本配置
 
-将dash修改为bash
+修改默认shell为bash
 
     sudo dpkg-reconfigure dash
+    chsh -s /bin/bash
 
 Ubuntu安装更新
 
