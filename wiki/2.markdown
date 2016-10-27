@@ -6,9 +6,8 @@
 
 ### 基本配置
 
-修改默认shell为bash
+设置登录shell为bash
 
-    sudo dpkg-reconfigure dash
     chsh -s /bin/bash
 
 Ubuntu安装更新

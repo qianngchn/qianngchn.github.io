@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 markdown=$1
 html=$2
