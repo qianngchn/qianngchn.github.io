@@ -18,12 +18,12 @@ do
 done
 
 sfilename=`basename $markdown`
-stitle=`sed -n '1,5s/^<\!---title:\(.*\)-->$/\1/p' $markdown`
-scategory=`sed -n '1,5s/^<\!---category:\(.*\)-->$/\1/p' $markdown`
+stitle=`sed -n '1,5s/^<!---title:\(.*\)-->$/\1/p' $markdown`
+scategory=`sed -n '1,5s/^<!---category:\(.*\)-->$/\1/p' $markdown`
 scategorylink=`echo $scategory | tr -d [:punct:] | tr [:upper:] [:lower:] | tr [=' '=] -`
-stags=`sed -n '1,5s/^<\!---tags:\(.*\)-->$/\1/p' $markdown`
-sauthor=`sed -n '1,5s/^<\!---author:\(.*\)-->$/\1/p' $markdown`
-sdate=`sed -n '1,5s/^<\!---date:\(.*\)-->$/\1/p' $markdown`
+stags=`sed -n '1,5s/^<!---tags:\(.*\)-->$/\1/p' $markdown`
+sauthor=`sed -n '1,5s/^<!---author:\(.*\)-->$/\1/p' $markdown`
+sdate=`sed -n '1,5s/^<!---date:\(.*\)-->$/\1/p' $markdown`
 sdescription=`sed -n '1,9s/^\([^<].*\)$/\1/p' $markdown`
 
 flag+=" --variable=lang:zh-cmn-Hans"
@@ -58,6 +58,6 @@ pandoc $flag $markdown -o $html
 rm -f temp_in_header.html temp_before_body.html temp_after_body.html
 
 # then remove links of <hn> title in toc
-sed -i -e "s#\(<h. id=\".*\">\)<a href=\"\#.*\">\(.*\)</a>#\1\2#g" $html
+sed -i 's/\(<h. id=".*">\)<a href="#.*">\(.*\)<\/a>/\1\2/g' $html
 
 exit 0

@@ -49,7 +49,7 @@
 <h3 id="基本配置">基本配置</h3>
 <p>设置Shell，修改用户组</p>
 <pre><code>chsh -s /bin/bash
-sudo gpasswd -a neal users
+sudo usermod -a -G users neal
 sudo usermod -g users neal</code></pre>
 <p>Ubuntu安装更新</p>
 <pre><code>sudo apt-get update

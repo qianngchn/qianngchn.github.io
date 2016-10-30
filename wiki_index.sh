@@ -20,10 +20,10 @@ echo "> 本页是基于Markdown + Pandoc + Github搭建的在线Wiki，我在这
 i=0
 for s in $srcs
 do
-    scategory=`sed -n '1,5s/^<\!---category:\(.*\)-->$/\1/p' $s`
-    stitle=`sed -n '1,5s/^<\!---title:\(.*\)-->$/\1/p' $s`
-    stags=`sed -n '1,5s/^<\!---tags:\(.*\)-->$/\1/p' $s`
-    sdate=`sed -n '1,5s/^<\!---date:\(.*\)-->$/\1/p' $s`
+    scategory=`sed -n '1,5s/^<!---category:\(.*\)-->$/\1/p' $s`
+    stitle=`sed -n '1,5s/^<!---title:\(.*\)-->$/\1/p' $s`
+    stags=`sed -n '1,5s/^<!---tags:\(.*\)-->$/\1/p' $s`
+    sdate=`sed -n '1,5s/^<!---date:\(.*\)-->$/\1/p' $s`
     shtml=`echo $s | sed 's/markdown$/html/g'`
     if [ $i -lt $recent ]; then
         if [ $i -eq 0 ]; then

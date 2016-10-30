@@ -9,7 +9,7 @@
 设置Shell，修改用户组
 
     chsh -s /bin/bash
-    sudo gpasswd -a neal users
+    sudo usermod -a -G users neal
     sudo usermod -g users neal
 
 Ubuntu安装更新
