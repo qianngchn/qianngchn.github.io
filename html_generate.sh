@@ -8,23 +8,23 @@ css="style.css"
 index="index.html"
 wiki="wiki.html"
 src=$html
-while [ "`dirname ${src}`" != "." ]
+while [ "$(dirname $src)" != "." ]
 do
-    favicon=../${favicon}
-    css=../${css}
-    index=../${index}
-    wiki=../${wiki}
-    src=`dirname ${src}`
+    favicon=../$favicon
+    css=../$css
+    index=../$index
+    wiki=../$wiki
+    src=$(dirname $src)
 done
 
-sfilename=`basename $markdown`
-stitle=`sed -n '1,5s/^<!---title:\(.*\)-->$/\1/p' $markdown`
-scategory=`sed -n '1,5s/^<!---category:\(.*\)-->$/\1/p' $markdown`
-scategorylink=`echo $scategory | tr -d [:punct:] | tr [:upper:] [:lower:] | tr [=' '=] -`
-stags=`sed -n '1,5s/^<!---tags:\(.*\)-->$/\1/p' $markdown`
-sauthor=`sed -n '1,5s/^<!---author:\(.*\)-->$/\1/p' $markdown`
-sdate=`sed -n '1,5s/^<!---date:\(.*\)-->$/\1/p' $markdown`
-sdescription=`sed -n '1,9s/^\([^<].*\)$/\1/p' $markdown`
+sfilename=$(basename $markdown)
+stitle=$(sed -n '1,5s/^<!---title:\(.*\)-->$/\1/p' $markdown)
+scategory=$(sed -n '1,5s/^<!---category:\(.*\)-->$/\1/p' $markdown)
+scategorylink=$(echo $scategory | tr -d [:punct:] | tr [:upper:] [:lower:] | tr [=' '=] -)
+stags=$(sed -n '1,5s/^<!---tags:\(.*\)-->$/\1/p' $markdown)
+sauthor=$(sed -n '1,5s/^<!---author:\(.*\)-->$/\1/p' $markdown)
+sdate=$(sed -n '1,5s/^<!---date:\(.*\)-->$/\1/p' $markdown)
+sdescription=$(sed -n '1,9s/^\([^<].*\)$/\1/p' $markdown)
 
 flag+=" --variable=lang:zh-cmn-Hans"
 flag+=" --variable=favicon:$favicon"

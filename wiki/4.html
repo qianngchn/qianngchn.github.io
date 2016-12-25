@@ -76,9 +76,9 @@
 </ul>
 <h4 id="常用命令">常用命令</h4>
 <ul>
-<li><p>a \：追加行，a \的后面跟上字符串s(多行字符串可以用\n分隔)，则会在当前选择的行的后面都加上字符串s</p></li>
-<li><p>c \：替换行，c \后面跟上字符串s(多行字符串可以用\n分隔)，则会将当前选中的行替换成字符串s</p></li>
-<li><p>i \：插入行，i \后面跟上字符串s(多行字符串可以用\n分隔)，则会在当前选中的行的前面都插入字符串s</p></li>
+<li><p>a\：追加行，a\的后面跟上字符串s(多行字符串可以用\n分隔)，则会在当前选择的行的后面都加上字符串s</p></li>
+<li><p>c\：替换行，c\后面跟上字符串s(多行字符串可以用\n分隔)，则会将当前选中的行替换成字符串s</p></li>
+<li><p>i\：插入行，i\后面跟上字符串s(多行字符串可以用\n分隔)，则会在当前选中的行的前面都插入字符串s</p></li>
 <li><p>d：删除行delete，该命令会将当前选中的行删除</p></li>
 <li><p>p：打印print，该命令会打印当前选择的行到屏幕上</p></li>
 <li><p>y：替换字符，通常y命令的用法是这样的：<code>y/Source-chars/Dest-chars/</code>，分割字符/可以用任意单字符代替，用Dest-chars中对应位置的字符替换掉Soutce-chars中对应位置的字符</p></li>
@@ -100,20 +100,20 @@
 <li><p>digit：只用Replacement替换模版空间中第digit(digit是1至9)个匹配Regexp的部分</p></li>
 <li><p>p：若发生了替换操作，指示显示模版空间中新的数据</p></li>
 <li><p>w file-name：若发生了替换操作，指示将模版空间中新的数据写入指定的文件file-name中</p></li>
-<li><p>i/I：表示进行Regexp匹配时，是不区分大小写字母的</p></li>
+<li><p>i：表示进行Regexp匹配时，是不区分大小写字母的</p></li>
 </ul>
 <h3 id="示例">示例</h3>
 <h4 id="a命令追加行">a命令（追加行）</h4>
 <ul>
-<li><p><code>sed '1,$a \add one' test.txt</code> 从第一行到最后一行所有行后追加&quot;add one&quot;字符串行</p></li>
-<li><p><code>sed '/first/a \add one' test.txt</code> 在匹配到first行追加&quot;add one&quot;字符串行</p></li>
+<li><p><code>sed '1,$a\add one' test.txt</code> 从第一行到最后一行所有行后追加&quot;add one&quot;字符串行</p></li>
+<li><p><code>sed '/first/a\add one' test.txt</code> 在匹配到first行追加&quot;add one&quot;字符串行</p></li>
 </ul>
 <h4 id="i命令插入行">i命令（插入行）</h4>
 <p>与a命令类似，只不过在匹配的行前面插入字符串行，不举例了。</p>
 <h4 id="c命令替换行">c命令（替换行）</h4>
 <ul>
-<li><p><code>sed '1,$c \add one' test.txt</code> 从第一行到最后一行所有行替换为&quot;add one&quot;字符串行</p></li>
-<li><p><code>sed '/first/c \add one' test.txt</code> 将匹配到first行替换为&quot;add one&quot;字符串行</p></li>
+<li><p><code>sed '1,$c\add one' test.txt</code> 从第一行到最后一行所有行替换为&quot;add one&quot;字符串行</p></li>
+<li><p><code>sed '/first/c\add one' test.txt</code> 将匹配到first行替换为&quot;add one&quot;字符串行</p></li>
 </ul>
 <h4 id="d命令删除行">d命令（删除行）</h4>
 <ul>
@@ -229,10 +229,14 @@
 <td style="text-align: center;">+</td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;">\|</td>
+<td style="text-align: center;">|</td>
+</tr>
+<tr class="even">
 <td style="text-align: center;">\{ \}</td>
 <td style="text-align: center;">{ }</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;">\( \)</td>
 <td style="text-align: center;">( )</td>
 </tr>
