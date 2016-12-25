@@ -140,6 +140,7 @@ mkdir ~/project
 # directory mode = 0755
 # 创建samba账户:
 sudo smbpasswd -a neal
+sudo ln -s /home/neal/project /srv/neal_project
 # 重启samba服务:
 sudo service smbd restart
 # 测试:
@@ -155,7 +156,7 @@ testparm</code></pre>
 # -l 参数用于自启动，-c 参数用于上传文件，-s 参数用于目录设置。
 # 修改文件夹权限：
 sudo chmod 777 /var/lib/tftpboot
-sudo ln -s /var/lib/tftpboot /srv/tftpboot
+sudo ln -s /var/lib/tftpboot /srv
 # 重启tftpd-hpa服务：
 sudo service tftpd-hpa restart</code></pre>
 <p>配置NFS Server</p>
@@ -163,7 +164,7 @@ sudo service tftpd-hpa restart</code></pre>
 sudo apt-get install nfs-kernel-server
 # 创建NFS文件夹：
 mkdir ~/nfs
-sudo ln -s /srv/nfs /home/neal/nfs
+sudo ln -s /home/neal/nfs /srv/neal_nfs
 # 修改nfs配置文件：
 # sudo vi /etc/exports
 # 最后一行添加 /srv/nfs *(rw,sync,no_root_squash,no_subtree_check)
@@ -198,6 +199,7 @@ sudo apt-get install php5-gd
 # 安装phpmyadmin
 sudo apt-get install phpmyadmin
 sudo ln -s /usr/share/phpmyadmin /var/www
+sudo ln -s /var/www /srv
 # 启用apache2 rewrite模块
 sudo a2enmod rewrite
 # 启用php5 mcrypt模块
