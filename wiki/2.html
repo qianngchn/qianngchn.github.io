@@ -167,8 +167,8 @@ mkdir ~/nfs
 sudo ln -s /home/neal/nfs /srv/neal_nfs
 # 修改nfs配置文件：
 # sudo vi /etc/exports
-# 最后一行添加 /srv/nfs *(rw,sync,no_root_squash,no_subtree_check)
-# /srv/nfs：与nfs服务客户端共享的目录，这个路径必须和你前面设置的文件的路径一致！
+# 最后一行添加 /home/neal/nfs *(rw,sync,no_root_squash,no_subtree_check)
+# /home/neal/nfs：与nfs服务客户端共享的目录，这个路径必须和你前面设置的文件的路径一致！
 # *：允许所有的网段访问，也可以使用具体的IP
 # rw：挂接此目录的客户端对该共享目录具有读写权限
 # sync：资料同步写入内存和硬盘
@@ -184,9 +184,9 @@ showmount -e
 # 结果如下
 # Export list for Ubuntu:
 # /home/neal/nfs *
-# 本机挂载：sudo mount -t nfs localhost:/srv/nfs /mnt
+# 本机挂载：sudo mount -t nfs localhost:/home/neal/nfs /mnt
 # 取消挂载：sudo umount /mnt
-# 开发板挂载要加-o nolock参数：mount -t nfs -o nolock 192.168.1.191:/srv/nfs /mnt</code></pre>
+# 开发板挂载要加-o nolock参数：mount -t nfs -o nolock 192.168.1.90:/home/neal/nfs /mnt</code></pre>
 <p>配置LAMP Server</p>
 <pre><code>sudo apt-get install apache2
 sudo apt-get install mysql-server
