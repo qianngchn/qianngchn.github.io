@@ -94,6 +94,7 @@ Ubuntu安装更新
 
     # Docker
     sudo apt-get install docker.io
+    sudo usermod -a -G docker neal
 
     # C/C++
     sudo apt-get install build-essential
