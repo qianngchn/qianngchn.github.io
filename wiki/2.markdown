@@ -96,6 +96,9 @@ Ubuntu安装更新
     sudo apt-get install docker.io
     sudo usermod -a -G docker neal
 
+    # Bpython
+    sudo apt-get install bpython3
+
     # C/C++
     sudo apt-get install build-essential
 
