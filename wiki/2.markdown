@@ -12,10 +12,11 @@
     sudo usermod -a -G users neal
     sudo usermod -g users neal
 
-Ubuntu安装更新
+安装更新，删除更新管理器
 
     sudo apt-get update
     sudo apt-get upgrade
+    sudo apt-get purge update-manager
     sudo apt-get autoremove
     sudo apt-get autoclean
 
@@ -98,6 +99,16 @@ Ubuntu安装更新
 
     # Bpython
     sudo apt-get install bpython3
+
+    # Lua
+    mkdir -p ~/local/src; cd ~/local/src
+    wget https://www.lua.org/ftp/lua-5.3.4.tar.gz
+    tar zxvf lua-5.3.4.tar.gz; rm lua-5.3.4.tar.gz
+    cd lua-5.3.4
+    sudo apt-get install libreadline-dev
+    make linux test
+    make install INSTALL_TOP=$HOME/local
+    make clean
 
     # C/C++
     sudo apt-get install build-essential
