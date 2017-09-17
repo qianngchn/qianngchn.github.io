@@ -12,8 +12,8 @@
         <meta name="author" content="Neal" />
         <meta name="date" content="2016-03-18" />
         <meta name="description" content="### 概述
-        Markdown是一种可读性极强的网络书写语言。 
-        它的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。比如：在文字两旁加上星号，看起来就像\*强调\*。Markdown 的列表看起来，嗯，就是列表。Markdown 的区块引用看起来就真的像是引用一段文字，就像你曾在电子邮件中见过的那样。" />
+        `Markdown`是一种可读性极强的网络书写语言。 
+        它的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。比如：在文字两旁加上星号，看起来就像`*`强调`*`。`Markdown` 的列表看起来，嗯，就是列表。`Markdown` 的区块引用看起来就真的像是引用一段文字，就像你曾在电子邮件中见过的那样。" />
     </head>
     <body>
         <header class="site-header">
@@ -62,21 +62,21 @@
 <!---date:2016-03-18-->
 
 <h3 id="概述">概述</h3>
-<p>Markdown是一种可读性极强的网络书写语言。 它的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。比如：在文字两旁加上星号，看起来就像*强调*。Markdown 的列表看起来，嗯，就是列表。Markdown 的区块引用看起来就真的像是引用一段文字，就像你曾在电子邮件中见过的那样。</p>
+<p><code>Markdown</code>是一种可读性极强的网络书写语言。 它的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。比如：在文字两旁加上星号，看起来就像<code>*</code>强调<code>*</code>。<code>Markdown</code> 的列表看起来，嗯，就是列表。<code>Markdown</code> 的区块引用看起来就真的像是引用一段文字，就像你曾在电子邮件中见过的那样。</p>
 <h3 id="特点">特点</h3>
 <ol type="1">
-<li>Markdown兼容HTML，你甚至可以完全用HTML语法来进行书写。不过要注意一下几点：
+<li><code>Markdown</code>兼容<code>HTML</code>，你甚至可以完全用<code>HTML</code>语法来进行书写。不过要注意一下几点：
 <ul>
 <li>区块标签前后（比如<code>&lt;div&gt; &lt;table&gt; &lt;pre&gt;</code>等），必须加上空行与其他内容隔开，开始与结束标签不能用空格或制表符缩进。</li>
-<li>Markdown语法在区块标签内仍然有效。</li>
+<li><code>Markdown</code>语法在区块标签内仍然有效。</li>
 </ul></li>
-<li>特殊字符自动转换。 <code>&lt;</code>和<code>&amp;</code>会自动转换为HTML实体，这让可读性大大提高，在写代码时非常有用。</li>
+<li>特殊字符自动转换。 <code>&lt;</code>和<code>&amp;</code>会自动转换为<code>HTML</code>实体，这让可读性大大提高，在写代码时非常有用。</li>
 </ol>
 <h3 id="区块元素">区块元素</h3>
 <h4 id="段落和换行">段落和换行</h4>
-<p>一个 Markdown 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行。普通段落不该用空格或制表符来缩进。</p>
+<p>一个 <code>Markdown</code> 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行。普通段落不该用空格或制表符来缩进。</p>
 <h4 id="标题">标题</h4>
-<p>Markdown 支持两种标题的语法。</p>
+<p><code>Markdown</code> 支持两种标题的语法。</p>
 <pre><code>This is an H1
 =============
 
@@ -89,7 +89,7 @@ This is an H2
 
 ### This is an H3</code></pre>
 <h4 id="区块引用">区块引用</h4>
-<p>Markdown 标记区块引用是使用类似 email 中用 &gt; 的引用方式，并且允许嵌套。</p>
+<p><code>Markdown</code> 标记区块引用是使用类似 <code>email</code> 中用 <code>&gt;</code> 的引用方式，并且允许嵌套。</p>
 <pre><code>&gt; Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
 &gt; id sem consectetuer libero luctus adipiscing.
 
@@ -98,7 +98,7 @@ id sem consectetuer libero luctus adipiscing.
 
 &gt; &gt; This is nested blockquote.</code></pre>
 <h4 id="列表">列表</h4>
-<p>Markdown 支持有序列表和无序列表，也允许嵌套。</p>
+<p><code>Markdown</code> 支持有序列表和无序列表，也允许嵌套。</p>
 <pre><code>* Red
     * Red
     * Red
@@ -109,7 +109,7 @@ id sem consectetuer libero luctus adipiscing.
 2. McHale
 3. Parish</code></pre>
 <h4 id="代码区块">代码区块</h4>
-<p>要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以。 代码区块中，一般的 Markdown 语法不会被转换。</p>
+<p>要在 <code>Markdown</code> 中建立代码区块很简单，只要简单地缩进 <code>4</code> 个空格或是 <code>1</code> 个制表符就可以。 代码区块中，一般的 <code>Markdown</code> 语法不会被转换。</p>
 <pre><code>    tell application &quot;Foo&quot;
             beep
         end tell</code></pre>
@@ -125,7 +125,7 @@ id sem consectetuer libero luctus adipiscing.
 
 ---------------------------------------</code></pre>
 <h4 id="链接">链接</h4>
-<p>Markdown 支持两种形式的链接语法： 行内式和参考式两种形式。</p>
+<p><code>Markdown</code> 支持两种形式的链接语法： 行内式和参考式两种形式。</p>
 <pre><code>This is [an example](http://example.com/ &quot;Title&quot;) inline link.
 
 [This link](http://example.net/) has no title attribute.
@@ -138,7 +138,7 @@ This is [an example][id] reference-style link.
 
 [Google]: http://google.com/</code></pre>
 <h4 id="强调">强调</h4>
-<p>Markdown 使用星号（*）和底线（_）作为标记强调字词的符号，被 * 或 _ 包围的字词会被转成用 <code>&lt;em&gt;</code> 标签包围，用两个 * 或 _ 包起来的话，则会被转成 <code>&lt;strong&gt;</code>。</p>
+<p><code>Markdown</code> 使用星号（<code>*</code>）和底线（<code>_</code>）作为标记强调字词的符号，被 <code>*</code> 或 <code>_</code> 包围的字词会被转成用 <code>&lt;em&gt;</code> 标签包围，用两个 <code>*</code> 或 <code>_</code> 包起来的话，则会被转成 <code>&lt;strong&gt;</code>。</p>
 <pre><code>*single asterisks*
 
 _single underscores_
@@ -146,15 +146,15 @@ _single underscores_
 **double asterisks**
 
 __double underscores__</code></pre>
-<p>但是如果你的 * 和 _ 两边都有空白的话，它们就只会被当成普通的符号。</p>
+<p>但是如果你的 <code>*</code> 和 <code>_</code> 两边都有空白的话，它们就只会被当成普通的符号。</p>
 <h4 id="代码">代码</h4>
-<p>如果要标记一小段行内代码，你可以用反引号把它包起来（`）例如：</p>
+<p>如果要标记一小段行内代码，你可以用反引号把它包起来（<code>`</code>）例如：</p>
 <pre><code>Use the `printf()` function.</code></pre>
 <p>如果要在代码区段内插入反引号，你可以用多个反引号来开启和结束代码区段：</p>
 <pre><code>``There is a literal backtick (`) here.``</code></pre>
-<p>在代码区段内，&amp; 和方括号都会被自动地转成 HTML 实体，这使得插入 HTML 原始码变得很容易。</p>
+<p>在代码区段内，<code>&amp;</code> 和方括号都会被自动地转成 <code>HTML</code> 实体，这使得插入 <code>HTML</code> 原始码变得很容易。</p>
 <h4 id="图片">图片</h4>
-<p>Markdown 使用一种和链接很相似的语法来标记图片，同样也允许两种样式： 行内式和参考式。</p>
+<p><code>Markdown</code> 使用一种和链接很相似的语法来标记图片，同样也允许两种样式： 行内式和参考式。</p>
 <pre><code>![Alt text](../images/linux-file-system-hierarchy.png)
 
 ![Alt text](../images/linux-file-system-hierarchy.png &quot;Optional title&quot;)
@@ -164,11 +164,11 @@ __double underscores__</code></pre>
 [id]: ../images/linux-file-system-hierarchy.png  &quot;Optional title attribute&quot;</code></pre>
 <h3 id="其他">其他</h3>
 <h4 id="自动链接">自动链接</h4>
-<p>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用方括号包起来， Markdown 就会自动把它转成链接。</p>
+<p><code>Markdown</code> 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用方括号包起来， <code>Markdown</code> 就会自动把它转成链接。</p>
 <pre><code>&lt;http://example.com/&gt;
 &lt;address@example.com&gt;</code></pre>
 <h4 id="反斜杠">反斜杠</h4>
-<p>Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号。 Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p>
+<p><code>Markdown</code> 可以利用反斜杠来插入一些在语法中有其它意义的符号。 <code>Markdown</code> 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p>
 <pre><code>\   反斜线
 `   反引号
 *   星号

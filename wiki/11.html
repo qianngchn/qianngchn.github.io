@@ -11,8 +11,8 @@
         <meta name="keywords" content="linux, 读书笔记" />
         <meta name="author" content="Neal" />
         <meta name="date" content="2016-11-10" />
-        <meta name="description" content="1.计算机是由以下几个单元组成的：包括输入单元、输出单元、CPU内部的控制单元、算数逻辑单元与主存储器五大部分。
-        2.CPU种类主要有两种：RISC-精简指令集 和 CISC-复杂指令集。" />
+        <meta name="description" content="1.计算机是由以下几个单元组成的：包括输入单元、输出单元、`CPU`内部的控制单元、算数逻辑单元与主存储器五大部分。
+        2.`CPU`种类主要有两种：`RISC`-精简指令集 和 `CISC`-复杂指令集。" />
     </head>
     <body>
         <header class="site-header">
@@ -37,209 +37,209 @@
 <!---author:Neal-->
 <!---date:2016-11-10-->
 
-<p>1.计算机是由以下几个单元组成的：包括输入单元、输出单元、CPU内部的控制单元、算数逻辑单元与主存储器五大部分。</p>
-<p>2.CPU种类主要有两种：RISC-精简指令集 和 CISC-复杂指令集。</p>
-<p>RISC的设计重点在于降低由硬件执行指令的复杂度，因为软件比硬件容易提供更大的灵活性和更高的智能，因此RISC设计对编译器有更高的要求；而CISC的设计则更侧重于硬件执行指令的功能，使CISC的指令变得很复杂。总之RISC的指令集精简，执行效率好，但对编译器的要求高，而CISC强调硬件的复杂性，指令集多而复杂，执行效率差，但每条指令的功能丰富。</p>
-<p>3.CPU频率=外频*倍频，我们常说的超频指的是设定主板的外频或者是倍频为较高频率的一种方式。</p>
-<p>4.一般主板芯片组有北桥和南桥。北桥称为系统总线，连接CPU、内存和显卡等快速设备，南桥称为输入输出总线，连接硬盘、USB、PCI接口和网卡等慢速设备。</p>
-<p>5.北桥所支持的频率称为前端总线速度，而每次传送的位数则是总线宽度。常见的总线宽度有32和64位(bits)，另外所谓的总线带宽则是 前端总线速度*总线宽度，即每秒可传送的最大数据量。</p>
-<p>6.CPU每次能够处理的数据量称为字组大小，也有32位和64位之分，而32位CPU只能支持最大4GBytes的内存。</p>
-<p>7.内存通常有SDRAM和DDR SDRAM两种，但DDR拥有更快的传输频率，所以SDRAM已经逐渐被淘汰啦。</p>
-<p>CPU内部还存在高速缓存，以提高CPU的效率，这里就要用到静态随机存储内存，即SRAM，通常容量很小，但速度很快。</p>
-<p>CMOS芯片是主板上一块可读写的RAM芯片，用于保存BIOS设置的各项硬件配置信息和用户设定的某些参数，由主板上的纽扣电池供电，即使系统断电信息也不会丢失。而BIOS则是主板上的一块EPROM或EEPROM芯片，用于存放系统重要信息和BIOS设置程序。</p>
-<p>8.显卡内拥有显存，这是因为每个图像的颜色会占用掉内存，而有的显卡甚至拥有GPU，用于3D加速，这对于游戏是非常重要的性能。</p>
-<p>9.注意硬盘的结构，拥有扇区(Sector)、磁道(Cylinder)和Header头这几个概念，所以硬盘的总容量计算公式为 Header数量*每个Header负责的磁道数*每个磁道所含有的扇区数量*每个扇区的字节数。另外我们通常500GB的硬盘指的是十进制的500*1000*1000*1000Bytes的大小，所以实际上仅拥有460GBytes左右的容量。</p>
-<p>10.计算机中每个设备都有一个I/O地址和IRQ中断。两个设备不能使用同一个I/O地址，而IRQ中断是设备联系CPU的专门路径，每个设备可以通过IRQ中断告知CPU自己的工作情况，以方便CPU分配任务。</p>
-<p>11.计算机依次由 硬件--核心(kernel)--系统呼叫层(system call)--应用程序 这几个部分组成。其中 kernel+系统呼叫层+常用的应用程序 组成了现在的操作系统。而Linux kernel包含了对硬件进行管理的核心以及向应用程序提供系统调用的接口。</p>
-<p>12.Linux kernel分奇数和偶数两种版本，其中偶数版代表稳定版，奇数版代表测试版或不稳定版本。</p>
-<p>13.硬盘里第一块扇区最重要，一般只有512bytes，里面存放着主引导记录(MBR)和磁盘分区表(Partition Table)。MBR主要用来引导启动系统，分区表只能保存四个主分区或逻辑分区，而逻辑分区只能有一个，至于逻辑分区表则保存在逻辑分区的第一个扇区里，因此可以给逻辑分区划分更多的子逻辑分区。</p>
-<p>14.一般开机的流程是：BIOS--MBR--Boot Loader（Grub和NT5/NT6等）--Kernel。</p>
-<p>15.Boot Loader可以存在的地方有两个：MBR和Boot Sector。</p>
-<p>16.Linux下Ctrl+D代表End Of File，EOF的意思，这个快捷键可以取代exit的功能，直接跳出文字界面。</p>
-<p>17.Linux命令行下按Tab键可以补齐命令，man和info命令可以查看command的帮助文档，Ctrl+C表示中断进程，Ctrl+D表示EOF特殊字符，Ctrl+Z表示挂起进程在后台运行。</p>
-<p>18.Linux系统下，用户和root相关信息记录在/etc/passwd下，个人密码则是记录在/etc/shadow下，所有的组名都记录在/etc/group内。</p>
-<p>19.Linux的权限不是很细致，拥有rwx三种：</p>
-<p>r(Read，读取)： 对文件而言，具有读取文件内容的权限；对目录来说，具有浏览目录的权限。</p>
-<p>w(Write，写入)： 对文件而言，具有新增,修改,删除文件内容的权限；对目录来说，具有新建，删除，修改，移动目录内文件的权限。</p>
-<p>x(Execute，执行)：对文件而言，具有执行文件的权限；对目录了来说该用户具有进入目录的权限。</p>
-<p>20.可以用chgrp改变文件的用户组，chown改变文件的所有者，chmod改变文件的权限。</p>
-<p>21.Linux下文件的可删除和重命名权限是由其所在目录的write权限所决定的，要了解目录权限的意义。</p>
-<p>22.Linux下的文件类型：-代表常规文件，d代表目录，l代表链接，b(block)和c(char)代表设备文件，s代表socket文件，p代表pipe管道文件。</p>
-<p>23.pwd会显示出当前目录的路径，注意 -P 选项，如果当前目录只是以链接文件的形式存在，那么 pwd -P 就会显示出链接真正所指向的路径。</p>
-<p>24.cp命令：cp -a souce dest 相当于 cp -pdr source dest，完全复制目录的属性和档案，甚至是链接文件。如果不加任何参数的 cp 一个软链接，复制的结果会是源文件，而不是软链接，用 -d 可以解决，注意。</p>
-<p>25.删除带有-开头的档案，例如 -aaa 这个文件，必须 rm ./-aaa 或 rm -- -aaa 才可以删除，否则-aaa会误判为参数。</p>
-<p>26.查看二进制文件，有 od 和 xxd 命令，甚至有 hexdump 命令，都是以 16进制或8进制 显示输出，非常方便调试。</p>
-<p>27.新建目录和档案的默认权限是由 umask 来控制的，一般我们在linux系统的 umask 设置为 022 比较好。</p>
-<p>28.linux下档案的隐藏属性：chattr 命令可以设置档案的隐藏属性，常用的有i属性(任何用户包括root都无法修改)，a属性(只能增加数据，不能删除数据)等；lsattr 命令可以查看档案的隐藏属性，注意属性和权限是不同的，留个记性。</p>
-<p>29.linux文件的特殊权限：SUID(u+s)、SGID(g+s)和SBIT(o+t)。这三个特殊权限都是用来取代x权限的，所以设置这三个权限的前提条件就是必须具有x权限，否则小写的 s和t 权限就会变为大写的 S和T 权限，表示文件还不具备x权限，更谈不上这三个权限啦。</p>
-<p>30.SUID(u+s)仅能用在可执行的二进制程序上，目录无效。</p>
-<p>拥有SUID权限的二进制程序在执行时，执行者会暂时取得拥有者的权限，例如 passwd 命令就具有SUID权限，使得普通用户在执行 passwd 命令时会暂时 root 用户的权限，从而能修改/etc/passwd文件。</p>
-<p>31.SGID(u+s)不仅能用在可执行的二进制程序上，目录同样有效。</p>
-<p>拥有SGID权限的二进制程序在执行时，执行者会暂时取得该程序所属的群组支持，从而能访问自己群组本不能访问的文件；</p>
-<p>拥有SGID权限的目录，一旦进入该目录，那么在目录下新建任何文件和目录，它们的群组都会与该目录相同，对于项目开发还是相当有用的。</p>
-<p>32.SBIT(o+t)仅能用在有x权限的目录上，文件档无效。</p>
-<p>拥有SBIT权限的目录，一旦进入该目录，当用户在该目录下新建档案和目录时，仅有自己和root才能删除该档案，即使文件具有g+w，o+w这样的属性，也会失效。例如/tmp就是这样一个文件夹。</p>
-<p>33.SUID权限为4，SGID权限为2，SBIT权限为1，因此可以用 chmod 4755 file 这样的命令来设置文件的特殊权限，还可以用 u+s，g+s，o+t 这样的设置法。</p>
+<p>1.计算机是由以下几个单元组成的：包括输入单元、输出单元、<code>CPU</code>内部的控制单元、算数逻辑单元与主存储器五大部分。</p>
+<p>2.<code>CPU</code>种类主要有两种：<code>RISC</code>-精简指令集 和 <code>CISC</code>-复杂指令集。</p>
+<p><code>RISC</code>的设计重点在于降低由硬件执行指令的复杂度，因为软件比硬件容易提供更大的灵活性和更高的智能，因此<code>RISC</code>设计对编译器有更高的要求；而<code>CISC</code>的设计则更侧重于硬件执行指令的功能，使<code>CISC</code>的指令变得很复杂。总之<code>RISC</code>的指令集精简，执行效率好，但对编译器的要求高，而<code>CISC</code>强调硬件的复杂性，指令集多而复杂，执行效率差，但每条指令的功能丰富。</p>
+<p>3.<code>CPU</code>频率=外频<code>*</code>频，我们常说的超频指的是设定主板的外频或者是倍频为较高频率的一种方式。</p>
+<p>4.一般主板芯片组有北桥和南桥。北桥称为系统总线，连接<code>CPU</code>、内存和显卡等快速设备，南桥称为输入输出总线，连接硬盘、<code>USB</code>、<code>PCI</code>接口和网卡等慢速设备。</p>
+<p>5.北桥所支持的频率称为前端总线速度，而每次传送的位数则是总线宽度。常见的总线宽度有<code>32</code>和<code>64</code>位(<code>bits</code>)，另外所谓的总线带宽则是 前端总线速度<code>*</code>总线宽度，即每秒可传送的最大数据量。</p>
+<p>6.<code>CPU</code>每次能够处理的数据量称为字组大小，也有<code>32</code>位和<code>64</code>位之分，而<code>32</code>位<code>CPU</code>只能支持最大<code>4GBytes</code>的内存。</p>
+<p>7.内存通常有<code>SDRAM</code>和<code>DDR SDRAM</code>两种，但<code>DDR</code>拥有更快的传输频率，所以<code>SDRAM</code>已经逐渐被淘汰啦。</p>
+<p><code>CPU</code>内部还存在高速缓存，以提高<code>CPU</code>的效率，这里就要用到静态随机存储内存，即<code>SRAM</code>，通常容量很小，但速度很快。</p>
+<p><code>CMOS</code>芯片是主板上一块可读写的<code>RAM</code>芯片，用于保存<code>BIOS</code>设置的各项硬件配置信息和用户设定的某些参数，由主板上的纽扣电池供电，即使系统断电信息也不会丢失。而<code>BIOS</code>则是主板上的一块<code>EPROM</code>或<code>EEPROM</code>芯片，用于存放系统重要信息和<code>BIOS</code>设置程序。</p>
+<p>8.显卡内拥有显存，这是因为每个图像的颜色会占用掉内存，而有的显卡甚至拥有<code>GPU</code>，用于<code>3D</code>加速，这对于游戏是非常重要的性能。</p>
+<p>9.注意硬盘的结构，拥有扇区(<code>Sector</code>)、磁道(<code>Cylinder</code>)和<code>Header</code>头这几个概念，所以硬盘的总容量计算公式为 <code>Header</code>数量<code>*</code>每个<code>Header</code>负责的磁道数<code>*</code>每个磁道所含有的扇区数量<code>*</code>每个扇区的字节数。另外我们通常<code>500GB</code>的硬盘指的是十进制的<code>500\*1000\*1000\*1000Bytes</code>的大小，所以实际上仅拥有<code>460GBytes</code>左右的容量。</p>
+<p>10.计算机中每个设备都有一个<code>I/O</code>地址和<code>IRQ</code>中断。两个设备不能使用同一个<code>I/O</code>地址，而<code>IRQ</code>中断是设备联系<code>CPU</code>的专门路径，每个设备可以通过<code>IRQ</code>中断告知<code>CPU</code>自己的工作情况，以方便<code>CPU</code>分配任务。</p>
+<p>11.计算机依次由 硬件--核心(<code>kernel</code>)--系统呼叫层(<code>system call</code>)--应用程序 这几个部分组成。其中 <code>kernel</code>+系统呼叫层+常用的应用程序 组成了现在的操作系统。而<code>Linux kernel</code>包含了对硬件进行管理的核心以及向应用程序提供系统调用的接口。</p>
+<p>12.<code>Linux kernel</code>分奇数和偶数两种版本，其中偶数版代表稳定版，奇数版代表测试版或不稳定版本。</p>
+<p>13.硬盘里第一块扇区最重要，一般只有<code>512bytes</code>，里面存放着主引导记录(<code>MBR</code>)和磁盘分区表(<code>Partition Table</code>)。<code>MBR</code>主要用来引导启动系统，分区表只能保存四个主分区或逻辑分区，而逻辑分区只能有一个，至于逻辑分区表则保存在逻辑分区的第一个扇区里，因此可以给逻辑分区划分更多的子逻辑分区。</p>
+<p>14.一般开机的流程是：<code>BIOS</code>--<code>MBR</code>--<code>Boot Loader</code>（<code>Grub</code>和<code>NT5/NT6</code>等）--<code>Kernel</code>。</p>
+<p>15.<code>Boot Loader</code>可以存在的地方有两个：<code>MBR</code>和<code>Boot Sector</code>。</p>
+<p>16.<code>Linux</code>下<code>Ctrl+D</code>代表<code>End Of File</code>，<code>EOF</code>的意思，这个快捷键可以取代<code>exit</code>的功能，直接跳出文字界面。</p>
+<p>17.<code>Linux</code>命令行下按<code>Tab</code>键可以补齐命令，<code>man</code>和<code>info</code>命令可以查看<code>command</code>的帮助文档，<code>Ctrl+C</code>表示中断进程，<code>Ctrl+D</code>表示<code>EOF</code>特殊字符，<code>Ctrl+Z</code>表示挂起进程在后台运行。</p>
+<p>18.<code>Linux</code>系统下，用户和<code>root</code>相关信息记录在<code>/etc/passwd</code>下，个人密码则是记录在<code>/etc/shadow</code>下，所有的组名都记录在<code>/etc/group</code>内。</p>
+<p>19.<code>Linux</code>的权限不是很细致，拥有<code>rwx</code>三种：</p>
+<p><code>r</code>(<code>Read</code>，读取)： 对文件而言，具有读取文件内容的权限；对目录来说，具有浏览目录的权限。</p>
+<p><code>w</code>(<code>Write</code>，写入)： 对文件而言，具有新增,修改,删除文件内容的权限；对目录来说，具有新建，删除，修改，移动目录内文件的权限。</p>
+<p><code>x</code>(<code>Execute</code>，执行)：对文件而言，具有执行文件的权限；对目录了来说该用户具有进入目录的权限。</p>
+<p>20.可以用<code>chgrp</code>改变文件的用户组，<code>chown</code>改变文件的所有者，<code>chmod</code>改变文件的权限。</p>
+<p>21.<code>Linux</code>下文件的可删除和重命名权限是由其所在目录的<code>write</code>权限所决定的，要了解目录权限的意义。</p>
+<p>22.<code>Linux</code>下的文件类型：<code>-</code>代表常规文件，<code>d</code>代表目录，<code>l</code>代表链接，<code>b</code>(<code>block</code>)和<code>c</code>(<code>char</code>)代表设备文件，<code>s</code>代表<code>socket</code>文件，<code>p</code>代表<code>pipe</code>管道文件。</p>
+<p>23.<code>pwd</code>会显示出当前目录的路径，注意 <code>-P</code> 选项，如果当前目录只是以链接文件的形式存在，那么 <code>pwd -P</code> 就会显示出链接真正所指向的路径。</p>
+<p>24.<code>cp</code>命令：<code>cp -a souce dest</code> 相当于 <code>cp -pdr source dest</code>，完全复制目录的属性和档案，甚至是链接文件。如果不加任何参数的 <code>cp</code> 一个软链接，复制的结果会是源文件，而不是软链接，用 <code>-d</code> 可以解决，注意。</p>
+<p>25.删除带有<code>-</code>开头的档案，例如 <code>-aaa</code> 这个文件，必须 <code>rm ./-aaa</code> 或 <code>rm -- -aaa</code> 才可以删除，否则<code>-aaa</code>会误判为参数。</p>
+<p>26.查看二进制文件，有 <code>od</code> 和 <code>xxd</code> 命令，甚至有 <code>hexdump</code> 命令，都是以 <code>16</code>进制或<code>8</code>进制 显示输出，非常方便调试。</p>
+<p>27.新建目录和档案的默认权限是由 <code>umask</code> 来控制的，一般我们在<code>linux</code>系统的 <code>umask</code> 设置为 <code>022</code> 比较好。</p>
+<p>28.<code>linux</code>下档案的隐藏属性：<code>chattr</code> 命令可以设置档案的隐藏属性，常用的有<code>i</code>属性(任何用户包括<code>root</code>都无法修改)，<code>a</code>属性(只能增加数据，不能删除数据)等；<code>lsattr</code> 命令可以查看档案的隐藏属性，注意属性和权限是不同的，留个记性。</p>
+<p>29.<code>linux</code>文件的特殊权限：<code>SUID(u+s)</code>、<code>SGID(g+s)</code>和<code>SBIT(o+t)</code>。这三个特殊权限都是用来取代<code>x</code>权限的，所以设置这三个权限的前提条件就是必须具有<code>x</code>权限，否则小写的 <code>s</code>和<code>t</code> 权限就会变为大写的 <code>S</code>和<code>T</code> 权限，表示文件还不具备<code>x</code>权限，更谈不上这三个权限啦。</p>
+<p>30.<code>SUID(u+s)</code>仅能用在可执行的二进制程序上，目录无效。</p>
+<p>拥有<code>SUID</code>权限的二进制程序在执行时，执行者会暂时取得拥有者的权限，例如 <code>passwd</code> 命令就具有<code>SUID</code>权限，使得普通用户在执行 <code>passwd</code> 命令时会暂时 <code>root</code> 用户的权限，从而能修改<code>/etc/passwd</code>文件。</p>
+<p>31.<code>SGID(u+s)</code>不仅能用在可执行的二进制程序上，目录同样有效。</p>
+<p>拥有<code>SGID</code>权限的二进制程序在执行时，执行者会暂时取得该程序所属的群组支持，从而能访问自己群组本不能访问的文件；</p>
+<p>拥有<code>SGID</code>权限的目录，一旦进入该目录，那么在目录下新建任何文件和目录，它们的群组都会与该目录相同，对于项目开发还是相当有用的。</p>
+<p>32.<code>SBIT(o+t)</code>仅能用在有<code>x</code>权限的目录上，文件档无效。</p>
+<p>拥有<code>SBIT</code>权限的目录，一旦进入该目录，当用户在该目录下新建档案和目录时，仅有自己和<code>root</code>才能删除该档案，即使文件具有<code>g+w</code>，<code>o+w</code>这样的属性，也会失效。例如<code>/tmp</code>就是这样一个文件夹。</p>
+<p>33.<code>SUID</code>权限为<code>4</code>，<code>SGID</code>权限为<code>2</code>，<code>SBIT</code>权限为<code>1</code>，因此可以用 <code>chmod 4755 file</code> 这样的命令来设置文件的特殊权限，还可以用 <code>u+s</code>，<code>g+s</code>，<code>o+t</code> 这样的设置法。</p>
 <p>34.指令的搜寻：</p>
-<p>which -a <command> 可以列出在PATH里找到的所有指令；</p>
-<p>whereis 命令默认会从数据库中查找，用来搜寻指令也很不错；</p>
-<p>type 命令最好用啦，shell内建指令，什么命令基本都可以搜到。</p>
+<p><code>which -a &lt;command&gt;</code> 可以列出在<code>PATH</code>里找到的所有指令；</p>
+<p><code>whereis</code> 命令默认会从数据库中查找，用来搜寻指令也很不错；</p>
+<p><code>type</code> 命令最好用啦，<code>shell</code>内建指令，什么命令基本都可以搜到。</p>
 <p>35.文件档的搜寻：</p>
-<p>locate 默认会从数据库中搜寻文件档，不会扫硬盘，速度快，但不及时，因为数据库不会时刻更新，可以 updatedb 手动更新；</p>
-<p>find 强大的搜寻指令，耗硬盘，注意常用参数，例如</p>
+<p><code>locate</code> 默认会从数据库中搜寻文件档，不会扫硬盘，速度快，但不及时，因为数据库不会时刻更新，可以 <code>updatedb</code> 手动更新；</p>
+<p><code>find</code> 强大的搜寻指令，耗硬盘，注意常用参数，例如</p>
 <ul>
-<li>find . -mtime 4 // 4天前文件</li>
-<li>find . -name file // file文件名的文件</li>
-<li>find . -type f // 常规文件档</li>
-<li>find . -size +50k // 大于50k的文件</li>
-<li>find . -mode 4755 // 权限为4755的文件</li>
-<li>find . -name file -exec ls -l {} ; // 找到file文件，然后用 ls -l 显示</li>
+<li><code>find . -mtime 4 // 4天前文件</code></li>
+<li><code>find . -name file // file文件名的文件</code></li>
+<li><code>find . -type f // 常规文件档</code></li>
+<li><code>find . -size +50k // 大于50k的文件</code></li>
+<li><code>find . -mode 4755 // 权限为4755的文件</code></li>
+<li><code>find . -name file -exec ls -l {} ; // 找到file文件，然后用 ls -l 显示</code></li>
 </ul>
-<p>36.EXT2文件系统的组成：最前面是一个Boot Sector，然后是N多个Block Group。</p>
-<p>每个Block Group主要由inodetable/datablock/superblock等部分组成：</p>
-<p>①superblock记录Filesystem的信息和inode、block的大小和数量等，一般在第一个Block Group里，后面的Block Group大部分都没有，有的话也只是第一个Block Group的备份；</p>
-<p>②filesystem description主要记录block group的起始与结束的block号码，以及group每个区段分别介于哪一个block号码之间；</p>
-<p>③block bitmap记录每个block号码是否使用中；</p>
-<p>④inode bitmap记录每个inode号码是否使用中；</p>
-<p>⑤inode table则是记录每个 inode(文件) 的权限、属性、容量等以及它真正内容所在的block号码；</p>
-<p>⑥data block则是纯粹的数据记录。</p>
-<p>Block Group的基本单位是block，block size一般是1K、2K或4K。</p>
-<p>每个文件只有一个inode，而每个inode可能指向多个数据相同的文件，每个inode大小一般128字节或256字节。</p>
-<p>详细的ext2文件系统信息可以用 tune2fs -l /dev/sda1 或 dumpe2fs /dev/sda1 命令查看。</p>
+<p>36.<code>EXT2</code>文件系统的组成：最前面是一个<code>Boot Sector</code>，然后是<code>N</code>多个<code>Block Group</code>。</p>
+<p>每个<code>Block Group</code>主要由<code>inodetable/datablock/superblock</code>等部分组成：</p>
+<p>①<code>superblock</code>记录<code>Filesystem</code>的信息和<code>inode</code>、<code>block</code>的大小和数量等，一般在第一个<code>Block Group</code>里，后面的<code>Block Group</code>大部分都没有，有的话也只是第一个<code>Block Group</code>的备份；</p>
+<p>②<code>filesystem description</code>主要记录<code>block group</code>的起始与结束的<code>block</code>号码，以及<code>group</code>每个区段分别介于哪一个<code>block</code>号码之间；</p>
+<p>③<code>block bitmap</code>记录每个<code>block</code>号码是否使用中；</p>
+<p>④<code>inode bitmap</code>记录每个<code>inode</code>号码是否使用中；</p>
+<p>⑤<code>inode table</code>则是记录每个 <code>inode</code>(文件) 的权限、属性、容量等以及它真正内容所在的<code>block</code>号码；</p>
+<p>⑥<code>data block</code>则是纯粹的数据记录。</p>
+<p><code>Block Group</code>的基本单位是<code>block</code>，<code>block size</code>一般是<code>1K</code>、<code>2K</code>或<code>4K</code>。</p>
+<p>每个文件只有一个<code>inode</code>，而每个<code>inode</code>可能指向多个数据相同的文件，每个<code>inode</code>大小一般<code>128</code>字节或<code>256</code>字节。</p>
+<p>详细的<code>ext2</code>文件系统信息可以用 <code>tune2fs -l /dev/sda1</code> 或 <code>dumpe2fs /dev/sda1</code> 命令查看。</p>
 <p>37.硬链接和软链接：</p>
-<p>①硬链接不能跨越Filesystem，不能链接目录。建立硬链接会改变inode的链接数，通过硬链接建立的档案与原档案的inode号是一致的，不会占用新的inode和block。</p>
-<p>②软链接可以跨越Filesystem，也能链接目录。它会建立新档案，以符号链接的形式指向原档案，会占用新的inode和block。</p>
-<p>38.目录的链接数 包括目录本身、当前目录<code>.</code>和父目录<code>..</code>，每建立一个文件夹就多一个父目录<code>..</code>；文件的链接数指的是 该文件inode号的链接数，即是硬链接个数。</p>
-<p>39.hdparm命令可以用来测试硬盘读取速度，不过不是很准，hdparm -Tt /dev/sda。</p>
-<p>40.在使用fdisk重新分区后，不要忘记使用partprobe命令让kernel更新分区表，很重要，否则系统可能会出错。</p>
-<p>41.<code>dd if=/dev/sda of=/dev/sdb</code>，这个命令可以让两个硬盘完全相同，因为dd可以读取硬盘的所有数据，包括MBR和boot sector等。</p>
-<p>42.linux启动时首先挂载临时根文件系统initrd（Initial Ram Disk），完成引导并挂载真正的根文件系统后再退出，不过在很多嵌入式设备中，它却是最终的根文件系统，因为它是文件系统的最小集合，非常适合嵌入式系统。</p>
-<p>43.cpio指令可以备份任何档案，包括/dev下的设备档案，正因如此，现在的initrd都是采用cpio备份再用gzip压缩生成的。</p>
-<p>44.dos2unix可以将windows文件的行尾字符<code>\r\n</code>转换成unix格式<code>\n</code>。</p>
-<p>45.iconv可以转换文件的字符编码，例如：<code>iconv -f gbk -t utf8 test.gbk -o test.utf8</code>。</p>
-<p>46.ulimit可以控制用户使用的系统资源，防止资源占用过高，系统崩溃。</p>
-<p>47.env是shell外置命令，可以显示当前shell的环境变量，又叫全局变量。export是shell内置命令，也可显示当前shell的环境变量。不过两者都另外有各自不同的功能，用法自己查吧。</p>
-<p>48.set是shell内置命令，可以显示包括环境变量、本地变量、内置变量、函数等所有shell设定值。不过它主要的功能是控制shell的内置设定，如<code>set -o</code>命令。</p>
-<p>49.declare也是shell内置命令，一样可以显示包括变量和函数等所有shell设定值。不过它主要的功能是声明变量和数组等值类型，shell内的变量包括字符串，整数，数组，只读，导出等不同的类型和属性，记得善加利用，会事半功倍哟。</p>
-<p>50.bash里面的各种变量操作，这可以节省我们的程序行数：</p>
+<p>①硬链接不能跨越<code>Filesystem</code>，不能链接目录。建立硬链接会改变<code>inode</code>的链接数，通过硬链接建立的档案与原档案的<code>inode</code>号是一致的，不会占用新的<code>inode</code>和<code>block</code>。</p>
+<p>②软链接可以跨越<code>Filesystem</code>，也能链接目录。它会建立新档案，以符号链接的形式指向原档案，会占用新的<code>inode</code>和<code>block</code>。</p>
+<p>38.目录的链接数 包括目录本身、当前目录<code>.</code>和父目录<code>..</code>，每建立一个文件夹就多一个父目录<code>..</code>；文件的链接数指的是 该文件<code>inode</code>号的链接数，即是硬链接个数。</p>
+<p>39.<code>hdparm</code>命令可以用来测试硬盘读取速度，不过不是很准，<code>hdparm -Tt /dev/sda</code>。</p>
+<p>40.在使用<code>fdisk</code>重新分区后，不要忘记使用<code>partprobe</code>命令让<code>kernel</code>更新分区表，很重要，否则系统可能会出错。</p>
+<p>41.<code>dd if=/dev/sda of=/dev/sdb</code>，这个命令可以让两个硬盘完全相同，因为<code>dd</code>可以读取硬盘的所有数据，包括<code>MBR</code>和<code>boot sector</code>等。</p>
+<p>42.<code>linux</code>启动时首先挂载临时根文件系统<code>initrd</code>（<code>Initial Ram Disk</code>），完成引导并挂载真正的根文件系统后再退出，不过在很多嵌入式设备中，它却是最终的根文件系统，因为它是文件系统的最小集合，非常适合嵌入式系统。</p>
+<p>43.<code>cpio</code>指令可以备份任何档案，包括<code>/dev</code>下的设备档案，正因如此，现在的<code>initrd</code>都是采用<code>cpio</code>备份再用<code>gzip</code>压缩生成的。</p>
+<p>44.<code>dos2unix</code>可以将<code>windows</code>文件的行尾字符<code>\r\n</code>转换成<code>unix</code>格式<code>\n</code>。</p>
+<p>45.<code>iconv</code>可以转换文件的字符编码，例如：<code>iconv -f gbk -t utf8 test.gbk -o test.utf8</code>。</p>
+<p>46.<code>ulimit</code>可以控制用户使用的系统资源，防止资源占用过高，系统崩溃。</p>
+<p>47.<code>env</code>是<code>shell</code>外置命令，可以显示当前<code>shell</code>的环境变量，又叫全局变量。<code>export</code>是<code>shell</code>内置命令，也可显示当前<code>shell</code>的环境变量。不过两者都另外有各自不同的功能，用法自己查吧。</p>
+<p>48.<code>set</code>是<code>shell</code>内置命令，可以显示包括环境变量、本地变量、内置变量、函数等所有<code>shell</code>设定值。不过它主要的功能是控制<code>shell</code>的内置设定，如<code>set -o</code>命令。</p>
+<p>49.<code>declare</code>也是<code>shell</code>内置命令，一样可以显示包括变量和函数等所有<code>shell</code>设定值。不过它主要的功能是声明变量和数组等值类型，<code>shell</code>内的变量包括字符串，整数，数组，只读，导出等不同的类型和属性，记得善加利用，会事半功倍哟。</p>
+<p>50.<code>bash</code>里面的各种变量操作，这可以节省我们的程序行数：</p>
 <ul>
-<li><code>${str#pattern}</code>：从变量头部开始寻找符合pattern的数据，将符合的最短数据删除</li>
-<li><code>${str##pattern}</code>：从变量头部开始寻找符合pattern的数据，将符合的最长数据删除</li>
-<li><code>${str%pattern}</code>：从变量尾部开始寻找符合pattern的数据，将符合的最短数据删除</li>
-<li><code>${str%%pattern}</code>：从变量尾部开始寻找符合pattern的数据，将符合的最长数据删除</li>
-<li><code>${str/old/new}</code>：寻找变量内符合old的字符串，第一个符合的数据将被替换为new</li>
-<li><code>${str//old/new}</code>：寻找变量内符合old的字符串，并将所有符合的数据替换为new</li>
+<li><code>${str#pattern}</code>：从变量头部开始寻找符合<code>pattern</code>的数据，将符合的最短数据删除</li>
+<li><code>${str##pattern}</code>：从变量头部开始寻找符合<code>pattern</code>的数据，将符合的最长数据删除</li>
+<li><code>${str%pattern}</code>：从变量尾部开始寻找符合<code>pattern</code>的数据，将符合的最短数据删除</li>
+<li><code>${str%%pattern}</code>：从变量尾部开始寻找符合<code>pattern</code>的数据，将符合的最长数据删除</li>
+<li><code>${str/old/new}</code>：寻找变量内符合<code>old</code>的字符串，第一个符合的数据将被替换为<code>new</code></li>
+<li><code>${str//old/new}</code>：寻找变量内符合<code>old</code>的字符串，并将所有符合的数据替换为<code>new</code></li>
 </ul>
 <p>下面是变量赋值的各种替代操作，对于变量初始化很有用：</p>
 <ul>
-<li><code>var=${str-expr}</code>：如果str没有设定，var=expr</li>
-<li><code>var=${str:-expr}</code>：如果str没有设定或为空，var=expr</li>
-<li><code>var=${str+expr}</code>：如果str有设定，var=expr</li>
-<li><code>var=${str:+expr}</code>：如果str有设定且不为空，var=expr</li>
-<li><code>var=${str=expr}</code>：如果str没有设定，str=expr,var=expr</li>
-<li><code>var=${str:=expr}</code>：如果str没有设定或为空，str=expr,var=expr</li>
-<li><code>var=${str?expr}</code>：如果str没有设定，expr输出至stderr</li>
-<li><code>var=${str:?expr}</code>：如果str没有设定或为空，expr输出至stderr</li>
+<li><code>var=${str-expr}</code>：如果<code>str</code>没有设定，<code>var=expr</code></li>
+<li><code>var=${str:-expr}</code>：如果<code>str</code>没有设定或为空，<code>var=expr</code></li>
+<li><code>var=${str+expr}</code>：如果<code>str</code>有设定，<code>var=expr</code></li>
+<li><code>var=${str:+expr}</code>：如果<code>str</code>有设定且不为空，<code>var=expr</code></li>
+<li><code>var=${str=expr}</code>：如果<code>str</code>没有设定，<code>str=expr,var=expr</code></li>
+<li><code>var=${str:=expr}</code>：如果<code>str</code>没有设定或为空，<code>str=expr,var=expr</code></li>
+<li><code>var=${str?expr}</code>：如果<code>str</code>没有设定，<code>expr</code>输出至<code>stderr</code></li>
+<li><code>var=${str:?expr}</code>：如果<code>str</code>没有设定或为空，<code>expr</code>输出至<code>stderr</code></li>
 </ul>
-<p>51.history可以查看最近下达的指令，而<code>!</code>则可以执行历史命令，如<code>!number</code>可以下达第number号指令，<code>!command</code>可以下达最近以command开头的指令，这就很有效率啦。</p>
-<p>52.stty可以控制终端的各种设定，如串口速率，快捷键等；此外还有set命令可以控制bash的各种功能设定；两者合作决定了我们的终端机。</p>
-<p>53.bash默认组合按键：</p>
+<p>51.<code>history</code>可以查看最近下达的指令，而<code>!</code>则可以执行历史命令，如<code>!number</code>可以下达第<code>number</code>号指令，<code>!command</code>可以下达最近以<code>command</code>开头的指令，这就很有效率啦。</p>
+<p>52.<code>stty</code>可以控制终端的各种设定，如串口速率，快捷键等；此外还有<code>set</code>命令可以控制<code>bash</code>的各种功能设定；两者合作决定了我们的终端机。</p>
+<p>53.<code>bash</code>默认组合按键：</p>
 <ul>
 <li><code>Ctrl+C</code>：终止当前命令</li>
-<li><code>Ctrl+D</code>：输入结束符（EOF）</li>
-<li><code>Ctrl+M</code>：输入回车符（Enter）</li>
+<li><code>Ctrl+D</code>：输入结束符（<code>EOF</code>）</li>
+<li><code>Ctrl+M</code>：输入回车符（<code>Enter</code>）</li>
 <li><code>Ctrl+S</code>：暂停屏幕输出</li>
 <li><code>Ctrl+Q</code>：恢复屏幕输出</li>
 <li><code>Ctrl+U</code>：删除提示符整行命令</li>
 <li><code>Ctrl+Z</code>：暂停目前的进程</li>
 </ul>
-<p>54.bash中的标准输入，标准输出，标准错误：</p>
+<p>54.<code>bash</code>中的标准输入，标准输出，标准错误：</p>
 <ul>
 <li><code>1&gt;</code>或<code>&gt;</code>：标准输出，覆盖形式</li>
 <li><code>1&gt;&gt;</code>或<code>&gt;&gt;</code>：标准输出，追加形式</li>
 <li><code>2&gt;</code>：标准错误输出，覆盖形式</li>
 <li><code>2&gt;&gt;</code>：标准错误输出，追加形式</li>
 <li><code>&lt;</code>：标准输入</li>
-<li><code>&lt;&lt;</code>：标准输入的结束符（EOF）</li>
+<li><code>&lt;&lt;</code>：标准输入的结束符（<code>EOF</code>）</li>
 </ul>
-<p>对于追加的理解，我认为是输入或输出取代EOF的操作。</p>
-<p>55.tee命令可以在标准输出的同时，转存一份到文件内，这对于数据分析及存储非常有用。</p>
-<p>56.tr命令常用来删除特殊字符，或者对特殊字符进行转换，例如TAB符，DOS行尾符等都可以很轻松的转换和删除。</p>
-<p>57.join可以连接相关数据，要求是某字段必须相同，与sort一起使用可以用来连接数据生成表格哟；paste则相对简单，不需要数据相关，直接将两行贴在一起，并用TAB隔开，也很有用。</p>
-<p>58.spilt用来分割文件，可以指定文件以大小或行数来分割成N个小文件。</p>
-<p>59.由于许多命令并不支持管道符，这里我们就可以使用xargs来调用不支持管道符的命令，它可以读取前面命令的输出作为参数提供给后面的命令来执行，这样就可以连接起不支持管道符的命令，用法很多。</p>
-<p>60.printf命令类似于C语言的printf函数，可以格式化输出，善加运用，打印字符串会很美观。</p>
-<p>61.sed的最小处理单位是行，对文本的行操作很有效率；而awk的最小处理单位是字段，对文本的列操作很有用，其命令格式如下：</p>
+<p>对于追加的理解，我认为是输入或输出取代<code>EOF</code>的操作。</p>
+<p>55.<code>tee</code>命令可以在标准输出的同时，转存一份到文件内，这对于数据分析及存储非常有用。</p>
+<p>56.<code>tr</code>命令常用来删除特殊字符，或者对特殊字符进行转换，例如<code>TAB</code>符，<code>DOS</code>行尾符等都可以很轻松的转换和删除。</p>
+<p>57.<code>join</code>可以连接相关数据，要求是某字段必须相同，与<code>sort</code>一起使用可以用来连接数据生成表格哟；<code>paste</code>则相对简单，不需要数据相关，直接将两行贴在一起，并用<code>TAB</code>隔开，也很有用。</p>
+<p>58.<code>spilt</code>用来分割文件，可以指定文件以大小或行数来分割成<code>N</code>个小文件。</p>
+<p>59.由于许多命令并不支持管道符，这里我们就可以使用<code>xargs</code>来调用不支持管道符的命令，它可以读取前面命令的输出作为参数提供给后面的命令来执行，这样就可以连接起不支持管道符的命令，用法很多。</p>
+<p>60.<code>printf</code>命令类似于<code>C</code>语言的<code>printf</code>函数，可以格式化输出，善加运用，打印字符串会很美观。</p>
+<p>61.<code>sed</code>的最小处理单位是行，对文本的行操作很有效率；而<code>awk</code>的最小处理单位是字段，对文本的列操作很有用，其命令格式如下：</p>
 <p><code>awk 'pattern1{action1} pattern2{action2}...' file</code></p>
-<p>常用选项： * awk的默认分割符是空格，可用内置变量FS指定； * 内置变量NF：代表每一行（$0）的字段总数； * 内置变量NR：代表awk目前正在处理的行数； * pattern可以为空，常用的选项有BEGIN，END，条件判断和正则表达式等； * 例如：<code>awk 'BEGIN{FS=&quot;:&quot;} $3&lt;10{print NR&quot;\t&quot;$1&quot;\t&quot;$3} END{print FS, NF, NR}' /etc/passwd</code></p>
-<p>62.diff和patch常用于补丁的发布：生成补丁<code>diff -Naur dir1 dir2 &gt; dir.patch</code>，更新补丁<code>patch -p0 &lt; dir.patch</code>，还原补丁<code>patch -R -p0 &lt; dir.patch</code>。</p>
-<p>63.bash中的<code>[[ ]]</code>比<code>[ ]</code>更加高级，判断条件更加厉害，它可以判断出linux通配符（<code>==</code>）和正则表达式（<code>=～</code>），还有<code>&amp;&amp;</code>，<code>||</code>和<code>!</code>等高级功能，善加运用，很厉害，具体参考<code>help [[</code>。</p>
-<p>64.bash的命令行参数默认用<code>$1 $2 ... $9</code>来表示，超过10个参数的话必须用到shift命令，<code>shift n</code>可以拿掉最前面的参数，使参数偏移n位，再次查看参数个数<code>$#</code>时就会发现参数少了，就可以继续使用后面的参数啦。</p>
-<p>65.关于shell脚本的debug，我们可以使用<code>bash -x test.sh</code>来进行脚本的错误检查。</p>
-<p>66.Linux用于帐号管理的ACL需要文件系统的支持，并且mount选项里要有acl才行。然后就可以使用<code>setfacl</code>和<code>getfacl</code>来对文件和目录针对某一使用者的权限进行管理。</p>
-<p>67.使用<code>su - user</code>来切换身份会更好，因为它是login-shell方式，会转化成新的用户环境，否则的话，虽然切换了身份，但环境变量还是当前用户的环境变量。</p>
-<p>68.visudo可以管理用户的<code>sudo</code>权限，不要直接修改<code>/etc/sudoers</code>文件，因为会有语法问题。另外Linux下的许多需要认证的命令（例如<code>passwd</code> <code>sudo</code> <code>su</code>等）都会用到PAM模块，这是一个专门用于认证授权的库，可以在<code>/etc/pam.d/*</code>中找到支持的命令或服务。</p>
-<p>69.who查看当前登入用户，write可以发送信息给用户，mesg让用户可以控制是否接受信息，wall则对所有用户进行广播信息。</p>
+<p>常用选项： * <code>awk</code>的默认分割符是空格，可用内置变量<code>FS</code>指定； * 内置变量<code>NF</code>：代表每一行（<code>$0</code>）的字段总数； * 内置变量<code>NR</code>：代表<code>awk</code>目前正在处理的行数； * <code>pattern</code>可以为空，常用的选项有<code>BEGIN</code>，<code>END</code>，条件判断和正则表达式等； * 例如：<code>awk 'BEGIN{FS=&quot;:&quot;} $3&lt;10{print NR&quot;\t&quot;$1&quot;\t&quot;$3} END{print FS, NF, NR}' /etc/passwd</code></p>
+<p>62.<code>diff</code>和<code>patch</code>常用于补丁的发布：生成补丁<code>diff -Naur dir1 dir2 &gt; dir.patch</code>，更新补丁<code>patch -p0 &lt; dir.patch</code>，还原补丁<code>patch -R -p0 &lt; dir.patch</code>。</p>
+<p>63.<code>bash</code>中的<code>[[ ]]</code>比<code>[ ]</code>更加高级，判断条件更加厉害，它可以判断出<code>linux</code>通配符（<code>==</code>）和正则表达式（<code>=～</code>），还有<code>&amp;&amp;</code>，<code>||</code>和<code>!</code>等高级功能，善加运用，很厉害，具体参考<code>help [[</code>。</p>
+<p>64.<code>bash</code>的命令行参数默认用<code>$1 $2 ... $9</code>来表示，超过<code>10</code>个参数的话必须用到<code>shift</code>命令，<code>shift n</code>可以拿掉最前面的参数，使参数偏移<code>n</code>位，再次查看参数个数<code>$#</code>时就会发现参数少了，就可以继续使用后面的参数啦。</p>
+<p>65.关于<code>shell</code>脚本的<code>debug</code>，我们可以使用<code>bash -x test.sh</code>来进行脚本的错误检查。</p>
+<p>66.<code>Linux</code>用于帐号管理的<code>ACL</code>需要文件系统的支持，并且<code>mount</code>选项里要有<code>acl</code>才行。然后就可以使用<code>setfacl</code>和<code>getfacl</code>来对文件和目录针对某一使用者的权限进行管理。</p>
+<p>67.使用<code>su - user</code>来切换身份会更好，因为它是<code>login-shell</code>方式，会转化成新的用户环境，否则的话，虽然切换了身份，但环境变量还是当前用户的环境变量。</p>
+<p>68.<code>visudo</code>可以管理用户的<code>sudo</code>权限，不要直接修改<code>/etc/sudoers</code>文件，因为会有语法问题。另外<code>Linux</code>下的许多需要认证的命令（例如<code>passwd</code> <code>sudo</code> <code>su</code>等）都会用到<code>PAM</code>模块，这是一个专门用于认证授权的库，可以在<code>/etc/pam.d/*</code>中找到支持的命令或服务。</p>
+<p>69.<code>who</code>查看当前登入用户，<code>write</code>可以发送信息给用户，<code>mesg</code>让用户可以控制是否接受信息，<code>wall</code>则对所有用户进行广播信息。</p>
 <p>70.手动建立用户帐号流程：</p>
 <ul>
-<li>建立群组（vi /etc/group）</li>
-<li>同步/etc/group到/etc/gpasswd（grpconv）</li>
-<li>建立帐号（vi /etc/passwd）</li>
-<li>同步/etc/passwd到/etc/shadow（pwconv）</li>
-<li>建立帐号密码（passwd user）</li>
-<li>建立主目录（cp -a /etc/skel /home/user）</li>
-<li>更改主目录属性（chown -R user:group /home/user）</li>
+<li>建立群组（<code>vi /etc/group</code>）</li>
+<li>同步<code>/etc/group</code>到<code>/etc/gpasswd</code>（<code>grpconv</code>）</li>
+<li>建立帐号（<code>vi /etc/passwd</code>）</li>
+<li>同步<code>/etc/passwd</code>到<code>/etc/shadow</code>（<code>pwconv</code>）</li>
+<li>建立帐号密码（<code>passwd user</code>）</li>
+<li>建立主目录（<code>cp -a /etc/skel /home/user</code>）</li>
+<li>更改主目录属性（<code>chown -R user:group /home/user</code>）</li>
 </ul>
-<p>71.针对服务器的磁盘限额配置，我们可以使用<code>quota</code>来配置，它也需要文件系统的支持，记得mount选项加上<code>usrquota</code>和<code>grpquota</code>。</p>
-<p>72.LVM可以弹性调整文件系统的容量，并且拥有快照功能，作为虚拟机的文件系统很是有用。</p>
-<p>73.在特定时间进行排程工作，我们可以使用<code>at</code>指令，而<code>batch</code>可以让<code>at</code>任务在CPU负载较小时才进行任务。</p>
-<p>74.普通用户可以使用<code>crontab -e</code>来设定循环工作排程，而ROOT用户则可以直接编辑<code>/etc/crontab</code>来设置系统的循环排程。<code>anacron</code>可以在系统启动时唤醒停机期间未进行的<code>crontab</code>任务。</p>
-<p>75.ps可以截取当前系统的运行进程，pstree可以显示进程树，top可以实时监控运行进程，vmstat可以查看系统资源的使用情况。</p>
-<p>76.熟悉几个kill信号的意义：<code>1 - SIGHUP</code>代表让程序重新读取配置文件；<code>9 - SIGKILL</code>代表强制中断一个程序；<code>15 - SIGTERM</code>代表以正常的结束方式来终止该程序。</p>
-<p>77.<code>nice</code>和<code>renice</code>可以调整程序的优先级高低，PRI值越低，程序就较优先被处理。</p>
+<p>71.针对服务器的磁盘限额配置，我们可以使用<code>quota</code>来配置，它也需要文件系统的支持，记得<code>mount</code>选项加上<code>usrquota</code>和<code>grpquota</code>。</p>
+<p>72.<code>LVM</code>可以弹性调整文件系统的容量，并且拥有快照功能，作为虚拟机的文件系统很是有用。</p>
+<p>73.在特定时间进行排程工作，我们可以使用<code>at</code>指令，而<code>batch</code>可以让<code>at</code>任务在<code>CPU</code>负载较小时才进行任务。</p>
+<p>74.普通用户可以使用<code>crontab -e</code>来设定循环工作排程，而<code>ROOT</code>用户则可以直接编辑<code>/etc/crontab</code>来设置系统的循环排程。<code>anacron</code>可以在系统启动时唤醒停机期间未进行的<code>crontab</code>任务。</p>
+<p>75.<code>ps</code>可以截取当前系统的运行进程，<code>pstree</code>可以显示进程树，<code>top</code>可以实时监控运行进程，<code>vmstat</code>可以查看系统资源的使用情况。</p>
+<p>76.熟悉几个<code>kill</code>信号的意义：<code>1 - SIGHUP</code>代表让程序重新读取配置文件；<code>9 - SIGKILL</code>代表强制中断一个程序；<code>15 - SIGTERM</code>代表以正常的结束方式来终止该程序。</p>
+<p>77.<code>nice</code>和<code>renice</code>可以调整程序的优先级高低，<code>PRI</code>值越低，程序就较优先被处理。</p>
 <p>78.<code>netstat</code>和<code>ss</code>这两个命令分属不同的网络工具包，均可以查看当前系统的网络连接状况，不过<code>ss</code>比<code>netstat</code>快多了。</p>
-<p>79.<code>fuser -uv /dev/pts/0</code>可以根据打开的files或sockets（这里是<code>/dev/pts/0</code>）找到运行的程序，而<code>lsof</code>可以列出被运行程序打开的所有文件，<code>pidof</code>可以找出运行程序的PID值。</p>
-<p>80.Linux内核自带有SELinux安全机制，不过Ubuntu默认没有安装，一般为了安全，服务器端会启动，其主要作用是保证主体程序（主要是网络服务）仅能存取指定文件档案资源，即使程序被攻破，也不至于让黑客获得更多的文件档案和用户权限。</p>
-<p>81.Linux服务程序可以分为两类：Stand Alone方式和Super Daemon方式。</p>
+<p>79.<code>fuser -uv /dev/pts/0</code>可以根据打开的<code>files</code>或<code>sockets</code>（这里是<code>/dev/pts/0</code>）找到运行的程序，而<code>lsof</code>可以列出被运行程序打开的所有文件，<code>pidof</code>可以找出运行程序的<code>PID</code>值。</p>
+<p>80.<code>Linux</code>内核自带有<code>SELinux</code>安全机制，不过<code>Ubuntu</code>默认没有安装，一般为了安全，服务器端会启动，其主要作用是保证主体程序（主要是网络服务）仅能存取指定文件档案资源，即使程序被攻破，也不至于让黑客获得更多的文件档案和用户权限。</p>
+<p>81.<code>Linux</code>服务程序可以分为两类：<code>Stand Alone</code>方式和<code>Super Daemon</code>方式。</p>
 <ul>
-<li>Stand Alone方式自己单独启动并常驻内存，例如<code>httpd</code>和<code>vsftpd</code>等；</li>
-<li>Super Daemon方式则是所有服务由<code>xinetd</code>统一管理，平时不启动，需要时才由<code>xinetd</code>调用启动，所以比较省内存，但反应比较慢；</li>
-<li><code>/etc/services</code>里有所有服务的端口设置，<code>/etc/xinetd.d</code>则存放所有服务的配置文件，而Super Daemon的默认配置文件在<code>/etc/xinetd.conf</code>里。</li>
+<li><code>Stand Alone</code>方式自己单独启动并常驻内存，例如<code>httpd</code>和<code>vsftpd</code>等；</li>
+<li><code>Super Daemon</code>方式则是所有服务由<code>xinetd</code>统一管理，平时不启动，需要时才由<code>xinetd</code>调用启动，所以比较省内存，但反应比较慢；</li>
+<li><code>/etc/services</code>里有所有服务的端口设置，<code>/etc/xinetd.d</code>则存放所有服务的配置文件，而<code>Super Daemon</code>的默认配置文件在<code>/etc/xinetd.conf</code>里。</li>
 </ul>
 <p>82.<code>rsync</code>是用来同步两台电脑文件夹的程序，对于服务器备份非常有用。</p>
-<p>83.<code>/etc/hosts.allow</code>和<code>/etc/hosts.deny</code>只对支持TCP Wrappers的程序才有用，可以用<code>ldd</code>来查看程序是否支持TCP Wrappers。 84.CentOS中的<code>chkconfig</code>可以进行系统启动服务的管理，而在Ubuntu中可以用<code>initctl</code>（Upstart服务在<code>/etc/init</code>）和<code>update-rc.d</code>（SYSV服务在<code>/etc/init.d</code>）来代替。</p>
-<p>85.Linux系统的log主要记录在<code>/var/log</code>下面，不过不同的发行版记录log的文件差异颇大，可以自行配置类似<code>/etc/rsyslog.conf</code>的文件，设定不同log的记录位置，甚至可以开启日志服务器。最后还要配置<code>/etc/logrotate.d/*</code>档案来设置log的备份周期，大小，个数，动作等参数，这样就可以周期备份和替换log文件，避免让log文件太大，影响系统效率。</p>
-<p>86.Linux早期通过<code>mknod</code>手动创建静态设备，不管设备是否被用到，这就需要在/dev下创建大量设备，但随着大量设备的出现，设备的动态检测和识别出现了问题，往往一个设备拔下再插入后设备名出现了变化，大量相同设备插入后识别困难，这对于开发者十分不便。自从内核2.6版本以后，出现了一种叫sysfs的新虚拟文件系统，它可以将内核支持的设备映射到/sys文件夹下，udev就是借此实现了用户空间（user space）的动态设备检测，创建和更新，这样系统启动时就可以动态创建设备，你还可以指定设备为特定名称，udevd后台服务将会为你自动更新设备。</p>
-<p>87.Linux系统开机流程：</p>
+<p>83.<code>/etc/hosts.allow</code>和<code>/etc/hosts.deny</code>只对支持<code>TCP Wrappers</code>的程序才有用，可以用<code>ldd</code>来查看程序是否支持<code>TCP Wrappers</code>。 84.<code>CentOS</code>中的<code>chkconfig</code>可以进行系统启动服务的管理，而在<code>Ubuntu</code>中可以用<code>initctl</code>（<code>Upstart</code>服务在<code>/etc/init</code>）和<code>update-rc.d</code>（<code>SYSV</code>服务在<code>/etc/init.d</code>）来代替。</p>
+<p>85.<code>Linux</code>系统的<code>log</code>主要记录在<code>/var/log</code>下面，不过不同的发行版记录<code>log</code>的文件差异颇大，可以自行配置类似<code>/etc/rsyslog.conf</code>的文件，设定不同<code>log</code>的记录位置，甚至可以开启日志服务器。最后还要配置<code>/etc/logrotate.d/*</code>档案来设置<code>log</code>的备份周期，大小，个数，动作等参数，这样就可以周期备份和替换<code>log</code>文件，避免让<code>log</code>文件太大，影响系统效率。</p>
+<p>86.<code>Linux</code>早期通过<code>mknod</code>手动创建静态设备，不管设备是否被用到，这就需要在<code>/dev</code>下创建大量设备，但随着大量设备的出现，设备的动态检测和识别出现了问题，往往一个设备拔下再插入后设备名出现了变化，大量相同设备插入后识别困难，这对于开发者十分不便。自从内核<code>2.6</code>版本以后，出现了一种叫<code>sysfs</code>的新虚拟文件系统，它可以将内核支持的设备映射到<code>/sys</code>文件夹下，<code>udev</code>就是借此实现了用户空间（<code>user space</code>）的动态设备检测，创建和更新，这样系统启动时就可以动态创建设备，你还可以指定设备为特定名称，<code>udevd</code>后台服务将会为你自动更新设备。</p>
+<p>87.<code>Linux</code>系统开机流程：</p>
 <ul>
-<li>按下Power Button，硬件逻辑电路完成CPU Reset，进入实地址模式，而其中CS：IP=FFFF0H，决定了CPU的第一条指令地址，就是跳转到BIOS首地址，于是BIOS就此启动；</li>
-<li>BIOS加载CMOS的硬件信息并进行开机自检；</li>
-<li>BIOS取得第一个开机装置，并读取执行MBR内的Boot Loader；</li>
-<li>Boot Loader依据设定加载Kernel，Kernel挂载根目录，检测硬件并加载驱动程序；</li>
-<li>硬件驱动成功后，Kernel主动呼叫init程序，而init会取得RUNLEVEL；</li>
-<li>init执行sysinit完成系统环境初始化（如网络，时区等）；</li>
-<li>init依据RUNLEVEL启动各个服务（/etc/init.d/rc $RUNLEVEL）；</li>
-<li>init执行本地服务（rc.local）；</li>
-<li>init执行getty启动login程序，等待用户登录；</li>
+<li>按下<code>Power Button</code>，硬件逻辑电路完成<code>CPU Reset</code>，进入实地址模式，而其中<code>CS:IP=FFFF0H</code>，决定了<code>CPU</code>的第一条指令地址，就是跳转到<code>BIOS</code>首地址，于是<code>BIOS</code>就此启动；</li>
+<li><code>BIOS</code>加载<code>CMOS</code>的硬件信息并进行开机自检；</li>
+<li><code>BIOS</code>取得第一个开机装置，并读取执行<code>MBR</code>内的<code>Boot Loader</code>；</li>
+<li><code>Boot Loader</code>依据设定加载<code>Kernel</code>，<code>Kernel</code>挂载根目录，检测硬件并加载驱动程序；</li>
+<li>硬件驱动成功后，<code>Kernel</code>主动呼叫<code>init</code>程序，而<code>init</code>会取得<code>RUNLEVEL</code>；</li>
+<li><code>init</code>执行<code>sysinit</code>完成系统环境初始化（如网络，时区等）；</li>
+<li><code>init</code>依据<code>RUNLEVEL</code>启动各个服务（<code>/etc/init.d/rc $RUNLEVEL</code>）；</li>
+<li><code>init</code>执行本地服务（<code>rc.local</code>）；</li>
+<li><code>init</code>执行<code>getty</code>启动<code>login</code>程序，等待用户登录；</li>
 </ul>
-<p>88.<code>sysctl</code>可以在系统运行时读取和修改kernel的参数，你可以在<code>/etc/sysctl.conf</code>里做永久修改。</p>
-<p>89.Ubuntu中<code>telinit N</code>可以用来切换当前系统的RUNLEVEL，所以你可以用<code>telinit 0</code>来关机，<code>telinit 6</code>来重启。</p>
-<p>90.Linux内核模块常用命令：</p>
+<p>88.<code>sysctl</code>可以在系统运行时读取和修改<code>kernel</code>的参数，你可以在<code>/etc/sysctl.conf</code>里做永久修改。</p>
+<p>89.<code>Ubuntu</code>中<code>telinit N</code>可以用来切换当前系统的<code>RUNLEVEL</code>，所以你可以用<code>telinit 0</code>来关机，<code>telinit 6</code>来重启。</p>
+<p>90.<code>Linux</code>内核模块常用命令：</p>
 <ul>
 <li><code>depmod</code>会主动分析目前内核模块的相互依赖性，并重新生成<code>/lib/modules/$(uname -r)/modules.dep</code>，这个文件对于<code>modprobe</code>命令非常重要；</li>
 <li><code>lsmod</code>可以列出目前内核加载的模块，<code>modinfo</code>可以查看某个内核模块的详细信息；</li>
 <li><code>modprobe</code>可以根据<code>modules.dep</code>文件分析依赖性，然后安装和卸载内核模块，推荐使用；</li>
 <li><code>insmod</code>和<code>rmmod</code>分别是安装和卸载模块命令，不过需要完整路径，也不会分析依赖性，适合完整无依赖，自己单独编写的模块，否则不推荐使用；</li>
 </ul>
-<p>91.我们可以利用Grub救援Linux系统，进入Grub菜单，按e进入编辑模式，在kernel后加上<code>single</code>，<code>emergency</code>或<code>init=/bin/bash</code>等参数进入救援模式。</p>
-<p>92.<code>chroot</code>可以帮助我们切换根目录，改变运行环境，如果一个Linux硬盘出了问题，可以插到另一台Linux主机上，利用<code>chroot</code>命令切换到问题硬盘的Linux环境上来解决问题，好像一个便携式系统哟。</p>
-<p>93.<code>nc</code>是网络黑客利器，用处非常大，例如<code>nc -zv 127.0.0.1 631</code>可以扫描目标主机的631端口，还有好多好多功能，自己去看<code>man nc</code>吧。</p>
-<p>94.Linux预设的打印服务是CUPS，可以使用<code>http://localhost:631</code>来连接管理打印机，也可以使用lp系列指令来管理，不详述了，如果将CUPS设定为网络打印机服务器，其他人可以使用类似<code>ipp://192.168.1.10:631/printers/HP_Printer</code>的URL来连接。</p>
-<p>95.Ubuntu的软件管理命令：<code>dpkg</code>管理本地deb安装包；<code>apt</code>管理在线仓库的deb安装包；<code>add-apt-repository</code>可以增加或删除在线仓库。</p>
-<p>96.对于xft字体，系统添加新字体后即可使用，<code>fc-list</code>查看可用字体，如果新字体没有显示，执行<code>fc-cache -v</code>更新字体缓存即可。</p>
-<p>97.<code>X Server</code>管理系统硬件，<code>X Client</code>则是应用程序，每个<code>X Client</code>都不知道对方的存在，必须通过<code>X Window Manager</code>来管理所有的<code>X Client</code>，Ubuntu使用<code>lightdm</code>来管理桌面窗口。</p>
+<p>91.我们可以利用<code>Grub</code>救援<code>Linux</code>系统，进入<code>Grub</code>菜单，按<code>e</code>进入编辑模式，在<code>kernel</code>后加上<code>single</code>，<code>emergency</code>或<code>init=/bin/bash</code>等参数进入救援模式。</p>
+<p>92.<code>chroot</code>可以帮助我们切换根目录，改变运行环境，如果一个<code>Linux</code>硬盘出了问题，可以插到另一台<code>Linux</code>主机上，利用<code>chroot</code>命令切换到问题硬盘的<code>Linux</code>环境上来解决问题，好像一个便携式系统哟。</p>
+<p>93.<code>nc</code>是网络黑客利器，用处非常大，例如<code>nc -zv 127.0.0.1 631</code>可以扫描目标主机的<code>631</code>端口，还有好多好多功能，自己去看<code>man nc</code>吧。</p>
+<p>94.<code>Linux</code>预设的打印服务是<code>CUPS</code>，可以使用<code>http://localhost:631</code>来连接管理打印机，也可以使用<code>lp</code>系列指令来管理，不详述了，如果将<code>CUPS</code>设定为网络打印机服务器，其他人可以使用类似<code>ipp://192.168.1.10:631/printers/HP_Printer</code>的<code>URL</code>来连接。</p>
+<p>95.<code>Ubuntu</code>的软件管理命令：<code>dpkg</code>管理本地<code>deb</code>安装包；<code>apt</code>管理在线仓库的<code>deb</code>安装包；<code>add-apt-repository</code>可以增加或删除在线仓库。</p>
+<p>96.对于<code>xft</code>字体，系统添加新字体后即可使用，<code>fc-list</code>查看可用字体，如果新字体没有显示，执行<code>fc-cache -v</code>更新字体缓存即可。</p>
+<p>97.<code>X Server</code>管理系统硬件，<code>X Client</code>则是应用程序，每个<code>X Client</code>都不知道对方的存在，必须通过<code>X Window Manager</code>来管理所有的<code>X Client</code>，<code>Ubuntu</code>使用<code>lightdm</code>来管理桌面窗口。</p>
 <p>98.<code>X Server</code>可以启动多个，使用<code>xinit</code>命令并指定<code>-display</code>选项即可，显示位置为<code>:0, :1 ...</code>；命令行模式下可以使用<code>startx</code>来启动桌面，不过并不会加载个人设置，使用有限制，推荐使用<code>sudo service lightdm restart</code>来启动桌面。</p>
-<p>99.Linux Kernel编译和管理命令：</p>
+<p>99.<code>Linux Kernel</code>编译和管理命令：</p>
 <ul>
 <li><code>make mrproper</code>彻底清除目标文件和配置文件；</li>
 <li><code>make clean</code>清除编译过程产生的目标文件等，不会删除配置文件；</li>
@@ -252,7 +252,7 @@
 <li><code>make modules_install</code>安装内核模块到<code>/lib/modules</code>；</li>
 <li><code>make install</code>安装内核<code>bzImage</code>到<code>/boot</code>，生成<code>initrd.img</code>，并更新<code>grub</code>配置；</li>
 </ul>
-<p>100.Ubuntu生成<code>initrd.img</code>的命令是<code>mkinitramfs</code>，查看<code>initrd.img</code>内容的命令是<code>lsinitramfs</code>，还可以用<code>update-initramfs</code>管理<code>/boot</code>下的<code>initrd.img</code>文件。</p>
+<p>100.<code>Ubuntu</code>生成<code>initrd.img</code>的命令是<code>mkinitramfs</code>，查看<code>initrd.img</code>内容的命令是<code>lsinitramfs</code>，还可以用<code>update-initramfs</code>管理<code>/boot</code>下的<code>initrd.img</code>文件。</p>
             <hr/>
             <footer>
                 <code style="background-color:white">Author: Neal | Date: 2016-11-10 ----------&gt; <a href=#>Go to Top</a></code>

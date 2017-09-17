@@ -117,9 +117,6 @@ git clone https://github.com/qianngchn/qianngchn.github.io.git</code></pre>
 sudo apt-get install docker.io
 sudo usermod -a -G docker neal
 
-# Bpython
-sudo apt-get install bpython3
-
 # Lua
 mkdir -p ~/local/src; cd ~/local/src
 wget https://www.lua.org/ftp/lua-5.3.4.tar.gz
@@ -129,9 +126,19 @@ sudo apt-get install libreadline-dev
 make linux test
 make install INSTALL_TOP=$HOME/local
 make clean
+export LUA_PATH=&quot;$HOME/local/lib/lua/?.lua;;&quot;
+export LUA_CPATH=&quot;$HOME/local/lib/lua/?.so;;&quot;
+export PATH=&quot;$HOME/local/bin:$PATH&quot;
 
 # C/C++
-sudo apt-get install build-essential</code></pre>
+sudo apt-get install build-essential
+
+# Golang
+mkdir -p ~/local; cd ~/local
+wget https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
+tar zxvf go1.9.linux-amd64.tar.gz; rm go1.9.linux-amd64.tar.gz
+export GOROOT=&quot;$HOME/local/go&quot;
+export PATH=&quot;$GOROOT/bin:$PATH&quot;</code></pre>
 <h3 id="服务配置">服务配置</h3>
 <p>安装SSH Server</p>
 <pre><code>sudo apt-get install openssh-server

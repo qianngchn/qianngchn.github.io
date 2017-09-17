@@ -11,7 +11,7 @@
         <meta name="keywords" content="shell, linux" />
         <meta name="author" content="Neal" />
         <meta name="date" content="2016-03-25" />
-        <meta name="description" content="流畅地使用命令行是一个常被忽略的技能，或被认为是神秘的奥义。但是，它会以明显而微妙的方式改善你作为工程师的灵活度和生产力。这是我在 Linux 上工作时发现的有用的命令行使用小窍门和笔记的精粹。有些小窍门是很基础的，而有些是相当地特别、复杂、或者晦涩难懂。这篇文章不长，但是如果你可以使用并记得这里的所有内容，那么你就懂得很多了。
+        <meta name="description" content="流畅地使用命令行是一个常被忽略的技能，或被认为是神秘的奥义。但是，它会以明显而微妙的方式改善你作为工程师的灵活度和生产力。这是我在 `Linux` 上工作时发现的有用的命令行使用小窍门和笔记的精粹。有些小窍门是很基础的，而有些是相当地特别、复杂、或者晦涩难懂。这篇文章不长，但是如果你可以使用并记得这里的所有内容，那么你就懂得很多了。
         ### 基础知识" />
     </head>
     <body>
@@ -48,29 +48,29 @@
 <!---author:Neal-->
 <!---date:2016-03-25-->
 
-<p>流畅地使用命令行是一个常被忽略的技能，或被认为是神秘的奥义。但是，它会以明显而微妙的方式改善你作为工程师的灵活度和生产力。这是我在 Linux 上工作时发现的有用的命令行使用小窍门和笔记的精粹。有些小窍门是很基础的，而有些是相当地特别、复杂、或者晦涩难懂。这篇文章不长，但是如果你可以使用并记得这里的所有内容，那么你就懂得很多了。</p>
+<p>流畅地使用命令行是一个常被忽略的技能，或被认为是神秘的奥义。但是，它会以明显而微妙的方式改善你作为工程师的灵活度和生产力。这是我在 <code>Linux</code> 上工作时发现的有用的命令行使用小窍门和笔记的精粹。有些小窍门是很基础的，而有些是相当地特别、复杂、或者晦涩难懂。这篇文章不长，但是如果你可以使用并记得这里的所有内容，那么你就懂得很多了。</p>
 <h3 id="基础知识">基础知识</h3>
 <ul>
-<li><p>学习基本 Bash 技能。实际上，键入<code>man bash</code>，然后至少浏览一遍所有内容；它很容易理解，没那么长。其它 shell 也不错，但是 Bash 很强大，而且到处都可以找到（如果在你自己的笔记本上只学习 zsh、fish 之类，会在很多情形下受到限制，比如使用现存的服务器时）。</p></li>
-<li><p>至少学好一种基于文本的编辑器。理想的一个是 Vim（<code>vi</code>），因为在终端中编辑时随时都能找到它（即使大多数时候你在使用 Emacs、一个大型的 IDE、或一个现代的时髦编辑器）。</p></li>
-<li><p>学习怎样使用 <code>man</code> 来阅读文档（好奇的话，用 man man 来列出分区号，比如 1 是常规命令，5 是文件描述，8 用于管理员）。用 <code>apropos</code> 找到帮助页。了解哪些命令不是可执行程序，而是 Bash 内置的，你可以用 <code>help</code> 和 <code>help -d</code> 得到帮助。</p></li>
-<li><p>学习使用 <code>&gt;</code> 和 <code>&lt;</code> 来进行输出和输入重定向，以及使用 <code>|</code> 来管道重定向，学习关于 stdout 和 stderr 的东西。</p></li>
+<li><p>学习基本 <code>Bash</code> 技能。实际上，键入<code>man bash</code>，然后至少浏览一遍所有内容；它很容易理解，没那么长。其它 <code>shell</code> 也不错，但是 <code>Bash</code> 很强大，而且到处都可以找到（如果在你自己的笔记本上只学习 <code>zsh</code>、<code>fish</code> 之类，会在很多情形下受到限制，比如使用现存的服务器时）。</p></li>
+<li><p>至少学好一种基于文本的编辑器。理想的一个是 <code>Vim</code>（<code>vi</code>），因为在终端中编辑时随时都能找到它（即使大多数时候你在使用 <code>Emacs</code>、一个大型的 <code>IDE</code>、或一个现代的时髦编辑器）。</p></li>
+<li><p>学习怎样使用 <code>man</code> 来阅读文档（好奇的话，用 <code>man man</code> 来列出分区号，比如 <code>1</code> 是常规命令，<code>5</code> 是文件描述，<code>8</code> 用于管理员）。用 <code>apropos</code> 找到帮助页。了解哪些命令不是可执行程序，而是 <code>Bash</code> 内置的，你可以用 <code>help</code> 和 <code>help -d</code> 得到帮助。</p></li>
+<li><p>学习使用 <code>&gt;</code> 和 <code>&lt;</code> 来进行输出和输入重定向，以及使用 <code>|</code> 来管道重定向，学习关于 <code>stdout</code> 和 <code>stderr</code> 的东西。</p></li>
 <li><p>学习 <code>*</code>（也许还有 <code>?</code> 和 <code>{</code>...<code>}</code> ）文件通配扩展和应用，以及双引号 <code>&quot;</code> 和单引号 <code>'</code> 之间的区别。（更多内容请参看下面关于变量扩展部分）。</p></li>
-<li><p>熟悉 Bash 作业管理：<code>&amp;</code>， ctrl-z， ctrl-c， <code>jobs</code>， <code>fg</code>， <code>bg</code>， <code>kill</code> 等等。</p></li>
+<li><p>熟悉 <code>Bash</code> 作业管理：<code>&amp;</code>， ctrl-z， ctrl-c， <code>jobs</code>， <code>fg</code>， <code>bg</code>， <code>kill</code> 等等。</p></li>
 <li><p>掌握<code>ssh</code>，以及通过 <code>ssh-agent</code>，<code>ssh-add</code> 等进行无密码验证的基础技能。</p></li>
 <li><p>基本的文件管理：<code>ls</code> 和 <code>ls -l</code>（特别是，知道<code>ls -l</code>各个列的意义），<code>less</code>， <code>head</code>， <code>tail</code> 和 <code>tail -f</code>（或者更好的<code>less +F</code>），<code>ln</code> 和 <code>ln -s</code>（知道硬链接和软链接的区别，以及硬链接相对于软链接的优势），<code>chown</code>，<code>chmod</code>，<code>du</code>（用于查看磁盘使用率的快速摘要：<code>du -sk *</code>）。文件系统管理：<code>df</code>，<code>mount</code>，<code>fdisk</code>，<code>mkfs</code>，<code>lsblk</code>。</p></li>
 <li><p>基本的网络管理： <code>ip</code> 或 <code>ifconfig</code>，<code>dig</code>。</p></li>
 <li><p>熟知正则表达式，以及各种使用<code>grep</code>/<code>egrep</code>的选项。<code>-i</code>，<code>-o</code>，<code>-A</code> 和 <code>-B</code> 选项值得掌握。</p></li>
-<li><p>学会使用 <code>apt-get</code>，<code>yum</code>，<code>dnf</code> 或 <code>pacman</code>（这取决于你的发行版）来查找并安装软件包。确保你可以用 <code>pip</code> 来安装基于 Python 的命令行工具（下面的一些东西可以很容易地通过 <code>pip</code> 安装）。</p></li>
+<li><p>学会使用 <code>apt-get</code>，<code>yum</code>，<code>dnf</code> 或 <code>pacman</code>（这取决于你的发行版）来查找并安装软件包。确保你可以用 <code>pip</code> 来安装基于 <code>Python</code> 的命令行工具（下面的一些东西可以很容易地通过 <code>pip</code> 安装）。</p></li>
 </ul>
 <h3 id="日常使用">日常使用</h3>
 <ul>
-<li><p>在Bash中，使用 tab 补完参数，使用 ctrl-r 来搜索命令历史。</p></li>
-<li><p>在Bash中，使用 ctrl-w 来删除最后的单词，使用 ctrl-u 来删除整行，返回行首。使用 alt-b 和 alt-f 来逐词移动，使用 ctrl-k 来清除到行尾的内容，以及使用 ctrl-l 清屏。参见 <code>man readline</code> 来查看 Bash 中所有默认的键盘绑定，有很多。例如，alt-. 可以循环显示先前的参数，而alt- 扩展通配。</p></li>
-<li><p>另外，如果你喜欢 vi 风格的键盘绑定，可以使用 <code>set -o vi</code>。</p></li>
-<li><p>要查看最近用过的命令，请使用 <code>history</code> 。 有许多缩写形式，比如 <code>!$</code>（上次的参数）和<code>!!</code>（上次的命令），虽然使用 ctrl-r 和 alt-. 更容易些。</p></li>
+<li><p>在<code>Bash</code>中，使用 <code>tab</code> 补完参数，使用 <code>ctrl-r</code> 来搜索命令历史。</p></li>
+<li><p>在<code>Bash</code>中，使用 <code>ctrl-w</code> 来删除最后的单词，使用 <code>ctrl-u</code> 来删除整行，返回行首。使用 <code>alt-b</code> 和 <code>alt-f</code> 来逐词移动，使用 <code>ctrl-k</code> 来清除到行尾的内容，以及使用 <code>ctrl-l</code> 清屏。参见 <code>man readline</code> 来查看 <code>Bash</code> 中所有默认的键盘绑定，有很多。例如，<code>alt-.</code> 可以循环显示先前的参数，而<code>alt-</code> 扩展通配。</p></li>
+<li><p>另外，如果你喜欢 <code>vi</code> 风格的键盘绑定，可以使用 <code>set -o vi</code>。</p></li>
+<li><p>要查看最近用过的命令，请使用 <code>history</code> 。 有许多缩写形式，比如 <code>!$</code>（上次的参数）和<code>!!</code>（上次的命令），虽然使用 <code>ctrl-r</code> 和 <code>alt-.</code> 更容易些。</p></li>
 <li><p>返回先前的工作目录： <code>cd -</code>。</p></li>
-<li><p>如果你命令输入到一半，但是改变主意了，可以敲 alt-# 来添加一个 <code>#</code> 到开头，然后将该命令作为注释输入（或者使用快捷键 ctrl-a， #，enter 输入）。然后，你可以在后面通过命令历史来回到该命令。</p></li>
+<li><p>如果你命令输入到一半，但是改变主意了，可以敲 <code>alt-#</code> 来添加一个 <code>#</code> 到开头，然后将该命令作为注释输入（或者使用快捷键 <code>ctrl-a</code>， #，<code>enter</code> 输入）。然后，你可以在后面通过命令历史来回到该命令。</p></li>
 <li><p>使用 <code>xargs</code>（或 <code>parallel</code>），它很强大。注意，你可以控制每行（<code>-L</code>）执行多少个项目，以及并行执行（<code>-P</code>）。如果你不确定它是否会做正确的事情，可以首先使用 <code>xargs echo</code>。同时，使用 <code>-I{}</code> 也很方便。样例：</p>
 <pre><code>find . -name &#39;*.py&#39; | xargs grep some_function
 cat hosts | xargs -I{} ssh root@{} hostname</code></pre></li>
@@ -78,22 +78,22 @@ cat hosts | xargs -I{} ssh root@{} hostname</code></pre></li>
 <li><p>使用 <code>pgrep</code> 和 <code>pkill</code> 来按名称查找进程或给指定名称的进程发送信号（<code>-f</code> 很有帮助）。</p></li>
 <li><p>掌握各种可以发送给进程的信号。例如，要挂起进程，可以使用 <code>kill -STOP [pid]</code>。完整的列表可以查阅 <code>man 7 signal</code>。</p></li>
 <li><p>如果你想要一个后台进程一直保持运行，使用 <code>nohup</code> 或 <code>disown</code>。</p></li>
-<li><p>通过 <code>netstat -lntp</code> 或 <code>ss -plat</code> 检查哪些进程在监听（用于 TCP，对 UDP 使用 <code>-u</code> 替代 <code>-t</code>）。</p></li>
+<li><p>通过 <code>netstat -lntp</code> 或 <code>ss -plat</code> 检查哪些进程在监听（用于 <code>TCP</code>，对 <code>UDP</code> 使用 <code>-u</code> 替代 <code>-t</code>）。</p></li>
 <li><p><code>lsof</code>来查看打开的套接字和文件。</p></li>
-<li><p>在 Bash 脚本中，使用 <code>set -x</code> 调试脚本输出。尽可能使用严格模式。使用 <code>set -e</code> 在遇到错误时退出。也可以使用 <code>set -o pipefail</code>，对错误进行严格处理（虽然该话题有点微妙）。对于更复杂的脚本，也可以使用 <code>trap</code>。</p></li>
-<li><p>在 Bash 脚本中，子 shell（写在括号中的）是组合命令的便利的方式。一个常见的例子是临时移动到一个不同的工作目录，如：</p>
+<li><p>在 <code>Bash</code> 脚本中，使用 <code>set -x</code> 调试脚本输出。尽可能使用严格模式。使用 <code>set -e</code> 在遇到错误时退出。也可以使用 <code>set -o pipefail</code>，对错误进行严格处理（虽然该话题有点微妙）。对于更复杂的脚本，也可以使用 <code>trap</code>。</p></li>
+<li><p>在 <code>Bash</code> 脚本中，子 <code>shell</code>（写在括号中的）是组合命令的便利的方式。一个常见的例子是临时移动到一个不同的工作目录，如：</p>
 <pre><code># 在当前目录做些事
 (cd /some/other/dir; other-command)
 # 继续回到原目录</code></pre></li>
-<li><p>注意，在 Bash 中有大量的各种各样的变量扩展。检查一个变量是否存在：<code>${name:?error message}</code>。例如，如果一个Bash脚本要求一个单一参数，只需写 <code>input_file=${1:?usage: $0 input_file}</code>。算术扩展：<code>i=$(( (i + 1) % 5 ))</code>。序列： <code>{1..10}</code>。修剪字符串：<code>${var%suffix}</code> 和 <code>${var#prefix}</code>。例如，<code>if var=foo.pdf</code>，那么 <code>echo ${var%.pdf}.txt</code> 会输出 <code>foo.txt</code>。</p></li>
+<li><p>注意，在 <code>Bash</code> 中有大量的各种各样的变量扩展。检查一个变量是否存在：<code>${name:?error message}</code>。例如，如果一个<code>Bash</code>脚本要求一个单一参数，只需写 <code>input_file=${1:?usage: $0 input_file}</code>。算术扩展：<code>i=$(( (i + 1) % 5 ))</code>。序列： <code>{1..10}</code>。修剪字符串：<code>${var%suffix}</code> 和 <code>${var#prefix}</code>。例如，<code>if var=foo.pdf</code>，那么 <code>echo ${var%.pdf}.txt</code> 会输出 <code>foo.txt</code>。</p></li>
 <li><p>命令的输出可以通过 <code>&lt;(some command)</code> 作为一个文件来处理。例如，将本地的 <code>/etc/hosts</code> 和远程的比较：</p>
 <pre><code>diff /etc/hosts &lt;(ssh somehost cat /etc/hosts)</code></pre></li>
-<li><p>了解 Bash 中的“嵌入文档”，就像在 <code>cat &lt;&lt;EOF ...</code> 中。</p></li>
-<li><p>在 Bash 中，通过：<code>some-command &gt;logfile 2&gt;&amp;1</code> 同时重定向标准输出和标准错误。通常，要确保某个命令不再为标准输入打开文件句柄，而是将它捆绑到你所在的终端，添加 <code>&lt;/dev/null</code> 是个不错的做法。</p></li>
-<li><p><code>man ascii</code> 可以得到一个不错的ASCII表，带有十六进制和十进制值两种格式。对于常规编码信息，<code>man unicode</code>，<code>man utf-8</code> 和 <code>man latin1</code> 将很有帮助。</p></li>
-<li><p>使用 <code>screen</code> 或 <code>tmux</code> 来复用屏幕，这对于远程 ssh 会话尤为有用，使用它们来分离并重连到会话。另一个只用于保持会话的最小可选方案是 <code>dtach</code>。</p></li>
-<li><p>在 ssh 中，知道如何使用 <code>-L</code> 或 <code>-D</code>（偶尔也用<code>-R</code>）来打开端口通道是很有用的，如从一台远程服务器访问网站时。</p></li>
-<li><p>为你的 ssh 配置进行优化很有用；例如，这个 <code>~/.ssh/config</code> 包含了可以避免在特定网络环境中连接被断掉的情况的设置、使用压缩（这对于通过低带宽连接使用 scp 很有用），以及使用一个本地控制文件来开启到同一台服务器的多通道：</p>
+<li><p>了解 <code>Bash</code> 中的“嵌入文档”，就像在 <code>cat &lt;&lt;EOF ...</code> 中。</p></li>
+<li><p>在 <code>Bash</code> 中，通过：<code>some-command &gt;logfile 2&gt;&amp;1</code> 同时重定向标准输出和标准错误。通常，要确保某个命令不再为标准输入打开文件句柄，而是将它捆绑到你所在的终端，添加 <code>&lt;/dev/null</code> 是个不错的做法。</p></li>
+<li><p><code>man ascii</code> 可以得到一个不错的<code>ASCII</code>表，带有十六进制和十进制值两种格式。对于常规编码信息，<code>man unicode</code>，<code>man utf-8</code> 和 <code>man latin1</code> 将很有帮助。</p></li>
+<li><p>使用 <code>screen</code> 或 <code>tmux</code> 来复用屏幕，这对于远程 <code>ssh</code> 会话尤为有用，使用它们来分离并重连到会话。另一个只用于保持会话的最小可选方案是 <code>dtach</code>。</p></li>
+<li><p>在 <code>ssh</code> 中，知道如何使用 <code>-L</code> 或 <code>-D</code>（偶尔也用<code>-R</code>）来打开端口通道是很有用的，如从一台远程服务器访问网站时。</p></li>
+<li><p>为你的 <code>ssh</code> 配置进行优化很有用；例如，这个 <code>~/.ssh/config</code> 包含了可以避免在特定网络环境中连接被断掉的情况的设置、使用压缩（这对于通过低带宽连接使用 <code>scp</code> 很有用），以及使用一个本地控制文件来开启到同一台服务器的多通道：</p>
 <pre><code>TCPKeepAlive=yes
 ServerAliveInterval=15
 ServerAliveCountMax=6
@@ -101,28 +101,28 @@ Compression=yes
 ControlMaster auto
 ControlPath /tmp/%r@%h:%p
 ControlPersist yes</code></pre></li>
-<li><p>其它一些与 ssh 相关的选项对会影响到安全，请小心开启，如各个子网或主机，或者在信任的网络中：<code>StrictHostKeyChecking=no</code>， <code>ForwardAgent=yes</code></p></li>
+<li><p>其它一些与 <code>ssh</code> 相关的选项对会影响到安全，请小心开启，如各个子网或主机，或者在信任的网络中：<code>StrictHostKeyChecking=no</code>， <code>ForwardAgent=yes</code></p></li>
 <li><p>要获得八进制格式的文件的权限，这对于系统配置很有用而用 <code>ls</code> 又没法查看，而且也很容易搞得一团糟，可以使用像这样的东西：</p>
 <pre><code>stat -c &#39;%A %a %n&#39; /etc/timezone</code></pre></li>
 <li><p>对于从另一个命令的输出结果中交互选择值，可以使用<code>percol</code>。</p></li>
 <li><p>对于基于另一个命令（如<code>git</code>）输出的文件交互，可以使用<code>fpp</code> (路径选择器)。</p></li>
-<li><p>要为当前目录（及子目录）中的所有文件构建一个简单的 Web 服务器，让网络中的任何人都可以获取，可以使用： <code>python -m SimpleHTTPServer 7777</code> （使用端口 7777 和 Python 2）。</p></li>
+<li><p>要为当前目录（及子目录）中的所有文件构建一个简单的 <code>Web</code> 服务器，让网络中的任何人都可以获取，可以使用： <code>python -m SimpleHTTPServer 7777</code> （使用端口 <code>7777</code> 和 <code>Python 2</code>）。</p></li>
 </ul>
 <h3 id="文件处理">文件处理</h3>
 <ul>
 <li><p>要在当前目录中按名称定位文件，<code>find . -iname '*something*'</code>（或者相类似的）。要按名称查找任何地方的文件，使用 <code>locate something</code>（但请记住，<code>updatedb</code> 可能还没有索引最近创建的文件）。</p></li>
 <li><p>对于源代码或数据文件进行的常规搜索（要比 <code>grep -r</code> 更高级），使用 <code>ag</code>。</p></li>
-<li><p>要将 HTML 转成文本：<code>lynx -dump -stdin</code>。</p></li>
-<li><p>对于 Markdown、HTML，以及各种类型的文档转换，可以试试 <code>pandoc</code>。</p></li>
-<li><p>如果你必须处理 XML，<code>xmlstarlet</code> 虽然有点老旧，但是很好用。</p></li>
-<li><p>对于 JSON，使用<code>jq</code>。</p></li>
-<li><p>对于 Excel 或 CSV 文件，csvkit 提供了 <code>in2csv</code>，<code>csvcut</code>，<code>csvjoin</code>，<code>csvgrep</code> 等工具。</p></li>
-<li><p>对于亚马逊 S3 ，<code>s3cmd</code> 会很方便，而 <code>s4cmd</code> 则更快速。亚马逊的 <code>aws</code> 则是其它 AWS 相关任务的必备。</p></li>
+<li><p>要将 <code>HTML</code> 转成文本：<code>lynx -dump -stdin</code>。</p></li>
+<li><p>对于 <code>Markdown</code>、<code>HTML</code>，以及各种类型的文档转换，可以试试 <code>pandoc</code>。</p></li>
+<li><p>如果你必须处理 <code>XML</code>，<code>xmlstarlet</code> 虽然有点老旧，但是很好用。</p></li>
+<li><p>对于 <code>JSON</code>，使用<code>jq</code>。</p></li>
+<li><p>对于 <code>Excel</code> 或 <code>CSV</code> 文件，csvkit 提供了 <code>in2csv</code>，<code>csvcut</code>，<code>csvjoin</code>，<code>csvgrep</code> 等工具。</p></li>
+<li><p>对于亚马逊 <code>S3</code> ，<code>s3cmd</code> 会很方便，而 <code>s4cmd</code> 则更快速。亚马逊的 <code>aws</code> 则是其它 <code>AWS</code> 相关任务的必备。</p></li>
 <li><p>掌握 <code>sort</code> 和 <code>uniq</code>，包括 uniq 的 <code>-u</code> 和 <code>-d</code> 选项——参见下面的单行程序。</p></li>
 <li><p>掌握 <code>cut</code>，<code>paste</code> 和 <code>join</code>，它们用于处理文本文件。很多人会使用 <code>cut</code>，但常常忘了 <code>join</code>。</p></li>
-<li><p>了解 <code>tee</code>，它会将 stdin 同时复制到一个文件和 stdout，如 <code>ls -al | tee file.txt</code>。</p></li>
-<li><p>知道 locale 会以微妙的方式对命令行工具产生大量的影响，包括排序的顺序（整理）以及性能。大多数安装好的 Linux 会设置 <code>LANG</code> 或其它 locale 环境变量为本地设置，比如像 US English。但是，你要明白，如果改变了本地环境，那么排序也将改变。而且 i18n 过程会让排序或其它命令的运行慢好多倍。在某些情形中（如像下面那样的设置操作或唯一性操作），你可以安全地整个忽略缓慢的 i18n 过程，然后使用传统的基于字节的排序顺序 <code>export LC_ALL=C</code>。</p></li>
-<li><p>了解基本的改动数据的 <code>awk</code> 和 <code>sed</code> 技能。例如，计算某个文本文件第三列所有数字的和：<code>awk '{ x += $3 } END { print x }'</code>。这可能比 Python 的同等操作要快3倍，而且要短3倍。</p></li>
+<li><p>了解 <code>tee</code>，它会将 <code>stdin</code> 同时复制到一个文件和 <code>stdout</code>，如 <code>ls -al | tee file.txt</code>。</p></li>
+<li><p>知道 <code>locale</code> 会以微妙的方式对命令行工具产生大量的影响，包括排序的顺序（整理）以及性能。大多数安装好的 <code>Linux</code> 会设置 <code>LANG</code> 或其它 <code>locale</code> 环境变量为本地设置，比如像 <code>US English</code>。但是，你要明白，如果改变了本地环境，那么排序也将改变。而且 <code>i18n</code> 过程会让排序或其它命令的运行慢好多倍。在某些情形中（如像下面那样的设置操作或唯一性操作），你可以安全地整个忽略缓慢的 <code>i18n</code> 过程，然后使用传统的基于字节的排序顺序 <code>export LC_ALL=C</code>。</p></li>
+<li><p>了解基本的改动数据的 <code>awk</code> 和 <code>sed</code> 技能。例如，计算某个文本文件第三列所有数字的和：<code>awk '{ x += $3 } END { print x }'</code>。这可能比 <code>Python</code> 的同等操作要快<code>3</code>倍，而且要短<code>3</code>倍。</p></li>
 <li><p>在一个或多个文件中，替换所有出现在特定地方的某个字符串：</p>
 <pre><code>perl -pi.bak -e &#39;s/old-string/new-string/g&#39; my-files-*.txt</code></pre></li>
 <li><p>要立即根据某个模式对大量文件重命名，使用 <code>rename</code>。对于复杂的重命名，<code>repren</code> 可以帮助你达成。</p>
@@ -132,54 +132,54 @@ rename &#39;s/\.bak$//&#39; *.bak
 repren --full --preserve-case --from foo --to bar .</code></pre></li>
 <li><p>使用 <code>shuf</code> 来从某个文件中打乱或随机选择行。</p></li>
 <li><p>了解 <code>sort</code> 的选项。知道这些键是怎么工作的（<code>-t</code>和<code>-k</code>）。特别是，注意你需要写<code>-k1,1</code>来只通过第一个字段排序；<code>-k1</code>意味着根据整行排序。</p></li>
-<li><p>稳定排序（sort -s）会很有用。例如，要首先按字段2排序，然后再按字段1排序，你可以使用 <code>sort -k1,1 | sort -s -k2,2</code></p></li>
-<li><p>如果你曾经需要在 Bash 命令行中写一个水平制表符（如，用于 -t 参数的排序），按ctrl-v [Tab]，或者写<code>$'\t'</code>（后面的更好，因为你可以复制/粘贴）。</p></li>
+<li><p>稳定排序（<code>sort -s</code>）会很有用。例如，要首先按字段<code>2</code>排序，然后再按字段<code>1</code>排序，你可以使用 <code>sort -k1,1 | sort -s -k2,2</code></p></li>
+<li><p>如果你曾经需要在 <code>Bash</code> 命令行中写一个水平制表符（如，用于 <code>-t</code> 参数的排序），按<code>ctrl-v [Tab]</code>，或者写<code>$'\t'</code>（后面的更好，因为你可以复制<code>/</code>粘贴）。</p></li>
 <li><p>对源代码进行补丁的标准工具是 <code>diff</code> 和 <code>patch</code>。 用 <code>diffstat</code> 来统计 diff 情况。注意 <code>diff -r</code> 可以用于整个目录，所以可以用 <code>diff -r tree1 tree2 | diffstat</code> 来统计（两个目录的）差异。</p></li>
 <li><p>对于二进制文件，使用 <code>hd</code> 进行简单十六进制转储，以及 <code>bvi</code> 用于二进制编辑。</p></li>
-<li><p>还是用于二进制文件，<code>strings</code>（加上 grep 等）可以让你找出一点文本。</p></li>
-<li><p>对于二进制文件的差异（delta 压缩），可以使用 <code>xdelta3</code>。</p></li>
-<li><p>要转换文本编码，试试 <code>iconv</code> 吧，或者对于更高级的用途使用 <code>uconv</code>；它支持一些高级的 Unicode 的东西。例如，这个命令可以转换为小写并移除所有重音符号（通过扩展和丢弃）：</p>
+<li><p>还是用于二进制文件，<code>strings</code>（加上 <code>grep</code> 等）可以让你找出一点文本。</p></li>
+<li><p>对于二进制文件的差异（<code>delta</code> 压缩），可以使用 <code>xdelta3</code>。</p></li>
+<li><p>要转换文本编码，试试 <code>iconv</code> 吧，或者对于更高级的用途使用 <code>uconv</code>；它支持一些高级的 <code>Unicode</code> 的东西。例如，这个命令可以转换为小写并移除所有重音符号（通过扩展和丢弃）：</p>
 <pre><code>uconv -f utf-8 -t utf-8 -x &#39;::Any-Lower; ::Any-NFD; [:Nonspacing Mark:] &gt;; ::Any-NFC; &#39; &lt; input.txt &gt; output.txt</code></pre></li>
 <li><p>要将文件分割成几个部分，来看看 <code>split</code>（按大小分割）和 <code>csplit</code>（按格式分割）吧。</p></li>
 <li><p>使用 <code>zless</code>，<code>zmore</code>，<code>zcat</code> 和 <code>zgrep</code> 来操作压缩文件。</p></li>
 </ul>
 <h3 id="系统调试">系统调试</h3>
 <ul>
-<li><p>对于 Web 调试，<code>curl</code> 和 <code>curl -I</code> 很方便灵活，或者也可以使用它们的同行 <code>wget</code>，或者更现代的 <code>httpie</code>。</p></li>
-<li><p>要了解磁盘、CPU、网络的状态，使用 <code>iostat</code>，<code>netstat</code>，<code>top</code>（或更好的 <code>htop</code>）和（特别是）<code>dstat</code>。它们对于快速获知系统中发生的状况很好用。</p></li>
+<li><p>对于 <code>Web</code> 调试，<code>curl</code> 和 <code>curl -I</code> 很方便灵活，或者也可以使用它们的同行 <code>wget</code>，或者更现代的 <code>httpie</code>。</p></li>
+<li><p>要了解磁盘、<code>CPU</code>、网络的状态，使用 <code>iostat</code>，<code>netstat</code>，<code>top</code>（或更好的 <code>htop</code>）和（特别是）<code>dstat</code>。它们对于快速获知系统中发生的状况很好用。</p></li>
 <li><p>对于更深层次的系统总览，可以使用 <code>glances</code>。它会在一个终端窗口中为你呈现几个系统层次的统计数据，对于快速检查各个子系统很有帮助。</p></li>
-<li><p>要了解内存状态，可以运行 <code>free</code> 和 <code>vmstat</code>，看懂它们的输出结果吧。特别是，要知道“cached”值是Linux内核为文件缓存所占有的内存，因此，要有效地统计“free”值。</p></li>
-<li><p>Java 系统调试是一件截然不同的事，但是对于 Oracle 系统以及其它一些 JVM 而言，不过是一个简单的小把戏，你可以运行 <code>kill -3 &lt;pid&gt;</code>，然后一个完整的堆栈追踪和内存堆的摘要（包括常规的垃圾收集细节，这很有用）将被转储到stderr/logs。</p></li>
+<li><p>要了解内存状态，可以运行 <code>free</code> 和 <code>vmstat</code>，看懂它们的输出结果吧。特别是，要知道<code>cached</code>值是<code>Linux</code>内核为文件缓存所占有的内存，因此，要有效地统计<code>free</code>值。</p></li>
+<li><p><code>Java</code> 系统调试是一件截然不同的事，但是对于 <code>Oracle</code> 系统以及其它一些 <code>JVM</code> 而言，不过是一个简单的小把戏，你可以运行 <code>kill -3 &lt;pid&gt;</code>，然后一个完整的堆栈追踪和内存堆的摘要（包括常规的垃圾收集细节，这很有用）将被转储到<code>stderr/logs</code>。</p></li>
 <li><p>使用 <code>mtr</code> 作路由追踪更好，可以识别网络问题。</p></li>
 <li><p>对于查看磁盘满载的原因，<code>ncdu</code> 会比常规命令如 <code>du -sh *</code> 更节省时间。</p></li>
 <li><p>要查找占用带宽的套接字和进程，试试 <code>iftop</code> 或 <code>nethogs</code> 吧。</p></li>
-<li><p>（Apache附带的）ab工具对于临时应急检查网络服务器性能很有帮助。对于更复杂的负载测试，可以试试 <code>siege</code>。</p></li>
+<li><p>（<code>Apache</code>附带的）<code>ab</code>工具对于临时应急检查网络服务器性能很有帮助。对于更复杂的负载测试，可以试试 <code>siege</code>。</p></li>
 <li><p>对于更仔细的网络调试，可以用 <code>wireshark</code>，<code>tshark</code> 或 <code>ngrep</code>。</p></li>
 <li><p>掌握 <code>strace</code> 和 <code>ltrace</code>。如果某个程序失败、挂起或崩溃，而你又不知道原因，或者如果你想要获得性能的大概信息，这些工具会很有帮助。注意，分析选项（<code>-c</code>）和使用 <code>-p</code> 关联运行进程。</p></li>
 <li><p>掌握 <code>ldd</code> 来查看共享库等。</p></li>
 <li><p>知道如何使用 <code>gdb</code> 来连接到一个运行着的进程并获取其堆栈追踪信息。</p></li>
 <li><p>使用 <code>/proc</code>。当调试当前的问题时，它有时候出奇地有帮助。样例：<code>/proc/cpuinfo</code>，<code>/proc/xxx/cwd</code>，<code>/proc/xxx/exe</code>，<code>/proc/xxx/fd/</code>，<code>/proc/xxx/smaps</code>。</p></li>
-<li><p>当调试过去某个东西为何出错时，<code>sar</code> 会非常有帮助。它显示了 CPU、内存、网络等的历史统计数据。</p></li>
+<li><p>当调试过去某个东西为何出错时，<code>sar</code> 会非常有帮助。它显示了 <code>CPU</code>、内存、网络等的历史统计数据。</p></li>
 <li><p>对于更深层的系统和性能分析，看看 <code>stap</code> (SystemTap)，<code>perf</code> 和 <code>sysdig</code> 吧。</p></li>
-<li><p>确认是正在使用的 Linux 发行版版本（支持大多数发行版）：<code>lsb_release -a</code>。</p></li>
+<li><p>确认是正在使用的 <code>Linux</code> 发行版版本（支持大多数发行版）：<code>lsb_release -a</code>。</p></li>
 <li><p>每当某个东西的行为异常时（可能是硬件或者驱动器问题），使用<code>dmesg</code>。</p></li>
 </ul>
 <h3 id="单行程序">单行程序</h3>
 <p>这是将命令连成一行的一些样例：</p>
 <ul>
-<li><p>有时候通过 <code>sort</code>/<code>uniq</code> 对文本文件做交集、并集和差集运算时，这个例子会相当有帮助。假定 a 和 b 是已经进行了唯一性处理的文本文件。这会很快，而且可以处理任意大小的文件，总计可达数千兆字节。（Sort不受内存限制，不过如果 <code>/tmp</code> 放在一个很小的根分区的话，你可能需要使用 <code>-T</code> 选项。）也可参见上面关于<code>LC_ALL</code>的注解和 <code>-u</code> 选项（参见下面例子更清晰）。</p>
+<li><p>有时候通过 <code>sort</code>/<code>uniq</code> 对文本文件做交集、并集和差集运算时，这个例子会相当有帮助。假定 <code>a</code> 和 <code>b</code> 是已经进行了唯一性处理的文本文件。这会很快，而且可以处理任意大小的文件，总计可达数千兆字节。（<code>Sort</code>不受内存限制，不过如果 <code>/tmp</code> 放在一个很小的根分区的话，你可能需要使用 <code>-T</code> 选项。）也可参见上面关于<code>LC_ALL</code>的注解和 <code>-u</code> 选项（参见下面例子更清晰）。</p>
 <pre><code>sh cat a b | sort | uniq &gt; c # c 是 a 和 b 的并集 
 cat a b | sort | uniq -d &gt; c # c 是 a 和 b 的交集 
 cat a b b | sort | uniq -u &gt; c # c 是 a 减去 b 的差集</code></pre></li>
 <li><p>使用 <code>grep . *</code> 来可视化查看一个目录中的所有文件的所有内容，例如，对于放满配置文件的目录： <code>/sys</code>， <code>/proc</code>， <code>/etc</code>。</p></li>
-<li><p>对某个文本文件的第三列中所有数据进行求和（该例子可能比同等功能的Python要快3倍，而且代码也少于其3倍）：</p>
+<li><p>对某个文本文件的第三列中所有数据进行求和（该例子可能比同等功能的<code>Python</code>要快<code>3</code>倍，而且代码也少于其<code>3</code>倍）：</p>
 <pre><code>awk &#39;{ x += $3 } END { print x }&#39; myfile</code></pre></li>
-<li><p>如果想要查看某个文件树的大小/日期，该例子就像一个递归<code>ls -l</code>，但是比<code>ls -lR</code>要更容易读懂：</p>
+<li><p>如果想要查看某个文件树的大小<code>/</code>日期，该例子就像一个递归<code>ls -l</code>，但是比<code>ls -lR</code>要更容易读懂：</p>
 <pre><code>find . -type f -ls</code></pre></li>
 <li><p>只要可以，请使用 <code>xargs</code> 或 <code>parallel</code>。注意，你可以控制每行（<code>-L</code>）执行多少个项目，以及并行执行（<code>-P</code>）。如果你不确定它是否会做正确的事情，可以首先使用 <code>xargs echo</code>。同时，使用 <code>-I{}</code> 也很方便。样例：</p>
 <pre><code>find . -name &#39;*.py&#39; | xargs grep some_function
 cat hosts | xargs -I{} ssh root@{} hostname</code></pre></li>
-<li><p>比如说，你有一个文本文件，如 Web 服务器的日志，在某些行中出现了某个特定的值，如 URL 中出现的 <code>acct_id</code> 参数。如果你想要统计有多少个 <code>acct_id</code> 的请求：</p>
+<li><p>比如说，你有一个文本文件，如 <code>Web</code> 服务器的日志，在某些行中出现了某个特定的值，如 <code>URL</code> 中出现的 <code>acct_id</code> 参数。如果你想要统计有多少个 <code>acct_id</code> 的请求：</p>
 <pre><code>cat access.log | egrep -o &#39;acct_id=[0-9]+&#39; | cut -d= -f2 | sort | uniq -c | sort -rn</code></pre></li>
 </ul>
 <h3 id="命令总结">命令总结</h3>
@@ -192,57 +192,57 @@ cat hosts | xargs -I{} ssh root@{} hostname</code></pre></li>
 <li><code>look</code>：查找以某个字符串开头的英文单词（或文件中的行）</li>
 <li><code>cut</code> 和 <code>paste</code> 以及 <code>join</code>：数据处理</li>
 <li><code>fmt</code>：格式化文本段落</li>
-<li><code>pr</code>：格式化文本为页/列</li>
+<li><code>pr</code>：格式化文本为页<code>/</code>列</li>
 <li><code>fold</code>：文本折行</li>
 <li><code>column</code>：格式化文本为列或表</li>
-<li><code>expand 和 unexpand</code>：在制表符和空格间转换</li>
+<li><code>expand</code> 和 <code>unexpand</code>：在制表符和空格间转换</li>
 <li><code>nl</code>：添加行号</li>
 <li><code>seq</code>：打印数字</li>
 <li><code>bc</code>：计算器</li>
 <li><code>factor</code>：分解质因子</li>
 <li><code>gpg</code>：加密并为文件签名</li>
-<li><code>toe</code>：terminfo 条目表</li>
+<li><code>toe</code>：<code>terminfo</code> 条目表</li>
 <li><code>nc</code>：网络调试和数据传输</li>
-<li><code>socat</code>：套接字中继和 tcp 端口转发（类似 netcat）</li>
+<li><code>socat</code>：套接字中继和 <code>tcp</code> 端口转发（类似 <code>netcat</code>）</li>
 <li><code>slurm</code>：网络流量可视化</li>
 <li><code>dd</code>：在文件或设备间移动数据</li>
 <li><code>file</code>：识别文件类型</li>
-<li><code>tree</code>：以树形显示目录及子目录；类似 ls，但是是递归的</li>
+<li><code>tree</code>：以树形显示目录及子目录；类似 <code>ls</code>，但是是递归的</li>
 <li><code>stat</code>：文件信息</li>
 <li><code>tac</code>：逆序打印文件</li>
 <li><code>shuf</code>：从文件中随机选择行</li>
 <li><code>comm</code>：逐行对比分类排序的文件</li>
-<li><code>hd和bvi</code>：转储或编辑二进制文件</li>
+<li><code>hd</code>和<code>bvi</code>：转储或编辑二进制文件</li>
 <li><code>strings</code>：从二进制文件提取文本</li>
 <li><code>tr</code>：字符转译或处理</li>
-<li><code>iconv或uconv</code>：文本编码转换</li>
-<li><code>split和csplit</code>：分割文件</li>
+<li><code>iconv</code>或<code>uconv</code>：文本编码转换</li>
+<li><code>split</code>和<code>csplit</code>：分割文件</li>
 <li><code>units</code>：单位转换和计算</li>
 <li><code>7z</code>：高比率文件压缩</li>
 <li><code>ldd</code>：动态库信息</li>
 <li><code>nm</code>：目标文件的符号</li>
-<li><code>ab</code>：Web 服务器基准测试</li>
+<li><code>ab</code>：<code>Web</code> 服务器基准测试</li>
 <li><code>strace</code>：系统调用调试</li>
 <li><code>mtr</code>：用于网络调试的更好的路由追踪软件</li>
-<li><code>cssh</code>：可视化并发 shell</li>
-<li><code>rsync</code>：通过 SSH 同步文件和文件夹</li>
+<li><code>cssh</code>：可视化并发 <code>shell</code></li>
+<li><code>rsync</code>：通过 <code>SSH</code> 同步文件和文件夹</li>
 <li><code>wireshark</code> 和 <code>tshark</code>：抓包和网络调试</li>
 <li><code>ngrep</code>：从网络层摘取信息</li>
-<li><code>host</code> 和 <code>dig</code>：DNS查询</li>
+<li><code>host</code> 和 <code>dig</code>：<code>DNS</code>查询</li>
 <li><code>lsof</code>：处理文件描述符和套接字信息</li>
 <li><code>dstat</code>：有用的系统统计数据</li>
 <li><code>glances</code>：高级，多个子系统概览</li>
-<li><code>iostat</code>：CPU和磁盘使用率统计</li>
-<li><code>htop</code>：top的改进版</li>
+<li><code>iostat</code>：<code>CPU</code>和磁盘使用率统计</li>
+<li><code>htop</code>：<code>top</code>的改进版</li>
 <li><code>last</code>：登录历史</li>
 <li><code>w</code>：谁登录进来了</li>
-<li><code>id</code>：用户/组身份信息</li>
+<li><code>id</code>：用户<code>/</code>组身份信息</li>
 <li><code>sar</code>：历史系统统计数据</li>
 <li><code>iftop</code>或<code>nethogs</code>：按套接口或进程的网络使用率</li>
 <li><code>ss</code>：套接口统计数据</li>
 <li><code>dmesg</code>：启动和系统错误信息</li>
-<li><code>hdparm</code>：SATA/ATA 磁盘操作/改善性能</li>
-<li><code>lsb_release</code>：Linux 发行版信息</li>
+<li><code>hdparm</code>：<code>SATA/ATA</code> 磁盘操作<code>/</code>改善性能</li>
+<li><code>lsb_release</code>：<code>Linux</code> 发行版信息</li>
 <li><code>lsblk</code>：列出块设备，以树形展示你的磁盘和分区</li>
 <li><code>lshw</code>：硬件信息</li>
 </ul>

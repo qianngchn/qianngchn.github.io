@@ -40,30 +40,30 @@
 <p>1.这里有一句忠告，那就是应该养成在编写代码前先进行规划的习惯。</p>
 <p>2.编译器只将你所编写的代码转换为机器语言，生成目标代码文件；</p>
 <p>而链接器则将目标代码，启动代码和库代码三者结合在一起，生成可执行文件。</p>
-<p>3.#include，#define等以#开头的语句表示的是编译时C预处理语句。</p>
-<p>4.C89/C99标准的一个区别：C89要求必须在一个代码块的开始处声明变量，在这之前不允许任何其他语句；而C99则允许声明放在任何位置，但首次使用变量前必须先声明它。</p>
-<p>5.volatile被用来修饰被不同线程访问和修改的变量，用来防止代码优化时程序直接读取寄存器的备份，而实际变量的值可能已经被硬件，中断，操作系统和其他线程改变，从而导致程序的错误。它指明编译器每次访问该变量时直接读取原始内存地址，而不是代码优化直接读取寄存器的值，因为该变量随时可能发生变化。</p>
+<p>3.<code>#include</code>，<code>#define</code>等以<code>#</code>开头的语句表示的是编译时C预处理语句。</p>
+<p>4.<code>C89/C99</code>标准的一个区别：<code>C89</code>要求必须在一个代码块的开始处声明变量，在这之前不允许任何其他语句；而<code>C99</code>则允许声明放在任何位置，但首次使用变量前必须先声明它。</p>
+<p>5.<code>volatile</code>被用来修饰被不同线程访问和修改的变量，用来防止代码优化时程序直接读取寄存器的备份，而实际变量的值可能已经被硬件，中断，操作系统和其他线程改变，从而导致程序的错误。它指明编译器每次访问该变量时直接读取原始内存地址，而不是代码优化直接读取寄存器的值，因为该变量随时可能发生变化。</p>
 <p>6.编译器优化的做法是：</p>
 <pre><code>int i = 5;
 int a = i;
 ……
 int b = i;</code></pre>
-<p>编译器发现两次从i读数据的代码之间，并没有对i进行过操作，它会自动把上次读的数据放在b中，而不是重新从i里面读。</p>
-<p>7.%d十进制，%o是八进制，%x是十六进制，%#o和%#x分别是带前缀的八进制和十六进制。</p>
-<p>8.1个字节是8位，那32位机和64位机数据类型所占字节数有什么区别？</p>
-<p>32位：char 1字节，char*(指针) 4字节，short 2字节，int 4字节，long 4字节，long long 8字节，float 4字节，double 8字节；</p>
-<p>64位：char 1字节，char*(指针) 8字节，short 2字节，int 4字节，long 8字节，long long 8字节，float 4字节，double 8字节；</p>
-<p>区别在指针和long类型字节数不同。</p>
-<p>9.整数溢出：int类型的起始点是-2147483648，unsigned int类型的起始点是0，那么假如i整数溢出，i的数值将会回到起始点。例如：int i=2147483647;i++;那么i的值将会变为-2147483647。其他整数类型类似。</p>
-<p>10.C语言中对于整数常量会根据大小确定数据类型。例如2345为int类型，超过int范围的话就视为unsigned int，以大小类推依次会视为long，unsigned long，long long，unsigned long long类型。</p>
-<p>如果你想用long类型表示一个较小的数，可以用l或L后缀表示，如2345L，类似的有10UL,0x10LL，5ull。</p>
-<p>11.在使用printf传递参数时，C语言会自动将short类型的值转换为int类型，将float类型转换为double类型，这是因为计算机认为int和double类型处理最方便，速度更快。</p>
-<p>12.%hd 表示short，%d 表示int，%ld 表示long，%lld 表示long long；</p>
-<p>同理%hu 表示unsigned short，%u 表示unsigned int，%lu 表示unsigned long，%llu 表示unsigned long long；</p>
-<p>另：后缀可换为%o，%x分别表示相对应的八进制和十六进制显示。</p>
-<p>13.C语言把 字符常量 看成int类型，所以sizeof('d')结果是4。</p>
-<p>14.char可看做整形，signed char(-128~127)和unsigned char(0~255)对于处理小整形数非常有用。</p>
-<p>15.可以使用int16_t,uint32_t等这样明确的整数类型，不过必须要包含 inttypes.h 头文件。</p>
+<p>编译器发现两次从<code>i</code>读数据的代码之间，并没有对<code>i</code>进行过操作，它会自动把上次读的数据放在<code>b</code>中，而不是重新从<code>i</code>里面读。</p>
+<p>7.<code>%d</code>十进制，<code>%o</code>是八进制，<code>%x</code>是十六进制，<code>%#o</code>和<code>%#x</code>分别是带前缀的八进制和十六进制。</p>
+<p>8.<code>1</code>个字节是<code>8</code>位，那<code>32</code>位机和<code>64</code>位机数据类型所占字节数有什么区别？</p>
+<p><code>32</code>位：<code>char</code> <code>1</code>字节，<code>char*</code>(指针) <code>4</code>字节，<code>short</code> <code>2</code>字节，<code>int</code> <code>4</code>字节，<code>long</code> <code>4</code>字节，<code>long long</code> <code>8</code>字节，<code>float</code> <code>4</code>字节，<code>double</code> <code>8</code>字节；</p>
+<p><code>64</code>位：<code>char</code> <code>1</code>字节，<code>char*</code>(指针) <code>8</code>字节，<code>short</code> <code>2</code>字节，<code>int</code> <code>4</code>字节，<code>long</code> <code>8</code>字节，<code>long long</code> <code>8</code>字节，<code>float</code> <code>4</code>字节，<code>double</code> <code>8</code>字节；</p>
+<p>区别在指针和<code>long</code>类型字节数不同。</p>
+<p>9.整数溢出：<code>int</code>类型的起始点是<code>-2147483648</code>，<code>unsigned int</code>类型的起始点是<code>0</code>，那么假如<code>i</code>整数溢出，<code>i</code>的数值将会回到起始点。例如：<code>int i=2147483647;i++;</code>那么<code>i</code>的值将会变为<code>-2147483647</code>。其他整数类型类似。</p>
+<p>10.<code>C</code>语言中对于整数常量会根据大小确定数据类型。例如<code>2345</code>为<code>int</code>类型，超过<code>int</code>范围的话就视为<code>unsigned int</code>，以大小类推依次会视为<code>long</code>，<code>unsigned long</code>，<code>long long</code>，<code>unsigned long long</code>类型。</p>
+<p>如果你想用<code>long</code>类型表示一个较小的数，可以用<code>l</code>或<code>L</code>后缀表示，如<code>2345L</code>，类似的有<code>10UL</code>,<code>0x10LL</code>，<code>5ull</code>。</p>
+<p>11.在使用<code>printf</code>传递参数时，<code>C</code>语言会自动将<code>short</code>类型的值转换为<code>int</code>类型，将<code>float</code>类型转换为<code>double</code>类型，这是因为计算机认为<code>int</code>和<code>double</code>类型处理最方便，速度更快。</p>
+<p>12.<code>%hd</code> 表示<code>short</code>，<code>%d</code> 表示<code>int</code>，<code>%ld</code> 表示<code>long</code>，<code>%lld</code> 表示<code>long long</code>；</p>
+<p>同理<code>%hu</code> 表示<code>unsigned short</code>，<code>%u</code> 表示<code>unsigned int</code>，<code>%lu</code> 表示<code>unsigned long</code>，<code>%llu</code> 表示<code>unsigned long long</code>；</p>
+<p>另：后缀可换为<code>%o</code>，<code>%x</code>分别表示相对应的八进制和十六进制显示。</p>
+<p>13.<code>C</code>语言把 字符常量 看成<code>int</code>类型，所以<code>sizeof('d')</code>结果是<code>4</code>。</p>
+<p>14.<code>char</code>可看做整形，<code>signed char(-128~127)</code>和<code>unsigned char(0~255)</code>对于处理小整形数非常有用。</p>
+<p>15.可以使用<code>int16_t</code>,<code>uint32_t</code>等这样明确的整数类型，不过必须要包含 <code>inttypes.h</code> 头文件。</p>
 <p>16.大端模式：数据的低字节存放在高地址，高字节存放在低地址；小端模式：数据的低字节存放在低地址，高字节存放在高地址。判断大小端的代码如下：</p>
 <pre><code>int checkCPU()
 {
@@ -75,11 +75,11 @@ int b = i;</code></pre>
     c.a = 1; 
     return(c.b ==1);
 }</code></pre>
-<p>返回1则是小端模式，返回0则是大端模式。注：联合体union的存放顺序是所有成员都从低地址开始存放，所以字符b实际上对应的是整数a的低地址，再根据b的值就可以确定a的低地址存放的是低字节还是高字节啦。</p>
+<p>返回<code>1</code>则是小端模式，返回<code>0</code>则是大端模式。注：联合体<code>union</code>的存放顺序是所有成员都从低地址开始存放，所以字符<code>b</code>实际上对应的是整数<code>a</code>的低地址，再根据<code>b</code>的值就可以确定<code>a</code>的低地址存放的是低字节还是高字节啦。</p>
 <p>17.字节对齐相关：</p>
-<p>①数据类型自身的对齐值：对于char型数据，其自身对齐值为1，对于short型为2，对于int,float,double类型，其自身对齐值为4，单位字节。</p>
+<p>①数据类型自身的对齐值：对于<code>char</code>型数据，其自身对齐值为<code>1</code>，对于<code>short</code>型为<code>2</code>，对于<code>int</code>,<code>float</code>,<code>double</code>类型，其自身对齐值为<code>4</code>，单位字节。</p>
 <p>②结构体或者类的自身对齐值：其成员中自身对齐值最大的那个值。</p>
-<p>③指定对齐值：#pragma pack(value)时的指定对齐值value，Gcc默认是4字节对齐，VC默认是8字节对齐。</p>
+<p>③指定对齐值：<code>#pragma pack(value)</code>时的指定对齐值<code>value</code>，<code>Gcc</code>默认是<code>4</code>字节对齐，<code>VC</code>默认是<code>8</code>字节对齐。</p>
 <pre><code>#pragma pack(value)要在struct定义之前使用，并用#pragma pack()结束恢复缺省的对齐值，例如：
 #pragma pack(2)
 struct S
@@ -89,67 +89,67 @@ struct S
 }；
 #pragma pack()</code></pre>
 <p>④数据成员、结构体和类的有效对齐值：自身对齐值和指定对齐值中小的那个值。</p>
-<p>注意这四点，所以在计算结构体struct大小时，不仅要考虑每个成员的对齐，还要考虑结构体自身的对齐值。</p>
-<p>18.浮点常量默认情况下是double类型，所以像 <code>float b=4.0*2.0;</code> 这样计算可能会丢失数据精度。</p>
-<p>19.%f 表示float和double类型，%Lf 表示long double类型，%e/%Le 表示他们的指数形式，%a/%La 表示他们的十六进制指数形式。</p>
-<p>20.浮点数上溢会返回无穷大，printf时会显示inf，浮点数下溢会损失有效数字，直到所有位都为0。</p>
-<p>21.float至少表示6位有效数字，double至少表示10位有效数字，long double的有效数字则大于等于double。不同机器上 有效数字 和 取值范围 是不同的。</p>
-<p>22.printf和scanf函数 不会检查参数类型和数目，所以需要自己确认类型和数目相对应。</p>
-<p>23.printf的输出方式：printf采用行输出方式，只有在 缓冲区满，换行或scanf 时才会刷新缓冲区，所以有时输出错误时考虑一下这个问题，另外还可以用fflush()函数来刷新缓冲区。</p>
-<p>24.由于int和float的存储方式的不同，互相赋值会得到毫不相关的两个值，注意。</p>
-<p>25.注意：使用scanf读取字符串时，会在遇到 空格，换行和制表符 时中断读取，不会读取整个字符串，不过可以用gets()函数来读取这些带空格的字符串。</p>
+<p>注意这四点，所以在计算结构体<code>struct</code>大小时，不仅要考虑每个成员的对齐，还要考虑结构体自身的对齐值。</p>
+<p>18.浮点常量默认情况下是<code>double</code>类型，所以像 <code>float b=4.0*2.0;</code> 这样计算可能会丢失数据精度。</p>
+<p>19.<code>%f</code> 表示<code>float</code>和<code>double</code>类型，<code>%Lf</code> 表示<code>long double</code>类型，<code>%e/%Le</code> 表示他们的指数形式，<code>%a/%La</code> 表示他们的十六进制指数形式。</p>
+<p>20.浮点数上溢会返回无穷大，<code>printf</code>时会显示<code>inf</code>，浮点数下溢会损失有效数字，直到所有位都为<code>0</code>。</p>
+<p>21.<code>float</code>至少表示<code>6</code>位有效数字，<code>double</code>至少表示<code>10</code>位有效数字，<code>long double</code>的有效数字则大于等于<code>double</code>。不同机器上 有效数字 和 取值范围 是不同的。</p>
+<p>22.<code>printf</code>和<code>scanf</code>函数 不会检查参数类型和数目，所以需要自己确认类型和数目相对应。</p>
+<p>23.<code>printf</code>的输出方式：<code>printf</code>采用行输出方式，只有在 缓冲区满，换行或<code>scanf</code> 时才会刷新缓冲区，所以有时输出错误时考虑一下这个问题，另外还可以用<code>fflush()</code>函数来刷新缓冲区。</p>
+<p>24.由于<code>int</code>和<code>float</code>的存储方式的不同，互相赋值会得到毫不相关的两个值，注意。</p>
+<p>25.注意：使用<code>scanf</code>读取字符串时，会在遇到 空格，换行和制表符 时中断读取，不会读取整个字符串，不过可以用<code>gets()</code>函数来读取这些带空格的字符串。</p>
 <p>26.数组参数传递：数组作为参数传给函数时传的是指针而不是数组，传递的是数组的首地址，编译器不知道数组的大小。</p>
-<p>27.sizeof的注意点：</p>
-<p>①sizeof是一个操作符，不是函数，其结果类型是size_t。</p>
-<p>②sizeof可以对一个函数调用求值，其结果是函数返回类型的大小，而函数并不会被调用。</p>
-<p>③sizeof在编译时刻就已经计算，所以可以看作是一个常量，不过最新的C99标准支持动态定义数组和运行时刻计算sizeof大小。</p>
-<p>④sizeof计算的是所占用内存的字节数，strlen计算的是数组的个数，这两个是不同的。</p>
-<p>⑤sizeof一个结构体，要考虑传说中的字节对齐问题，注意每个数据成员的起始地址和结构体的自身的对齐值，就可以计算出大小。</p>
-<p>⑥sizeof一个联合体，其大小就是数据成员的sizeof最大值。</p>
-<p>28.strlen的用法：strlen函数求的是字符串的实际长度，它求得方法是从开始到遇到第一个'\0'为止,如果你只定义没有给它赋初值，这个结果是不定的，它会从首地址一直找下去，直到遇到'\0'停止。同理，如果一个长度为3的char数组，最后一位char[2]有赋值，就会将'\0'挤掉，此时用strlen求长度的值也是错误的。</p>
-<p>29.含有位域的结构体，冒号后面的数值单位是bit，不是字节，例如：</p>
+<p>27.<code>sizeof</code>的注意点：</p>
+<p>①<code>sizeof</code>是一个操作符，不是函数，其结果类型是<code>sizet</code>。</p>
+<p>②<code>sizeof</code>可以对一个函数调用求值，其结果是函数返回类型的大小，而函数并不会被调用。</p>
+<p>③<code>sizeof</code>在编译时刻就已经计算，所以可以看作是一个常量，不过最新的<code>C99</code>标准支持动态定义数组和运行时刻计算<code>sizeof</code>大小。</p>
+<p>④<code>sizeof</code>计算的是所占用内存的字节数，<code>strlen</code>计算的是数组的个数，这两个是不同的。</p>
+<p>⑤<code>sizeof</code>一个结构体，要考虑传说中的字节对齐问题，注意每个数据成员的起始地址和结构体的自身的对齐值，就可以计算出大小。</p>
+<p>⑥<code>sizeof</code>一个联合体，其大小就是数据成员的<code>sizeof</code>最大值。</p>
+<p>28.<code>strlen</code>的用法：<code>strlen</code>函数求的是字符串的实际长度，它求得方法是从开始到遇到第一个<code>'\0'</code>为止,如果你只定义没有给它赋初值，这个结果是不定的，它会从首地址一直找下去，直到遇到<code>'\0'</code>停止。同理，如果一个长度为<code>3</code>的<code>char</code>数组，最后一位<code>char[2]</code>有赋值，就会将<code>'\0'</code>挤掉，此时用<code>strlen</code>求长度的值也是错误的。</p>
+<p>29.含有位域的结构体，冒号后面的数值单位是<code>bit</code>，不是字节，例如：</p>
 <pre><code>struct S
 {
     char f1 : 3;
     char f2 : 4;
     char f3 : 5;
 };</code></pre>
-<p>其sizeof大小有一定规则：一句话就是相邻的位域字段如果类型相同，且位宽之和小于该类型的sizeof大小，就进行压缩，否则一律不压缩。</p>
+<p>其<code>sizeof</code>大小有一定规则：一句话就是相邻的位域字段如果类型相同，且位宽之和小于该类型的<code>sizeof</code>大小，就进行压缩，否则一律不压缩。</p>
 <p>30.程序的内存分配：</p>
-<p>一个由C/C++编译的程序占用的内存分为以下几个部分</p>
-<p>①栈区(stack)— 由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。</p>
-<p>②堆区(heap)— 一般由程序员分配释放，若程序员不释放，程序结束时可由OS回收。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表，呵呵。</p>
-<p>③全局区(静态区)(static)—全局变量和静态变量的存储是放在一块的，初始化的全局变量和静态变量在一块区域， 未初始化的全局变量和未初始化的静态变量在相邻的另一块区域。程序结束后由系统释放。</p>
+<p>一个由<code>C/C++</code>编译的程序占用的内存分为以下几个部分</p>
+<p>①栈区(<code>stack</code>)— 由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。</p>
+<p>②堆区(<code>heap</code>)— 一般由程序员分配释放，若程序员不释放，程序结束时可由<code>OS</code>回收。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表，呵呵。</p>
+<p>③全局区(静态区)(<code>static</code>)—全局变量和静态变量的存储是放在一块的，初始化的全局变量和静态变量在一块区域， 未初始化的全局变量和未初始化的静态变量在相邻的另一块区域。程序结束后由系统释放。</p>
 <p>④文字常量区 —常量字符串就是放在这里的。 程序结束后由系统释放。</p>
-<p>⑤程序代码区(text)—存放函数体的二进制代码。</p>
-<p>31.printf 具有很多标志符和修饰符，具体请查表。例如：%-10d，标志符-在前，修饰符10在后。</p>
-<p>32.如果printf的其他地方出现不匹配错误，有时即使是正确的说明符也会产生错误的结果。这得考虑printf的工作原理：它是先将参数按照各自的大小存储在栈中，却是按照说明符指定的大小再去取出，这样就必须要求说明符指定的大小与参数实际大小一一对应，否则一错全错。</p>
-<p>33.如果一个字符串太长，可以用反斜杠(\)连接两行或者用双引号连接两行，引号内必须为空，如：&quot;hello &quot;</p>
-<p>&quot;world&quot;，它会自动连接前后字符串成为：&quot;hello world&quot;。</p>
-<p>34.scanf函数的参数是 指针类型，所以需要在变量前面加&amp;号取地址，如int age; scanf(&quot;%d&quot;,&amp;age);只有这样赋值才会正确。不过字符数组例外，可以不用加，因为字符数组名的值是地址常量，可以自动转换为指针。</p>
-<p>35.如果scanf中有常规字符，如scanf(&quot;%d, %d&quot;,&amp;n,&amp;m);那么输入的数据之间必须也要有逗号，如 80,123。</p>
-<p>36.除了%c以外的说明符会自动跳过空格，而%c不同，如scanf(&quot; %c&quot;,&amp;n);读取到的是第一个非空白字符，scanf(&quot;%c&quot;,&amp;n);读取到的是第一个字符(包括空格)。</p>
-<p>37.scanf遇到第一个错误即停止读取，它返回成功读取项目的个数，没有读取任何项目，返回0；而当读取到文件结尾时，返回EOF(EOF的值为-1)。</p>
-<p>38.printf返回打印字符的数目，如果出现错误返回负值。</p>
-<p>39.printf和scanf的*修饰符：</p>
-<p>①printf中的*修饰符用来指定字段宽度，但也需要变量来指定，例如：<code>printf(&quot;%*d&quot;, width, number); printf(&quot;%*.*f&quot;, width, precision, weight)</code>。</p>
-<p>②scanf中的*修饰符用来表示跳过相应的输入项目，例如<code>scanf(&quot;%*d %*d %d&quot;,&amp;n);</code>假如输入200 200 300，那么将会跳过前两个输入，并读取第三个整数赋值给n。</p>
-<p>40.赋值运算符(=)动作是从右向左进行的，可以多重赋值，如 i=j=k=10; 但左侧必须是可修改的左值，一般是变量。</p>
-<p>41.符号运算符(-和+)，- 号用来取值相反数，+ 号的值不变，例如：n = -2;i = -n;j = +n;会得到i的值为2，j的值为-2。</p>
-<p>42.C语言对整数的除法会做截尾处理，简单的丢弃小数部分，负整数也是如此，如：-7/2 的结果为-3，7/2的值为3，这种方法叫做“趋零截尾”。</p>
-<p>43.取模运算符(%)用来取余数，注意的是负整数的取模运算，如：-11%5的值为-1，11%-5的值为1，结果的符号由第一个操作数11或-11的符号来决定。另有规则 <code>(a/b)*b+(a%b)==a</code> 可使用。</p>
-<p>44.++运算符：后缀a++，使用a的值之后改变a；前缀++a，使用a的值之前改变a。--运算符类似。简记为++前缀先加后用，++后缀先用后加。</p>
-<p>45.通过++运算符很容易导致运算混乱，例如 n = 3; y = n++ + n++; 对于不同的编译器结果可能不同，y的值可能为6，也可能为7，依编译器而定。</p>
+<p>⑤程序代码区(<code>text</code>)—存放函数体的二进制代码。</p>
+<p>31.<code>printf</code> 具有很多标志符和修饰符，具体请查表。例如：<code>%-10d</code>，标志符<code>-</code>在前，修饰符<code>10</code>在后。</p>
+<p>32.如果<code>printf</code>的其他地方出现不匹配错误，有时即使是正确的说明符也会产生错误的结果。这得考虑<code>printf</code>的工作原理：它是先将参数按照各自的大小存储在栈中，却是按照说明符指定的大小再去取出，这样就必须要求说明符指定的大小与参数实际大小一一对应，否则一错全错。</p>
+<p>33.如果一个字符串太长，可以用反斜杠(<code>\</code>)连接两行或者用双引号连接两行，引号内必须为空，如：<code>&quot;hello &quot;</code></p>
+<p><code>&quot;world&quot;</code>，它会自动连接前后字符串成为：<code>&quot;hello world&quot;</code>。</p>
+<p>34.<code>scanf</code>函数的参数是 指针类型，所以需要在变量前面加&amp;号取地址，如<code>int age; scanf(&quot;%d&quot;,&amp;age);</code>只有这样赋值才会正确。不过字符数组例外，可以不用加，因为字符数组名的值是地址常量，可以自动转换为指针。</p>
+<p>35.如果<code>scanf</code>中有常规字符，如<code>scanf(&quot;%d, %d&quot;,&amp;n,&amp;m);</code>那么输入的数据之间必须也要有逗号，如 <code>80,123</code>。</p>
+<p>36.除了<code>%c</code>以外的说明符会自动跳过空格，而<code>%c</code>不同，如<code>scanf(&quot; %c&quot;,&amp;n);</code>读取到的是第一个非空白字符，<code>scanf(&quot;%c&quot;,&amp;n);</code>读取到的是第一个字符(包括空格)。</p>
+<p>37.<code>scanf</code>遇到第一个错误即停止读取，它返回成功读取项目的个数，没有读取任何项目，返回<code>0</code>；而当读取到文件结尾时，返回<code>EOF</code>(<code>EOF</code>的值为<code>-1</code>)。</p>
+<p>38.<code>printf</code>返回打印字符的数目，如果出现错误返回负值。</p>
+<p>39.<code>printf</code>和<code>scanf</code>的<code>*</code>修饰符：</p>
+<p>①<code>printf</code>中的<code>*</code>修饰符用来指定字段宽度，但也需要变量来指定，例如：<code>printf(&quot;%*d&quot;, width, number); printf(&quot;%*.*f&quot;, width, precision, weight)</code>。</p>
+<p>②<code>scanf</code>中的<code>*</code>修饰符用来表示跳过相应的输入项目，例如<code>scanf(&quot;%*d %*d %d&quot;,&amp;n);</code>假如输入<code>200 200 300</code>，那么将会跳过前两个输入，并读取第三个整数赋值给<code>n</code>。</p>
+<p>40.赋值运算符(=)动作是从右向左进行的，可以多重赋值，如 <code>i=j=k=10;</code> 但左侧必须是可修改的左值，一般是变量。</p>
+<p>41.符号运算符(<code>-</code>和<code>+</code>)，<code>-</code> 号用来取值相反数，<code>+</code> 号的值不变，例如：<code>n = -2;i = -n;j = +n;</code>会得到<code>i</code>的值为<code>2</code>，<code>j</code>的值为<code>-2</code>。</p>
+<p>42.<code>C</code>语言对整数的除法会做截尾处理，简单的丢弃小数部分，负整数也是如此，如：<code>-7/2</code> 的结果为<code>-3</code>，<code>7/2</code>的值为<code>3</code>，这种方法叫做“趋零截尾”。</p>
+<p>43.取模运算符(%)用来取余数，注意的是负整数的取模运算，如：<code>-11%5</code>的值为<code>-1</code>，<code>11%-5</code>的值为<code>1</code>，结果的符号由第一个操作数<code>11</code>或<code>-11</code>的符号来决定。另有规则 <code>(a/b)*b+(a%b)==a</code> 可使用。</p>
+<p>44.<code>++</code>运算符：后缀<code>a++</code>，使用<code>a</code>的值之后改变<code>a</code>；前缀<code>++a</code>，使用<code>a</code>的值之前改变<code>a</code>。<code>--</code>运算符类似。简记为<code>++</code>前缀先加后用，<code>++</code>后缀先用后加。</p>
+<p>45.通过<code>++</code>运算符很容易导致运算混乱，例如 <code>n = 3; y = n++ + n++;</code> 对于不同的编译器结果可能不同，<code>y</code>的值可能为<code>6</code>，也可能为<code>7</code>，依编译器而定。</p>
 <p>所以最好遵守以下准则：</p>
 <p>①如果一个变量出现在一个函数的多个参数中，不要将增量或减量运算符用在它上面。</p>
 <p>②当一个变量多次出现在一个表达式里，不要将增量或减量运算符用在它上面。</p>
-<p>46.每个表达式都有一个值，赋值表达式的值就是其左值，如 <code>n=2*5</code> 其表达式的值就是10。</p>
-<p>47.一个顺序点是程序执行中的一点：在该点处，所有的值都在进入下一步前被计算完成。在C中，语句中的分号标志了一个顺序点。任何一个完整表达式的结束也是一个顺序点，例如 while( i++ &lt; 10) ，i会先计算加一之后再进入循环语句。而前面的 y = n++ + n++; 中子表达式n++并不是一个完整表达式，所以计算结果不确定，要防止这样的表达式出现。</p>
-<p>48.类型转换：C语言中经常出现类型的自动转换，在一个表达式的计算中，低级别类型通常会转换成高级别类型再进行运算。另外在作为函数的参数被传递时，char和short会被转换为int，float会被转换为double。</p>
-<p>49.可以通过指派运算符来指定类型转换，例如 n = (int)1.6 + (int)1.7; 结果是 2，而不是 3。我们要养成指定类型转换的习惯，尤其在函数参数传递时。</p>
-<p>50.就像类型声明一样，一个函数也需要函数声明，如 void fuc(int d); 在任何用到此函数的语句之前都要有此函数的声明或定义，避免编译器的误判或警告。</p>
-<p>51.逻辑运算符：&amp;&amp; || ！，逻辑表达式是从左向右进行计算的，一发现可以使整个表达式为真或假的条件就立即停止运算，例如表达式 x=0&amp;&amp;x++;这里x最后的值是0，第二个表达式x++是不会进行计算的，因为第一个表达式的值就可以判定整个表达式的值为假；还有表达式 x=1||x++;同理这里的x最后的值是1，x++并没有计算，因为第一个表达式的值就可以判断整个表达式的值为真，但如果写成 !(x=1)||x++;这样的话，x++就会被计算，x的值最后为2。</p>
-<p>52.逗号表达式的值是其最右边表达式的值，成员运算符.可以用来指定成员变量，间接成员运算符号-&gt;可以给结构体的指针用来指定成员变量，例如：</p>
+<p>46.每个表达式都有一个值，赋值表达式的值就是其左值，如 <code>n=2*5</code> 其表达式的值就是<code>10</code>。</p>
+<p>47.一个顺序点是程序执行中的一点：在该点处，所有的值都在进入下一步前被计算完成。在C中，语句中的分号标志了一个顺序点。任何一个完整表达式的结束也是一个顺序点，例如 <code>while( i++ &lt; 10)</code> ，<code>i</code>会先计算加一之后再进入循环语句。而前面的 <code>y = n++ + n++;</code> 中子表达式<code>n++</code>并不是一个完整表达式，所以计算结果不确定，要防止这样的表达式出现。</p>
+<p>48.类型转换：<code>C</code>语言中经常出现类型的自动转换，在一个表达式的计算中，低级别类型通常会转换成高级别类型再进行运算。另外在作为函数的参数被传递时，<code>char</code>和<code>short</code>会被转换为<code>int</code>，<code>float</code>会被转换为<code>double</code>。</p>
+<p>49.可以通过指派运算符来指定类型转换，例如 <code>n = (int)1.6 + (int)1.7;</code> 结果是 <code>2</code>，而不是 <code>3</code>。我们要养成指定类型转换的习惯，尤其在函数参数传递时。</p>
+<p>50.就像类型声明一样，一个函数也需要函数声明，如 <code>void fuc(int d);</code> 在任何用到此函数的语句之前都要有此函数的声明或定义，避免编译器的误判或警告。</p>
+<p>51.逻辑运算符：<code>&amp;&amp; || ！</code>，逻辑表达式是从左向右进行计算的，一发现可以使整个表达式为真或假的条件就立即停止运算，例如表达式 <code>x=0&amp;&amp;x++;</code>这里<code>x</code>最后的值是<code>0</code>，第二个表达式<code>x++</code>是不会进行计算的，因为第一个表达式的值就可以判定整个表达式的值为假；还有表达式 <code>x=1||x++;</code>同理这里的<code>x</code>最后的值是<code>1</code>，<code>x++</code>并没有计算，因为第一个表达式的值就可以判断整个表达式的值为真，但如果写成 <code>!(x=1)||x++;</code>这样的话，<code>x++</code>就会被计算，<code>x</code>的值最后为<code>2</code>。</p>
+<p>52.逗号表达式的值是其最右边表达式的值，成员运算符<code>.</code>可以用来指定成员变量，间接成员运算符号<code>-&gt;</code>可以给结构体的指针用来指定成员变量，例如：</p>
 <pre><code>struct{
     int code;
     float cost;
@@ -157,12 +157,12 @@ struct S
 item.code=1265;
 ptr=&amp;item;
 ptr-&gt;code=3451;</code></pre>
-<p>53.位运算符：~ 每位取反；&amp; 与运算，对应位都为1才为1；| 或运算，对应位有1位为1就为1；^ 异或运算，对应位不同才为1；<code>a&lt;&lt;b</code> 左移运算，a左移b位，空位填0；<code>a&gt;&gt;b</code> 右移运算，a右移b位，对于无符号数空位补0，对于有符号数高位补符号位或0，具体还得依赖编译器，gcc是符号位。</p>
-<p>54.另外对于有符号数的存储方式，在计算机里是用补码形式保存的，正数的补码就是其原码，负数的补码是原码取反后再加1。简单的记法：有符号数的最大值是0x7fffffff，那么其最小值就是最大值加1，因为整数溢出回到最小值，即为0x80000000，可见负数的补码保存方式。</p>
+<p>53.位运算符：<code>~</code> 每位取反；<code>&amp;</code> 与运算，对应位都为<code>1</code>才为<code>1</code>；<code>|</code> 或运算，对应位有<code>1</code>位为<code>1</code>就为<code>1</code>；<code>^</code> 异或运算，对应位不同才为<code>1</code>；<code>a&lt;&lt;b</code> 左移运算，<code>a</code>左移<code>b</code>位，空位填<code>0</code>；<code>a&gt;&gt;b</code> 右移运算，<code>a</code>右移<code>b</code>位，对于无符号数空位补<code>0</code>，对于有符号数高位补符号位或<code>0</code>，具体还得依赖编译器，<code>gcc</code>是符号位。</p>
+<p>54.另外对于有符号数的存储方式，在计算机里是用补码形式保存的，正数的补码就是其原码，负数的补码是原码取反后再加<code>1</code>。简单的记法：有符号数的最大值是<code>0x7fffffff</code>，那么其最小值就是最大值加<code>1</code>，因为整数溢出回到最小值，即为<code>0x80000000</code>，可见负数的补码保存方式。</p>
 <p>55.计算表达式值的时候要先考虑运算符的优先级，然后再考虑结合性。具体请查表，记住常用的就可以。</p>
-<p>优先级由高到低是：括号-&gt;一元运算符-&gt;乘除余-&gt;加减-&gt;关系运算符-&gt;赋值运算符-&gt;逗号运算符。</p>
+<p>优先级由高到低是：括号<code>-&gt;</code>一元运算符<code>-&gt;</code>乘除余<code>-&gt;</code>加减<code>-&gt;</code>关系运算符<code>-&gt;</code>赋值运算符<code>-&gt;</code>逗号运算符。</p>
 <p>结合性：除了 赋值运算符，一元运算符和条件运算符是从右向左外，其余都是从从左向右。</p>
-<p>56.活用scanf返回值：我们可以在循环中用scanf的返回值作为判断条件，会非常有用。因为scanf返回的是成功读入的项目数，所以可以利用这个特点作为循环的退出条件。例如：</p>
+<p>56.活用<code>scanf</code>返回值：我们可以在循环中用<code>scanf</code>的返回值作为判断条件，会非常有用。因为<code>scanf</code>返回的是成功读入的项目数，所以可以利用这个特点作为循环的退出条件。例如：</p>
 <pre><code>#include &lt;stdio.h&gt;
 int main(void)
 {
@@ -186,41 +186,41 @@ int main(void)
 {
     /* loop actions */
 }</code></pre>
-<p>57.在浮点数比较中只能使用 &gt; 号和 &lt; 号，因为舍入误差的原因，两个浮点数不可能完全相等，但是可以用fabs()函数(math.h头文件中)来进行浮点数判断，它返回的是一个浮点数的绝对值。例如：while(fabs(a-b)&gt;0.0001)可以用于判断a,b之间的误差必须小于0.0001才退出循环。</p>
-<p>58.代码简化：可以用 while(goats) 来代替 while(goats!=0)。</p>
-<p>59.相等判断表达式 5==n 这样是允许的，把常量放在左边有助于发现书写错误。</p>
-<p>60.C语言中默认使用 _Bool类型，赋值为0或非0；要想使用bool,ture和false关键字必须包含 stdbool.h 头文件，这点比较容易忽略。</p>
-<p>61.注意for循环的灵活性，它的三个控制部分可以是各种不同形式的表达式。例如for(i=0,j=0;i&lt;10;i++,j++)，但变量必须在体外声明，即不能使用for(int i=0;i&lt;10;i++)，因为这不是C++。</p>
-<p>62.注意逗号表达式是从左向右进行计算的，它的值是其最右边表达式的值，常被用在for循环中。另外逗号也是一个顺序点，其左边表达式所做的任何值修改都在右边立即生效。</p>
-<p>63.回车(\r)和换行(\n)的区别：Windows下使用&quot;\r\n&quot;作为一行的结束符，Unix/Linux下使用&quot;\n&quot;作为一行的结束符，Mac下使用&quot;\r&quot;作为一行的结束符，所以Unix/Linux和Mac下的文件在windows下查看会变成一行，而windows下的文件在Unix/Linux和Mac下查看会多一个^M符号。</p>
-<p>64.for和while是进入条件循环，do while是退出条件循环，要选择适合的条件循环，同时注意循环的嵌套以及灵活性。</p>
-<p>65.scanf的double型输入：由于scanf接受的是指针类型，不像prinf传递参数时自动将float类型转换为double类型，所以printf的%f可以输出float和double类型，而scanf的%f只能够输入float类型，要用%lf才能输入double类型，切记。</p>
-<p>66.要养成函数事先声明的习惯，如果函数定义在外部文件中，需要加上extern关键字。</p>
-<p>67.getchar和putchar函数：getchar读取一个字符，putchar输出一个字符，这两个函数实质上是宏定义，而不是真正的函数。</p>
-<p>68.C语言中字符实际上是作为整数进行存储的，例如putchar函数就接受一个int型的参数。</p>
-<p>69.ctype.h 头文件，这个头文件包括一系列的字符判断函数，用起来会非常方便，例如：isalpha()判断是否字母，isalnum()判断是否字母数字，isdigit()判断是否数字等等。还有tolower和toupper函数返回字母的大小写形式。</p>
-<p>70.如果没有花括号指明，else与和它最接近的一个if相匹配。</p>
+<p>57.在浮点数比较中只能使用 &gt; 号和 &lt; 号，因为舍入误差的原因，两个浮点数不可能完全相等，但是可以用<code>fabs()</code>函数(<code>math.h</code>头文件中)来进行浮点数判断，它返回的是一个浮点数的绝对值。例如：<code>while(fabs(a-b)&gt;0.0001)</code>可以用于判断<code>a,b</code>之间的误差必须小于<code>0.0001</code>才退出循环。</p>
+<p>58.代码简化：可以用 <code>while(goats)</code> 来代替 <code>while(goats!=0)</code>。</p>
+<p>59.相等判断表达式 <code>5==n</code> 这样是允许的，把常量放在左边有助于发现书写错误。</p>
+<p>60.<code>C</code>语言中默认使用 <code>_Bool</code>类型，赋值为<code>0</code>或非<code>0</code>；要想使用<code>bool</code>,<code>ture</code>和<code>false</code>关键字必须包含 <code>stdbool.h</code> 头文件，这点比较容易忽略。</p>
+<p>61.注意<code>for</code>循环的灵活性，它的三个控制部分可以是各种不同形式的表达式。例如<code>for(i=0,j=0;i&lt;10;i++,j++)</code>，但变量必须在体外声明，即不能使用<code>for(int i=0;i&lt;10;i++)</code>，因为这不是<code>C++</code>。</p>
+<p>62.注意逗号表达式是从左向右进行计算的，它的值是其最右边表达式的值，常被用在<code>for</code>循环中。另外逗号也是一个顺序点，其左边表达式所做的任何值修改都在右边立即生效。</p>
+<p>63.回车(<code>\r</code>)和换行(<code>\n</code>)的区别：<code>Windows</code>下使用<code>\r\n</code>作为一行的结束符，<code>Unix/Linux</code>下使用<code>\n</code>作为一行的结束符，<code>Mac</code>下使用<code>\r</code>作为一行的结束符，所以<code>Unix/Linux</code>和<code>Mac</code>下的文件在<code>windows</code>下查看会变成一行，而<code>windows</code>下的文件在<code>Unix/Linux</code>和<code>Mac</code>下查看会多一个<code>^M</code>符号。</p>
+<p>64.<code>for</code>和<code>while</code>是进入条件循环，<code>do while</code>是退出条件循环，要选择适合的条件循环，同时注意循环的嵌套以及灵活性。</p>
+<p>65.<code>scanf</code>的<code>double</code>型输入：由于<code>scanf</code>接受的是指针类型，不像<code>prinf</code>传递参数时自动将<code>float</code>类型转换为<code>double</code>类型，所以<code>printf</code>的<code>%f</code>可以输出<code>float</code>和<code>double</code>类型，而<code>scanf</code>的<code>%f</code>只能够输入<code>float</code>类型，要用<code>%lf</code>才能输入<code>double</code>类型，切记。</p>
+<p>66.要养成函数事先声明的习惯，如果函数定义在外部文件中，需要加上<code>extern</code>关键字。</p>
+<p>67.<code>getchar</code>和<code>putchar</code>函数：<code>getchar</code>读取一个字符，<code>putchar</code>输出一个字符，这两个函数实质上是宏定义，而不是真正的函数。</p>
+<p>68.<code>C</code>语言中字符实际上是作为整数进行存储的，例如<code>putchar</code>函数就接受一个<code>int</code>型的参数。</p>
+<p>69.<code>ctype.h</code> 头文件，这个头文件包括一系列的字符判断函数，用起来会非常方便，例如：<code>isalpha()</code>判断是否字母，<code>isalnum()</code>判断是否字母数字，<code>isdigit()</code>判断是否数字等等。还有<code>tolower</code>和<code>toupper</code>函数返回字母的大小写形式。</p>
+<p>70.如果没有花括号指明，<code>else</code>与和它最接近的一个<code>if</code>相匹配。</p>
 <p>71.数学是对于编程是很重要的，它能够帮助我们获得更有效的算法。例如求一个数的约数，我们可以循环用数去整除它即可判断，然而什么时候停止？利用数学知识我们可以知道到达这个数的平方根时即可停止，有效的提升了运行效率。</p>
-<p>72.iso646.h 头文件，这个头文件可以改变一些关系运算符的写法，例如 &amp;&amp; 可以用 and 代替，|| 可以用 or 代替，！可以用 not 代替，等等。</p>
-<p>73.&amp;&amp;和||运算符也是一个顺序点，左边表达式的任何动作在右边立即生效。</p>
-<p>74.条件表达式<code>(a&gt;b)?a:b</code>的值是a和b中的最大值，它是一种简单的判断语句，灵活运用可以简化代码。</p>
-<p>75.continue语句：如果continue在嵌套循环中，它影响的只是包含它的最里层循环；对于while和do while循环，continue语句之后的动作是判断循环条件；而对于for循环，continue语句之后的动作是先更新再判断循环条件，假如for(i=0;i&lt;10;i++)中有continue语句，那么它会先将i++，再判断是否小于10。</p>
-<p>76.同理break语句影响的也只是包含它的最里层循环，break语句之后的动作是循环后的第一条语句，对于for循环也不例外，更新部分也会被跳过。</p>
-<p>77.注意switch语句的格式，不要写错，另外switch语句的判断表达式和case标签只能是整型值(包括char类型)，并且case标签只能是常量或常量表达式，所以long和字符串等类型是不能够直接使用switch语句的。还有一点，一个语句可以使用多重case标签。</p>
-<p>78.goto语句：使用方法如下</p>
+<p>72.<code>iso646.h</code> 头文件，这个头文件可以改变一些关系运算符的写法，例如 <code>&amp;&amp;</code> 可以用 <code>and</code> 代替，<code>||</code> 可以用 <code>or</code> 代替，<code>！</code>可以用 <code>not</code> 代替，等等。</p>
+<p>73.<code>&amp;&amp;</code>和<code>||</code>运算符也是一个顺序点，左边表达式的任何动作在右边立即生效。</p>
+<p>74.条件表达式<code>(a&gt;b)?a:b</code>的值是<code>a</code>和<code>b</code>中的最大值，它是一种简单的判断语句，灵活运用可以简化代码。</p>
+<p>75.<code>continue</code>语句：如果<code>continue</code>在嵌套循环中，它影响的只是包含它的最里层循环；对于<code>while</code>和<code>do while</code>循环，<code>continue</code>语句之后的动作是判断循环条件；而对于<code>for</code>循环，<code>continue</code>语句之后的动作是先更新再判断循环条件，假如<code>for(i=0;i&lt;10;i++)</code>中有<code>continue</code>语句，那么它会先将<code>i++</code>，再判断是否小于<code>10</code>。</p>
+<p>76.同理<code>break</code>语句影响的也只是包含它的最里层循环，<code>break</code>语句之后的动作是循环后的第一条语句，对于<code>for</code>循环也不例外，更新部分也会被跳过。</p>
+<p>77.注意<code>switch</code>语句的格式，不要写错，另外<code>switch</code>语句的判断表达式和<code>case</code>标签只能是整型值(包括<code>char</code>类型)，并且<code>case</code>标签只能是常量或常量表达式，所以<code>long</code>和字符串等类型是不能够直接使用<code>switch</code>语句的。还有一点，一个语句可以使用多重<code>case</code>标签。</p>
+<p>78.<code>goto</code>语句：使用方法如下</p>
 <pre><code>top: printf(&quot;Here is top!\n&quot;);
 ........
 ........
 if(ch!=&#39;y&#39;)
     goto top;</code></pre>
-<p>除了跳出深度嵌套(可能要用很多break)以外，尽量不要用goto语句。</p>
-<p>79.ANSI C是最初的C标准，然后不同的系统都对C进行了扩展从而形成了自己的库，例如Linux系统的GNU C，Mac系统的Objective C等等，但是它们只针对特定的系统，只有ANSI C的移植性最高，是通用的标准。</p>
-<p>80.大部分系统都采用缓冲输入机制，非缓冲输入会使键盘输入的字符立即传送给程序。针对不同的系统，输入机制是不同的，然而ANSI C标准规定C语言必须使用缓冲输入机制，若想使用非缓冲机制请系统自行定义。</p>
-<p>81.Windows系统都支持 conio.h 头文件，该文件包含输入回显的函数getche()和输入不回显的函数getch()，这两个函数都是非缓冲输入；而在Linux下并没有这个头文件，Linux系统自己控制缓冲，可以用自己的库函数ioctl来控制I/O设备，还可以用ANSI C的setbuf和setvbuf函数来控制缓冲。</p>
-<p>82.C语言将文件和设备都与流相关联，然后直接处理流来实现文件和设备的读写操作，例如stdin流表示输入设备，stdout流表示输出设备，在 stdio.h 中已经定义。</p>
-<p>83.C语言中检测到文件结尾时会返回文件结尾标记即EOF值，该值在stdio.h中已定义，一般情况下值为-1。另外在键盘输入的情况下也可以实现，例如Windows下可以在一行的开始键入Ctrl+Z表示EOF，而Linux下可以在一行的开始键入Ctrl+D表示EOF。</p>
-<p>84.默认情况下，C语言将stdin和stdout流与输入输出设备相关联，但是在Linux系统中我们可以将它们重定向至文件。&lt; 表示输入重定向，&gt; 表示输出重定向，例如：./test &lt; 1 &gt; 2，该命令表示程序从文件1中取得类似于键盘的输入并将本该显示到屏幕的结果输出到文件2中。</p>
-<p>85.Linux下还可以使用&gt;&gt;表示将输出结果追加到文件末尾，|表示将另一个程序的输出结果作为输入，例如命令：./test1 | ./test2 &gt;&gt; 1，表示将test1的输出结果作为test2的输入，并将test2的输出结果追加到1文件末尾。</p>
+<p>除了跳出深度嵌套(可能要用很多<code>break</code>)以外，尽量不要用<code>goto</code>语句。</p>
+<p>79.<code>ANSI C</code>是最初的C标准，然后不同的系统都对C进行了扩展从而形成了自己的库，例如<code>Linux</code>系统的<code>GNU C</code>，<code>Mac</code>系统的<code>Objective C</code>等等，但是它们只针对特定的系统，只有<code>ANSI C</code>的移植性最高，是通用的标准。</p>
+<p>80.大部分系统都采用缓冲输入机制，非缓冲输入会使键盘输入的字符立即传送给程序。针对不同的系统，输入机制是不同的，然而<code>ANSI C</code>标准规定<code>C</code>语言必须使用缓冲输入机制，若想使用非缓冲机制请系统自行定义。</p>
+<p>81.<code>Windows</code>系统都支持 <code>conio.h</code> 头文件，该文件包含输入回显的函数<code>getche()</code>和输入不回显的函数<code>getch()</code>，这两个函数都是非缓冲输入；而在<code>Linux</code>下并没有这个头文件，<code>Linux</code>系统自己控制缓冲，可以用自己的库函数<code>ioctl</code>来控制<code>I/O</code>设备，还可以用<code>ANSI C</code>的<code>setbuf</code>和<code>setvbuf</code>函数来控制缓冲。</p>
+<p>82.<code>C</code>语言将文件和设备都与流相关联，然后直接处理流来实现文件和设备的读写操作，例如<code>stdin</code>流表示输入设备，<code>stdout</code>流表示输出设备，在 <code>stdio.h</code> 中已经定义。</p>
+<p>83.<code>C</code>语言中检测到文件结尾时会返回文件结尾标记即<code>EOF</code>值，该值在<code>stdio.h</code>中已定义，一般情况下值为<code>-1</code>。另外在键盘输入的情况下也可以实现，例如<code>Windows</code>下可以在一行的开始键入<code>Ctrl+Z</code>表示<code>EOF</code>，而<code>Linux</code>下可以在一行的开始键入<code>Ctrl+D</code>表示<code>EOF</code>。</p>
+<p>84.默认情况下，<code>C</code>语言将<code>stdin</code>和<code>stdout</code>流与输入输出设备相关联，但是在<code>Linux</code>系统中我们可以将它们重定向至文件。&lt; 表示输入重定向，&gt; 表示输出重定向，例如：<code>./test &lt; 1 &gt; 2</code>，该命令表示程序从文件<code>1</code>中取得类似于键盘的输入并将本该显示到屏幕的结果输出到文件<code>2</code>中。</p>
+<p>85.<code>Linux</code>下还可以使用&gt;&gt;表示将输出结果追加到文件末尾，|表示将另一个程序的输出结果作为输入，例如命令：<code>./test1 | ./test2 &gt;&gt; 1</code>，表示将<code>test1</code>的输出结果作为<code>test2</code>的输入，并将<code>test2</code>的输出结果追加到<code>1</code>文件末尾。</p>
 <p>86.一个简单的显示文件内容的程序：</p>
 <pre><code>#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt; //使用exit()函数
@@ -246,10 +246,10 @@ int main(void)
 <p>87.当你编写交互程序时，你要尽可能的为用户考虑各种情况，然后清晰的做出指示，但是最后总是不够仔细，这点最烦。</p>
 <p>88.通常计算机采用行缓冲的模式，即按下回车键时数据被传送给程序，当然程序自己还可以自行控制缓冲。</p>
 <p>89.一个命令行程序，制作菜单是比较麻烦的事情，要考虑输入的各种情形，当然如果你制作好了以后可以重复使用该界面。</p>
-<p>90.getchar函数和%c的scanf接受任何字符(包括空格，换行等)，而除%c以外的scanf则可以将输入转换为对应的字符类型。</p>
-<p>91.对于scanf和getchar的混合输入，有一点需要注意，那就是如果先scanf再getchar，那么通过回车键提交输入后getchar会读到换行符，从而出现问题，编程时需要注意将换行符处理掉。</p>
-<p>92.C语言通过标准I/O库把不同的文件形式映射为统一的流来处理，从而屏蔽了不同系统对文件处理的差异性。</p>
-<p>93.C语言风格的函数使用：函数原型，函数调用，函数定义。通过这三个部分来使用一个函数，函数原型或函数定义必须在函数调用之前，让编译器知道这个函数就行，而不管函数原型声明是在main函数外还是在main函数内。</p>
+<p>90.<code>getchar</code>函数和<code>%c</code>的<code>scanf</code>接受任何字符(包括空格，换行等)，而除<code>%c</code>以外的<code>scanf</code>则可以将输入转换为对应的字符类型。</p>
+<p>91.对于<code>scanf</code>和<code>getchar</code>的混合输入，有一点需要注意，那就是如果先<code>scanf</code>再<code>getchar</code>，那么通过回车键提交输入后<code>getchar</code>会读到换行符，从而出现问题，编程时需要注意将换行符处理掉。</p>
+<p>92.<code>C</code>语言通过标准<code>I/O</code>库把不同的文件形式映射为统一的流来处理，从而屏蔽了不同系统对文件处理的差异性。</p>
+<p>93.<code>C</code>语言风格的函数使用：函数原型，函数调用，函数定义。通过这三个部分来使用一个函数，函数原型或函数定义必须在函数调用之前，让编译器知道这个函数就行，而不管函数原型声明是在<code>main</code>函数外还是在<code>main</code>函数内。</p>
 <p>94.旧标准的函数定义形式，如下：</p>
 <pre><code>void func(ch,num)
 char ch;
@@ -257,87 +257,87 @@ int num;
 {
 /* some actions */
 }</code></pre>
-<p>但是这种形式已经废弃不用，请使用最新的定义方式：void func(char ch,int num)。</p>
-<p>95.函数原型声明如：void func(char ch,int num);也可以省略变量如：void fun(char,int);甚至可以完全省略参数，但这是旧标准形式，请不要这样声明，因为完全省略参数会产生问题。</p>
+<p>但是这种形式已经废弃不用，请使用最新的定义方式：<code>void func(char ch,int num)</code>。</p>
+<p>95.函数原型声明如：<code>void func(char ch,int num);</code>也可以省略变量如：<code>void fun(char,int);</code>甚至可以完全省略参数，但这是旧标准形式，请不要这样声明，因为完全省略参数会产生问题。</p>
 <p>96.形式参数是函数定义时在头部声明的变量，实际参数是函数调用时出现在括号中的表达式或值。形式参数的任何操作都不会影响实际参数的值。</p>
 <p>97.函数就像一个黑盒子，它对于调用函数是不可见的。</p>
-<p>98.return语句的作用是返回数值，如果返回值的类型与声明不匹配，那么就会像给一个不匹配类型的变量赋值一样，可能会丢失精度。return语句的另一个作用是终止执行函数，将控制权交还给调用函数。</p>
+<p>98.<code>return</code>语句的作用是返回数值，如果返回值的类型与声明不匹配，那么就会像给一个不匹配类型的变量赋值一样，可能会丢失精度。<code>return</code>语句的另一个作用是终止执行函数，将控制权交还给调用函数。</p>
 <p>99.当实际参数类型与形式参数类型不匹配时，编译器会把实际参数值转换成和形式参数类型相同的数值。当返回值类型不匹配时，编译器也会自动进行转换。</p>
-<p>100.无参数的函数定义请加入void关键字如：void func(void);以避免编译器将该函数识别为旧标准的声明形式，请看95条。</p>
+<p>100.无参数的函数定义请加入<code>void</code>关键字如：<code>void func(void);</code>以避免编译器将该函数识别为旧标准的声明形式，请看<code>95</code>条。</p>
 <p>101.C允许不确定参数的函数存在，定义形式如下：<code>int printf(char*,...);</code>除了第一个参数是字符串以外，其余参数不能确定。</p>
 <p>102.C允许函数调用自身，这种过程就叫做递归，有时递归很复杂，有时却又很方便，它的效率并没有循环高，需要灵活运用。</p>
-<p>103.最简单的递归形式是尾递归，就是把递归调用语句放在函数结尾恰在return语句之前。尾递归的作用相当于一条循环语句，效率比循环慢。但是有时候用循环表示会很复杂，而递归可能很方便，所以要学习递归。</p>
+<p>103.最简单的递归形式是尾递归，就是把递归调用语句放在函数结尾恰在<code>return</code>语句之前。尾递归的作用相当于一条循环语句，效率比循环慢。但是有时候用循环表示会很复杂，而递归可能很方便，所以要学习递归。</p>
 <p>104.递归之前的语句是正向顺序，递归之后的语句是反向顺序，活用这点，编程时会很方便。</p>
-<p>105.所有C函数地位同等，即使是main函数也可以被其他函数调用，但最好不要这样做。</p>
-<p>106.多源码文件的编译：Linux下可以使用gcc file1.c file2.c形式将多个源代码文件放在一起进行编译。另外要活用头文件，一般一个程序可以将自定义常量和函数原型声明放在头文件中，main函数和其他函数分开定义在不同的c文件中，模块化以便修改。</p>
-<p>107.可以用%p说明符来指示地址变量，&amp;运算符用来取得变量的地址，一个指针和函数名的值实质上都是地址，可以用%p说明符打印出来。</p>
+<p>105.所有C函数地位同等，即使是<code>main</code>函数也可以被其他函数调用，但最好不要这样做。</p>
+<p>106.多源码文件的编译：<code>Linux</code>下可以使用<code>gcc file1.c file2.c</code>形式将多个源代码文件放在一起进行编译。另外要活用头文件，一般一个程序可以将自定义常量和函数原型声明放在头文件中，<code>main</code>函数和其他函数分开定义在不同的c文件中，模块化以便修改。</p>
+<p>107.可以用<code>%p</code>说明符来指示地址变量，&amp;运算符用来取得变量的地址，一个指针和函数名的值实质上都是地址，可以用<code>%p</code>说明符打印出来。</p>
 <p>108.由于形式参数的改变对于实际参数没有任何影响，所以要想改变原函数中变量的值的话，就必须使用指针参数。</p>
 <p>109.指针变量是一种地址变量，它的值是地址，声明形式如下：<code>char* p;</code>由于值是地址，请注意赋值时需要用&amp;运算符取变量的地址(字符串例外)。通常情况下我们用指针变量作为函数参数来实现函数间的通信，变量值的改变等等。</p>
-<p>110.*运算符是取值运算符，被用在指针或者地址前，用来取得该地址中的数值。</p>
-<p>111.如果用const关键字修饰数组，表明数组是一个只读数组，程序中将不能改变数组的值，数组中的每一个元素都是常量，因此声明const数组时必须要进行初始化，形式如下：const int days[7]={1,2,3,4,5,6,7};对于未经初始化的数组，其数组元素的数值是不确定的。</p>
-<p>112.未经初始化的数组，其元素数值是不确定的，然而部分初始化数组的话，那么未初始化的元素则被设置为0，通常情况下我们可以在数组定义时省略括号中的数字，让计算机自动匹配数组大小和初始化。</p>
-<p>113.指定元素初始化：C99规定数组可以指定某一个元素初始化，形式如下：int arr[6]={[3]=2,1,2};这样的初始化表示arr[3]=2,arr[4]=1,arr[5]=2，另外假如一个元素多次初始化，以最后一次为准。</p>
-<p>114.数组越界：C语言不会检查数组索引的合法性，允许使用错误的索引，但如果使用了错误的索引，可能将会改变内存中其他变量的值，使程序出错。对于这个问题，我们需要手动避免，要特别注意。</p>
-<p>115.C99中引入了变长数组，但是变长数组声明时不能进行初始化，形式如下：int n=9;int a[n];其中声明a数组时不能进行初始化。</p>
+<p>110.<code>*</code>运算符是取值运算符，被用在指针或者地址前，用来取得该地址中的数值。</p>
+<p>111.如果用<code>const</code>关键字修饰数组，表明数组是一个只读数组，程序中将不能改变数组的值，数组中的每一个元素都是常量，因此声明<code>const</code>数组时必须要进行初始化，形式如下：<code>const int days[7]={1,2,3,4,5,6,7};</code>对于未经初始化的数组，其数组元素的数值是不确定的。</p>
+<p>112.未经初始化的数组，其元素数值是不确定的，然而部分初始化数组的话，那么未初始化的元素则被设置为<code>0</code>，通常情况下我们可以在数组定义时省略括号中的数字，让计算机自动匹配数组大小和初始化。</p>
+<p>113.指定元素初始化：<code>C99</code>规定数组可以指定某一个元素初始化，形式如下：<code>int arr[6]={[3]=2,1,2};</code>这样的初始化表示<code>arr[3]=2,arr[4]=1,arr[5]=2</code>，另外假如一个元素多次初始化，以最后一次为准。</p>
+<p>114.数组越界：<code>C</code>语言不会检查数组索引的合法性，允许使用错误的索引，但如果使用了错误的索引，可能将会改变内存中其他变量的值，使程序出错。对于这个问题，我们需要手动避免，要特别注意。</p>
+<p>115.<code>C99</code>中引入了变长数组，但是变长数组声明时不能进行初始化，形式如下：<code>int n=9;int a[n];</code>其中声明<code>a</code>数组时不能进行初始化。</p>
 <p>116.二维数组实际上是数组的数组，它在内存中仍然是顺序存储的，例如<code>b[2][3]</code>这样一个二维数组，它在内存中的存储顺序是<code>b[0][0]-b[0][1]-b[0][2]-b[1][0]-b[1][1]-b[1][2]</code>，初始化时可以按照这个顺序进行赋值。</p>
-<p>117.数组名与指针：数组名同时也是数组第一个元素的地址，不过它们是常量，运行时不能改变，但可以赋值给指针；指针实际上是地址，对指针加1，等价于对指针的值加上它所指向对象的字节大小；如果指针指向数组的话，对指针加1就是数组的下一个元素的地址。由于这样的密切关系，数组和指针的操作常可以互相表示，例如：ar[i]等价于*(ar+i)，不管ar是指针还是数组都有效。</p>
-<p>118.在数组名作为函数的实际参数时，那么函数的形式参数必须是相应类型的指针。这种情况下，下面两种形式参数均有效：int* ar或者int ar[]，其中ar是指向int的指针，第二种形式仅是为了方便，请不要误解ar是一个数组。</p>
-<p>119.如果指针指向数组越界后的位置，C语言是允许的，但其值是不确定的，就如数组越界后的情况一样。虽然指针和数组很相似，但ar++这样的表达式只有当ar是指针变量时才可以使用，指针常量或数组名都不可以。</p>
-<p>120.指针可以增加或减小一个整数来改变指针的值，但是指针本身的地址不变，变的只是它存储的值(值是地址)而已。例如：int* p;那么p=p+2就表示p的值增加了2个int的字节大小，即往下第二个整数的地址而已，减法类似。</p>
+<p>117.数组名与指针：数组名同时也是数组第一个元素的地址，不过它们是常量，运行时不能改变，但可以赋值给指针；指针实际上是地址，对指针加<code>1</code>，等价于对指针的值加上它所指向对象的字节大小；如果指针指向数组的话，对指针加<code>1</code>就是数组的下一个元素的地址。由于这样的密切关系，数组和指针的操作常可以互相表示，例如：<code>ar[i]</code>等价于<code>*(ar+i)</code>，不管<code>ar</code>是指针还是数组都有效。</p>
+<p>118.在数组名作为函数的实际参数时，那么函数的形式参数必须是相应类型的指针。这种情况下，下面两种形式参数均有效：<code>int* ar</code>或者<code>int ar[]</code>，其中<code>ar</code>是指向<code>int</code>的指针，第二种形式仅是为了方便，请不要误解<code>ar</code>是一个数组。</p>
+<p>119.如果指针指向数组越界后的位置，<code>C</code>语言是允许的，但其值是不确定的，就如数组越界后的情况一样。虽然指针和数组很相似，但<code>ar++</code>这样的表达式只有当<code>ar</code>是指针变量时才可以使用，指针常量或数组名都不可以。</p>
+<p>120.指针可以增加或减小一个整数来改变指针的值，但是指针本身的地址不变，变的只是它存储的值(值是地址)而已。例如：<code>int* p;</code>那么<code>p=p+2</code>就表示<code>p</code>的值增加了<code>2</code>个<code>int</code>的字节大小，即往下第二个整数的地址而已，减法类似。</p>
 <p>121.同类型指针之间可以求差值，求得的结果是这两个指针之间的距离，单位是相应类型的字节大小。通常用于求同数组中两个元素之间的距离。</p>
 <p>122.不能对未经初始化的指针取值，其结果将是未知的，请不要这样做。</p>
-<p>123.如果你不想在函数中用指针修改数组的内容，可以在声明函数参数时加上const关键字，例如 const int ar[]这样的形式参数就表明ar虽然是一个指向数组的指针，但是在函数中该数组相当于一个常量数组，数组值不能够被修改，而并不表示调用该函数时也必须使用常量数组名，这仅是种规定而已，C语言这点还真是烦呢。</p>
-<p>124.前面说函数参数可以使用int ar[]或const int ar[]来表示指向数组的指针，那么数组的形式参数该怎么表示呢？？这点不用考虑啦，因为C语言总是将一维数组名解析为指向其首元素地址的指针，所以不可能将整个数组作为参数传递给函数啦。不过二维数组的话可以，因为C语言只能将二维数组的第一维解析为指针，第二维以后就不再解析，因此以下是二维数组的形式参数表，这些很容易弄错的。</p>
+<p>123.如果你不想在函数中用指针修改数组的内容，可以在声明函数参数时加上<code>const</code>关键字，例如 <code>const int ar[]</code>这样的形式参数就表明<code>ar</code>虽然是一个指向数组的指针，但是在函数中该数组相当于一个常量数组，数组值不能够被修改，而并不表示调用该函数时也必须使用常量数组名，这仅是种规定而已，<code>C</code>语言这点还真是烦呢。</p>
+<p>124.前面说函数参数可以使用<code>int ar[]</code>或<code>const int ar[]</code>来表示指向数组的指针，那么数组的形式参数该怎么表示呢？？这点不用考虑啦，因为<code>C</code>语言总是将一维数组名解析为指向其首元素地址的指针，所以不可能将整个数组作为参数传递给函数啦。不过二维数组的话可以，因为<code>C</code>语言只能将二维数组的第一维解析为指针，第二维以后就不再解析，因此以下是二维数组的形式参数表，这些很容易弄错的。</p>
 <p>===================================================================</p>
 <p><code>数组的数组: char a[3][4]</code> 等效于 <code>数组的指针: char (*p)[10]</code></p>
 <p><code>指针数组:   char *a[5]</code> 等效于 <code>指针的指针: char **p</code></p>
 <p>===================================================================</p>
-<p>125.<code>const int* p;</code>表示p是一个指向常量的指针，可以将常量和非常量数据的地址赋值给p，但是p不能够改变该地址的值，这正是const关键字的作用。即<code>*p=3</code>或<code>p[0]=3</code>均不可用。</p>
-<p>126.<code>int* const p;</code>表示p是一个指针常量，此时p可以用来修改它指向地址的数据，但是p再也不能指向其他地方，p的值(值是地址)是常量。即除了初始化以外，p=a均不可用。</p>
-<p>127.<code>const int* const p;</code>表示p既不能被赋值也不能用来修改指向地址的数据。即<code>p=a</code>和<code>*p=3</code>或<code>p[0]=3</code>均不可用。</p>
-<p>128.另外对于普通的指针不能指向常量数据的地址，即<code>int* p;const int a[3];p=a;</code>这样是不合法的，因为根据声明*p可修改，但a[0]却是常量，产生冲突。而对于指向常量的指针来说，不管是常量还是非常量数据的地址都可以给其赋值，因为*p本来就规定不能被修改，参见125点。</p>
-<p>129.变长数组并不是表示这个数组的大小可变，而是可以用变量来确定。变长数组作为形式参数时可以这样来定义：<code>int sum(int rows,int cols,int ar[rows][cols]);</code>或者<code>int sum(int,int,int ar[*][*]);</code>而且ar指针的声明必须在最后，顺序不能错误。</p>
+<p>125.<code>const int* p;</code>表示<code>p</code>是一个指向常量的指针，可以将常量和非常量数据的地址赋值给<code>p</code>，但是<code>p</code>不能够改变该地址的值，这正是<code>const</code>关键字的作用。即<code>*p=3</code>或<code>p[0]=3</code>均不可用。</p>
+<p>126.<code>int* const p;</code>表示<code>p</code>是一个指针常量，此时<code>p</code>可以用来修改它指向地址的数据，但是<code>p</code>再也不能指向其他地方，<code>p</code>的值(值是地址)是常量。即除了初始化以外，<code>p=a</code>均不可用。</p>
+<p>127.<code>const int* const p;</code>表示<code>p</code>既不能被赋值也不能用来修改指向地址的数据。即<code>p=a</code>和<code>*p=3</code>或<code>p[0]=3</code>均不可用。</p>
+<p>128.另外对于普通的指针不能指向常量数据的地址，即<code>int* p;const int a[3];p=a;</code>这样是不合法的，因为根据声明<code>*p</code>可修改，但<code>a[0]</code>却是常量，产生冲突。而对于指向常量的指针来说，不管是常量还是非常量数据的地址都可以给其赋值，因为<code>*p</code>本来就规定不能被修改，参见<code>125</code>点。</p>
+<p>129.变长数组并不是表示这个数组的大小可变，而是可以用变量来确定。变长数组作为形式参数时可以这样来定义：<code>int sum(int rows,int cols,int ar[rows][cols]);</code>或者<code>int sum(int,int,int ar[*][*]);</code>而且<code>ar</code>指针的声明必须在最后，顺序不能错误。</p>
 <p>130.指针与多维数组：数组名同时也是数组首元素的地址。例如二维数组<code>int zip[2][3];那么会有zip==&amp;zip[0];zip[0]==&amp;zip[0][0];</code>因此<code>*zip==zip[0];*zip[0]==zip[0][0];</code>还有指针和数组的等价表示形式：<code>zip[1][2]==*(*(zip+1)+2);</code>虽然可以用指针的表示形式，但是最好不要用这种形式，不利于阅读。</p>
-<p>131.如何声明指向二维数组的指针变量？？正确的形式应该是：<code>int (*p)[2];</code>表示p是一个指向包含2个int值的数组的指针，而不是<code>int* p[2];</code>表示p是一个含有2个int指针的数组，它们的区别是圆括号的应用，不加圆括号的话，p将优先与[]结合形成数组，靠，这里还涉及运算符的结合性。</p>
-<p>132.前面125点说过，可以把非const指针赋值给const指针，但这仅限于一层间接运算。对于指针的指针来说，将不再允许，因此假如 <code>const int** pp; int* p;</code> 那么 <code>pp=&amp;p;</code>将是错误的，因为const指针可以赋值给const指针，如果上述允许的话，于是有 <code>const int n=10;*pp=&amp;n; p==*pp==&amp;n;</code> 通过*p可以修改常量n的数值，这样的冲突怎么会被允许。靠，这些太复杂了，记住就行了，实际上很少用到。</p>
-<p>133.一般声明N维数组指针的形式参数时，除了最左边的括号可以留空外，其余都要填写数值。例如：<code>int sum(int ar[][2][3],int rows);</code>其等价的指针形式如下：<code>int sum(int (*ar)[2][3],int rows);</code>这里ar是一个指向2×3的数组的指针。</p>
+<p>131.如何声明指向二维数组的指针变量？？正确的形式应该是：<code>int (*p)[2];</code>表示<code>p</code>是一个指向包含<code>2</code>个<code>int</code>值的数组的指针，而不是<code>int* p[2];</code>表示<code>p</code>是一个含有<code>2</code>个<code>int</code>指针的数组，它们的区别是圆括号的应用，不加圆括号的话，<code>p</code>将优先与<code>[]</code>结合形成数组，靠，这里还涉及运算符的结合性。</p>
+<p>132.前面<code>125</code>点说过，可以把非<code>const</code>指针赋值给<code>const</code>指针，但这仅限于一层间接运算。对于指针的指针来说，将不再允许，因此假如 <code>const int** pp; int* p;</code> 那么 <code>pp=&amp;p;</code>将是错误的，因为<code>const</code>指针可以赋值给<code>const</code>指针，如果上述允许的话，于是有 <code>const int n=10;*pp=&amp;n; p==*pp==&amp;n;</code> 通过<code>*p</code>可以修改常量<code>n</code>的数值，这样的冲突怎么会被允许。靠，这些太复杂了，记住就行了，实际上很少用到。</p>
+<p>133.一般声明N维数组指针的形式参数时，除了最左边的括号可以留空外，其余都要填写数值。例如：<code>int sum(int ar[][2][3],int rows);</code>其等价的指针形式如下：<code>int sum(int (*ar)[2][3],int rows);</code>这里<code>ar</code>是一个指向<code>2×3</code>的数组的指针。</p>
 <p>134.常规的C数组是静态存储分配，即数组大小在编译时就已经确定，而变长数组是动态存储分配，可以在运行时指定数组大小。</p>
-<p>135.复合文字：C99中引入了复合文字，说实话就是一个无数组名的常量数组，可以看成是数组的常量形式，由于它是一个值，不能单独作为语句，因此必须立即使用。例如：<code>int* p = (int [2]){10,20};</code>或者作为函数参数<code>sum((int []){1,2,3,4},6);</code>这里相当于将一个含有4个int值的数组传递给sum函数。</p>
-<p>136.字符串常量之间如果没有间隔或者间隔是空格符，ANSI C会将其串联在一起。例如：&quot;Hello!&quot; &quot;How are you!&quot;和 &quot;Hello!How are you!&quot;的效果是相同的。</p>
+<p>135.复合文字：<code>C99</code>中引入了复合文字，说实话就是一个无数组名的常量数组，可以看成是数组的常量形式，由于它是一个值，不能单独作为语句，因此必须立即使用。例如：<code>int* p = (int [2]){10,20};</code>或者作为函数参数<code>sum((int []){1,2,3,4},6);</code>这里相当于将一个含有<code>4</code>个<code>int</code>值的数组传递给<code>sum</code>函数。</p>
+<p>136.字符串常量之间如果没有间隔或者间隔是空格符，<code>ANSI C</code>会将其串联在一起。例如：<code>&quot;Hello!&quot; &quot;How are you!&quot;</code>和 <code>&quot;Hello!How are you!&quot;</code>的效果是相同的。</p>
 <p>137.常量字符串本身就是其存储位置的指针，与数组名的作用类似。如：<code>printf(&quot;%p %c&quot;,&quot;are&quot;,*&quot;are&quot;);</code>这样的用法。</p>
-<p>138.字符数组和字符串的区别在于末尾的空字符('\0')，如果没有空字符的话，那就是字符数组，而非字符串，通过%s说明符打印字符串以及各种字符串处理函数都是以'\0'作为结尾标记进行处理的。</p>
-<p>139.字符数组中未被初始化的元素将被自动初始化为空字符('\0')。</p>
+<p>138.字符数组和字符串的区别在于末尾的空字符(<code>'\0'</code>)，如果没有空字符的话，那就是字符数组，而非字符串，通过<code>%s</code>说明符打印字符串以及各种字符串处理函数都是以<code>'\0'</code>作为结尾标记进行处理的。</p>
+<p>139.字符数组中未被初始化的元素将被自动初始化为空字符(<code>'\0'</code>)。</p>
 <p>140.字符串可以有数组和指针两种初始化方式，例如：<code>char p[]=&quot;hello world&quot;;</code>和<code>char *p=&quot;hello world&quot;;</code>不过要注意几点：</p>
 <p>①程序运行时，数组初始化是从静态存储区把一个字符串复制给数组，而指针初始化只是复制字符串的地址。</p>
 <p>②数组名是个常量，但是其数组元素不是常量，而是变量，可以修改。</p>
-<p>③指针虽然是个变量，可以改变它指向的地址，但是C语言规定不能用它来修改它所指向的字符串，即<code>*p='l';</code>这样的做法是不允许的。最好这样初始化：<code>const char *p=&quot;hello world&quot;;</code>防止错误的发生。</p>
-<p>141.字符串数组有两种构造方法，一种是指针形式 <code>const char *p1[5];</code>一种是二维数组形式: <code>char p2[5][80];</code>这两种方法的区别是p1是指针的数组，每个指针指向一个字符串，其长度不确定，根据140点最好加上const关键字，而p2是数组的数组，每个元素都是长度为80的字符数组。</p>
-<p>142.gets函数可以读取字符串到一个地址(指针)中，同时返回指向这个字符串的地址，如果读取出错或到文件尾，就返回空指针(NULL)，优点是自动丢弃换行符，缺点是不检查数据是否溢出存储区，容易被黑客利用，不安全。</p>
-<p>143.fgets函数能够限制最大输入字符数，但是不会丢弃换行符，需要手动删除，虽然麻烦，但是安全，使用方法如下：char name[81];fgets(name,81,stdin);返回值也是指向读入字符串的地址。</p>
-<p>144.puts函数会自动在显示字符串后加上换行符，它检查'\0'标记作为字符串的结束，参数是要显示字符串的地址。</p>
-<p>145.fputs函数不会在显示字符串后自动添加换行符，和fgets函数一起使用，用于文件的字符操作，使用方法如下：fputs(line,stdout);其中stdout可以用文件指针代替，从而输出到文件。</p>
-<p>146.字符串处理函数在string.h头文件中，有strlen() strcat() strcpy() strcmp()等常用函数。</p>
-<p>①strlen函数可以计算字符串的长度，不包括空字符，而sizeof字符数组则包含空字符的计算;</p>
-<p>②strcat函数将第二个字符串的拷贝添加到第一个字符串的结尾，同时返回第一个字符串的值，而第二个字符串并没有做任何改变，如：strcat(a,b);</p>
-<p>③strncat函数类似strcat，不过可以指定数目，它将第二个字符串前n个字符的拷贝添加到第一个字符串的结尾，并自动添加空字符作为结束标记，如：strncat(a,b,n);</p>
-<p>④strcmp函数用来比较两个字符串是否相同，如果两个字符串参数相同的话，它就返回0；如果第一个字符串小于第二个字符串，它就返回负数；如果第一个字符串大于第二个字符串，它就返回正数。比较字符串时会依次比较每个字符，直到不一致时就返回相应的值，字符的比较取决于ASCII值，排在ASCII表后面的字符大于排在前面的字符。</p>
-<p>⑤strncmp函数与strcmp作用类似，不过可以指定比较字符数，例如 strncmp(a,b,5);将只比较a和b字符串的前5个字符是否相同，可以用来查找带相同前缀的字符串。</p>
-<p>⑥字符串指针之间的赋值只是简单的复制字符串的地址而已，并不会拷贝真正的字符串，如果需要复制字符串的话，就要用到strcpy函数，它将第二个参数指向的字符串复制到第一个参数指向的存储空间(数组或malloc的空间)中，同时返回第一个参数的值。</p>
-<p>⑦同gets函数一样，strcpy函数也不会检查数据是否溢出存储区。为了安全性的话，可以使用strncpy函数，该函数会将第二个参数的前n个字符复制到第一个参数指向的存储空间中，同时返回第一个参数的值。但是有一个小问题，如果第二个字符串的长度小于n的话，整个字符串包括结束标记'\0'也被复制过来，空字符之后的数据将不再被复制，而如果长度大于n的话，就只会复制第二个字符串的一部分，那么字符串的结束标记'\0'就需要手动添加了，请小心使用。</p>
-<p>147.sprintf()函数可以格式化输出到一个字符串中，与printf()使用方法类似，输出路径不一样而已。例如：sprintf(src,&quot;hello %d %s&quot;,num,str);将把格式化后的字符串复制到src指向的存储空间中，并返回字符串的长度。</p>
-<p>148.strchr()函数返回字符串s中存放字符c的第一个位置的指针，包括空字符，没找到的话返回NULL，使用方法如下：strchr(s,c);</p>
-<p>149.strrchr()函数返回字符串s中存放字符c的最后一个位置的指针，包括空字符，没找到的话返回NULL，使用方法如下：strrchr(s,c);</p>
-<p>150.strstr()函数返回字符串s1中第一次出现字符串s2的位置，没找到的话返回NULL，如：strstr(s1,s2);</p>
-<p>151.strbrk()函数返回字符串s1中存放s2中任何字符的第一个位置，相当于多字符同时查找，得到第一个出现的位置，没找到的话返回NULL，如：strbrk(s1,s2);</p>
+<p>③指针虽然是个变量，可以改变它指向的地址，但是<code>C</code>语言规定不能用它来修改它所指向的字符串，即<code>*p='l';</code>这样的做法是不允许的。最好这样初始化：<code>const char *p=&quot;hello world&quot;;</code>防止错误的发生。</p>
+<p>141.字符串数组有两种构造方法，一种是指针形式 <code>const char *p1[5];</code>一种是二维数组形式: <code>char p2[5][80];</code>这两种方法的区别是<code>p1</code>是指针的数组，每个指针指向一个字符串，其长度不确定，根据<code>140</code>点最好加上<code>const</code>关键字，而<code>p2</code>是数组的数组，每个元素都是长度为<code>80</code>的字符数组。</p>
+<p>142.<code>gets</code>函数可以读取字符串到一个地址(指针)中，同时返回指向这个字符串的地址，如果读取出错或到文件尾，就返回空指针(<code>NULL</code>)，优点是自动丢弃换行符，缺点是不检查数据是否溢出存储区，容易被黑客利用，不安全。</p>
+<p>143.<code>fgets</code>函数能够限制最大输入字符数，但是不会丢弃换行符，需要手动删除，虽然麻烦，但是安全，使用方法如下：<code>char name[81];fgets(name,81,stdin);</code>返回值也是指向读入字符串的地址。</p>
+<p>144.<code>puts</code>函数会自动在显示字符串后加上换行符，它检查<code>'\0'</code>标记作为字符串的结束，参数是要显示字符串的地址。</p>
+<p>145.<code>fputs</code>函数不会在显示字符串后自动添加换行符，和<code>fgets</code>函数一起使用，用于文件的字符操作，使用方法如下：<code>fputs(line,stdout);</code>其中<code>stdout</code>可以用文件指针代替，从而输出到文件。</p>
+<p>146.字符串处理函数在<code>string.h</code>头文件中，有<code>strlen() strcat() strcpy() strcmp()</code>等常用函数。</p>
+<p>①<code>strlen</code>函数可以计算字符串的长度，不包括空字符，而<code>sizeof</code>字符数组则包含空字符的计算;</p>
+<p>②<code>strcat</code>函数将第二个字符串的拷贝添加到第一个字符串的结尾，同时返回第一个字符串的值，而第二个字符串并没有做任何改变，如：<code>strcat(a,b);</code></p>
+<p>③<code>strncat</code>函数类似<code>strcat</code>，不过可以指定数目，它将第二个字符串前<code>n</code>个字符的拷贝添加到第一个字符串的结尾，并自动添加空字符作为结束标记，如：<code>strncat(a,b,n);</code></p>
+<p>④<code>strcmp</code>函数用来比较两个字符串是否相同，如果两个字符串参数相同的话，它就返回<code>0</code>；如果第一个字符串小于第二个字符串，它就返回负数；如果第一个字符串大于第二个字符串，它就返回正数。比较字符串时会依次比较每个字符，直到不一致时就返回相应的值，字符的比较取决于<code>ASCII</code>值，排在<code>ASCII</code>表后面的字符大于排在前面的字符。</p>
+<p>⑤<code>strncmp</code>函数与<code>strcmp</code>作用类似，不过可以指定比较字符数，例如 <code>strncmp(a,b,5);</code>将只比较<code>a</code>和<code>b</code>字符串的前<code>5</code>个字符是否相同，可以用来查找带相同前缀的字符串。</p>
+<p>⑥字符串指针之间的赋值只是简单的复制字符串的地址而已，并不会拷贝真正的字符串，如果需要复制字符串的话，就要用到<code>strcpy</code>函数，它将第二个参数指向的字符串复制到第一个参数指向的存储空间(数组或<code>malloc</code>的空间)中，同时返回第一个参数的值。</p>
+<p>⑦同<code>gets</code>函数一样，<code>strcpy</code>函数也不会检查数据是否溢出存储区。为了安全性的话，可以使用<code>strncpy</code>函数，该函数会将第二个参数的前<code>n</code>个字符复制到第一个参数指向的存储空间中，同时返回第一个参数的值。但是有一个小问题，如果第二个字符串的长度小于<code>n</code>的话，整个字符串包括结束标记<code>'\0'</code>也被复制过来，空字符之后的数据将不再被复制，而如果长度大于<code>n</code>的话，就只会复制第二个字符串的一部分，那么字符串的结束标记<code>'\0'</code>就需要手动添加了，请小心使用。</p>
+<p>147.<code>sprintf()</code>函数可以格式化输出到一个字符串中，与<code>printf()</code>使用方法类似，输出路径不一样而已。例如：<code>sprintf(src,&quot;hello %d %s&quot;,num,str);</code>将把格式化后的字符串复制到<code>src</code>指向的存储空间中，并返回字符串的长度。</p>
+<p>148.<code>strchr()</code>函数返回字符串<code>s</code>中存放字符<code>c</code>的第一个位置的指针，包括空字符，没找到的话返回<code>NULL</code>，使用方法如下：<code>strchr(s,c);</code></p>
+<p>149.<code>strrchr()</code>函数返回字符串<code>s</code>中存放字符<code>c</code>的最后一个位置的指针，包括空字符，没找到的话返回<code>NULL</code>，使用方法如下：<code>strrchr(s,c);</code></p>
+<p>150.<code>strstr()</code>函数返回字符串<code>s1</code>中第一次出现字符串<code>s2</code>的位置，没找到的话返回<code>NULL</code>，如：<code>strstr(s1,s2);</code></p>
+<p>151.<code>strbrk()</code>函数返回字符串<code>s1</code>中存放<code>s2</code>中任何字符的第一个位置，相当于多字符同时查找，得到第一个出现的位置，没找到的话返回<code>NULL</code>，如：<code>strbrk(s1,s2);</code></p>
 <p>152.选择排序算法：①将第一个元素依次与其后元素进行比较，并把较小的元素交换到第一个位置，循环一遍之后第一个位置将是最小的元素；②再将第二个元素依次与其后元素进行比较，同上的方法可以得到第二个位置将是第二小的元素，依次类推下去，可以将整个数组进行排序。</p>
-<p>153.ctype.h头文件包含的都是针对字符的函数，对于整个字符串是没有作用的，但可用于字符。</p>
-<p>154.带有命令行参数的main()函数的写法：<code>int main(int argc,char *argv[])</code>或者<code>int main(int agrc,char **argv)</code>，argc代表参数个数，argv代表参数数组，其中argv[0]代表程序名，argv[1]代表第一个参数字符串，argv[2]代表第二个参数字符串，依次类推。</p>
-<p>155.字符串转换为数字(需要包含stdlib.h头文件)：</p>
-<p>①atoi()函数以字符串为参数，返回相应的整数值，例如：atoi(&quot;42&quot;)返回整数42，如果字符串以整数开头，那么只转换整数部分，如：atoi(&quot;42hello&quot;)返回42，如果不能识别的话，就返回0，如：atoi(&quot;hello42&quot;)或atoi(&quot;hello&quot;)均不能识别，返回值为0。其他类似函数，atof()和atol()可以将字符串转换为相应的double类型和long类型。</p>
-<p>②strtol()函数可以将字符串转换为相应的long类型值，同时可以定义进制，并得到结束时的字符指针。例如：<code>char *end; long value = strtol(&quot;10atom&quot;,&amp;end,16);</code>这里10atom字符串中的10a将被识别为16进制进行转换返回数值266给value，同时将结束时的字符地址赋值给end，所以end将指向't'字符。</p>
-<p>156.在用字符常量初始化字符数组或字符指针的时候，C语言会自动在其末尾添加空字符，这点容易忘记。</p>
-<p>157.C语言将字符常量自动转换为int类型进行存储，所以字符常量的大小与sizeof(int)相同。常见的大小示例：<code>char c='c';char *d=&quot;d&quot;;</code>那么<code>sizeof(c)==1，sizeof('c')==4，sizeof(d)==4，sizeof(&quot;d&quot;)==2</code>。为什么大小不同呢？记住常量和变量是分开存储的，它们都有各自的空间和大小。</p>
-<p>158.strcpy()函数的源码：</p>
+<p>153.<code>ctype.h</code>头文件包含的都是针对字符的函数，对于整个字符串是没有作用的，但可用于字符。</p>
+<p>154.带有命令行参数的<code>main()</code>函数的写法：<code>int main(int argc,char *argv[])</code>或者<code>int main(int agrc,char **argv)</code>，<code>argc</code>代表参数个数，<code>argv</code>代表参数数组，其中<code>argv[0]</code>代表程序名，<code>argv[1]</code>代表第一个参数字符串，<code>argv[2]</code>代表第二个参数字符串，依次类推。</p>
+<p>155.字符串转换为数字(需要包含<code>stdlib.h</code>头文件)：</p>
+<p>①<code>atoi()</code>函数以字符串为参数，返回相应的整数值，例如：<code>atoi(&quot;42&quot;)</code>返回整数<code>42</code>，如果字符串以整数开头，那么只转换整数部分，如：<code>atoi(&quot;42hello&quot;)</code>返回<code>42</code>，如果不能识别的话，就返回<code>0</code>，如：<code>atoi(&quot;hello42&quot;)</code>或<code>atoi(&quot;hello&quot;)</code>均不能识别，返回值为<code>0</code>。其他类似函数，<code>atof()</code>和<code>atol()</code>可以将字符串转换为相应的<code>double</code>类型和<code>long</code>类型。</p>
+<p>②<code>strtol()</code>函数可以将字符串转换为相应的<code>long</code>类型值，同时可以定义进制，并得到结束时的字符指针。例如：<code>char *end; long value = strtol(&quot;10atom&quot;,&amp;end,16);</code>这里<code>10atom</code>字符串中的<code>10a</code>将被识别为<code>16</code>进制进行转换返回数值<code>266</code>给<code>value</code>，同时将结束时的字符地址赋值给<code>end</code>，所以<code>end</code>将指向<code>'t'</code>字符。</p>
+<p>156.在用字符常量初始化字符数组或字符指针的时候，<code>C</code>语言会自动在其末尾添加空字符，这点容易忘记。</p>
+<p>157.<code>C</code>语言将字符常量自动转换为<code>int</code>类型进行存储，所以字符常量的大小与<code>sizeof(int)</code>相同。常见的大小示例：<code>char c='c';char *d=&quot;d&quot;;</code>那么<code>sizeof(c)==1，sizeof('c')==4，sizeof(d)==4，sizeof(&quot;d&quot;)==2</code>。为什么大小不同呢？记住常量和变量是分开存储的，它们都有各自的空间和大小。</p>
+<p>158.<code>strcpy()</code>函数的源码：</p>
 <p>①标准形式：</p>
 <pre><code>#include &lt;assert.h&gt;
 char* strcpy(char *dest,const char *src)
@@ -359,38 +359,38 @@ char* strcpy(char *dest,const char *src)
 }</code></pre>
 <p>这个形式可以巧妙的回避一次指针的累加，提高效率。</p>
 <p>159.作用域包括代码块作用域，函数原型作用域和文件作用域：</p>
-<p>①for循环是一个代码块，函数体也是一个代码块，甚至两个花括号括起来的部分都是一个代码块，在代码块内定义的变量，其作用域只限于该代码块，例如形式参数和for循环控制部分定义的变量都是局部变量，只具有代码块作用域。</p>
-<p>②传统C语言规定具有代码块作用域的变量都必须在代码块的开始处进行声明，而C99取消了这一点，这个问题以前遇到过呢。所以C99后变量的声明可以在代码块的任何位置了，还有C99将for循环、while循环、do while循环和if语句的控制部分也看做循环代码块的一部分，所以像for(int i=0;i&lt;9;i++)这种形式的定义也可以使用了，参见61点曾说变量i必须在体外声明，那是C99之前的规定。</p>
-<p>③函数原型作用域适用于只函数原型中使用的变量名，如：int func(int n,int m);通常情况下，编译器只识别类型，对于变量名不关心，除了变长数组以外，变长数组的大小必须是原型中已经声明的变量。</p>
+<p>①<code>for</code>循环是一个代码块，函数体也是一个代码块，甚至两个花括号括起来的部分都是一个代码块，在代码块内定义的变量，其作用域只限于该代码块，例如形式参数和<code>for</code>循环控制部分定义的变量都是局部变量，只具有代码块作用域。</p>
+<p>②传统<code>C</code>语言规定具有代码块作用域的变量都必须在代码块的开始处进行声明，而<code>C99</code>取消了这一点，这个问题以前遇到过呢。所以<code>C99</code>后变量的声明可以在代码块的任何位置了，还有<code>C99</code>将<code>for</code>循环、<code>while</code>循环、<code>do while</code>循环和<code>if</code>语句的控制部分也看做循环代码块的一部分，所以像<code>for(int i=0;i&lt;9;i++)</code>这种形式的定义也可以使用了，参见<code>61</code>点曾说变量<code>i</code>必须在体外声明，那是<code>C99</code>之前的规定。</p>
+<p>③函数原型作用域适用于只函数原型中使用的变量名，如：<code>int func(int n,int m);</code>通常情况下，编译器只识别类型，对于变量名不关心，除了变长数组以外，变长数组的大小必须是原型中已经声明的变量。</p>
 <p>④在所有函数之外定义的变量具有文件作用域，该变量从它定义处到文件结尾处都是可见的，又被称为全局变量。</p>
-<p>160.一个C变量具有外部链接，内部链接和空链接三种之一。对于代码块作用域和函数原型作用域的变量是空链接，而对于全局变量则具有外部链接或者内部链接。判断一个全局变量是否具有外部链接的方法是：如果变量定义前有static修饰，就表示该变量是内部链接，否则就是外部链接，内部链接的变量只能在该文件中使用，不能被其他文件使用，而外部链接的变量可以被同程序的其他文件拿去使用。</p>
+<p>160.一个C变量具有外部链接，内部链接和空链接三种之一。对于代码块作用域和函数原型作用域的变量是空链接，而对于全局变量则具有外部链接或者内部链接。判断一个全局变量是否具有外部链接的方法是：如果变量定义前有<code>static</code>修饰，就表示该变量是内部链接，否则就是外部链接，内部链接的变量只能在该文件中使用，不能被其他文件使用，而外部链接的变量可以被同程序的其他文件拿去使用。</p>
 <p>161.静态存储周期的变量在程序运行时一直存在，而自动存储周期的变量只有在用到它时才分配内存，使用完后就会被释放。所有全局变量(无论外部链接还是内部链接)都具有静态存储周期，而局部变量则是自动存储周期。</p>
-<p>162.159点中说C99标准下for循环的控制部分是循环代码块的一部分，但是要注意，控制部分与循环部分的代码块并不是在同一级，可以这样说，for循环是一个代码块，控制部分直接属于它，而循环部分则是它的子代码块，所以在循环部分定义的变量可以覆盖控制部分定义的同名变量，如下面的代码：</p>
+<p>162.<code>159</code>点中说<code>C99</code>标准下<code>for</code>循环的控制部分是循环代码块的一部分，但是要注意，控制部分与循环部分的代码块并不是在同一级，可以这样说，<code>for</code>循环是一个代码块，控制部分直接属于它，而循环部分则是它的子代码块，所以在循环部分定义的变量可以覆盖控制部分定义的同名变量，如下面的代码：</p>
 <pre><code>for(int i=0;i&lt;3;i++)
 {
     printf(&quot;i==%d\n&quot;,i);
     int i=30;
     printf(&quot;i==%d\n&quot;,i);
 }</code></pre>
-<p>每次进入循环体时，先打印的是控制部分的i变量，然后i变量被内层定义覆盖，打印的是循环部分的i变量；每次执行完循环体后，循环部分定义的i变量消失，转而使用控制部分的i变量进行条件判断；整个循环结束时，控制部分的i变量又会消失。注：while循环、do while循环和if语句的控制部分与此类似。</p>
-<p>163.auto关键字可以显式声明自动变量，默认情况下未加修饰的变量就是自动变量，如：int a=10;与auto int a=10;等效，基本可以无视。</p>
-<p>164.register关键字可以声明寄存器变量，从而让变量存储在寄存器中而非内存中，如：register int a;但是这仅是个请求，编译器可能不会答应，所以结果未知。由于不存放在内存中，所以无法获得寄存器变量的地址，除了这点以外，其他特性与自动变量类似，都是代码块作用域、自动存储周期和空链接。</p>
+<p>每次进入循环体时，先打印的是控制部分的<code>i</code>变量，然后<code>i</code>变量被内层定义覆盖，打印的是循环部分的<code>i</code>变量；每次执行完循环体后，循环部分定义的<code>i</code>变量消失，转而使用控制部分的<code>i</code>变量进行条件判断；整个循环结束时，控制部分的<code>i</code>变量又会消失。注：<code>while</code>循环、<code>do while</code>循环和<code>if</code>语句的控制部分与此类似。</p>
+<p>163.<code>auto</code>关键字可以显式声明自动变量，默认情况下未加修饰的变量就是自动变量，如：<code>int a=10;</code>与<code>auto int a=10;</code>等效，基本可以无视。</p>
+<p>164.<code>register</code>关键字可以声明寄存器变量，从而让变量存储在寄存器中而非内存中，如：<code>register int a;</code>但是这仅是个请求，编译器可能不会答应，所以结果未知。由于不存放在内存中，所以无法获得寄存器变量的地址，除了这点以外，其他特性与自动变量类似，都是代码块作用域、自动存储周期和空链接。</p>
 <p>165.代码块内的静态变量具有代码块作用域，空链接，却是静态存储周期。如下面的代码：</p>
 <pre><code>void func(void)
 {
     static int stay=1;//调用该函数时，此句并不会执行
     printf(&quot;%d\n&quot;,stay++);
 }</code></pre>
-<p>这里stay是一个静态变量，但作用域仅限于该函数中，函数结束时stay变量并不会消失，再次调用该函数时stay变量也不会重新初始化，而会继续使用之前保留的值。实际上static int stay=1;这个语句并不属于函数的一部分，函数调用时并不会执行，只是告诉编译器stay是个作用域仅在该函数中的静态变量，程序刚开始运行时stay变量就已经存在并进行初始化了。</p>
-<p>166.static关键字会将变量声明为静态变量；全局变量和静态变量在程序刚调入内存时就已经就位并一直存在；静态变量如果没有显式初始化，会被系统自动初始化为0；还有形式参数不能用static关键字，记住了。</p>
-<p>167.默认情况在所有函数外声明的变量是外部变量，具有文件作用域﹑外部链接和静态存储周期，定义时不能加extern关键字，但声明时必须要加extern关键字，假如变量来自外部文件，那就必须要进行声明才能使用。还有在函数中默认情况下不用再次声明，外部变量自动有效，但仍能用extern关键字显式声明函数要使用它，注意不能去掉extern关键字啊，否则会被错认为是创建局部变量从而覆盖外部变量啦。</p>
+<p>这里<code>stay</code>是一个静态变量，但作用域仅限于该函数中，函数结束时<code>stay</code>变量并不会消失，再次调用该函数时<code>stay</code>变量也不会重新初始化，而会继续使用之前保留的值。实际上<code>static int stay=1;</code>这个语句并不属于函数的一部分，函数调用时并不会执行，只是告诉编译器<code>stay</code>是个作用域仅在该函数中的静态变量，程序刚开始运行时<code>stay</code>变量就已经存在并进行初始化了。</p>
+<p>166.<code>static</code>关键字会将变量声明为静态变量；全局变量和静态变量在程序刚调入内存时就已经就位并一直存在；静态变量如果没有显式初始化，会被系统自动初始化为<code>0</code>；还有形式参数不能用<code>static</code>关键字，记住了。</p>
+<p>167.默认情况在所有函数外声明的变量是外部变量，具有文件作用域﹑外部链接和静态存储周期，定义时不能加<code>extern</code>关键字，但声明时必须要加<code>extern</code>关键字，假如变量来自外部文件，那就必须要进行声明才能使用。还有在函数中默认情况下不用再次声明，外部变量自动有效，但仍能用<code>extern</code>关键字显式声明函数要使用它，注意不能去掉<code>extern</code>关键字啊，否则会被错认为是创建局部变量从而覆盖外部变量啦。</p>
 <p>168.外部变量虽然是文件作用域，但是其实是从声明位置到文件结尾为止而已。所以如果外部变量在某个函数之后再声明的话，那么它对于这个这个函数还是不可见的。</p>
-<p>169.外部变量的初始化：外部变量只能使用常量表达式进行初始化；如果没有初始化的话，会被系统自动赋值为0，倘若是数组的话，那么所有元素就会被赋值为0。</p>
-<p>170.假如在函数中用extern关键字声明来自外部文件的变量，而并没有在函数外声明，那么该变量将只能在这个函数中使用，相当于一个特殊的局部变量。</p>
+<p>169.外部变量的初始化：外部变量只能使用常量表达式进行初始化；如果没有初始化的话，会被系统自动赋值为<code>0</code>，倘若是数组的话，那么所有元素就会被赋值为<code>0</code>。</p>
+<p>170.假如在函数中用<code>extern</code>关键字声明来自外部文件的变量，而并没有在函数外声明，那么该变量将只能在这个函数中使用，相当于一个特殊的局部变量。</p>
 <p>171.类似函数的定义和声明，外部变量的定义和声明也可以分开，但是一般情况下都在函数前面定义好了变量，所以可以这种情况下可以省略声明了。</p>
-<p>172.注意static关键字和extern关键字的区别：static关键字是用来定义静态变量的，所以可以这样用 static int a=10;而extern关键字只是用来声明外部变量的，不能用来定义变量，所以extern int a=10;这样使用是错误的，靠，extern关键字只是个声明修饰而已。</p>
+<p>172.注意<code>static</code>关键字和<code>extern</code>关键字的区别：<code>static</code>关键字是用来定义静态变量的，所以可以这样用 <code>static int a=10;</code>而<code>extern</code>关键字只是用来声明外部变量的，不能用来定义变量，所以<code>extern int a=10;</code>这样使用是错误的，靠，<code>extern</code>关键字只是个声明修饰而已。</p>
 <p>173.一个外部变量只能进行一次初始化，而且只能在定义时进行。</p>
-<p>174.具有内部链接的静态变量，怎么说呢，默认情况下函数外定义的都是外部变量，而如果用static修饰定义的话如：static int a=10;那么就a就变成了外部的静态变量，它只能在这个文件中使用，不能被其他文件使用，虽说它具有内部链接，但是对于函数而言，它就是外部的变量啦，所以在函数中也可以用extern关键字来声明它，还真复杂呢：</p>
+<p>174.具有内部链接的静态变量，怎么说呢，默认情况下函数外定义的都是外部变量，而如果用<code>static</code>修饰定义的话如：<code>static int a=10;</code>那么就<code>a</code>就变成了外部的静态变量，它只能在这个文件中使用，不能被其他文件使用，虽说它具有内部链接，但是对于函数而言，它就是外部的变量啦，所以在函数中也可以用<code>extern</code>关键字来声明它，还真复杂呢：</p>
 <pre><code>int a=1;    //外部链接
 static int b=1; //内部链接
 int main(void)
@@ -398,81 +398,81 @@ int main(void)
     extern int a;   //使用全局变量a
     extern int b;   //使用全局变量b
 }</code></pre>
-<p>175.虽然前面说了声明来自其他文件的外部变量需要使用extern关键字，但很多编译器却对此实现不同。例如Linux系统下允许不使用extern关键字来声明来自其他文件的变量，并把唯一一个含初始化的声明作为定义声明，其它未初始化的声明都是引用声明了，注意初始化的只有一个，参见173点。</p>
-<p>176.存储类说明符包括auto﹑register﹑static﹑extern和typedef这5个，其中typedef与内存存储无关，但因为语法原因归为一类，这5个说明符中任两个不能同时出现在一个声明中，所以其它四个说明符也不能出现在typedef语句中。</p>
-<p>177.函数也具有存储类，默认情况下是外部链接，可以使用static关键字声明函数是私有的，只能在本文件内使用，外部文件可以定义同名函数。</p>
-<p>178.用extern关键字声明函数来自于其他文件，为了程序清晰，对于本文件中函数的声明还是省略extern关键字吧(虽然也可以加)。</p>
+<p>175.虽然前面说了声明来自其他文件的外部变量需要使用<code>extern</code>关键字，但很多编译器却对此实现不同。例如<code>Linux</code>系统下允许不使用<code>extern</code>关键字来声明来自其他文件的变量，并把唯一一个含初始化的声明作为定义声明，其它未初始化的声明都是引用声明了，注意初始化的只有一个，参见<code>173</code>点。</p>
+<p>176.存储类说明符包括<code>auto</code>﹑<code>register</code>﹑<code>static</code>﹑<code>extern</code>和<code>typedef</code>这<code>5</code>个，其中<code>typedef</code>与内存存储无关，但因为语法原因归为一类，这<code>5</code>个说明符中任两个不能同时出现在一个声明中，所以其它四个说明符也不能出现在<code>typedef</code>语句中。</p>
+<p>177.函数也具有存储类，默认情况下是外部链接，可以使用<code>static</code>关键字声明函数是私有的，只能在本文件内使用，外部文件可以定义同名函数。</p>
+<p>178.用<code>extern</code>关键字声明函数来自于其他文件，为了程序清晰，对于本文件中函数的声明还是省略<code>extern</code>关键字吧(虽然也可以加)。</p>
 <p>179.随机数函数和时间函数：</p>
-<p>①时间函数包含在time.h头文件中，原型如下：<code>time_t time(time_t *timer);</code>用于获得当前的系统时间，其值是从1970年1月1日到当前时刻的秒数，参数是<code>time_t</code>类型的地址，获得的时间存储在这个地址中，也可以指向NULL，直接使用返回值得到时间，如：srand(time(NULL));</p>
-<p>②随机数函数rand()是伪随机，它需要不断初始化种子，从而得到一个新的随机数，种子一样的话得到的结果将是相同的。所以得到随机数可以使用如下的形式：</p>
+<p>①时间函数包含在<code>time.h</code>头文件中，原型如下：<code>time_t time(time_t *timer);</code>用于获得当前的系统时间，其值是从<code>1970年1月1日</code>到当前时刻的秒数，参数是<code>time_t</code>类型的地址，获得的时间存储在这个地址中，也可以指向<code>NULL</code>，直接使用返回值得到时间，如：<code>srand(time(NULL));</code></p>
+<p>②随机数函数<code>rand()</code>是伪随机，它需要不断初始化种子，从而得到一个新的随机数，种子一样的话得到的结果将是相同的。所以得到随机数可以使用如下的形式：</p>
 <pre><code>srand(time(NULL));  //初始化种子
 printf(&quot;%d\n&quot;,rand());  //打印随机数</code></pre>
-<p>随机数函数包含在stdlib.h头文件中，rand()得到随机数的范围是0到RAND_MAX的整数，如果要得到0到9范围的随机数可以这样使用：rand()%10;其他范围可自推。</p>
-<p>180.内存分配—malloc()和free()：</p>
-<p>①malloc()函数可以动态分配内存，存储在堆上，一旦分配，不会自动消失，需要我们手动调用free()释放内存。malloc函数使用方法如下：</p>
+<p>随机数函数包含在<code>stdlib.h</code>头文件中，<code>rand()</code>得到随机数的范围是<code>0</code>到<code>RAND_MAX</code>的整数，如果要得到<code>0</code>到<code>9</code>范围的随机数可以这样使用：<code>rand()%10;</code>其他范围可自推。</p>
+<p>180.内存分配—<code>malloc()</code>和<code>free()</code>：</p>
+<p>①<code>malloc()</code>函数可以动态分配内存，存储在堆上，一旦分配，不会自动消失，需要我们手动调用<code>free()</code>释放内存。<code>malloc</code>函数使用方法如下：</p>
 <pre><code>double *ptd=(double *)malloc(10*sizeof(double));
 /* some actions */
 free(ptd);</code></pre>
-<p>参数是需要分配的内存大小，单位是字节，返回值是指向分配内存的指针，指针类型是void类型，可以强制转换为任何其他类型的指针，如果分配失败则返回NULL。</p>
-<p>②malloc()函数和free()函数必须成对出现，如果忘记free()的话，程序不会自动释放分配的内存，最终导致内存耗尽，这类问题被称为内存泄露。</p>
-<p>③calloc()函数类似于malloc()，动态分配内存，同样需要手动free()，不过有一个特性：calloc()分配的内存会将全部位置为0，而malloc则不会。它有两个参数，使用方法如下：</p>
+<p>参数是需要分配的内存大小，单位是字节，返回值是指向分配内存的指针，指针类型是<code>void</code>类型，可以强制转换为任何其他类型的指针，如果分配失败则返回<code>NULL</code>。</p>
+<p>②<code>malloc()</code>函数和<code>free()</code>函数必须成对出现，如果忘记<code>free()</code>的话，程序不会自动释放分配的内存，最终导致内存耗尽，这类问题被称为内存泄露。</p>
+<p>③<code>calloc()</code>函数类似于<code>malloc()</code>，动态分配内存，同样需要手动<code>free()</code>，不过有一个特性：<code>calloc()</code>分配的内存会将全部位置为<code>0</code>，而<code>malloc</code>则不会。它有两个参数，使用方法如下：</p>
 <pre><code>int *ptd=(int *)calloc(10,sizeof(int));
 free(ptd);</code></pre>
-<p>④free()函数用来释放malloc()和calloc()函数分配的内存，参数是被分配内存的地址，不能用来释放其他的内存地址，否则程序会出错。</p>
-<p>181.使用malloc()创建的数组在函数结束时其内存并不会自动消失，所以可以返回其指针让其他函数继续使用，后者可以在它结束时调用free()，free()指针变量可以不同，但只要指针中存储的地址相同即可。不过这显然会使malloc()、free()的配对规则显得很乱，小心使用。</p>
-<p>182.malloc()函数也可以用来定义二维数组，不过语法比较复杂。例如：</p>
+<p>④<code>free()</code>函数用来释放<code>malloc()</code>和<code>calloc()</code>函数分配的内存，参数是被分配内存的地址，不能用来释放其他的内存地址，否则程序会出错。</p>
+<p>181.使用<code>malloc()</code>创建的数组在函数结束时其内存并不会自动消失，所以可以返回其指针让其他函数继续使用，后者可以在它结束时调用<code>free()</code>，<code>free()</code>指针变量可以不同，但只要指针中存储的地址相同即可。不过这显然会使<code>malloc()</code>、<code>free()</code>的配对规则显得很乱，小心使用。</p>
+<p>182.<code>malloc()</code>函数也可以用来定义二维数组，不过语法比较复杂。例如：</p>
 <pre><code>int (* p)[6];   //p是指向包含6个int值数组的指针
 p=(int(*)[6])malloc(5*6*sizeof(int));   //5×6数组</code></pre>
-<p>183.类型限定词包含const、volatile和restrict三个，一个声明中如果多次使用同一限定词，多余的会被忽略：const const const int a=6; //相当于：const int a=6;</p>
-<p>184.const关键字用来声明一个变量，表示这个变量除了初始化以外，其值将不能再被改变。在指针声明中，const关键字有三种形式，其中<code>const int* p;</code>和<code>int const* p;</code>等价，表示p指向的值将不能改变，而<code>int* const p;</code>表示p指针本身的值将不能改变，注意*和const的位置，前者const在*左边，后者const在*右边。</p>
+<p>183.类型限定词包含<code>const</code>、<code>volatile</code>和<code>restrict</code>三个，一个声明中如果多次使用同一限定词，多余的会被忽略：<code>const const const int a=6; //相当于：const int a=6;</code></p>
+<p>184.<code>const</code>关键字用来声明一个变量，表示这个变量除了初始化以外，其值将不能再被改变。在指针声明中，<code>const</code>关键字有三种形式，其中<code>const int* p;</code>和<code>int const* p;</code>等价，表示<code>p</code>指向的值将不能改变，而<code>int* const p;</code>表示<code>p</code>指针本身的值将不能改变，注意<code>*</code>和<code>const</code>的位置，前者<code>const</code>在<code>*</code>左边，后者<code>const</code>在<code>*</code>右边。</p>
 <p>185.使用头文件的好处是不必在一个文件中进行定义声明，在另一个文件中进行引用声明，全部文件都包含同一个头文件就好了；缺点是复制了数据，浪费了空间。</p>
-<p>186.volatile关键字用来声明一个变量是易变的，让它每次都从原始内存中读取数据，而非缓存中，参见5点，可以和const同时使用，如：volatile const int p;表示p在程序中是个常量，但其值可能会被其他程序或硬件所改变。</p>
-<p>187.restrict关键字只能用来声明受限指针，表明这个指针是指向一个数据块的唯一初始方式，其他指针将不能再指向该数据块，而该数据块的访问方式也将是唯一的。使用方法：<code>int* restrict p=(int *)malloc(10*sizeof(int));</code>表明p指针是这块数据区的唯一入口。</p>
-<p>188.<code>void* memcpy(void* restrict s1,const void* restrict s2,size_t n);</code>其功能是从位置s2复制n个字节到位置s1，其中s1和s2使用了关键字restrict表明这两块位置不能重叠。</p>
-<p>189.<code>void* memmove(void* s1,const void* s2,size_t n);</code>其功能与memcpy()类似，但是s1和s2的位置没有要求，所以它们可以重叠，这使得我们使用memmove()函数复制数据时要非常小心。</p>
-<p>190.在C99中，<code>void fun(int* const p1,int* restrict p2);</code>与<code>void fun(int p1[const],int p2[restrict]);</code>等价。还有static在形式参数中不能直接修饰变量，但还有其他用法，如：void fun(int ar[static 20]);表示ar是一个指向数组首元素的指针，并且该数组至少包含20个元素，不过这些新用法实在是很少用啊。</p>
-<p>191.C语言将文件看成是连续的字节序列，其中每一个字节都可以单独读取。这与Unix环境中的文件结构是一致的。</p>
-<p>192.ANSI C提供文件的两种视图：文本视图和二进制视图。</p>
-<p>文本视图模式下，C程序会屏蔽掉不同系统的行尾表示法，统一映射为\n，编程时不用考虑系统的差异。例如C程序以文本视图处理Windows下的文件，读取时它会将\r\n转换为\n，写入时又会将\n转换为\r\n，其他系统类似。</p>
-<p>二进制视图模式下，文件的每个字节都可以被程序访问，C语言不会做任何处理。所以处理Windows下的文件时我们将可以看到\r\n的结尾符。</p>
-<p>通常情况下，对于文本文件使用文本视图，对于二进制文件使用二进制视图。不过在Linux下这两种视图的实现方式是相同的，显得很方便。</p>
-<p>193.ANSI C只支持标准I/O，C程序运行时会自动打开三个文件，分别是标准输入(stdin)、标准输出(stdout)和标准错误输出(stderr)。标准输入一般是键盘，标准输出和标准错误输出一般是显示器。</p>
-<p>194.不同于return的函数返回作用，exit()函数会使程序立即退出，例如：exit(EXIT_SUCCESS);和exit(EXIT_FAILURE);分别表示程序正常退出和非正常退出。</p>
-<p>195.fopen()函数可以打开一个文件，并且返回文件流指针，第一个参数是包含路径的文件名，第二个参数是模式字符串。下面是模式字符串的几种形式：</p>
-<p>r 以只读方式打开文件，该文件必须存在。</p>
-<p>w 以只写方式打开文件，文件存在长度清零，文件不存在则建立该文件。</p>
-<p>a 以只写追加方式打开文件。文件不存在则建立文件，文件存在写入的数据会被加到文件尾，原内容保留。</p>
-<p>r+ 以可读写方式打开文件，该文件必须存在。</p>
-<p>w+ 以可读写方式打开文件，文件存在长度清零，文件不存在则建立该文件。</p>
-<p>a+ 以可读写追加方式打开文件。文件不存在则建立文件，文件存在写入的数据会被加到文件尾，原内容保留。</p>
-<p>rw+ 以可读写方式打开文件，允许读和写。该文件必须存在。</p>
-<p>以上方式均是以文本模式打开文件，加上b字母则表示以二进制模式打开文件，如：rb,wb,ab,ab+,wb+等等。</p>
-<p>196.getc()和putc()函数，类似于getchar()和putchar()函数，功能是获取和输出字符，不过对象不同，它们的对象是文件指针，使用方法如：getc(fp);putc(ch,fp);其中ch是字符，fp是文件指针。</p>
-<p>197.C语言在到达文件结尾时会返回EOF字符表示，但此时已经超出文件结尾了，为了防止读取空文件最好进行预读取，例如：</p>
+<p>186.<code>volatile</code>关键字用来声明一个变量是易变的，让它每次都从原始内存中读取数据，而非缓存中，参见<code>5</code>点，可以和<code>const</code>同时使用，如：<code>volatile const int p;</code>表示<code>p</code>在程序中是个常量，但其值可能会被其他程序或硬件所改变。</p>
+<p>187.<code>restrict</code>关键字只能用来声明受限指针，表明这个指针是指向一个数据块的唯一初始方式，其他指针将不能再指向该数据块，而该数据块的访问方式也将是唯一的。使用方法：<code>int* restrict p=(int *)malloc(10*sizeof(int));</code>表明<code>p</code>指针是这块数据区的唯一入口。</p>
+<p>188.<code>void* memcpy(void* restrict s1,const void* restrict s2,size_t n);</code>其功能是从位置<code>s2</code>复制<code>n</code>个字节到位置<code>s1</code>，其中<code>s1</code>和<code>s2</code>使用了关键字<code>restrict</code>表明这两块位置不能重叠。</p>
+<p>189.<code>void* memmove(void* s1,const void* s2,size_t n);</code>其功能与<code>memcpy()</code>类似，但是<code>s1</code>和<code>s2</code>的位置没有要求，所以它们可以重叠，这使得我们使用<code>memmove()</code>函数复制数据时要非常小心。</p>
+<p>190.在<code>C99</code>中，<code>void fun(int* const p1,int* restrict p2);</code>与<code>void fun(int p1[const],int p2[restrict]);</code>等价。还有<code>static</code>在形式参数中不能直接修饰变量，但还有其他用法，如：<code>void fun(int ar[static 20]);</code>表示<code>ar</code>是一个指向数组首元素的指针，并且该数组至少包含<code>20</code>个元素，不过这些新用法实在是很少用啊。</p>
+<p>191.<code>C</code>语言将文件看成是连续的字节序列，其中每一个字节都可以单独读取。这与<code>Unix</code>环境中的文件结构是一致的。</p>
+<p>192.<code>ANSI C</code>提供文件的两种视图：文本视图和二进制视图。</p>
+<p>文本视图模式下，C程序会屏蔽掉不同系统的行尾表示法，统一映射为<code>\n</code>，编程时不用考虑系统的差异。例如C程序以文本视图处理<code>Windows</code>下的文件，读取时它会将<code>\r\n</code>转换为<code>\n</code>，写入时又会将<code>\n</code>转换为<code>\r\n</code>，其他系统类似。</p>
+<p>二进制视图模式下，文件的每个字节都可以被程序访问，<code>C</code>语言不会做任何处理。所以处理<code>Windows</code>下的文件时我们将可以看到<code>\r\n</code>的结尾符。</p>
+<p>通常情况下，对于文本文件使用文本视图，对于二进制文件使用二进制视图。不过在<code>Linux</code>下这两种视图的实现方式是相同的，显得很方便。</p>
+<p>193.<code>ANSI C</code>只支持标准<code>I/O</code>，C程序运行时会自动打开三个文件，分别是标准输入(<code>stdin</code>)、标准输出(<code>stdout</code>)和标准错误输出(<code>stderr</code>)。标准输入一般是键盘，标准输出和标准错误输出一般是显示器。</p>
+<p>194.不同于<code>return</code>的函数返回作用，<code>exit()</code>函数会使程序立即退出，例如：<code>exit(EXIT_SUCCESS);</code>和<code>exit(EXIT_FAILURE);</code>分别表示程序正常退出和非正常退出。</p>
+<p>195.<code>fopen()</code>函数可以打开一个文件，并且返回文件流指针，第一个参数是包含路径的文件名，第二个参数是模式字符串。下面是模式字符串的几种形式：</p>
+<p><code>r</code> 以只读方式打开文件，该文件必须存在。</p>
+<p><code>w</code> 以只写方式打开文件，文件存在长度清零，文件不存在则建立该文件。</p>
+<p><code>a</code> 以只写追加方式打开文件。文件不存在则建立文件，文件存在写入的数据会被加到文件尾，原内容保留。</p>
+<p><code>r+</code> 以可读写方式打开文件，该文件必须存在。</p>
+<p><code>w+</code> 以可读写方式打开文件，文件存在长度清零，文件不存在则建立该文件。</p>
+<p><code>a+</code> 以可读写追加方式打开文件。文件不存在则建立文件，文件存在写入的数据会被加到文件尾，原内容保留。</p>
+<p><code>rw+</code> 以可读写方式打开文件，允许读和写。该文件必须存在。</p>
+<p>以上方式均是以文本模式打开文件，加上<code>b</code>字母则表示以二进制模式打开文件，如：<code>rb,wb,ab,ab+,wb+</code>等等。</p>
+<p>196.<code>getc()</code>和<code>putc()</code>函数，类似于<code>getchar()</code>和<code>putchar()</code>函数，功能是获取和输出字符，不过对象不同，它们的对象是文件指针，使用方法如：<code>getc(fp);putc(ch,fp);</code>其中<code>ch</code>是字符，<code>fp</code>是文件指针。</p>
+<p>197.<code>C</code>语言在到达文件结尾时会返回<code>EOF</code>字符表示，但此时已经超出文件结尾了，为了防止读取空文件最好进行预读取，例如：</p>
 <pre><code>while((ch=getc(fp))!=EOF)
     putchar(ch);</code></pre>
-<p>198.fclose()函数用于关闭已经打开的文件，与fopen()配合使用，如：</p>
+<p>198.<code>fclose()</code>函数用于关闭已经打开的文件，与<code>fopen()</code>配合使用，如：</p>
 <pre><code>FILE* fp;   //fp是指向FILE的指针，FILE必须大写
 fp=fopen(&quot;/1.txt&quot;,&quot;w+&quot;);
 fclose(fp); </code></pre>
-<p>关闭成功则返回值0，否则返回EOF。</p>
-<p>199.fprintf()和fscanf()函数将FILE指针作为第一个参数，实现对文件的输入和输出，其它用法和printf()和scanf()函数类似，例如：fscanf(fp,&quot;%s&quot;,words); 或 fprintf(fp,&quot;%s&quot;,words);其中fp是文件指针。</p>
-<p>200.143和144点已经提到，fgets()和fputs()函数配合的相当好，用于从文件中读取数据或输出数据到文件中，不过它们与gets()和puts()函数正好相反，fgets()函数不会丢弃换行符，fputs()函数不会添加换行符。</p>
-<p>201.fgets()函数细节注意：fgets(name,20,fp);表示从文件指针fp中读取最大19个字符(不遇到换行符或EOF的情况)放在name中，并在末尾自动添加一个空字符构成字符串；如果未到19个字符就遇到换行符，则将换行符一起复制到name中然后添加空字符；如果未到19个字符就遇到文件结尾(EOF)，则将读取到字符复制到name中然后添加空字符；如果一开始就遇到EOF，则返回NULL，否则返回地址值name。</p>
-<p>202.rewind(fp);使文件指针fp内部的位置指针返回文件流的开始处。这里要注意文件指针和文件的位置指针的区别，文件指针指向整个文件，不重新赋值不会改变，而随着对文件的读写，文件的位置指针向后移动，它指向当前的读写字节。</p>
-<p>203.linux下的文本文件一般在文件最后包括一个换行符，EOF是读取到文件结尾时返回的状态值，表示文件结束，其实文件中并不包含EOF，别记错了。</p>
-<p>204.fseek()函数用于定位文件的位置指针，例如<code>fseek(fp,-10L,SEEK_END);</code>其中fp是文件指针，-10L是移动的偏移量，SEEK_END是起始点位置，于是它就表示将当前文件的位置指针移动到SEEK_END-10L处，即文件结尾处退回10个字节。如果移动成功，函数返回0，移动出错，函数返回-1。</p>
-<p>注意偏移量是long类型，文件的起始点位置可以是SEEK_SET(文件开始)、SEEK_CUR(当前位置)、SEEK_END(文件结尾)。</p>
-<p>205.ftell()函数是long类型，返回文件的当前位置距离文件开始处的字节数目，可以通过它获取文件的长度，文件当前指针的位置等。对于fseek()和ftell()函数最好是以二进制模式打开文件，如果以文本模式打开文件，要注意ftell()会将\r\n按一个字节算啦。</p>
-<p>206.fseek()和ftell()的限制：这两个函数只能处理long类型范围内的文件，如果文件大小超过了long类型的最大范围呢？这时我们可以使用fgetpos()和fsetpos()函数，这两个函数使用一种fpos_t的新类型来表示位置，使用方法也和fseek()和ftell()不同，不过一般情况下我们用不到啦。</p>
-<p>207.<code>int ungetc(int c,FILE* fp);</code>此函数可以将字符c放回到输入流fp中，那么下次调用标准输入函数时就会读入c字符啦。</p>
-<p>208.int fflush(fp);函数刷新缓冲区，将未写的数据全部写入到fp指向的输出文件中。</p>
-<p>209.setvbuf()函数：首先它必须在打开文件后未作任何流操作以前进行设置，使用方法如下：<code>int setvbuf(FILE* restrict fp,char* restrict buf,int mode,size_t size);</code>表示将文件指针fp的缓冲区设置为buf所指向的存储区(buf如果为NULL系统会自动创建缓冲区)，大小为size，mode表示缓冲模式，可以是_IOFBF(完全缓冲)、_IOLBF(行缓冲)、_IONBF(无缓冲)，缓冲区创建成功返回0，失败返回非零值。</p>
-<p>210.二进制I/O使用fread()和fwrite()函数：</p>
+<p>关闭成功则返回值<code>0</code>，否则返回<code>EOF</code>。</p>
+<p>199.<code>fprintf()</code>和<code>fscanf()</code>函数将<code>FILE</code>指针作为第一个参数，实现对文件的输入和输出，其它用法和<code>printf()</code>和<code>scanf()</code>函数类似，例如：<code>fscanf(fp,&quot;%s&quot;,words);</code> 或 <code>fprintf(fp,&quot;%s&quot;,words);</code>其中<code>fp</code>是文件指针。</p>
+<p>200.<code>143</code>和<code>144</code>点已经提到，<code>fgets()</code>和<code>fputs()</code>函数配合的相当好，用于从文件中读取数据或输出数据到文件中，不过它们与<code>gets()</code>和<code>puts()</code>函数正好相反，<code>fgets()</code>函数不会丢弃换行符，<code>fputs()</code>函数不会添加换行符。</p>
+<p>201.<code>fgets()</code>函数细节注意：<code>fgets(name,20,fp);</code>表示从文件指针<code>fp</code>中读取最大<code>19</code>个字符(不遇到换行符或<code>EOF</code>的情况)放在<code>name</code>中，并在末尾自动添加一个空字符构成字符串；如果未到<code>19</code>个字符就遇到换行符，则将换行符一起复制到<code>name</code>中然后添加空字符；如果未到<code>19</code>个字符就遇到文件结尾(<code>EOF</code>)，则将读取到字符复制到<code>name</code>中然后添加空字符；如果一开始就遇到<code>EOF</code>，则返回<code>NULL</code>，否则返回地址值<code>name</code>。</p>
+<p>202.<code>rewind(fp);</code>使文件指针<code>fp</code>内部的位置指针返回文件流的开始处。这里要注意文件指针和文件的位置指针的区别，文件指针指向整个文件，不重新赋值不会改变，而随着对文件的读写，文件的位置指针向后移动，它指向当前的读写字节。</p>
+<p>203.<code>linux</code>下的文本文件一般在文件最后包括一个换行符，<code>EOF</code>是读取到文件结尾时返回的状态值，表示文件结束，其实文件中并不包含<code>EOF</code>，别记错了。</p>
+<p>204.<code>fseek()</code>函数用于定位文件的位置指针，例如<code>fseek(fp,-10L,SEEK_END);</code>其中<code>fp</code>是文件指针，<code>-10L</code>是移动的偏移量，<code>SEEK_END</code>是起始点位置，于是它就表示将当前文件的位置指针移动到<code>SEEK_END-10L</code>处，即文件结尾处退回<code>10</code>个字节。如果移动成功，函数返回<code>0</code>，移动出错，函数返回<code>-1</code>。</p>
+<p>注意偏移量是<code>long</code>类型，文件的起始点位置可以是<code>SEEK_SET</code>(文件开始)、<code>SEEK_CUR</code>(当前位置)、<code>SEEK_END</code>(文件结尾)。</p>
+<p>205.<code>ftell()</code>函数是<code>long</code>类型，返回文件的当前位置距离文件开始处的字节数目，可以通过它获取文件的长度，文件当前指针的位置等。对于<code>fseek()</code>和<code>ftell()</code>函数最好是以二进制模式打开文件，如果以文本模式打开文件，要注意<code>ftell()</code>会将<code>\r\n</code>按一个字节算啦。</p>
+<p>206.<code>fseek()</code>和<code>ftell()</code>的限制：这两个函数只能处理<code>long</code>类型范围内的文件，如果文件大小超过了<code>long</code>类型的最大范围呢？这时我们可以使用<code>fgetpos()</code>和<code>fsetpos()</code>函数，这两个函数使用一种<code>fpos_t</code>的新类型来表示位置，使用方法也和<code>fseek()</code>和<code>ftell()</code>不同，不过一般情况下我们用不到啦。</p>
+<p>207.<code>int ungetc(int c,FILE* fp);</code>此函数可以将字符<code>c</code>放回到输入流<code>fp</code>中，那么下次调用标准输入函数时就会读入<code>c</code>字符啦。</p>
+<p>208.<code>int fflush(fp);</code>函数刷新缓冲区，将未写的数据全部写入到<code>fp</code>指向的输出文件中。</p>
+<p>209.<code>setvbuf()</code>函数：首先它必须在打开文件后未作任何流操作以前进行设置，使用方法如下：<code>int setvbuf(FILE* restrict fp,char* restrict buf,int mode,size_t size);</code>表示将文件指针<code>fp</code>的缓冲区设置为<code>buf</code>所指向的存储区(<code>buf</code>如果为<code>NULL</code>系统会自动创建缓冲区)，大小为<code>size</code>，<code>mode</code>表示缓冲模式，可以是<code>_IOFBF</code>(完全缓冲)、<code>_IOLBF</code>(行缓冲)、<code>_IONBF</code>(无缓冲)，缓冲区创建成功返回<code>0</code>，失败返回非零值。</p>
+<p>210.二进制<code>I/O</code>使用<code>fread()</code>和<code>fwrite()</code>函数：</p>
 <p>①首先这两个函数适用于二进制文件，是二进制形式的数据读取和写入。</p>
-<p>②fwrite(buf,sizeof(int),10,fp);表示将buf指向的数据区中前10个sizeof(int)字节的数据写入到fp指向的文件中，函数返回成功写入的项目数，正常情况下应该与第三个参数相同，这里是10，如果写入错误的话就会小于10了。</p>
-<p>③fread(buf,sizeof(int),10,fp);与上面类似，表示将从fp中读取10个sizeof(int)字节的数据到buf所指向的存储区中，返回成功读取的项目数，正常情况下应该是10。</p>
-<p>211.feof()函数用于判断位置指针是否到达文件结尾，如果到达文件结尾函数返回非零值，否则返回0；ferror()函数用于判断是否读写错误，如果发生读写错误，函数返回非零值，否则返回0。</p>
+<p>②<code>fwrite(buf,sizeof(int),10,fp);</code>表示将<code>buf</code>指向的数据区中前<code>10</code>个<code>sizeof(int)</code>字节的数据写入到<code>fp</code>指向的文件中，函数返回成功写入的项目数，正常情况下应该与第三个参数相同，这里是<code>10</code>，如果写入错误的话就会小于<code>10</code>了。</p>
+<p>③<code>fread(buf,sizeof(int),10,fp);</code>与上面类似，表示将从<code>fp</code>中读取<code>10</code>个<code>sizeof(int)</code>字节的数据到<code>buf</code>所指向的存储区中，返回成功读取的项目数，正常情况下应该是<code>10</code>。</p>
+<p>211.<code>feof()</code>函数用于判断位置指针是否到达文件结尾，如果到达文件结尾函数返回非零值，否则返回<code>0</code>；<code>ferror()</code>函数用于判断是否读写错误，如果发生读写错误，函数返回非零值，否则返回<code>0</code>。</p>
 <p>212.对于二进制文件常用的处理函数是<code>fopen()-&gt;fseek()/ftell()-&gt;fread()/fwrite()-&gt;fclose()</code>，它们是绝配。</p>
 <p>213.结构体可以将不同类型的数据组合在一起，像一个新类型一样使用，声明方法如下：</p>
 <pre><code>struct stuff{
@@ -480,42 +480,42 @@ fclose(fp); </code></pre>
     char code[10];
     float cost;
 };</code></pre>
-<p>定义一个该类型的变量可以这样：struct stuff new; 声明可以和定义合并在一起，如：</p>
+<p>定义一个该类型的变量可以这样：<code>struct stuff new;</code> 声明可以和定义合并在一起，如：</p>
 <pre><code>struct stuff{   /* 这里stuff可以省略 */
     int number;
     char code[10];
     float cost;
 }new;</code></pre>
-<p>注意这里的stuff可以省略，当然如果省略的话，下次如果要再定义该结构就不如struct stuff new;方便啦。</p>
-<p>214.初始化一个结构体的方法如同数组一样，例如：struct stuff new={100,&quot;20101567&quot;,2000};也可以指定初始化项目，例如：struct stuff new={.cost=2000, .code=&quot;20101567&quot;, .number=100};总之结构体可以看成一个特殊的数组。</p>
-<p>215.就如上面一样，结构体变量访问数据成员要使用(.)运算符，如：new.number=103;等。</p>
+<p>注意这里的<code>stuff</code>可以省略，当然如果省略的话，下次如果要再定义该结构就不如<code>struct stuff new;</code>方便啦。</p>
+<p>214.初始化一个结构体的方法如同数组一样，例如：<code>struct stuff new={100,&quot;20101567&quot;,2000};</code>也可以指定初始化项目，例如：<code>struct stuff new={.cost=2000, .code=&quot;20101567&quot;, .number=100};</code>总之结构体可以看成一个特殊的数组。</p>
+<p>215.就如上面一样，结构体变量访问数据成员要使用(<code>.</code>)运算符，如：<code>new.number=103;</code>等。</p>
 <p>216.堆栈大小的潜在问题：由于堆栈是有大小的，所以如果声明一个很大的自动存储周期的数组的话，可能超出堆栈的大小，这时我们可以将这个数组声明为外部变量或静态变量解决问题，或者用编译器选项调整堆栈的大小。</p>
 <p>217.一个结构可以作为另一个结构的数据成员，这种称之为嵌套结构，使用方法也很简单。</p>
-<p>218.<code>struct stuff* him;</code>表明him是一个指向结构体stuff的指针，它可以被赋值，不过必须是结构体stuff的地址。而结构体和数组的一个不同点就是：一个结构体变量的名字并不是该结构的地址，数组名却是其首元素的地址，所以如果要把him指向上面提到的new变量，就必须这样使用：him=&amp;new;这点和数组名不一样，要注意。其实也很容易理解，因为结构体每个成员的大小不确定，如果解析为指针的话，那么指针的自增运算怎么实现呢。</p>
+<p>218.<code>struct stuff* him;</code>表明<code>him</code>是一个指向结构体<code>stuff</code>的指针，它可以被赋值，不过必须是结构体<code>stuff</code>的地址。而结构体和数组的一个不同点就是：一个结构体变量的名字并不是该结构的地址，数组名却是其首元素的地址，所以如果要把<code>him</code>指向上面提到的<code>new</code>变量，就必须这样使用：<code>him=&amp;new;</code>这点和数组名不一样，要注意。其实也很容易理解，因为结构体每个成员的大小不确定，如果解析为指针的话，那么指针的自增运算怎么实现呢。</p>
 <p>219.看完上面几点，于是访问结构体成员的三种方式如下：<code>him-&gt;number==new.number==(*him).number</code> 这三种方式都是等价的。</p>
 <p>220.向函数传递结构体信息的三种方法：</p>
-<p>①传递结构体成员，函数不管你是否结构体，只要参数类型对应就可以，于是可以 check(new.number);这样的形式传递结构体成员信息。</p>
-<p>②传递结构体指针，这种方式将结构体的地址作为参数传递给函数处理，非常方便。例如一个函数声明如下：<code>check(const struct stuff* stu);</code>于是可以这样使用：check(&amp;new);这里new用的是上面的定义。</p>
-<p>③传递结构体本身，这种方式也可以，但影响效率。例如：check(struct stuff stu);于是可以这样check(new);不过一般指针用的多。</p>
-<p>221.结构体之间可以相互赋值，这点与数组也不同。于是我们可以用一个旧的结构体来初始化一个新的结构体，例如：struct stuff new2=new; 程序会把new结构体的所有成员数据复制给new2。</p>
+<p>①传递结构体成员，函数不管你是否结构体，只要参数类型对应就可以，于是可以 <code>check(new.number);</code>这样的形式传递结构体成员信息。</p>
+<p>②传递结构体指针，这种方式将结构体的地址作为参数传递给函数处理，非常方便。例如一个函数声明如下：<code>check(const struct stuff* stu);</code>于是可以这样使用：<code>check(&amp;new);</code>这里<code>new</code>用的是上面的定义。</p>
+<p>③传递结构体本身，这种方式也可以，但影响效率。例如：<code>check(struct stuff stu);</code>于是可以这样<code>check(new);</code>不过一般指针用的多。</p>
+<p>221.结构体之间可以相互赋值，这点与数组也不同。于是我们可以用一个旧的结构体来初始化一个新的结构体，例如：<code>struct stuff new2=new;</code> 程序会把<code>new</code>结构体的所有成员数据复制给<code>new2</code>。</p>
 <p>222.使用结构体指针作为函数参数，执行效率高；使用结构体本身作为函数参数，安全性高，但是浪费时间和空间，执行效率低。</p>
-<p>223.结构体中如果要存储字符串的话，最好使用字符数组。为什么呢？虽然可以使用字符指针来表示字符串，但是实际存储字符串的地方并不在结构体的存储空间中，字符串可能在一个未分配空间的地方，随时可能被程序修改，所以如果要使用字符指针的话，请事先分配好存储的空间，以便让你知道字符串存储的地方，防止程序可能程序的错误，一个实际的例子就是使用malloc()分配的空间，并记得考虑free()问题。</p>
-<p>224.结构体的复合文字形式：实际上就是结构体的常量形式，例如：(struct stuff){10,&quot;20019022&quot;,2000}这样的形式，不过它并不是真正的常量，因为常量存储在静态存储区，而复合文字如果在函数内就是自动存储期啦。</p>
-<p>225.伸缩型数组成员和复合文字一样都需要C99的支持，旧的编译器不支持。这里要说明一下伸缩型数组成员，它指在结构体中声明一个数组成员，这个数组对编译器来说可见可不见，具有伸缩性。不过它的声明条件有限制：首先这个数组成员必须是最后一个成员，除了它之外必须至少有一个其他成员，最后它的方括号内必须为空。例如下面一个例子：</p>
+<p>223.结构体中如果要存储字符串的话，最好使用字符数组。为什么呢？虽然可以使用字符指针来表示字符串，但是实际存储字符串的地方并不在结构体的存储空间中，字符串可能在一个未分配空间的地方，随时可能被程序修改，所以如果要使用字符指针的话，请事先分配好存储的空间，以便让你知道字符串存储的地方，防止程序可能程序的错误，一个实际的例子就是使用<code>malloc()</code>分配的空间，并记得考虑<code>free()</code>问题。</p>
+<p>224.结构体的复合文字形式：实际上就是结构体的常量形式，例如：<code>(struct stuff){10,&quot;20019022&quot;,2000}</code>这样的形式，不过它并不是真正的常量，因为常量存储在静态存储区，而复合文字如果在函数内就是自动存储期啦。</p>
+<p>225.伸缩型数组成员和复合文字一样都需要<code>C99</code>的支持，旧的编译器不支持。这里要说明一下伸缩型数组成员，它指在结构体中声明一个数组成员，这个数组对编译器来说可见可不见，具有伸缩性。不过它的声明条件有限制：首先这个数组成员必须是最后一个成员，除了它之外必须至少有一个其他成员，最后它的方括号内必须为空。例如下面一个例子：</p>
 <pre><code>struct flex{
     int count;
     double average;
     double scores[];
 };</code></pre>
-<p>这里scores数组就是一个伸缩型数组成员，编译时scores数组并不可见，所以sizeof(struct flex)的大小并不计算scores数组的大小。而在运行时却可以根据你分配的结构体大小使得scores数组可以使用，这就是scores数组的伸缩性。例如下面的使用方法：</p>
+<p>这里<code>scores</code>数组就是一个伸缩型数组成员，编译时<code>scores</code>数组并不可见，所以<code>sizeof(struct flex)</code>的大小并不计算<code>scores</code>数组的大小。而在运行时却可以根据你分配的结构体大小使得<code>scores</code>数组可以使用，这就是<code>scores</code>数组的伸缩性。例如下面的使用方法：</p>
 <pre><code>struct flex* pf;
 pf=malloc(sizeof(struct flex)+5*sizeof(double));
 pf-&gt;count=5;
 pf-&gt;scores[2]=18.5;</code></pre>
-<p>这里scores数组将是5个double型数值的数组，它的具体大小可以根据你malloc的大小而确定。</p>
-<p>226.使用结构数组会很方便，而将结构体保存到文件的最简便方法是使用fwrite()函数，一次性的将结构体的数据写入到文件中，由于会有不同类型的数据，所以最好以二进制模式打开文件。结构体其实是建立数据库的重要工具，而将结构体写入到文件则是最简单的数据库形式。</p>
+<p>这里<code>scores</code>数组将是<code>5</code>个<code>double</code>型数值的数组，它的具体大小可以根据你<code>malloc</code>的大小而确定。</p>
+<p>226.使用结构数组会很方便，而将结构体保存到文件的最简便方法是使用<code>fwrite()</code>函数，一次性的将结构体的数据写入到文件中，由于会有不同类型的数据，所以最好以二进制模式打开文件。结构体其实是建立数据库的重要工具，而将结构体写入到文件则是最简单的数据库形式。</p>
 <p>227.结构体是数据结构的基础，使用结构体可以创建队列、二叉树、堆、哈希表和图等多种数据结构，使得解决问题变得方便，试着自己去设计这些结构吧。</p>
-<p>228.联合体union：联合体是一个能在同一空间中存储不同类型数据，但在同一时刻却只能使用其中一种类型数据的数据类型；它可以像结构体一样定义和声明，但是初始化的方式不同，因为联合体只存储一个数据成员的值。例如下面的初始化方式：</p>
+<p>228.联合体<code>union</code>：联合体是一个能在同一空间中存储不同类型数据，但在同一时刻却只能使用其中一种类型数据的数据类型；它可以像结构体一样定义和声明，但是初始化的方式不同，因为联合体只存储一个数据成员的值。例如下面的初始化方式：</p>
 <pre><code>union hold{
     int digit;
     char letter;
@@ -525,23 +525,23 @@ valA.letter=&#39;A&#39;;
 union hold valB=valA;   //初始化为另一个联合体
 union hold valC={88};   //初始化联合体第一个数据成员
 union hold valD={.digit=110};   //指定初始化项目</code></pre>
-<p>另外联合体hold的大小是其中最大数据成员的大小，于是sizeof(union hold)==sizeof(valA)==sizeof(int)==4;</p>
+<p>另外联合体<code>hold</code>的大小是其中最大数据成员的大小，于是<code>sizeof(union hold)==sizeof(valA)==sizeof(int)==4;</code></p>
 <p>229.注意联合体任何时刻只存储一个数据成员的值，所以对联合体数据成员的任何一次赋值都会清除上一次的数据。例如：</p>
 <pre><code>valA.letter=&#39;B&#39;;    //将&#39;B&#39;存储在valA中，使用1个字节
 valA.digit=3000;    //清除&#39;B&#39;，存储3000，使用4个字节
 valA.letter=&#39;C&#39;;    //清除3000，存储&#39;C&#39;，使用1个字节</code></pre>
-<p>不过可以使用另一个不同的数据成员来查看这些数据，就像16点中那样，这种方法有时会很有用。</p>
-<p>230.枚举类型(enum)其实是一组枚举常量组合形成的数据类型，其定义的变量的值必须是这个组合中的某一个值，一般用于提高程序可读性。它具有以下特点：</p>
-<p>①枚举常量实际上是int类型，未指定值的情况下默认是整数值0、1、2等。如果只对一个常量赋值，而没有对后面常量赋值，那么后面的常量会被赋予后续的值(依次加1)。例如：</p>
+<p>不过可以使用另一个不同的数据成员来查看这些数据，就像<code>16</code>点中那样，这种方法有时会很有用。</p>
+<p>230.枚举类型(<code>enum</code>)其实是一组枚举常量组合形成的数据类型，其定义的变量的值必须是这个组合中的某一个值，一般用于提高程序可读性。它具有以下特点：</p>
+<p>①枚举常量实际上是<code>int</code>类型，未指定值的情况下默认是整数值<code>0</code>、<code>1</code>、<code>2</code>等。如果只对一个常量赋值，而没有对后面常量赋值，那么后面的常量会被赋予后续的值(依次加<code>1</code>)。例如：</p>
 <p><code>enum spectrum {red, orange, yellow=10, green, blue, violet};</code></p>
-<p>//枚举常量的值依次为0,1,10,11,12,13</p>
-<p>②一旦定义了枚举类型，其中枚举常量就可以代替对于的整数啦，有点像#define预定义，不过不一样，因为程序不是单纯替换，而是将枚举常量看成整数常量。</p>
+<p><code>//</code>枚举常量的值依次为<code>0,1,10,11,12,13</code></p>
+<p>②一旦定义了枚举类型，其中枚举常量就可以代替对于的整数啦，有点像<code>#define</code>预定义，不过不一样，因为程序不是单纯替换，而是将枚举常量看成整数常量。</p>
 <p>③用法：<code>enum spectrum color; color=blue; if(color&lt;violet)</code>等等，总之将枚举类型的变量看成一个整形变量，枚举常量看成是整数常量就是了。</p>
-<p>231.typedef可以为某一类型创建别名，注意并不是创建新的类型，仅是别名而已。它与#define相似却不相同：它仅限于对类型进行应用；它的解释由编译器执行而非预处理器；它的范围有限，却比#define更灵活。</p>
-<p>232.使用typedef的原因一是为了提高类型的可读性，方便识别；而另一个原因就是用于复杂的类型，例如函数指针这些不方便记忆的类型。</p>
-<p>233.typedef允许你自行创建定制的数据类型，当你进行声明时，可以添加修饰符来修饰名称，这很容易令人搞糊涂，有必要说明一下：</p>
-<p>①有三个修饰符分别是 * , () 和 []，用来表示一个指针，函数和数组。</p>
-<p>②() 和 [] 具有相同的优先级，高于 * 运算符；() 和 [] 都是从左向右进行结合的，* 是从右向左进行结合的。</p>
+<p>231.<code>typedef</code>可以为某一类型创建别名，注意并不是创建新的类型，仅是别名而已。它与<code>#define</code>相似却不相同：它仅限于对类型进行应用；它的解释由编译器执行而非预处理器；它的范围有限，却比<code>#define</code>更灵活。</p>
+<p>232.使用<code>typedef</code>的原因一是为了提高类型的可读性，方便识别；而另一个原因就是用于复杂的类型，例如函数指针这些不方便记忆的类型。</p>
+<p>233.<code>typedef</code>允许你自行创建定制的数据类型，当你进行声明时，可以添加修饰符来修饰名称，这很容易令人搞糊涂，有必要说明一下：</p>
+<p>①有三个修饰符分别是 <code>*</code> , <code>()</code> 和 <code>[]</code>，用来表示一个指针，函数和数组。</p>
+<p>②<code>()</code> 和 <code>[]</code> 具有相同的优先级，高于 <code>*</code> 运算符；<code>()</code> 和 <code>[]</code> 都是从左向右进行结合的，<code>*</code> 是从右向左进行结合的。</p>
 <p>③弄清优先级和结合性对于复杂的类型声明很重要啊。例如：</p>
 <pre><code>typedef char* fump();   //fump类型为返回char指针的函数
 typedef char (* fump)();    //fump类型为返回char类型函数的指针
@@ -553,31 +553,31 @@ void ToLower(char *);
 void (*pf)(char *); //pf是指向特定函数的指针，只能指向这种类型的函数!!
 pf=ToUpper; //ToUpper是ToUpper()函数的地址
 pf=ToLower; //ToLower是ToLower()函数的地址</code></pre>
-<p>如果要通过函数指针来访问函数，该怎么办呢？有两种方法：<code>(*pf)(word);</code>或者 pf(word);其中word是一个字符串；这两种方法在ANSI C中均支持，不过建议选择第一种，毕竟表明清晰。</p>
+<p>如果要通过函数指针来访问函数，该怎么办呢？有两种方法：<code>(*pf)(word);</code>或者 <code>pf(word);</code>其中<code>word</code>是一个字符串；这两种方法在<code>ANSI C</code>中均支持，不过建议选择第一种，毕竟表明清晰。</p>
 <p>236.不能拥有一个函数的数组，但是可以使用一个函数指针的数组，其效果是一样的，哈哈。</p>
-<p>237.突然想到一个问题，进行文件写入时的数据覆盖问题。以 r+/w/w+ 模式进行数据写入时会覆盖当前存在的数据，而以 a/a+ 模式进行数据写入始终在文件最后进行写入，不存在覆盖问题，即使移动文件的位置指针，可以读取数据，但是写入数据时位置指针又会回到文件末尾进行添加。</p>
-<p>238.计算机内数据都是以二进制进行存储的，一个字节通常都是8位。</p>
-<p>239.对于无符号整数，例如unsigned char的表示范围是0~255，起终点是00000000-11111111；</p>
-<p>对于有符号整数表示方法由硬件决定，不过一般用二进制补码形式进行表示。例如signed char的表示范围是-128~127，起终点是10000000-01111111，第一位表示符号位，对于负数的补码形式不要记错。</p>
+<p>237.突然想到一个问题，进行文件写入时的数据覆盖问题。以 <code>r+/w/w+</code> 模式进行数据写入时会覆盖当前存在的数据，而以 <code>a/a+</code> 模式进行数据写入始终在文件最后进行写入，不存在覆盖问题，即使移动文件的位置指针，可以读取数据，但是写入数据时位置指针又会回到文件末尾进行添加。</p>
+<p>238.计算机内数据都是以二进制进行存储的，一个字节通常都是<code>8</code>位。</p>
+<p>239.对于无符号整数，例如<code>unsigned char</code>的表示范围是<code>0~255</code>，起终点是<code>00000000-11111111</code>；</p>
+<p>对于有符号整数表示方法由硬件决定，不过一般用二进制补码形式进行表示。例如<code>signed char</code>的表示范围是<code>-128~127</code>，起终点是<code>10000000-01111111</code>，第一位表示符号位，对于负数的补码形式不要记错。</p>
 <p>240.反码：正数的反码与其原码相同，负数的反码是对其逐位取反，符号位除外。</p>
-<p>补码：正数的补码与其原码相同，负数的补码是在其反码的末尾加1。</p>
+<p>补码：正数的补码与其原码相同，负数的补码是在其反码的末尾加<code>1</code>。</p>
 <p>241.浮点数的存储分为两部分：二进制小数和二进制指数。具体每部分多少位由系统来决定，就不纠结了。</p>
-<p>242.每个十六进制位对应一个4位的二进制数，因此两个十六进制位恰好对应一个8位字节，第一个十六进制位表示高4位，第二个十六进制位表示低四位。</p>
-<p>243.到这里想复习一下大小端模式：X86,ARM等CPU一般都是小端模式，即数据的低字节存放在低地址，高字节存放在高地址。注意的一点是：计算机中都是以字节为基本存储单位，所以大小端模式指的是多字节数据的字节排序，单个字节的位排序都是一样的，别搞错了。例如整数9的存储需要四个字节，用十六进制表示为 00 00 00 09(字节由高到低)，而按照小端模式的UltraEdit查看的话显示的就是 09 00 00 00(地址由低到高)。</p>
-<p>244.C语言中有十进制，八进制，十六进制表示法，那怎么表示二进制数呢？？哈哈，0b前缀，9==011==0x9==0b1001。</p>
+<p>242.每个十六进制位对应一个<code>4</code>位的二进制数，因此两个十六进制位恰好对应一个<code>8</code>位字节，第一个十六进制位表示高<code>4</code>位，第二个十六进制位表示低四位。</p>
+<p>243.到这里想复习一下大小端模式：<code>X86</code>,<code>ARM</code>等<code>CPU</code>一般都是小端模式，即数据的低字节存放在低地址，高字节存放在高地址。注意的一点是：计算机中都是以字节为基本存储单位，所以大小端模式指的是多字节数据的字节排序，单个字节的位排序都是一样的，别搞错了。例如整数<code>9</code>的存储需要四个字节，用十六进制表示为 <code>00 00 00 09</code>(字节由高到低)，而按照小端模式的<code>UltraEdit</code>查看的话显示的就是 <code>09 00 00 00</code>(地址由低到高)。</p>
+<p>244.<code>C</code>语言中有十进制，八进制，十六进制表示法，那怎么表示二进制数呢？？哈哈，<code>0b</code>前缀，<code>9==011==0x9==0b1001</code>。</p>
 <p>245.位运算符：</p>
-<p>①按位取反：~ 运算符将一个数值的二进制位依次取反。如：~(00001111)结果为11110000。</p>
-<p>②位与：&amp; 运算符必须同位都为1时结果才为1。如：(10010011) &amp; (00111101)结果为00010001。</p>
-<p>③位或：| 运算符只要同位有一个为1结果就为1。如：(10010011) | (00111101)结果为10111111。</p>
-<p>④位异或：^ 运算符必须同位不相同才为1，相同则为0。如：(10010011) ^ (00111101)结果为10101110。</p>
+<p>①按位取反：<code>~</code> 运算符将一个数值的二进制位依次取反。如：<code>~(00001111)</code>结果为<code>11110000</code>。</p>
+<p>②位与：<code>&amp;</code> 运算符必须同位都为<code>1</code>时结果才为<code>1</code>。如：<code>(10010011) &amp; (00111101)</code>结果为<code>00010001</code>。</p>
+<p>③位或：<code>|</code> 运算符只要同位有一个为<code>1</code>结果就为<code>1</code>。如：<code>(10010011) | (00111101)</code>结果为<code>10111111</code>。</p>
+<p>④位异或：<code>^</code> 运算符必须同位不相同才为<code>1</code>，相同则为<code>0</code>。如：<code>(10010011) ^ (00111101)</code>结果为<code>10101110</code>。</p>
 <p>246.位运算符的各种用法：</p>
-<p>①掩码：利用位与运算符可以实现掩码功能。掩码就像一张网一样，只保留你设置为1位的数值。例如：mask=2;即二进制位00000010，那么 flags=flags &amp; mask; 后flags将只保留位1的值，其余位被设置为0。</p>
-<p>②打开特定位：同样是上面的定义，那么 flags=flags | mask; 后将会打开flags的位1，即只有位1会被设置为1，其余位不变。</p>
-<p>③关闭特定位：同样给定上面的声明，那么 flags=flags &amp; ~mask; 后将会关闭flags的位1，即只有位1会被设置为0，其余位不变。</p>
-<p>④取反特定位：给特定位取反，同样上面的声明，那么 flags=flags ^ mask; 后将会给flags的位1取反，而其余位保持不变。</p>
-<p>⑤查看特定位的值：如果你要查看特定位是否为1，首先你必须屏蔽掉其他位的值再去比较。所以判断flags的位1是否为1的方法是：if((flags &amp; mask) == mask) ，这里先用mask屏蔽掉除位1以外所有位的值，然后再与mask进行比较就可以知道flags的位1的值是否为1了。</p>
-<p>247.移位运算符：num &lt;&lt; n; 左移n位，相当于乘以2的n次幂；num &gt;&gt; n; 右移n位，如果num非负，相当于除以2的n次幂。具体的移位运算参见53点。</p>
-<p>248.结构体中声明成员时不能进行初始化，但可以声明位字段。那什么是位字段？其实29点中已经提及，可以在每个结构体成员的后面声明位字段，决定该字段所占的宽度，单位是位(bit)，于是该成员将只能使用指定的字段宽度，其赋值范围会受到限制。例如：</p>
+<p>①掩码：利用位与运算符可以实现掩码功能。掩码就像一张网一样，只保留你设置为<code>1</code>位的数值。例如：<code>mask=2;</code>即二进制位<code>00000010</code>，那么 <code>flags=flags &amp; mask;</code> 后<code>flags</code>将只保留位<code>1</code>的值，其余位被设置为<code>0</code>。</p>
+<p>②打开特定位：同样是上面的定义，那么 <code>flags=flags | mask;</code> 后将会打开<code>flags</code>的位<code>1</code>，即只有位<code>1</code>会被设置为<code>1</code>，其余位不变。</p>
+<p>③关闭特定位：同样给定上面的声明，那么 <code>flags=flags &amp; ~mask;</code> 后将会关闭<code>flags</code>的位<code>1</code>，即只有位<code>1</code>会被设置为<code>0</code>，其余位不变。</p>
+<p>④取反特定位：给特定位取反，同样上面的声明，那么 <code>flags=flags ^ mask;</code> 后将会给<code>flags</code>的位<code>1</code>取反，而其余位保持不变。</p>
+<p>⑤查看特定位的值：如果你要查看特定位是否为<code>1</code>，首先你必须屏蔽掉其他位的值再去比较。所以判断<code>flags</code>的位<code>1</code>是否为<code>1</code>的方法是：<code>if((flags &amp; mask) == mask)</code> ，这里先用<code>mask</code>屏蔽掉除位<code>1</code>以外所有位的值，然后再与<code>mask</code>进行比较就可以知道<code>flags</code>的位<code>1</code>的值是否为<code>1</code>了。</p>
+<p>247.移位运算符：<code>num &lt;&lt; n;</code> 左移<code>n</code>位，相当于乘以<code>2</code>的<code>n</code>次幂；<code>num &gt;&gt; n;</code> 右移<code>n</code>位，如果<code>num</code>非负，相当于除以<code>2</code>的<code>n</code>次幂。具体的移位运算参见<code>53</code>点。</p>
+<p>248.结构体中声明成员时不能进行初始化，但可以声明位字段。那什么是位字段？其实<code>29</code>点中已经提及，可以在每个结构体成员的后面声明位字段，决定该字段所占的宽度，单位是位(<code>bit</code>)，于是该成员将只能使用指定的字段宽度，其赋值范围会受到限制。例如：</p>
 <pre><code>struct {
     unsigned int a: 1;
     /* unsigned int  : 2; 声明未命名的字段宽度，可以填充间隙 */
@@ -585,53 +585,53 @@ pf=ToLower; //ToLower是ToLower()函数的地址</code></pre>
     /* unsigned int  : 0; 声明宽度为0的未命名字段，迫使对齐，c将保存在下一个int中，结构体大小变为2个int */
     unsigned int c: 1;
 } prnt;</code></pre>
-<p>这里的每个字段都为1位，所以a、b、c只能被赋为0或1；而且整个结构体将只使用一个int的大小，有关字节对齐请看代码中的注释和29点。按照这种设定我们甚至可以利用结构体设定一个int数的每一位的值，与位运算相比，修改个别位显得更加简单，不过更多的是为了节省空间啦。</p>
+<p>这里的每个字段都为<code>1</code>位，所以<code>a</code>、<code>b</code>、<code>c</code>只能被赋为<code>0</code>或<code>1</code>；而且整个结构体将只使用一个<code>int</code>的大小，有关字节对齐请看代码中的注释和<code>29</code>点。按照这种设定我们甚至可以利用结构体设定一个<code>int</code>数的每一位的值，与位运算相比，修改个别位显得更加简单，不过更多的是为了节省空间啦。</p>
 <p>249.位字段和位运算都可以用来操作整数中的个别位，但这种特性依赖于硬件和系统，通常是不可移植的。</p>
-<p>250.所有预处理指令都是以#开头，#define的作用域是从定义出现的位置开始到文件的结尾或使用#undef取消定义，一般都是一行代码，但是可以用反斜线和换行符扩展到几个物理行，由这些物理行组成单个逻辑行。</p>
-<p>251.每个#define行由三个部分组成：第一部分为#define自身，第二部分为缩略语，又叫做宏，第三部分为替换列表或实体；预处理器在程序中发现宏的实例后，总会用实体代替该宏，不过双引号中的宏除外(不会替换)。</p>
+<p>250.所有预处理指令都是以#开头，<code>#define</code>的作用域是从定义出现的位置开始到文件的结尾或使用<code>#undef</code>取消定义，一般都是一行代码，但是可以用反斜线和换行符扩展到几个物理行，由这些物理行组成单个逻辑行。</p>
+<p>251.每个<code>#define</code>行由三个部分组成：第一部分为<code>#define</code>自身，第二部分为缩略语，又叫做宏，第三部分为替换列表或实体；预处理器在程序中发现宏的实例后，总会用实体代替该宏，不过双引号中的宏除外(不会替换)。</p>
 <p>252.注意：①宏指令只是进行文本的替换操作，并不会进行计算；②一个宏定义中可能包含其他宏，这种情况下，预处理器还会继续进行替换，直到没有为止。</p>
 <p>253.编译器一般将宏实体当做语言符号来处理，语言符号是以单词为单位的，所以即使连续多个空格也会被当做一个空格来处理。例如：</p>
 <pre><code>#define SIX 2 * 3
 #define SIX 3   *   4   //与上面定义相同，都含有三个语言符号
 #define SIX 2*3     //注意与上面定义不同，只含有一个语言符号</code></pre>
-<p>另外对于#define常量重定义，ANSI C允许，但是必须与原定义完全相同，这里的定义相同指的是实体部分具有相同顺序的语言符号。因此上面代码中的前两句作为重定义是允许的，而第三句作为前两句的重定义则会报错，不过一般不进行直接重定义，可以先使用#undef取消定义后再重定义即可。</p>
-<p>254.#define中使用参数：使用参数的宏可以部分实现函数的功能，但是有很多缺陷，被称为类函数宏。如：</p>
+<p>另外对于<code>#define</code>常量重定义，<code>ANSI C</code>允许，但是必须与原定义完全相同，这里的定义相同指的是实体部分具有相同顺序的语言符号。因此上面代码中的前两句作为重定义是允许的，而第三句作为前两句的重定义则会报错，不过一般不进行直接重定义，可以先使用<code>#undef</code>取消定义后再重定义即可。</p>
+<p>254.<code>#define</code>中使用参数：使用参数的宏可以部分实现函数的功能，但是有很多缺陷，被称为类函数宏。如：</p>
 <p><code>#define SQUARE(x) ((x)*(x))</code></p>
-<p>它可以实现x的平方运算，但是使用SQUARE(++x)这样的例子对于不同的编译器还是会出错，所以应该避免在宏参数中使用增量或减量运算符。</p>
-<p>255.在#define的替换部分可以使用#运算符和##运算符：</p>
+<p>它可以实现<code>x</code>的平方运算，但是使用<code>SQUARE(++x)</code>这样的例子对于不同的编译器还是会出错，所以应该避免在宏参数中使用增量或减量运算符。</p>
+<p>255.在<code>#define</code>的替换部分可以使用#运算符和##运算符：</p>
 <p>①在替换部分使用#运算符可以将语言符号转化为字符串，用在宏参量前就可以把参数名转化为相应的字符串。例如：<code>#define PSQR(x) printf(&quot;The square of &quot; #x &quot; is %d.\n&quot;</code>,<code>((x)*(x)))</code>那么<code>PSQR(2+4);</code>时就会用<code>&quot;2+4&quot;</code>代替#x，结果是<code>printf(&quot;The square of &quot; &quot;2+4&quot; is %d.\n&quot;,((2+4)*(2+4)));</code>哈哈。</p>
-<p>②在替换部分使用##运算符可以将两个语言符号组成单个语言符号。例如：#define XNAME(n) x ## n等价于#define XNAME(n) xn，相当于粘合剂。</p>
-<p>256.可变宏参数和<code>__VA_ARGS__</code>：可以在宏参数的最后使用可变参数(...)，然后在替换部分用<code>__VA_ARGS__</code>代替参数即可，类似printf的可变参数，用起来也会简单。例如：<code>#define PR(...) printf(__VA_ARGS__)</code>后就可以让<code>PR(&quot;Hello\n&quot;);</code>与<code>printf(&quot;Hello\n&quot;);</code>等价了，注意...与<code>__VA_ARGS__</code>的配对即可。</p>
+<p>②在替换部分使用##运算符可以将两个语言符号组成单个语言符号。例如：<code>#define XNAME(n) x ## n</code>等价于<code>#define XNAME(n) xn</code>，相当于粘合剂。</p>
+<p>256.可变宏参数和<code>__VA_ARGS__</code>：可以在宏参数的最后使用可变参数(<code>...</code>)，然后在替换部分用<code>__VA_ARGS__</code>代替参数即可，类似<code>printf</code>的可变参数，用起来也会简单。例如：<code>#define PR(...) printf(__VA_ARGS__)</code>后就可以让<code>PR(&quot;Hello\n&quot;);</code>与<code>printf(&quot;Hello\n&quot;);</code>等价了，注意...与<code>__VA_ARGS__</code>的配对即可。</p>
 <p>257.使用函数还是使用宏？？使用函数可以节省空间，效率会比较低；而使用宏的话可以加快执行效率，但是浪费空间又很复杂。一般来说对于比较简单的函数使用宏比较方便，而复杂的功能还是用函数吧，或者考虑内联函数。</p>
-<p>258.文件包含：使用#include指令后，预处理器就会寻找后跟文件名并把这个文件的内容包含到当前文件中并替换掉#include指令。它有两种使用形式：</p>
+<p>258.文件包含：使用<code>#include</code>指令后，预处理器就会寻找后跟文件名并把这个文件的内容包含到当前文件中并替换掉<code>#include</code>指令。它有两种使用形式：</p>
 <p>①<code>#include &lt;stdio.h&gt;</code> 尖括号表示从标准库目录搜索头文件；</p>
 <p>②<code>#include &quot;test.h&quot;</code> 双引号表示先从当前目录搜索头文件，然后在标准库目录搜索头文件。</p>
-<p>259.一般头文件中包含宏定义和宏函数，函数声明，结构模板和类型定义(typedef)等信息，用于在多个文件中共享外部变量；另外还可以开发一系列相关函数和结构，作为自己的标准头文件；假如头文件中包含一个static变量，那么每个包含该头文件的文件都会获得一份该变量的副本，并且该变量只在当前文件中有效。</p>
-<p>260.#undef指令可以取消前面的宏定义，即便前面没有定义这个宏，取消定义也是合法的，一般用于重新定义宏变量。不过有几个预定义宏不能被取消，一直存在，那就是<code>__DATE__，__TIME__，__FILE__和__LINE__</code>等。</p>
+<p>259.一般头文件中包含宏定义和宏函数，函数声明，结构模板和类型定义(<code>typedef</code>)等信息，用于在多个文件中共享外部变量；另外还可以开发一系列相关函数和结构，作为自己的标准头文件；假如头文件中包含一个<code>static</code>变量，那么每个包含该头文件的文件都会获得一份该变量的副本，并且该变量只在当前文件中有效。</p>
+<p>260.<code>#undef</code>指令可以取消前面的宏定义，即便前面没有定义这个宏，取消定义也是合法的，一般用于重新定义宏变量。不过有几个预定义宏不能被取消，一直存在，那就是<code>__DATE__，__TIME__，__FILE__和__LINE__</code>等。</p>
 <p>261.条件编译：</p>
-<p>①#ifdef、#else和#endif指令：这个格式类似于if else语句，如果预处理器已经定义了#ifdef后面的标识符，那么执行#ifdef到#else或#endif之间的代码，否则执行#else和#endif之间的所有代码。</p>
-<p>②#ifndef指令：与上面的预处理指令功能类似，不过使用方法相反，#ifndef用于判断后面的标识符是否为未定义的，如果未定义，则执行#ifndef到#else或#endif之间的代码。这个指令可以用来防止对宏进行重复定义，例如多次包含同一头文件就可能导致宏重复定义，而这个指令则可以很好的解决这个问题。</p>
-<p>③#if、#elif、#else和#endif指令：这个指令与①类似，不过#if和#elif后面跟着的并不是宏标识符，而是常量整数表达式，如果表达式为真，则执行#if和#elif后面的代码，否则执行#else后面的代码。不解释了，知道就好，再说一点，#if defined(VAX)与#ifdef VAX的功能类似，都是用来判断VAX宏是否已经定义，不过#if defined(VAX)可比#ifdef VAX灵活多了。</p>
-<p>262.除了260点提到的几个预定义宏外，C99还支持一个<code>__func__</code>预定义标识符，表示包含该标识符的函数，这个标识符具有函数作用域，只能在函数中使用，不同于预定义宏的文件作用域。</p>
-<p>263.①#line用于重置<code>__LINE__和__FILE__</code>宏报告的行号和文件名，例如：</p>
+<p>①<code>#ifdef</code>、<code>#else</code>和<code>#endif</code>指令：这个格式类似于<code>if else</code>语句，如果预处理器已经定义了<code>#ifdef</code>后面的标识符，那么执行<code>#ifdef</code>到<code>#else</code>或<code>#endif</code>之间的代码，否则执行<code>#else</code>和<code>#endif</code>之间的所有代码。</p>
+<p>②<code>#ifndef</code>指令：与上面的预处理指令功能类似，不过使用方法相反，<code>#ifndef</code>用于判断后面的标识符是否为未定义的，如果未定义，则执行<code>#ifndef</code>到<code>#else</code>或<code>#endif</code>之间的代码。这个指令可以用来防止对宏进行重复定义，例如多次包含同一头文件就可能导致宏重复定义，而这个指令则可以很好的解决这个问题。</p>
+<p>③<code>#if</code>、<code>#elif</code>、<code>#else</code>和<code>#endif</code>指令：这个指令与①类似，不过<code>#if</code>和<code>#elif</code>后面跟着的并不是宏标识符，而是常量整数表达式，如果表达式为真，则执行<code>#if</code>和<code>#elif</code>后面的代码，否则执行<code>#else</code>后面的代码。不解释了，知道就好，再说一点，<code>#if defined(VAX)</code>与<code>#ifdef VAX</code>的功能类似，都是用来判断<code>VAX</code>宏是否已经定义，不过<code>#if defined(VAX)</code>可比<code>#ifdef VAX</code>灵活多了。</p>
+<p>262.除了<code>260</code>点提到的几个预定义宏外，<code>C99</code>还支持一个<code>__func__</code>预定义标识符，表示包含该标识符的函数，这个标识符具有函数作用域，只能在函数中使用，不同于预定义宏的文件作用域。</p>
+<p>263.①<code>#line</code>用于重置<code>__LINE__和__FILE__</code>宏报告的行号和文件名，例如：</p>
 <pre><code>#line 1000  //当前行号重置为1000
 #line 10 &quot;cool.c&quot;   //把行号重置为10，文件名重置为cool.c</code></pre>
-<p>②#error用于向预处理器发送错误信息，表示编译错误，应该中断编译过程。</p>
-<p>③#pragma用于修改编译器设置，控制编译过程，例如17点中提到的#pragma pack(2)可以控制编译器的字节对齐值，而实际上可控制的设置非常多，就不一一说了。</p>
-<p>264.内联函数：在函数原型前使用inline说明符就表明该函数是内联函数。一般来说编译器会将内联函数的函数体部分直接替换掉函数调用，而不会像外部函数一样花费时间建立调用，传递参数，跳转代码段并返回，有点类似于类函数宏，可以减少执行时间。</p>
+<p>②<code>#error</code>用于向预处理器发送错误信息，表示编译错误，应该中断编译过程。</p>
+<p>③<code>#pragma</code>用于修改编译器设置，控制编译过程，例如<code>17</code>点中提到的<code>#pragma pack(2)</code>可以控制编译器的字节对齐值，而实际上可控制的设置非常多，就不一一说了。</p>
+<p>264.内联函数：在函数原型前使用<code>inline</code>说明符就表明该函数是内联函数。一般来说编译器会将内联函数的函数体部分直接替换掉函数调用，而不会像外部函数一样花费时间建立调用，传递参数，跳转代码段并返回，有点类似于类函数宏，可以减少执行时间。</p>
 <p>265.内联函数具有内部链接属性，只在本文件内有效，所以其函数的定义和调用必须在同一文件中。与类函数宏作用相同，一般用于代码比较短的函数。例如：</p>
 <pre><code>inline void eatline(void)   //内联函数声明
 {
     while(getchar() != &#39;\n&#39;)
         continue;
 }</code></pre>
-<p>266.如何使用C库？一般通过包含头文件来使用库中的函数，但有些不常使用的头文件可能并不在编译器的库搜索路径中，这时就需要我们用编译器显示指明库的位置啦。例如有些gcc默认情况下并不搜索数学库，这时我们就可以用-lm标记以指示编译器去搜索数学库。</p>
-<p>267.exit()和atexit()函数：可以通过atexit()注册函数，以便在使用exit()退出程序时，调用这些函数做处理再退出程序。atexit()将参数即要调用的函数注册到函数列表，可以注册多个，使用exit()退出时将按先进后出的原则依次执行列表中的函数。例如：</p>
+<p>266.如何使用C库？一般通过包含头文件来使用库中的函数，但有些不常使用的头文件可能并不在编译器的库搜索路径中，这时就需要我们用编译器显示指明库的位置啦。例如有些<code>gcc</code>默认情况下并不搜索数学库，这时我们就可以用-lm标记以指示编译器去搜索数学库。</p>
+<p>267.<code>exit()</code>和<code>atexit()</code>函数：可以通过<code>atexit()</code>注册函数，以便在使用<code>exit()</code>退出程序时，调用这些函数做处理再退出程序。<code>atexit()</code>将参数即要调用的函数注册到函数列表，可以注册多个，使用<code>exit()</code>退出时将按先进后出的原则依次执行列表中的函数。例如：</p>
 <pre><code>atexit(func1);
 atexit(func2);  //func1 func2为函数名
 exit(0);    //程序将依次执行函数func2-&gt;func1，然后再退出</code></pre>
-<p>注意，main()函数终止时会隐式调用exit()；所以即使未使用exit()，那些使用atexit()注册的函数还是会执行。</p>
-<p>268.快速排序函数qsort()：qsort()函数非常好用，通常用于对一个数据对象数组进行排序，原型如下：<code>void qsort(void *base,size_t nmemb,size_t size,int(* compar)(const void *,const void *));</code>其中第一参数为要排序的数组头部的指针，即数组名；第二个参数为需要排序的项目数量，即数组元素的个数；第三个参数为每个元素的大小；最后的参数为对元素进行比较的函数地址。所以要使用qsort()函数，除了必须的数组外，还需要自己定义一个复合要求的比较函数。例如下面的示例：</p>
+<p>注意，<code>main()</code>函数终止时会隐式调用<code>exit()</code>；所以即使未使用<code>exit()</code>，那些使用<code>atexit()</code>注册的函数还是会执行。</p>
+<p>268.快速排序函数<code>qsort()</code>：<code>qsort()</code>函数非常好用，通常用于对一个数据对象数组进行排序，原型如下：<code>void qsort(void *base,size_t nmemb,size_t size,int(* compar)(const void *,const void *));</code>其中第一参数为要排序的数组头部的指针，即数组名；第二个参数为需要排序的项目数量，即数组元素的个数；第三个参数为每个元素的大小；最后的参数为对元素进行比较的函数地址。所以要使用<code>qsort()</code>函数，除了必须的数组外，还需要自己定义一个复合要求的比较函数。例如下面的示例：</p>
 <pre><code>struct names{
     char first[40];
     char last[40];
@@ -649,10 +649,10 @@ int comp(const void *p1,const void *p2)     //定义比较函数comp，原型必
 }
 qsort(stuff,100,sizeof(struct names),comp); //调用qsort函数进行排序</code></pre>
 <p>哇，终于完了，排个序还要定义函数，真够折磨人。</p>
-<p>269.abort()函数类似于exit()函数的终止程序功能，不过abort()函数一般用于程序异常终止，并返回错误代码到主机环境。</p>
-<p>270.assert()宏包含在assert.h头文件中，该宏的功能是接受一个整数表达式作为参数，并确保该表达式一定为真，如果表达式为假，程序将发送一条标准错误信息并调用abort()函数退出程序。</p>
-<p>271.C语言不允许数组之间直接赋值，不过可以使用strcpy()函数复制字符串。那么其他类型的数组之间怎么直接复制呢？？此时就要用到memcpy()和memmove()函数了，这两个函数都是直接将一些字节从一个位置复制到另一个位置，所以可以适用于任何类型的数组。具体使用方法请看188和189点。</p>
-<p>272.使用可变参数需要包含stdarg.h，C语言允许我们自己定义一个可变参数的函数，类似printf函数，下面是一个示例函数：</p>
+<p>269.<code>abort()</code>函数类似于<code>exit()</code>函数的终止程序功能，不过<code>abort()</code>函数一般用于程序异常终止，并返回错误代码到主机环境。</p>
+<p>270.<code>assert()</code>宏包含在<code>assert.h</code>头文件中，该宏的功能是接受一个整数表达式作为参数，并确保该表达式一定为真，如果表达式为假，程序将发送一条标准错误信息并调用<code>abort()</code>函数退出程序。</p>
+<p>271.<code>C</code>语言不允许数组之间直接赋值，不过可以使用<code>strcpy()</code>函数复制字符串。那么其他类型的数组之间怎么直接复制呢？？此时就要用到<code>memcpy()</code>和<code>memmove()</code>函数了，这两个函数都是直接将一些字节从一个位置复制到另一个位置，所以可以适用于任何类型的数组。具体使用方法请看<code>188</code>和<code>189</code>点。</p>
+<p>272.使用可变参数需要包含<code>stdarg.h</code>，<code>C</code>语言允许我们自己定义一个可变参数的函数，类似<code>printf</code>函数，下面是一个示例函数：</p>
 <pre><code>#include &lt;stdarg.h&gt;
 double sum(int lim,...)     //可变参数...必须在最后
 {
@@ -666,8 +666,8 @@ double sum(int lim,...)     //可变参数...必须在最后
     va_end(ap); //清理工作
     return total;
 }</code></pre>
-<p>这个函数可以计算可变参数的总和，可以这样调用：sum(3, 1.1, 2.5, 13.2);或 sum(2, 1.2, 2.4);哈哈。</p>
-<p>273.printf函数源码：</p>
+<p>这个函数可以计算可变参数的总和，可以这样调用：<code>sum(3, 1.1, 2.5, 13.2);</code>或 <code>sum(2, 1.2, 2.4);</code>哈哈。</p>
+<p>273.<code>printf</code>函数源码：</p>
 <pre><code>#include &lt;stdarg.h&gt;
 #include &lt;stdio.h&gt;
 int printf(char *format,...)
@@ -679,9 +679,9 @@ int printf(char *format,...)
     va_end(ap);
     return n;
 }</code></pre>
-<p>274.vprintf与printf类似，打印输出，不过它的第二个参数类型是va_list，从而取代了变长参数表。同理vsprintf也与sprintf类似，输出到一个数组里，使用方法是：vsprintf(buf,format,ap);其中buf是字符数组名，format是格式字符串，ap是va_list变量。总之，可变参数表实质上是由va_list变量来实现的。</p>
+<p>274.<code>vprintf</code>与<code>printf</code>类似，打印输出，不过它的第二个参数类型是<code>va_list</code>，从而取代了变长参数表。同理<code>vsprintf</code>也与<code>sprintf</code>类似，输出到一个数组里，使用方法是：<code>vsprintf(buf,format,ap);</code>其中<code>buf</code>是字符数组名，<code>format</code>是格式字符串，<code>ap</code>是<code>va_list</code>变量。总之，可变参数表实质上是由<code>va_list</code>变量来实现的。</p>
 <p>275.研究合适的数据表示：通常来说，要编写一个程序，数据结构的设计是非常重要的，设计一个针对于程序的专有结构将会事半功倍。还有数据的表示方法也会有影响，例如要设计一个数组来存储用户的数据，让用户来决定数组的大小比你预设的大小将更加灵活。</p>
-<p>276.数组到链表：数组存储都是连续而固定的，而链表存储都是不连续的，这种方式反而非常灵活，使用于各种程序。C语言中链表是通过结构来实现的，每个结构体中都存有指向下一个结构的指针，使用头指针head指向第一个结构，而最后一个结构的指针指向NULL，这样便完成了一个链表，形式如下：<code>head-&gt;struct1-&gt;struct2-&gt;...-&gt;structN-&gt;NULL</code>，这样就实现了链表的功能。代码如下：</p>
+<p>276.数组到链表：数组存储都是连续而固定的，而链表存储都是不连续的，这种方式反而非常灵活，使用于各种程序。<code>C</code>语言中链表是通过结构来实现的，每个结构体中都存有指向下一个结构的指针，使用头指针<code>head</code>指向第一个结构，而最后一个结构的指针指向<code>NULL</code>，这样便完成了一个链表，形式如下：<code>head-&gt;struct1-&gt;struct2-&gt;...-&gt;structN-&gt;NULL</code>，这样就实现了链表的功能。代码如下：</p>
 <pre><code>struct film{
     char title[40];
     int rating;
@@ -691,11 +691,11 @@ struct film struct1,struct2;
 struct film* head=struct1;  //head-&gt;struct1
 struct1.next=struct2;       //struct1-&gt;struct2
 struct2.next=NULL;          //struct2-&gt;NULL</code></pre>
-<p>使用结构指针配合malloc的话能更加灵活的实现链表的动态存储。</p>
-<p>277.抽象数据类型ADT：对于一个问题，我们可以开发一种数据结构和操作该数据结构的函数集合，这两者的结合是构成新类型的基本要素。而对于新类型的属性和操作函数的抽象描述就是一种抽象数据类型(ADT)。</p>
+<p>使用结构指针配合<code>malloc</code>的话能更加灵活的实现链表的动态存储。</p>
+<p>277.抽象数据类型<code>ADT</code>：对于一个问题，我们可以开发一种数据结构和操作该数据结构的函数集合，这两者的结合是构成新类型的基本要素。而对于新类型的属性和操作函数的抽象描述就是一种抽象数据类型(<code>ADT</code>)。</p>
 <p>278.一般来说开发一个新类型需要三个步骤：</p>
 <p>①抽象数据类型：将新类型的属性和操作函数的集合用自然语言描述出来，这就是抽象数据类型，不受任何编程语言的限制。</p>
-<p>②构造接口：按照你所使用的编程语言例如C语言，描述数据如何表示以及实现ADT操作的函数，这将构成一个头文件，包含新类型的结构表示和所有操作函数的原型。注意在构造接口的过程中要尽量实现数据隐藏，即我们使用接口编写程序时不必知道函数是如何实现的，只需提供参数即可。</p>
+<p>②构造接口：按照你所使用的编程语言例如<code>C</code>语言，描述数据如何表示以及实现<code>ADT</code>操作的函数，这将构成一个头文件，包含新类型的结构表示和所有操作函数的原型。注意在构造接口的过程中要尽量实现数据隐藏，即我们使用接口编写程序时不必知道函数是如何实现的，只需提供参数即可。</p>
 <p>③实现接口：提供所有操作函数的实现代码。编写过程中要注意添加每个函数的注释，养成良好的编程习惯，并尽量实现数据的隐藏。</p>
 <p>279.常用的数据结构形式：数组，链表，队列，二叉树，哈希表等。</p>
 <p>280.数组和链表的优缺点：</p>
@@ -703,7 +703,7 @@ struct2.next=NULL;          //struct2-&gt;NULL</code></pre>
 <p>②链表的优点是运行时决定大小，快速插入和删除元素，缺点是不能随机访问，需要编程支持，查找费时。</p>
 <p>281.针对上面数组和链表的优缺点，如果我们需要一种既支持频繁插入和删除元素又支持频繁随机访问的结构怎么办？？显然数组和链表都不是最好的选择，而二叉树则可以很好的解决这个问题。</p>
 <p>282.二叉树那是相当复杂啊，有时间自己写一个吧，提升自己的逻辑思维哈，其中难点是查找节点，删除节点和树的遍历。一般二叉树是按照有序原则建立的，为了便于进行二分查找，这种树叫做二叉搜索树。如果用树结构来存储随意的数据，可能会导致树的不平衡，导致查找的时间并不会减少，这种情况下我们就需要重新排列节点来使树变得平衡，但创建一个平衡树要花费更多时间，虽然它可以保证高效搜索。</p>
-<p>283.最后抽象数据类型ADT实际上类似于C++中的类，学完C语言后，向更高级的C++语言进发吧。</p>
+<p>283.最后抽象数据类型<code>ADT</code>实际上类似于<code>C++</code>中的类，学完<code>C</code>语言后，向更高级的<code>C++</code>语言进发吧。</p>
             <hr/>
             <footer>
                 <code style="background-color:white">Author: Neal | Date: 2015-05-05 ----------&gt; <a href=#>Go to Top</a></code>

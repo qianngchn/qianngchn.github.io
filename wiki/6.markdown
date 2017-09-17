@@ -8,41 +8,40 @@
 ````````````````````````````````````````````````````````````{.c}
 #include <stdio.h>
 #include <stdint.h>
-#include <libgen.h>
 
 #define POLY 0xEDB88320U
-static uint32_t crc32_table[256];
+static uint32_t crc32table[256];
 
-static void init_crc32_table(void)
+static void crc32table_init(void)
 {
     uint32_t crc32;
     int i, j;
 
-    for (i = 0; i < 256; i++)
+    for(i = 0; i < 256; i++)
     {
-        crc32 = (uint32_t)i;
-        for (j = 0; j < 8; j++) 
+        crc32 = i;
+        for(j = 0; j < 8; j++) 
         {
-            if (crc32 & 0x00000001U)
+            if(crc32 & 0x00000001U)
                 crc32 = (crc32 >> 1) ^ POLY;
             else
                 crc32 = crc32 >> 1;
         }
-        crc32_table[i] = crc32;
+        crc32table[i] = crc32;
     }
 }
 
-static uint32_t get_buff_crc32(uint32_t crc32init, uint8_t *buff, uint32_t buffsize)
+static uint32_t crc32_buff(uint32_t crc32init, uint8_t *buff, uint32_t buffsize)
 {
     uint32_t crc32;
     crc32 = crc32init ^ 0xFFFFFFFFU;
     while(buffsize--)
-        crc32 = (crc32 >> 8) ^ crc32_table[(crc32 & 0x000000FFU) ^ *buff++];
+        crc32 = (crc32 >> 8) ^ crc32table[(crc32 & 0x000000FFU) ^ *buff++];
 
     return crc32 ^ 0xFFFFFFFFU;
 }
 
-uint32_t get_file_crc32(const char *file)
+uint32_t crc32_file(const char *file)
 {
     uint32_t size = 0x00100000U;
     uint8_t buff[size];
@@ -51,9 +50,9 @@ uint32_t get_file_crc32(const char *file)
 
     FILE *fd = fopen(file, "r");
     if(fd == NULL) return 0;
-    init_crc32_table();
+    crc32table_init();
     while((length = fread(buff, sizeof(uint8_t), size, fd)) > 0)
-        crc32 = get_buff_crc32(crc32, buff, length);
+        crc32 = crc32_buff(crc32, buff, length);
     fclose(fd);
 
     return crc32;
@@ -67,7 +66,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    uint32_t crc32 = get_file_crc32(argv[1]);
+    uint32_t crc32 = crc32_file(argv[1]);
     printf("CRC32: %08X\n", crc32);
 
     return 0;

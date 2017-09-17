@@ -2,7 +2,7 @@
 A personal website on GitHub Pages
 
 ### Home
-欢迎访问我的个人主页：<http://qianngchn.github.io>
+欢迎访问我的个人主页：<https://qianngchn.github.io>
 
 ### Wiki
 我的个人Wiki是基于Markdown + Pandoc + Github搭建的在线Wiki，方法是用markdown写的文章，在本地建立起自己的知识架构，同时调用pandoc实现html的自动生成，然后再发布到Github上形成自己的在线Wiki。
