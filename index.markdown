@@ -10,7 +10,7 @@
 ### Projects
 nextspider：<https://github.com/qianngchn/nextspider>
 
-> 一个多线程的网络爬虫，基于C语言框架，由Lua脚本负责逻辑扩展。
+> 一个多线程的网络爬虫，程序由C语言构建，通过Lua脚本控制下载循环，扩展功能，适配网站。
 
 Desktop Translator：<https://github.com/qianngchn/Desktop-Translator>
 
@@ -25,4 +25,4 @@ Desktop Translator：<https://github.com/qianngchn/Desktop-Translator>
 * Curl：<https://curl.haxx.se>
 * Pandoc：<https://pandoc.org>
 * Docker Hub：<https://hub.docker.com>
-* GitHub Octicons：<https://octicons.github.com>
+* Octicons：<https://octicons.github.com>
