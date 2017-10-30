@@ -25,7 +25,7 @@
         <meta name="keywords" content="C语言, crc32" />
         <meta name="author" content="Neal" />
         <meta name="date" content="2016-03-21" />
-        <meta name="description" content="这是一段获取文件CRC32值的代码，与WinRAR内CRC32值相同。
+        <meta name="description" content="这是一段获取文件`CRC32`值的代码，与`WinRAR`内`CRC32`值相同。
         ````````````````````````````````````````````````````````````{.c}
         #include <stdio.h>" />
     </head>
@@ -52,7 +52,7 @@
 <!---author:Neal-->
 <!---date:2016-03-21-->
 
-<p>这是一段获取文件CRC32值的代码，与WinRAR内CRC32值相同。</p>
+<p>这是一段获取文件<code>CRC32</code>值的代码，与<code>WinRAR</code>内<code>CRC32</code>值相同。</p>
 <pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;stdio.h&gt;</span>
 <span class="ot">#include &lt;stdint.h&gt;</span>
 
@@ -99,10 +99,8 @@
     <span class="kw">return</span> crc32;
 }
 
-<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)
-{
-    <span class="kw">if</span>(argc != <span class="dv">2</span>)
-    {
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) {
+    <span class="kw">if</span>(argc != <span class="dv">2</span>) {
         printf(<span class="st">&quot;Usage: %s file</span><span class="ch">\n</span><span class="st">&quot;</span>, basename(argv[<span class="dv">0</span>]));
         <span class="kw">return</span> <span class="dv">1</span>;
     }

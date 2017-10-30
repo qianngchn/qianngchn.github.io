@@ -29,12 +29,6 @@
     # 将缓存文件夹软链接到/tmp
     rm -rf ~/.cache/google-chrome;ln -s /tmp ~/.cache/google-chrome
 
-安装Google Drive
-
-    sudo add-apt-repository ppa:twodopeshaggy/drive
-    sudo apt-get update
-    sudo apt-get install drive
-
 ### 优化配置
 
 优化系统，加速启动

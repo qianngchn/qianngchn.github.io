@@ -4,7 +4,7 @@
 <!---author:Neal-->
 <!---date:2016-03-21-->
 
-这是一段获取文件CRC32值的代码，与WinRAR内CRC32值相同。
+这是一段获取文件`CRC32`值的代码，与`WinRAR`内`CRC32`值相同。
 ````````````````````````````````````````````````````````````{.c}
 #include <stdio.h>
 #include <stdint.h>
@@ -52,10 +52,8 @@ uint32_t crc32_file(const char *file) {
     return crc32;
 }
 
-int main(int argc, char **argv)
-{
-    if(argc != 2)
-    {
+int main(int argc, char **argv) {
+    if(argc != 2) {
         printf("Usage: %s file\n", basename(argv[0]));
         return 1;
     }
