@@ -8,11 +8,11 @@
         <link rel="icon" href="../favicon.ico" />
         <link rel="stylesheet" href="../style.css" />
         <title>Linux下静态库和动态库简介及示例</title>
-        <meta name="keywords" content="linux, C语言" />
+        <meta name="keywords" content="linux, c语言" />
         <meta name="author" content="Neal" />
         <meta name="date" content="2016-04-16" />
         <meta name="description" content="在实际的软件开发项目中，不是每一行代码都需要我们亲自写。在我们的软件产品中，有一些代码（尤其是函数）的出现频率很高，它们可以被当作公共代码来反复使用。为了避免重复劳动，我们就把这些公共代码编译为库文件，供需要的程序调用。在`Linux`中，库分为静态库和动态库两种。
-        ### 静态库和动态库简介" />
+        ### 简介" />
     </head>
     <body>
         <header class="site-header">
@@ -28,26 +28,26 @@
         <article class="main-content">
             <header>
                 <h2>Linux下静态库和动态库简介及示例</h2>
-                <code style="background-color:white">Category: <a href="../wiki.html#技术学习">技术学习</a> | Tags: linux, C语言 | Source: <a href="9.markdown">Markdown</a> ----------&gt; <a href=../wiki.html>Back to Wiki</a></code>
+                <span style="font-family: Consolas, Liberation Mono, Menlo, Courier, monospace; font-size: 0.9rem;">Category: <a href="../wiki.html#技术学习">技术学习</a> | Tags: linux, c语言 | Source: <a href="9.markdown">Markdown</a> ----------&gt; <a href=../wiki.html>Back to Wiki</a></span>
             </header>
             <hr/>
             <nav>
                 <h3 id="toc">Contents</h3>
                 <ul>
-                <li><a href="#静态库和动态库简介">静态库和动态库简介</a></li>
-                <li><a href="#静态库生成示例">静态库生成示例</a></li>
-                <li><a href="#动态库生成示例">动态库生成示例</a></li>
+                <li><a href="#简介">简介</a></li>
+                <li><a href="#静态库">静态库</a></li>
+                <li><a href="#动态库">动态库</a></li>
                 <li><a href="#总结">总结</a></li>
                 </ul>
             </nav>
-<!---title:Linux下静态库和动态库简介及示例-->
-<!---category:技术学习-->
-<!---tags:linux, C语言-->
-<!---author:Neal-->
-<!---date:2016-04-16-->
+<!--title:Linux下静态库和动态库简介及示例-->
+<!--category:技术学习-->
+<!--tags:linux, c语言-->
+<!--author:Neal-->
+<!--date:2016-04-16-->
 
 <p>在实际的软件开发项目中，不是每一行代码都需要我们亲自写。在我们的软件产品中，有一些代码（尤其是函数）的出现频率很高，它们可以被当作公共代码来反复使用。为了避免重复劳动，我们就把这些公共代码编译为库文件，供需要的程序调用。在<code>Linux</code>中，库分为静态库和动态库两种。</p>
-<h3 id="静态库和动态库简介">静态库和动态库简介</h3>
+<h3 id="简介">简介</h3>
 <p>众所周知，程序一般需要经过预处理、编译、汇编和链接这几个步骤才能变成可执行的程序。在实际的软件开发中，对于一些需要被许多模块反复使用的公共代码，我们就将它们编译为库文件。</p>
 <p>库是一种可执行代码的二进制形式，可以被操作系统载入内存执行。<code>Linux</code>支持的库分为静态库和动态库，动态库又称共享库。一般说来，<code>Linux</code>中的一些重要的库是存放在<code>lib</code>目录下的。</p>
 <blockquote>
@@ -57,7 +57,7 @@
 <p>动态库文件的后缀为<code>.so</code>，在<code>Linux</code>下一般命名为<code>libxxx.so</code>。相对于静态库，动态库在编译的时候并没有被编译进目标代码中，而是程序执行到相关函数时才调用库中对应的函数。</p>
 </blockquote>
 <p>可以看到，静态库的优点是编译后的执行程序不需要外部的函数库支持，缺点是如果静态函数库改变了，那么你的程序必须重新编译；而动态库在多个应用程序都要使用同一函数库的时候就非常适合，但前提是程序的运行环境中必须提供相应的库。 不管是静态库，还是动态库，都是由<code>*.o</code>目标文件生成的。</p>
-<h3 id="静态库生成示例">静态库生成示例</h3>
+<h3 id="静态库">静态库</h3>
 <pre><code>~/test&gt; ll
 -rw------- 1 neal neal 96 Nov  4 16:11 main.c
 -rw------- 1 neal neal 70 Nov  4 16:04 test.h
@@ -104,7 +104,7 @@ this is in test_2......
 this is in test_3......</code></pre>
 <p>我们可以看到，生成静态库文件的命令是<code>ar -r libtest.a test_1.o test_2.o test_3.o</code>，而将静态库文件编译进代码的命令是<code>gcc -o test main.c libtest.a</code>。</p>
 <p>这样生成了静态库文件<code>libtest.a</code>之后，如果还有其他程序要调用<code>test_1.c</code>、<code>test_2.c</code>、<code>test_3.c</code>中实现的函数，只需要将<code>test.h</code>和<code>libtest.a</code>拷贝到对应的代码工程中，然后执行类似<code>gcc -o test main.c libtest.a</code>这样的命令即可。</p>
-<h3 id="动态库生成示例">动态库生成示例</h3>
+<h3 id="动态库">动态库</h3>
 <pre><code>~/test&gt; ll
 -rw------- 1 neal neal   70 Nov  5 13:44 so_test.h
 -rw------- 1 neal neal  105 Nov  4 15:25 test.c
@@ -149,11 +149,11 @@ this is in test_c...</code></pre>
 </ul>
             <hr/>
             <footer>
-                <code style="background-color:white">Author: Neal | Date: 2016-04-16 ----------&gt; <a href=#>Go to Top</a></code>
+                <span style="font-family: Consolas, Liberation Mono, Menlo, Courier, monospace; font-size: 0.9rem;">Author: Neal | Date: 2016-04-16 ----------&gt; <a href=#>Go to Top</a></span>
             </footer>
         </article>
         <footer class="site-footer">
-            <span class="site-footer-owner">Copyright &copy; 2015, <a href="../index.html">Neal</a>. All Rights Reserved.</span>
+            <span class="site-footer-owner">Copyright &copy; 2015 <a href="../index.html">Neal</a>. All Rights Reserved.</span>
             <span class="site-footer-credits">Hosted on <a href="https://pages.github.com">Github Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman Theme</a>.</span>
         </footer>
     </body>

@@ -1,8 +1,8 @@
-<!---title:Ubuntu系统安装配置指南-->
-<!---category:个人笔记-->
-<!---tags:ubuntu-->
-<!---author:Neal-->
-<!---date:2015-05-05-->
+<!--title:Ubuntu系统安装配置指南-->
+<!--category:个人笔记-->
+<!--tags:ubuntu-->
+<!--author:Neal-->
+<!--date:2015-05-05-->
 
 ### 基本配置
 
@@ -95,17 +95,12 @@
     sudo apt-get install build-essential
 
     # Lua
-    mkdir -p ~/local/src; cd ~/local/src
+    sudo apt-get install libreadline-dev
     wget https://www.lua.org/ftp/lua-5.3.4.tar.gz
     tar zxvf lua-5.3.4.tar.gz; rm lua-5.3.4.tar.gz
     cd lua-5.3.4
-    sudo apt-get install libreadline-dev
     make linux test
-    make install INSTALL_TOP=$HOME/local
-    make clean
-    export PATH="$HOME/local/bin:$PATH"
-    export LUA_PATH="$HOME/local/lib/lua/?.lua;;"
-    export LUA_CPATH="$HOME/local/lib/lua/?.so;;"
+    make install INSTALL_TOP=/home/neal/local
 
 ### 服务配置
 

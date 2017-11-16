@@ -1,7 +1,7 @@
-<!---title:Home-->
-<!---tags:home-->
-<!---author:Neal-->
-<!---date:2016-10-12-->
+<!--title:Home-->
+<!--tags:home-->
+<!--author:Neal-->
+<!--date:2016-10-12-->
 
 > 我是Neal，这里用于记录我在技术人生路上的关键点，积累属于自己的知识库。
 

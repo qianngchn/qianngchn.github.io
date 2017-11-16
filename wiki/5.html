@@ -29,7 +29,7 @@
         <article class="main-content">
             <header>
                 <h2>Markdown语法介绍</h2>
-                <code style="background-color:white">Category: <a href="../wiki.html#技术学习">技术学习</a> | Tags: markdown | Source: <a href="5.markdown">Markdown</a> ----------&gt; <a href=../wiki.html>Back to Wiki</a></code>
+                <span style="font-family: Consolas, Liberation Mono, Menlo, Courier, monospace; font-size: 0.9rem;">Category: <a href="../wiki.html#技术学习">技术学习</a> | Tags: markdown | Source: <a href="5.markdown">Markdown</a> ----------&gt; <a href=../wiki.html>Back to Wiki</a></span>
             </header>
             <hr/>
             <nav>
@@ -37,12 +37,12 @@
                 <ul>
                 <li><a href="#概述">概述</a></li>
                 <li><a href="#特点">特点</a></li>
-                <li><a href="#区块元素">区块元素</a><ul>
-                <li><a href="#段落和换行">段落和换行</a></li>
+                <li><a href="#元素">元素</a><ul>
+                <li><a href="#段落">段落</a></li>
                 <li><a href="#标题">标题</a></li>
-                <li><a href="#区块引用">区块引用</a></li>
+                <li><a href="#引用">引用</a></li>
                 <li><a href="#列表">列表</a></li>
-                <li><a href="#代码区块">代码区块</a></li>
+                <li><a href="#代码区">代码区</a></li>
                 <li><a href="#分隔线">分隔线</a></li>
                 <li><a href="#链接">链接</a></li>
                 <li><a href="#强调">强调</a></li>
@@ -55,11 +55,11 @@
                 </ul></li>
                 </ul>
             </nav>
-<!---title:Markdown语法介绍-->
-<!---category:技术学习-->
-<!---tags:markdown-->
-<!---author:Neal-->
-<!---date:2016-03-18-->
+<!--title:Markdown语法介绍-->
+<!--category:技术学习-->
+<!--tags:markdown-->
+<!--author:Neal-->
+<!--date:2016-03-18-->
 
 <h3 id="概述">概述</h3>
 <p><code>Markdown</code>是一种可读性极强的网络书写语言。 它的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。比如：在文字两旁加上星号，看起来就像<code>*</code>强调<code>*</code>。<code>Markdown</code> 的列表看起来，嗯，就是列表。<code>Markdown</code> 的区块引用看起来就真的像是引用一段文字，就像你曾在电子邮件中见过的那样。</p>
@@ -72,8 +72,8 @@
 </ul></li>
 <li>特殊字符自动转换。 <code>&lt;</code>和<code>&amp;</code>会自动转换为<code>HTML</code>实体，这让可读性大大提高，在写代码时非常有用。</li>
 </ol>
-<h3 id="区块元素">区块元素</h3>
-<h4 id="段落和换行">段落和换行</h4>
+<h3 id="元素">元素</h3>
+<h4 id="段落">段落</h4>
 <p>一个 <code>Markdown</code> 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行。普通段落不该用空格或制表符来缩进。</p>
 <h4 id="标题">标题</h4>
 <p><code>Markdown</code> 支持两种标题的语法。</p>
@@ -88,8 +88,8 @@ This is an H2
 ## This is an H2
 
 ### This is an H3</code></pre>
-<h4 id="区块引用">区块引用</h4>
-<p><code>Markdown</code> 标记区块引用是使用类似 <code>email</code> 中用 <code>&gt;</code> 的引用方式，并且允许嵌套。</p>
+<h4 id="引用">引用</h4>
+<p><code>Markdown</code> 标记引用是使用类似 <code>email</code> 中用 <code>&gt;</code> 的引用方式，并且允许嵌套。</p>
 <pre><code>&gt; Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
 &gt; id sem consectetuer libero luctus adipiscing.
 
@@ -108,8 +108,8 @@ id sem consectetuer libero luctus adipiscing.
 1. Bird
 2. McHale
 3. Parish</code></pre>
-<h4 id="代码区块">代码区块</h4>
-<p>要在 <code>Markdown</code> 中建立代码区块很简单，只要简单地缩进 <code>4</code> 个空格或是 <code>1</code> 个制表符就可以。 代码区块中，一般的 <code>Markdown</code> 语法不会被转换。</p>
+<h4 id="代码区">代码区</h4>
+<p>要在 <code>Markdown</code> 中建立代码区很简单，只要简单地缩进 <code>4</code> 个空格或是 <code>1</code> 个制表符就可以。 代码区中，一般的 <code>Markdown</code> 语法不会被转换。</p>
 <pre><code>    tell application &quot;Foo&quot;
             beep
         end tell</code></pre>
@@ -183,11 +183,11 @@ _   底线
 !   惊叹号</code></pre>
             <hr/>
             <footer>
-                <code style="background-color:white">Author: Neal | Date: 2016-03-18 ----------&gt; <a href=#>Go to Top</a></code>
+                <span style="font-family: Consolas, Liberation Mono, Menlo, Courier, monospace; font-size: 0.9rem;">Author: Neal | Date: 2016-03-18 ----------&gt; <a href=#>Go to Top</a></span>
             </footer>
         </article>
         <footer class="site-footer">
-            <span class="site-footer-owner">Copyright &copy; 2015, <a href="../index.html">Neal</a>. All Rights Reserved.</span>
+            <span class="site-footer-owner">Copyright &copy; 2015 <a href="../index.html">Neal</a>. All Rights Reserved.</span>
             <span class="site-footer-credits">Hosted on <a href="https://pages.github.com">Github Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman Theme</a>.</span>
         </footer>
     </body>

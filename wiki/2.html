@@ -28,7 +28,7 @@
         <article class="main-content">
             <header>
                 <h2>Ubuntu系统安装配置指南</h2>
-                <code style="background-color:white">Category: <a href="../wiki.html#个人笔记">个人笔记</a> | Tags: ubuntu | Source: <a href="2.markdown">Markdown</a> ----------&gt; <a href=../wiki.html>Back to Wiki</a></code>
+                <span style="font-family: Consolas, Liberation Mono, Menlo, Courier, monospace; font-size: 0.9rem;">Category: <a href="../wiki.html#个人笔记">个人笔记</a> | Tags: ubuntu | Source: <a href="2.markdown">Markdown</a> ----------&gt; <a href=../wiki.html>Back to Wiki</a></span>
             </header>
             <hr/>
             <nav>
@@ -40,11 +40,11 @@
                 <li><a href="#服务配置">服务配置</a></li>
                 </ul>
             </nav>
-<!---title:Ubuntu系统安装配置指南-->
-<!---category:个人笔记-->
-<!---tags:ubuntu-->
-<!---author:Neal-->
-<!---date:2015-05-05-->
+<!--title:Ubuntu系统安装配置指南-->
+<!--category:个人笔记-->
+<!--tags:ubuntu-->
+<!--author:Neal-->
+<!--date:2015-05-05-->
 
 <h3 id="基本配置">基本配置</h3>
 <p>设置Shell，修改用户组</p>
@@ -117,17 +117,12 @@ sudo usermod -a -G docker neal
 sudo apt-get install build-essential
 
 # Lua
-mkdir -p ~/local/src; cd ~/local/src
+sudo apt-get install libreadline-dev
 wget https://www.lua.org/ftp/lua-5.3.4.tar.gz
 tar zxvf lua-5.3.4.tar.gz; rm lua-5.3.4.tar.gz
 cd lua-5.3.4
-sudo apt-get install libreadline-dev
 make linux test
-make install INSTALL_TOP=$HOME/local
-make clean
-export PATH=&quot;$HOME/local/bin:$PATH&quot;
-export LUA_PATH=&quot;$HOME/local/lib/lua/?.lua;;&quot;
-export LUA_CPATH=&quot;$HOME/local/lib/lua/?.so;;&quot;</code></pre>
+make install INSTALL_TOP=/home/neal/local</code></pre>
 <h3 id="服务配置">服务配置</h3>
 <p>安装SSH Server</p>
 <pre><code>sudo apt-get install openssh-server
@@ -222,11 +217,11 @@ sudo sh -c &quot;echo \&quot;ServerName 127.0.0.1\&quot; &gt;&gt; /etc/apache2/a
 sudo service apache2 restart</code></pre>
             <hr/>
             <footer>
-                <code style="background-color:white">Author: Neal | Date: 2015-05-05 ----------&gt; <a href=#>Go to Top</a></code>
+                <span style="font-family: Consolas, Liberation Mono, Menlo, Courier, monospace; font-size: 0.9rem;">Author: Neal | Date: 2015-05-05 ----------&gt; <a href=#>Go to Top</a></span>
             </footer>
         </article>
         <footer class="site-footer">
-            <span class="site-footer-owner">Copyright &copy; 2015, <a href="../index.html">Neal</a>. All Rights Reserved.</span>
+            <span class="site-footer-owner">Copyright &copy; 2015 <a href="../index.html">Neal</a>. All Rights Reserved.</span>
             <span class="site-footer-credits">Hosted on <a href="https://pages.github.com">Github Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman Theme</a>.</span>
         </footer>
     </body>

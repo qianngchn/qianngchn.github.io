@@ -1,8 +1,8 @@
-<!---title:Ubuntu下全命令行搭建Android开发环境-->
-<!---category:技术学习-->
-<!---tags:ubuntu, android, shell-->
-<!---author:Neal-->
-<!---date:2016-04-16-->
+<!--title:Ubuntu下全命令行搭建Android开发环境-->
+<!--category:技术学习-->
+<!--tags:ubuntu, android, shell-->
+<!--author:Neal-->
+<!--date:2016-04-16-->
 
 下面是本文中使用的一些SDK和基本环境：
 

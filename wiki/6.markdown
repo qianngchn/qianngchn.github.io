@@ -1,65 +1,76 @@
-<!---title:获取文件CRC32值-->
-<!---category:代码片段-->
-<!---tags:C语言, crc32-->
-<!---author:Neal-->
-<!---date:2016-03-21-->
+<!--title:获取文件CRC32值-->
+<!--category:代码片段-->
+<!--tags:c语言, crc32-->
+<!--author:Neal-->
+<!--date:2016-03-21-->
 
 这是一段获取文件`CRC32`值的代码，与`WinRAR`内`CRC32`值相同。
 ````````````````````````````````````````````````````````````{.c}
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
 #define CRC32_POLY 0xEDB88320U
-static uint32_t crc32table[256];
+#define BUFF_SIZE 0x00100000U
 
-static void crc32table_init(void) {
-    uint32_t crc32;
-    int i, j;
+typedef struct crc32_handle {
+    uint32_t table[256];
+} CRC32_Handle;
 
-    for(i = 0; i < 256; i++) {
-        crc32 = i;
-        for(j = 0; j < 8; j++) {
-            if(crc32 & 0x00000001U)
-                crc32 = (crc32 >> 1) ^ CRC32_POLY;
-            else
-                crc32 = crc32 >> 1;
-        }
-        crc32table[i] = crc32;
-    }
-}
+static uint32_t crc32_update(const CRC32_Handle *handle, const uint8_t *buff, size_t len, uint32_t init) {
+    uint32_t crc32 = init ^ 0xFFFFFFFFU;
 
-static uint32_t crc32_buff(uint32_t crc32init, uint8_t *buff, uint32_t buffsize) {
-    uint32_t crc32 = crc32init ^ 0xFFFFFFFFU;
-    while(buffsize--)
-        crc32 = (crc32 >> 8) ^ crc32table[(crc32 & 0x000000FFU) ^ *buff++];
+    while (len--)
+        crc32 = (crc32 >> 8) ^ handle->table[(crc32 & 0x000000FFU) ^ *buff++];
 
     return crc32 ^ 0xFFFFFFFFU;
 }
 
-uint32_t crc32_file(const char *file) {
-    uint32_t size = 0x00100000U;
-    uint8_t buff[size];
-    uint32_t crc32 = 0;
-    size_t length;
+static void crc32_init(CRC32_Handle *handle) {
+    if (handle == NULL) return;
 
-    FILE *fd = fopen(file, "r");
-    if(fd == NULL) return 0;
-    crc32table_init();
-    while((length = fread(buff, sizeof(uint8_t), size, fd)) > 0)
-        crc32 = crc32_buff(crc32, buff, length);
+    int i = 0, j = 0;
+    for (i = 0; i < 256; i++) {
+        handle->table[i] = i;
+        for (j = 0; j < 8; j++) {
+            if (handle->table[i] & 0x00000001U)
+                handle->table[i] = (handle->table[i] >> 1) ^ CRC32_POLY;
+            else
+                handle->table[i] = handle->table[i] >> 1;
+        }
+    }
+}
+
+static uint32_t crc32_file(const CRC32_Handle *handle, const char *file) {
+    uint32_t crc32 = 0;
+    uint8_t buff[BUFF_SIZE] = {0};
+    size_t length = 0;
+
+    FILE *fd = fopen(file, "rb");
+    if (fd == NULL) return 0;
+    while ((length = fread(buff, sizeof(uint8_t), BUFF_SIZE, fd)) > 0)
+        crc32 = crc32_update(handle, buff, length, crc32);
     fclose(fd);
 
     return crc32;
 }
 
+static uint32_t crc32_buff(const CRC32_Handle *handle, const uint8_t *buff, size_t len, const uint32_t init) {
+    if (handle == NULL || buff == NULL || len <= 0) return 0;
+
+    return crc32_update(handle, buff, len, init);
+}
+
 int main(int argc, char **argv) {
-    if(argc != 2) {
-        printf("Usage: %s file\n", basename(argv[0]));
+    if (argc != 2) {
+        printf("Usage: %s <file>\n", argv[0]);
         return 1;
     }
 
-    uint32_t crc32 = crc32_file(argv[1]);
-    printf("CRC32: %08X\n", crc32);
+    CRC32_Handle handle;
+    crc32_init(&handle);
+    printf("file: %08x\n", crc32_file(&handle, argv[1]));
+    printf("buff: %08x\n", crc32_buff(&handle, argv[1], strlen(argv[1]), 0));
 
     return 0;
 }

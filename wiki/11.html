@@ -28,49 +28,49 @@
         <article class="main-content">
             <header>
                 <h2>鸟哥的私房菜基础篇 读书笔记</h2>
-                <code style="background-color:white">Category: <a href="../wiki.html#个人笔记">个人笔记</a> | Tags: linux, 读书笔记 | Source: <a href="11.markdown">Markdown</a> ----------&gt; <a href=../wiki.html>Back to Wiki</a></code>
+                <span style="font-family: Consolas, Liberation Mono, Menlo, Courier, monospace; font-size: 0.9rem;">Category: <a href="../wiki.html#个人笔记">个人笔记</a> | Tags: linux, 读书笔记 | Source: <a href="11.markdown">Markdown</a> ----------&gt; <a href=../wiki.html>Back to Wiki</a></span>
             </header>
             <hr/>
-<!---title:鸟哥的私房菜基础篇 读书笔记-->
-<!---category:个人笔记-->
-<!---tags:linux, 读书笔记-->
-<!---author:Neal-->
-<!---date:2016-11-10-->
+<!--title:鸟哥的私房菜基础篇 读书笔记-->
+<!--category:个人笔记-->
+<!--tags:linux, 读书笔记-->
+<!--author:Neal-->
+<!--date:2016-11-10-->
 
 <p>1.计算机是由以下几个单元组成的：包括输入单元、输出单元、<code>CPU</code>内部的控制单元、算数逻辑单元与主存储器五大部分。</p>
 <p>2.<code>CPU</code>种类主要有两种：<code>RISC</code>-精简指令集 和 <code>CISC</code>-复杂指令集。</p>
 <p><code>RISC</code>的设计重点在于降低由硬件执行指令的复杂度，因为软件比硬件容易提供更大的灵活性和更高的智能，因此<code>RISC</code>设计对编译器有更高的要求；而<code>CISC</code>的设计则更侧重于硬件执行指令的功能，使<code>CISC</code>的指令变得很复杂。总之<code>RISC</code>的指令集精简，执行效率好，但对编译器的要求高，而<code>CISC</code>强调硬件的复杂性，指令集多而复杂，执行效率差，但每条指令的功能丰富。</p>
 <p>3.<code>CPU</code>频率=外频<code>*</code>频，我们常说的超频指的是设定主板的外频或者是倍频为较高频率的一种方式。</p>
 <p>4.一般主板芯片组有北桥和南桥。北桥称为系统总线，连接<code>CPU</code>、内存和显卡等快速设备，南桥称为输入输出总线，连接硬盘、<code>USB</code>、<code>PCI</code>接口和网卡等慢速设备。</p>
-<p>5.北桥所支持的频率称为前端总线速度，而每次传送的位数则是总线宽度。常见的总线宽度有<code>32</code>和<code>64</code>位(<code>bits</code>)，另外所谓的总线带宽则是 前端总线速度<code>*</code>总线宽度，即每秒可传送的最大数据量。</p>
+<p>5.北桥所支持的频率称为前端总线速度，而每次传送的位数则是总线宽度。常见的总线宽度有<code>32</code>和<code>64</code>位（<code>bits</code>），另外所谓的总线带宽则是 前端总线速度<code>*</code>总线宽度，即每秒可传送的最大数据量。</p>
 <p>6.<code>CPU</code>每次能够处理的数据量称为字组大小，也有<code>32</code>位和<code>64</code>位之分，而<code>32</code>位<code>CPU</code>只能支持最大<code>4GBytes</code>的内存。</p>
 <p>7.内存通常有<code>SDRAM</code>和<code>DDR SDRAM</code>两种，但<code>DDR</code>拥有更快的传输频率，所以<code>SDRAM</code>已经逐渐被淘汰啦。</p>
 <p><code>CPU</code>内部还存在高速缓存，以提高<code>CPU</code>的效率，这里就要用到静态随机存储内存，即<code>SRAM</code>，通常容量很小，但速度很快。</p>
 <p><code>CMOS</code>芯片是主板上一块可读写的<code>RAM</code>芯片，用于保存<code>BIOS</code>设置的各项硬件配置信息和用户设定的某些参数，由主板上的纽扣电池供电，即使系统断电信息也不会丢失。而<code>BIOS</code>则是主板上的一块<code>EPROM</code>或<code>EEPROM</code>芯片，用于存放系统重要信息和<code>BIOS</code>设置程序。</p>
 <p>8.显卡内拥有显存，这是因为每个图像的颜色会占用掉内存，而有的显卡甚至拥有<code>GPU</code>，用于<code>3D</code>加速，这对于游戏是非常重要的性能。</p>
-<p>9.注意硬盘的结构，拥有扇区(<code>Sector</code>)、磁道(<code>Cylinder</code>)和<code>Header</code>头这几个概念，所以硬盘的总容量计算公式为 <code>Header</code>数量<code>*</code>每个<code>Header</code>负责的磁道数<code>*</code>每个磁道所含有的扇区数量<code>*</code>每个扇区的字节数。另外我们通常<code>500GB</code>的硬盘指的是十进制的<code>500\*1000\*1000\*1000Bytes</code>的大小，所以实际上仅拥有<code>460GBytes</code>左右的容量。</p>
+<p>9.注意硬盘的结构，拥有扇区（<code>Sector</code>）、磁道（<code>Cylinder</code>）和<code>Header</code>头这几个概念，所以硬盘的总容量计算公式为 <code>Header</code>数量<code>*</code>每个<code>Header</code>负责的磁道数<code>*</code>每个磁道所含有的扇区数量<code>*</code>每个扇区的字节数。另外我们通常<code>500GB</code>的硬盘指的是十进制的<code>500\*1000\*1000\*1000Bytes</code>的大小，所以实际上仅拥有<code>460GBytes</code>左右的容量。</p>
 <p>10.计算机中每个设备都有一个<code>I/O</code>地址和<code>IRQ</code>中断。两个设备不能使用同一个<code>I/O</code>地址，而<code>IRQ</code>中断是设备联系<code>CPU</code>的专门路径，每个设备可以通过<code>IRQ</code>中断告知<code>CPU</code>自己的工作情况，以方便<code>CPU</code>分配任务。</p>
-<p>11.计算机依次由 硬件--核心(<code>kernel</code>)--系统呼叫层(<code>system call</code>)--应用程序 这几个部分组成。其中 <code>kernel</code>+系统呼叫层+常用的应用程序 组成了现在的操作系统。而<code>Linux kernel</code>包含了对硬件进行管理的核心以及向应用程序提供系统调用的接口。</p>
+<p>11.计算机依次由 硬件--核心（<code>kernel</code>）--系统呼叫层（<code>system call</code>）--应用程序 这几个部分组成。其中 <code>kernel</code>+系统呼叫层+常用的应用程序 组成了现在的操作系统。而<code>Linux kernel</code>包含了对硬件进行管理的核心以及向应用程序提供系统调用的接口。</p>
 <p>12.<code>Linux kernel</code>分奇数和偶数两种版本，其中偶数版代表稳定版，奇数版代表测试版或不稳定版本。</p>
-<p>13.硬盘里第一块扇区最重要，一般只有<code>512bytes</code>，里面存放着主引导记录(<code>MBR</code>)和磁盘分区表(<code>Partition Table</code>)。<code>MBR</code>主要用来引导启动系统，分区表只能保存四个主分区或逻辑分区，而逻辑分区只能有一个，至于逻辑分区表则保存在逻辑分区的第一个扇区里，因此可以给逻辑分区划分更多的子逻辑分区。</p>
+<p>13.硬盘里第一块扇区最重要，一般只有<code>512bytes</code>，里面存放着主引导记录（<code>MBR</code>）和磁盘分区表（<code>Partition Table</code>）。<code>MBR</code>主要用来引导启动系统，分区表只能保存四个主分区或逻辑分区，而逻辑分区只能有一个，至于逻辑分区表则保存在逻辑分区的第一个扇区里，因此可以给逻辑分区划分更多的子逻辑分区。</p>
 <p>14.一般开机的流程是：<code>BIOS</code>--<code>MBR</code>--<code>Boot Loader</code>（<code>Grub</code>和<code>NT5/NT6</code>等）--<code>Kernel</code>。</p>
 <p>15.<code>Boot Loader</code>可以存在的地方有两个：<code>MBR</code>和<code>Boot Sector</code>。</p>
 <p>16.<code>Linux</code>下<code>Ctrl+D</code>代表<code>End Of File</code>，<code>EOF</code>的意思，这个快捷键可以取代<code>exit</code>的功能，直接跳出文字界面。</p>
 <p>17.<code>Linux</code>命令行下按<code>Tab</code>键可以补齐命令，<code>man</code>和<code>info</code>命令可以查看<code>command</code>的帮助文档，<code>Ctrl+C</code>表示中断进程，<code>Ctrl+D</code>表示<code>EOF</code>特殊字符，<code>Ctrl+Z</code>表示挂起进程在后台运行。</p>
 <p>18.<code>Linux</code>系统下，用户和<code>root</code>相关信息记录在<code>/etc/passwd</code>下，个人密码则是记录在<code>/etc/shadow</code>下，所有的组名都记录在<code>/etc/group</code>内。</p>
 <p>19.<code>Linux</code>的权限不是很细致，拥有<code>rwx</code>三种：</p>
-<p><code>r</code>(<code>Read</code>，读取)： 对文件而言，具有读取文件内容的权限；对目录来说，具有浏览目录的权限。</p>
-<p><code>w</code>(<code>Write</code>，写入)： 对文件而言，具有新增,修改,删除文件内容的权限；对目录来说，具有新建，删除，修改，移动目录内文件的权限。</p>
-<p><code>x</code>(<code>Execute</code>，执行)：对文件而言，具有执行文件的权限；对目录了来说该用户具有进入目录的权限。</p>
+<p><code>r</code>（<code>Read</code>，读取）： 对文件而言，具有读取文件内容的权限；对目录来说，具有浏览目录的权限。</p>
+<p><code>w</code>（<code>Write</code>，写入）： 对文件而言，具有新增,修改,删除文件内容的权限；对目录来说，具有新建，删除，修改，移动目录内文件的权限。</p>
+<p><code>x</code>（<code>Execute</code>，执行）：对文件而言，具有执行文件的权限；对目录了来说该用户具有进入目录的权限。</p>
 <p>20.可以用<code>chgrp</code>改变文件的用户组，<code>chown</code>改变文件的所有者，<code>chmod</code>改变文件的权限。</p>
 <p>21.<code>Linux</code>下文件的可删除和重命名权限是由其所在目录的<code>write</code>权限所决定的，要了解目录权限的意义。</p>
-<p>22.<code>Linux</code>下的文件类型：<code>-</code>代表常规文件，<code>d</code>代表目录，<code>l</code>代表链接，<code>b</code>(<code>block</code>)和<code>c</code>(<code>char</code>)代表设备文件，<code>s</code>代表<code>socket</code>文件，<code>p</code>代表<code>pipe</code>管道文件。</p>
+<p>22.<code>Linux</code>下的文件类型：<code>-</code>代表常规文件，<code>d</code>代表目录，<code>l</code>代表链接，<code>b</code>（<code>block</code>）和<code>c</code>（<code>char</code>）代表设备文件，<code>s</code>代表<code>socket</code>文件，<code>p</code>代表<code>pipe</code>管道文件。</p>
 <p>23.<code>pwd</code>会显示出当前目录的路径，注意 <code>-P</code> 选项，如果当前目录只是以链接文件的形式存在，那么 <code>pwd -P</code> 就会显示出链接真正所指向的路径。</p>
 <p>24.<code>cp</code>命令：<code>cp -a souce dest</code> 相当于 <code>cp -pdr source dest</code>，完全复制目录的属性和档案，甚至是链接文件。如果不加任何参数的 <code>cp</code> 一个软链接，复制的结果会是源文件，而不是软链接，用 <code>-d</code> 可以解决，注意。</p>
 <p>25.删除带有<code>-</code>开头的档案，例如 <code>-aaa</code> 这个文件，必须 <code>rm ./-aaa</code> 或 <code>rm -- -aaa</code> 才可以删除，否则<code>-aaa</code>会误判为参数。</p>
 <p>26.查看二进制文件，有 <code>od</code> 和 <code>xxd</code> 命令，甚至有 <code>hexdump</code> 命令，都是以 <code>16</code>进制或<code>8</code>进制 显示输出，非常方便调试。</p>
 <p>27.新建目录和档案的默认权限是由 <code>umask</code> 来控制的，一般我们在<code>linux</code>系统的 <code>umask</code> 设置为 <code>022</code> 比较好。</p>
-<p>28.<code>linux</code>下档案的隐藏属性：<code>chattr</code> 命令可以设置档案的隐藏属性，常用的有<code>i</code>属性(任何用户包括<code>root</code>都无法修改)，<code>a</code>属性(只能增加数据，不能删除数据)等；<code>lsattr</code> 命令可以查看档案的隐藏属性，注意属性和权限是不同的，留个记性。</p>
+<p>28.<code>linux</code>下档案的隐藏属性：<code>chattr</code> 命令可以设置档案的隐藏属性，常用的有<code>i</code>属性（任何用户包括<code>root</code>都无法修改），<code>a</code>属性（只能增加数据，不能删除数据）等；<code>lsattr</code> 命令可以查看档案的隐藏属性，注意属性和权限是不同的，留个记性。</p>
 <p>29.<code>linux</code>文件的特殊权限：<code>SUID(u+s)</code>、<code>SGID(g+s)</code>和<code>SBIT(o+t)</code>。这三个特殊权限都是用来取代<code>x</code>权限的，所以设置这三个权限的前提条件就是必须具有<code>x</code>权限，否则小写的 <code>s</code>和<code>t</code> 权限就会变为大写的 <code>S</code>和<code>T</code> 权限，表示文件还不具备<code>x</code>权限，更谈不上这三个权限啦。</p>
 <p>30.<code>SUID(u+s)</code>仅能用在可执行的二进制程序上，目录无效。</p>
 <p>拥有<code>SUID</code>权限的二进制程序在执行时，执行者会暂时取得拥有者的权限，例如 <code>passwd</code> 命令就具有<code>SUID</code>权限，使得普通用户在执行 <code>passwd</code> 命令时会暂时 <code>root</code> 用户的权限，从而能修改<code>/etc/passwd</code>文件。</p>
@@ -101,7 +101,7 @@
 <p>②<code>filesystem description</code>主要记录<code>block group</code>的起始与结束的<code>block</code>号码，以及<code>group</code>每个区段分别介于哪一个<code>block</code>号码之间；</p>
 <p>③<code>block bitmap</code>记录每个<code>block</code>号码是否使用中；</p>
 <p>④<code>inode bitmap</code>记录每个<code>inode</code>号码是否使用中；</p>
-<p>⑤<code>inode table</code>则是记录每个 <code>inode</code>(文件) 的权限、属性、容量等以及它真正内容所在的<code>block</code>号码；</p>
+<p>⑤<code>inode table</code>则是记录每个 <code>inode</code>（文件） 的权限、属性、容量等以及它真正内容所在的<code>block</code>号码；</p>
 <p>⑥<code>data block</code>则是纯粹的数据记录。</p>
 <p><code>Block Group</code>的基本单位是<code>block</code>，<code>block size</code>一般是<code>1K</code>、<code>2K</code>或<code>4K</code>。</p>
 <p>每个文件只有一个<code>inode</code>，而每个<code>inode</code>可能指向多个数据相同的文件，每个<code>inode</code>大小一般<code>128</code>字节或<code>256</code>字节。</p>
@@ -255,11 +255,11 @@
 <p>100.<code>Ubuntu</code>生成<code>initrd.img</code>的命令是<code>mkinitramfs</code>，查看<code>initrd.img</code>内容的命令是<code>lsinitramfs</code>，还可以用<code>update-initramfs</code>管理<code>/boot</code>下的<code>initrd.img</code>文件。</p>
             <hr/>
             <footer>
-                <code style="background-color:white">Author: Neal | Date: 2016-11-10 ----------&gt; <a href=#>Go to Top</a></code>
+                <span style="font-family: Consolas, Liberation Mono, Menlo, Courier, monospace; font-size: 0.9rem;">Author: Neal | Date: 2016-11-10 ----------&gt; <a href=#>Go to Top</a></span>
             </footer>
         </article>
         <footer class="site-footer">
-            <span class="site-footer-owner">Copyright &copy; 2015, <a href="../index.html">Neal</a>. All Rights Reserved.</span>
+            <span class="site-footer-owner">Copyright &copy; 2015 <a href="../index.html">Neal</a>. All Rights Reserved.</span>
             <span class="site-footer-credits">Hosted on <a href="https://pages.github.com">Github Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman Theme</a>.</span>
         </footer>
     </body>
