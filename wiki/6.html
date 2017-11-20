@@ -21,7 +21,7 @@
             code > span.er { font-weight: bold; }
         </style>
         <link rel="stylesheet" href="../style.css" />
-        <title>获取文件CRC32值</title>
+        <title>C语言获取文件CRC32值</title>
         <meta name="keywords" content="c语言, crc32" />
         <meta name="author" content="Neal" />
         <meta name="date" content="2016-03-21" />
@@ -42,11 +42,11 @@
         </header>
         <article class="main-content">
             <header>
-                <h2>获取文件CRC32值</h2>
+                <h2>C语言获取文件CRC32值</h2>
                 <span style="font-family: Consolas, Liberation Mono, Menlo, Courier, monospace; font-size: 0.9rem;">Category: <a href="../wiki.html#代码片段">代码片段</a> | Tags: c语言, crc32 | Source: <a href="6.markdown">Markdown</a> ----------&gt; <a href=../wiki.html>Back to Wiki</a></span>
             </header>
             <hr/>
-<!--title:获取文件CRC32值-->
+<!--title:C语言获取文件CRC32值-->
 <!--category:代码片段-->
 <!--tags:c语言, crc32-->
 <!--author:Neal-->
@@ -54,29 +54,21 @@
 
 <p>这是一段获取文件<code>CRC32</code>值的代码，与<code>WinRAR</code>内<code>CRC32</code>值相同。</p>
 <pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;stdio.h&gt;</span>
+<span class="ot">#include &lt;stddef.h&gt;</span>
 <span class="ot">#include &lt;stdint.h&gt;</span>
 <span class="ot">#include &lt;string.h&gt;</span>
 
 <span class="ot">#define CRC32_POLY 0xEDB88320U</span>
-<span class="ot">#define BUFF_SIZE 0x00100000U</span>
 
 <span class="kw">typedef</span> <span class="kw">struct</span> crc32_handle {
     <span class="dt">uint32_t</span> table[<span class="dv">256</span>];
+    <span class="dt">uint32_t</span> crc32;
+    <span class="dt">uint32_t</span> init;
 } CRC32_Handle;
 
-<span class="dt">static</span> <span class="dt">uint32_t</span> crc32_update(<span class="dt">const</span> CRC32_Handle *handle, <span class="dt">const</span> <span class="dt">uint8_t</span> *buff, size_t len, <span class="dt">uint32_t</span> init) {
-    <span class="dt">uint32_t</span> crc32 = init ^ 0xFFFFFFFFU;
+<span class="dt">static</span> <span class="dt">void</span> crc32_init(CRC32_Handle *handle, <span class="dt">uint32_t</span> init) {
+    size_t i = <span class="dv">0</span>, j = <span class="dv">0</span>;
 
-    <span class="kw">while</span> (len--)
-        crc32 = (crc32 &gt;&gt; <span class="dv">8</span>) ^ handle-&gt;table[(crc32 &amp; 0x000000FFU) ^ *buff++];
-
-    <span class="kw">return</span> crc32 ^ 0xFFFFFFFFU;
-}
-
-<span class="dt">static</span> <span class="dt">void</span> crc32_init(CRC32_Handle *handle) {
-    <span class="kw">if</span> (handle == NULL) <span class="kw">return</span>;
-
-    <span class="dt">int</span> i = <span class="dv">0</span>, j = <span class="dv">0</span>;
     <span class="kw">for</span> (i = <span class="dv">0</span>; i &lt; <span class="dv">256</span>; i++) {
         handle-&gt;table[i] = i;
         <span class="kw">for</span> (j = <span class="dv">0</span>; j &lt; <span class="dv">8</span>; j++) {
@@ -86,26 +78,26 @@
                 handle-&gt;table[i] = handle-&gt;table[i] &gt;&gt; <span class="dv">1</span>;
         }
     }
+
+    handle-&gt;crc32 = handle-&gt;init = init;
 }
 
-<span class="dt">static</span> <span class="dt">uint32_t</span> crc32_file(<span class="dt">const</span> CRC32_Handle *handle, <span class="dt">const</span> <span class="dt">char</span> *file) {
-    <span class="dt">uint32_t</span> crc32 = <span class="dv">0</span>;
-    <span class="dt">uint8_t</span> buff[BUFF_SIZE] = {<span class="dv">0</span>};
-    size_t length = <span class="dv">0</span>;
+<span class="dt">static</span> <span class="dt">void</span> crc32_update(CRC32_Handle *handle, <span class="dt">const</span> <span class="dt">uint8_t</span> *buf, size_t len) {
+    handle-&gt;crc32 ^= 0xFFFFFFFFU;
 
-    FILE *fd = fopen(file, <span class="st">&quot;rb&quot;</span>);
-    <span class="kw">if</span> (fd == NULL) <span class="kw">return</span> <span class="dv">0</span>;
-    <span class="kw">while</span> ((length = fread(buff, <span class="kw">sizeof</span>(<span class="dt">uint8_t</span>), BUFF_SIZE, fd)) &gt; <span class="dv">0</span>)
-        crc32 = crc32_update(handle, buff, length, crc32);
-    fclose(fd);
+    <span class="kw">while</span> (len--)
+        handle-&gt;crc32 = (handle-&gt;crc32 &gt;&gt; <span class="dv">8</span>) ^ handle-&gt;table[(<span class="dt">uint8_t</span>)(handle-&gt;crc32) ^ *buf++];
 
-    <span class="kw">return</span> crc32;
+    handle-&gt;crc32 ^= 0xFFFFFFFFU;
 }
 
-<span class="dt">static</span> <span class="dt">uint32_t</span> crc32_buff(<span class="dt">const</span> CRC32_Handle *handle, <span class="dt">const</span> <span class="dt">uint8_t</span> *buff, size_t len, <span class="dt">const</span> <span class="dt">uint32_t</span> init) {
-    <span class="kw">if</span> (handle == NULL || buff == NULL || len &lt;= <span class="dv">0</span>) <span class="kw">return</span> <span class="dv">0</span>;
+<span class="dt">static</span> <span class="dt">void</span> crc32_fetch(CRC32_Handle *handle, <span class="dt">uint8_t</span> *hash) {
+    size_t i = <span class="dv">0</span>;
 
-    <span class="kw">return</span> crc32_update(handle, buff, len, init);
+    <span class="kw">for</span> (i = <span class="dv">0</span>; i &lt; <span class="dv">4</span>; i++)
+        hash[i] = (<span class="dt">uint8_t</span>)(handle-&gt;crc32 &gt;&gt; ((<span class="dv">3</span> - i) &lt;&lt; <span class="dv">3</span>));
+
+    handle-&gt;crc32 = handle-&gt;init;
 }
 
 <span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) {
@@ -114,10 +106,20 @@
         <span class="kw">return</span> <span class="dv">1</span>;
     }
 
+    FILE *fd = fopen(argv[<span class="dv">1</span>], <span class="st">&quot;rb&quot;</span>);
+    <span class="kw">if</span> (fd == NULL) <span class="kw">return</span> <span class="dv">1</span>;
+
     CRC32_Handle handle;
-    crc32_init(&amp;handle);
-    printf(<span class="st">&quot;file: %08x</span><span class="ch">\n</span><span class="st">&quot;</span>, crc32_file(&amp;handle, argv[<span class="dv">1</span>]));
-    printf(<span class="st">&quot;buff: %08x</span><span class="ch">\n</span><span class="st">&quot;</span>, crc32_buff(&amp;handle, argv[<span class="dv">1</span>], strlen(argv[<span class="dv">1</span>]), <span class="dv">0</span>));
+    <span class="dt">uint8_t</span> buf[0x00100000U], hash[<span class="dv">4</span>];
+    size_t len = <span class="dv">0</span>, i = <span class="dv">0</span>;
+
+    crc32_init(&amp;handle, <span class="dv">0</span>);
+    <span class="kw">while</span> ((len = fread(buf, <span class="kw">sizeof</span>(<span class="dt">uint8_t</span>), <span class="kw">sizeof</span>(buf), fd)) &gt; <span class="dv">0</span>)
+        crc32_update(&amp;handle, buf, len);
+    crc32_fetch(&amp;handle, hash);
+
+    <span class="kw">for</span> (i = <span class="dv">0</span>; i &lt; <span class="dv">4</span>; i++) printf(<span class="st">&quot;%02x&quot;</span>, hash[i]); printf(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
+    fclose(fd);
 
     <span class="kw">return</span> <span class="dv">0</span>;
 }</code></pre>

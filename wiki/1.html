@@ -571,7 +571,7 @@ pf = ToLower; // ToLower是ToLower()函数的地址</code></pre>
 };</code></pre>
 <p>这里的每个字段都为<code>1</code>位，所以<code>a</code>、<code>b</code>、<code>c</code>只能被赋为<code>0</code>或<code>1</code>；而且整个结构体将只使用一个<code>int</code>的大小，有关字节对齐请看代码中的注释和<code>29</code>点。按照这种设定我们甚至可以利用结构体设定一个<code>int</code>数的每一位的值，与位运算相比，修改个别位显得更加简单，不过更多的是为了节省空间啦。</p>
 <p>249.位字段和位运算都可以用来操作整数中的个别位，但这种特性依赖于硬件和系统，通常是不可移植的。</p>
-<p>250.所有预处理指令都是以#开头，<code>#define</code>的作用域是从定义出现的位置开始到文件的结尾或使用<code>#undef</code>取消定义，一般都是一行代码，但是可以用反斜线和换行符扩展到几个物理行，由这些物理行组成单个逻辑行。</p>
+<p>250.所有预处理指令都是以<code>#</code>开头，<code>#define</code>的作用域是从定义出现的位置开始到文件的结尾或使用<code>#undef</code>取消定义，一般都是一行代码，但是可以用反斜线和换行符扩展到几个物理行，由这些物理行组成单个逻辑行。</p>
 <p>251.每个<code>#define</code>行由三个部分组成：第一部分为<code>#define</code>自身，第二部分为缩略语，又叫做宏，第三部分为替换列表或实体；预处理器在程序中发现宏的实例后，总会用实体代替该宏，不过双引号中的宏除外（不会替换）。</p>
 <p>252.注意：①宏指令只是进行文本的替换操作，并不会进行计算；②一个宏定义中可能包含其他宏，这种情况下，预处理器还会继续进行替换，直到没有为止。</p>
 <p>253.编译器一般将宏实体当做语言符号来处理，语言符号是以单词为单位的，所以即使连续多个空格也会被当做一个空格来处理。例如：</p>
@@ -582,9 +582,9 @@ pf = ToLower; // ToLower是ToLower()函数的地址</code></pre>
 <p>254.<code>#define</code>中使用参数：使用参数的宏可以部分实现函数的功能，但是有很多缺陷，被称为类函数宏。如：</p>
 <p><code>#define SQUARE(x) ((x) * (x))</code></p>
 <p>它可以实现<code>x</code>的平方运算，但是使用<code>SQUARE(++x)</code>这样的例子对于不同的编译器还是会出错，所以应该避免在宏参数中使用增量或减量运算符。</p>
-<p>255.在<code>#define</code>的替换部分可以使用#运算符和##运算符：</p>
-<p>①在替换部分使用#运算符可以将语言符号转化为字符串，用在宏参量前就可以把参数名转化为相应的字符串。例如：<code>#define PSQR(x) printf(&quot;The square of &quot; #x &quot; is %d.\n&quot;, ((x) * (x)))</code>那么<code>PSQR(2 + 4);</code>时就会用<code>&quot;2 + 4&quot;</code>代替#x，结果是<code>printf(&quot;The square of &quot; &quot;2+4&quot; is %d.\n&quot;, ((2 + 4) * (2 + 4)));</code>哈哈。</p>
-<p>②在替换部分使用##运算符可以将两个语言符号组成单个语言符号。例如：<code>#define XNAME(n) x ## n</code>等价于<code>#define XNAME(n) xn</code>，相当于粘合剂。</p>
+<p>255.在<code>#define</code>的替换部分可以使用<code>#</code>运算符和<code>##</code>运算符：</p>
+<p>①在替换部分使用<code>#</code>运算符可以将语言符号转化为字符串，用在宏参量前就可以把参数名转化为相应的字符串。例如：<code>#define PSQR(x) printf(&quot;The square of &quot; #x &quot; is %d.\n&quot;, ((x) * (x)))</code>那么<code>PSQR(2 + 4);</code>时就会用<code>&quot;2 + 4&quot;</code>代替<code>#x</code>，结果是<code>printf(&quot;The square of &quot; &quot;2+4&quot; is %d.\n&quot;, ((2 + 4) * (2 + 4)));</code>哈哈。</p>
+<p>②在替换部分使用<code>##</code>运算符可以将两个语言符号组成单个语言符号。例如：<code>#define XNAME(n) x ## n</code>等价于<code>#define XNAME(n) xn</code>，相当于粘合剂。</p>
 <p>256.可变宏参数和<code>__VA_ARGS__</code>：可以在宏参数的最后使用可变参数(<code>...</code>)，然后在替换部分用<code>__VA_ARGS__</code>代替参数即可，类似<code>printf</code>的可变参数，用起来也会简单。例如：<code>#define PR(...) printf(__VA_ARGS__)</code>后就可以让<code>PR(&quot;Hello\n&quot;);</code>与<code>printf(&quot;Hello\n&quot;);</code>等价了，注意...与<code>__VA_ARGS__</code>的配对即可。</p>
 <p>257.使用函数还是使用宏？？使用函数可以节省空间，效率会比较低；而使用宏的话可以加快执行效率，但是浪费空间又很复杂。一般来说对于比较简单的函数使用宏比较方便，而复杂的功能还是用函数吧，或者考虑内联函数。</p>
 <p>258.文件包含：使用<code>#include</code>指令后，预处理器就会寻找后跟文件名并把这个文件的内容包含到当前文件中并替换掉<code>#include</code>指令。它有两种使用形式：</p>
@@ -597,7 +597,7 @@ pf = ToLower; // ToLower是ToLower()函数的地址</code></pre>
 <p>②<code>#ifndef</code>指令：与上面的预处理指令功能类似，不过使用方法相反，<code>#ifndef</code>用于判断后面的标识符是否为未定义的，如果未定义，则执行<code>#ifndef</code>到<code>#else</code>或<code>#endif</code>之间的代码。这个指令可以用来防止对宏进行重复定义，例如多次包含同一头文件就可能导致宏重复定义，而这个指令则可以很好的解决这个问题。</p>
 <p>③<code>#if</code>、<code>#elif</code>、<code>#else</code>和<code>#endif</code>指令：这个指令与①类似，不过<code>#if</code>和<code>#elif</code>后面跟着的并不是宏标识符，而是常量整数表达式，如果表达式为真，则执行<code>#if</code>和<code>#elif</code>后面的代码，否则执行<code>#else</code>后面的代码。不解释了，知道就好，再说一点，<code>#if defined(VAX)</code>与<code>#ifdef VAX</code>的功能类似，都是用来判断<code>VAX</code>宏是否已经定义，不过<code>#if defined(VAX)</code>可比<code>#ifdef VAX</code>灵活多了。</p>
 <p>262.除了<code>260</code>点提到的几个预定义宏外，<code>C99</code>还支持一个<code>__func__</code>预定义标识符，表示包含该标识符的函数，这个标识符具有函数作用域，只能在函数中使用，不同于预定义宏的文件作用域。</p>
-<p>263.①<code>#line</code>用于重置<code>__LINE__和__FILE__</code>宏报告的行号和文件名，例如：</p>
+<p>263.①<code>#line</code>用于重置<code>__LINE__</code>和<code>__FILE__</code>宏报告的行号和文件名，例如：</p>
 <pre><code>#line 1000 // 当前行号重置为1000
 #line 10 &quot;cool.c&quot; // 把行号重置为10，文件名重置为cool.c</code></pre>
 <p>②<code>#error</code>用于向预处理器发送错误信息，表示编译错误，应该中断编译过程。</p>

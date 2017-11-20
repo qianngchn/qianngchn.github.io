@@ -28,6 +28,3 @@ Desktop Translator：<https://github.com/qianngchn/Desktop-Translator>
 * Lua：<https://www.lua.org>
 * Curl：<https://curl.haxx.se>
 * Pandoc：<https://pandoc.org>
-* Docker Hub：<https://hub.docker.com>
-* Material Design：<https://material.io>
-* Octicons：<https://octicons.github.com>

@@ -1,4 +1,4 @@
-<!--title:获取文件CRC32值-->
+<!--title:C语言获取文件CRC32值-->
 <!--category:代码片段-->
 <!--tags:c语言, crc32-->
 <!--author:Neal-->
@@ -7,29 +7,21 @@
 这是一段获取文件`CRC32`值的代码，与`WinRAR`内`CRC32`值相同。
 ````````````````````````````````````````````````````````````{.c}
 #include <stdio.h>
+#include <stddef.h>
 #include <stdint.h>
 #include <string.h>
 
 #define CRC32_POLY 0xEDB88320U
-#define BUFF_SIZE 0x00100000U
 
 typedef struct crc32_handle {
     uint32_t table[256];
+    uint32_t crc32;
+    uint32_t init;
 } CRC32_Handle;
 
-static uint32_t crc32_update(const CRC32_Handle *handle, const uint8_t *buff, size_t len, uint32_t init) {
-    uint32_t crc32 = init ^ 0xFFFFFFFFU;
+static void crc32_init(CRC32_Handle *handle, uint32_t init) {
+    size_t i = 0, j = 0;
 
-    while (len--)
-        crc32 = (crc32 >> 8) ^ handle->table[(crc32 & 0x000000FFU) ^ *buff++];
-
-    return crc32 ^ 0xFFFFFFFFU;
-}
-
-static void crc32_init(CRC32_Handle *handle) {
-    if (handle == NULL) return;
-
-    int i = 0, j = 0;
     for (i = 0; i < 256; i++) {
         handle->table[i] = i;
         for (j = 0; j < 8; j++) {
@@ -39,26 +31,26 @@ static void crc32_init(CRC32_Handle *handle) {
                 handle->table[i] = handle->table[i] >> 1;
         }
     }
+
+    handle->crc32 = handle->init = init;
 }
 
-static uint32_t crc32_file(const CRC32_Handle *handle, const char *file) {
-    uint32_t crc32 = 0;
-    uint8_t buff[BUFF_SIZE] = {0};
-    size_t length = 0;
+static void crc32_update(CRC32_Handle *handle, const uint8_t *buf, size_t len) {
+    handle->crc32 ^= 0xFFFFFFFFU;
 
-    FILE *fd = fopen(file, "rb");
-    if (fd == NULL) return 0;
-    while ((length = fread(buff, sizeof(uint8_t), BUFF_SIZE, fd)) > 0)
-        crc32 = crc32_update(handle, buff, length, crc32);
-    fclose(fd);
+    while (len--)
+        handle->crc32 = (handle->crc32 >> 8) ^ handle->table[(uint8_t)(handle->crc32) ^ *buf++];
 
-    return crc32;
+    handle->crc32 ^= 0xFFFFFFFFU;
 }
 
-static uint32_t crc32_buff(const CRC32_Handle *handle, const uint8_t *buff, size_t len, const uint32_t init) {
-    if (handle == NULL || buff == NULL || len <= 0) return 0;
+static void crc32_fetch(CRC32_Handle *handle, uint8_t *hash) {
+    size_t i = 0;
 
-    return crc32_update(handle, buff, len, init);
+    for (i = 0; i < 4; i++)
+        hash[i] = (uint8_t)(handle->crc32 >> ((3 - i) << 3));
+
+    handle->crc32 = handle->init;
 }
 
 int main(int argc, char **argv) {
@@ -67,10 +59,20 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    FILE *fd = fopen(argv[1], "rb");
+    if (fd == NULL) return 1;
+
     CRC32_Handle handle;
-    crc32_init(&handle);
-    printf("file: %08x\n", crc32_file(&handle, argv[1]));
-    printf("buff: %08x\n", crc32_buff(&handle, argv[1], strlen(argv[1]), 0));
+    uint8_t buf[0x00100000U], hash[4];
+    size_t len = 0, i = 0;
+
+    crc32_init(&handle, 0);
+    while ((len = fread(buf, sizeof(uint8_t), sizeof(buf), fd)) > 0)
+        crc32_update(&handle, buf, len);
+    crc32_fetch(&handle, hash);
+
+    for (i = 0; i < 4; i++) printf("%02x", hash[i]); printf("\n");
+    fclose(fd);
 
     return 0;
 }
