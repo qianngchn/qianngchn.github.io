@@ -21,9 +21,9 @@ class RC4 {
         ~RC4(void) {};
 
     private:
-        array<uint8_t, 256> _sbox;
-        uint8_t _x;
-        uint8_t _y;
+        array<uint8_t, 256> sbox;
+        uint8_t idx1;
+        uint8_t idx2;
         explicit RC4(const RC4&) = delete;
         explicit RC4(const RC4&&) = delete;
         const RC4& operator=(const RC4&) = delete;
@@ -33,13 +33,13 @@ class RC4 {
 void RC4::reset(const vector<uint8_t> &key, size_t len) {
     uint8_t j = 0;
 
-    for (auto i = 0; i < _sbox.size(); i++)
-        _sbox[i] = i;
-    _x = 0; _y = 0;
+    for (auto i = 0; i < sbox.size(); i++)
+        sbox[i] = i;
+    idx1 = 0; idx2 = 0;
 
-    for (auto i = 0; i < _sbox.size(); i++) {
-        j += _sbox[i] + key[i % len];
-        swap(_sbox[i], _sbox[j]);
+    for (auto i = 0; i < sbox.size(); i++) {
+        j += sbox[i] + key[i % len];
+        swap(sbox[i], sbox[j]);
     }
 }
 
@@ -47,10 +47,10 @@ void RC4::crypt(const vector<uint8_t> &in, vector<uint8_t> &out, size_t len) {
     uint8_t j = 0;
 
     for (auto i = 0; i < len; i++) {
-        _x++; _y += _sbox[_x];
-        swap(_sbox[_x], _sbox[_y]);
-        j = _sbox[_x] + _sbox[_y];
-        out[i] = in[i] ^ _sbox[j];
+        idx1++; idx2 += sbox[idx1];
+        swap(sbox[idx1], sbox[idx2]);
+        j = sbox[idx1] + sbox[idx2];
+        out[i] = in[i] ^ sbox[j];
     }
 }
 

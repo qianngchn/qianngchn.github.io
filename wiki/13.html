@@ -68,9 +68,9 @@
         ~RC4(<span class="dt">void</span>) {};
 
     <span class="kw">private</span>:
-        array&lt;<span class="dt">uint8_t</span>, <span class="dv">256</span>&gt; _sbox;
-        <span class="dt">uint8_t</span> _x;
-        <span class="dt">uint8_t</span> _y;
+        array&lt;<span class="dt">uint8_t</span>, <span class="dv">256</span>&gt; sbox;
+        <span class="dt">uint8_t</span> idx1;
+        <span class="dt">uint8_t</span> idx2;
         <span class="kw">explicit</span> RC4(<span class="dt">const</span> RC4&amp;) = <span class="kw">delete</span>;
         <span class="kw">explicit</span> RC4(<span class="dt">const</span> RC4&amp;&amp;) = <span class="kw">delete</span>;
         <span class="dt">const</span> RC4&amp; <span class="kw">operator</span>=(<span class="dt">const</span> RC4&amp;) = <span class="kw">delete</span>;
@@ -80,13 +80,13 @@
 <span class="dt">void</span> RC4::reset(<span class="dt">const</span> vector&lt;<span class="dt">uint8_t</span>&gt; &amp;key, size_t len) {
     <span class="dt">uint8_t</span> j = <span class="dv">0</span>;
 
-    <span class="kw">for</span> (<span class="dt">auto</span> i = <span class="dv">0</span>; i &lt; _sbox.size(); i++)
-        _sbox[i] = i;
-    _x = <span class="dv">0</span>; _y = <span class="dv">0</span>;
+    <span class="kw">for</span> (<span class="dt">auto</span> i = <span class="dv">0</span>; i &lt; sbox.size(); i++)
+        sbox[i] = i;
+    idx1 = <span class="dv">0</span>; idx2 = <span class="dv">0</span>;
 
-    <span class="kw">for</span> (<span class="dt">auto</span> i = <span class="dv">0</span>; i &lt; _sbox.size(); i++) {
-        j += _sbox[i] + key[i % len];
-        swap(_sbox[i], _sbox[j]);
+    <span class="kw">for</span> (<span class="dt">auto</span> i = <span class="dv">0</span>; i &lt; sbox.size(); i++) {
+        j += sbox[i] + key[i % len];
+        swap(sbox[i], sbox[j]);
     }
 }
 
@@ -94,10 +94,10 @@
     <span class="dt">uint8_t</span> j = <span class="dv">0</span>;
 
     <span class="kw">for</span> (<span class="dt">auto</span> i = <span class="dv">0</span>; i &lt; len; i++) {
-        _x++; _y += _sbox[_x];
-        swap(_sbox[_x], _sbox[_y]);
-        j = _sbox[_x] + _sbox[_y];
-        out[i] = in[i] ^ _sbox[j];
+        idx1++; idx2 += sbox[idx1];
+        swap(sbox[idx1], sbox[idx2]);
+        j = sbox[idx1] + sbox[idx2];
+        out[i] = in[i] ^ sbox[j];
     }
 }
 
