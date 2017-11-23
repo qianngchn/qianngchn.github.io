@@ -44,8 +44,8 @@ static void crc32_update(CRC32_Handle *handle, const uint8_t *buf, size_t len) {
     handle->crc32 ^= 0xFFFFFFFFU;
 }
 
-static inline void crc32_fetch(CRC32_Handle *handle, uint32_t *hash) {
-    *hash = handle->crc32;
+static inline void crc32_fetch(CRC32_Handle *handle, uint32_t *crc32) {
+    *crc32 = handle->crc32;
     handle->crc32 = handle->init;
 }
 

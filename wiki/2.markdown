@@ -81,6 +81,11 @@
     # Tmux
     sudo apt-get install tmux
 
+    # Dotfiles
+    git clone https://github.com/qianngchn/dotfiles.git
+    cd dotfiles
+    make install
+
     # Github Wiki
     sudo apt-get install pandoc
     git clone https://github.com/qianngchn/qianngchn.github.io.git

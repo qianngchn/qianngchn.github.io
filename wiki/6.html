@@ -91,8 +91,8 @@
     handle-&gt;crc32 ^= 0xFFFFFFFFU;
 }
 
-<span class="dt">static</span> <span class="kw">inline</span> <span class="dt">void</span> crc32_fetch(CRC32_Handle *handle, <span class="dt">uint32_t</span> *hash) {
-    *hash = handle-&gt;crc32;
+<span class="dt">static</span> <span class="kw">inline</span> <span class="dt">void</span> crc32_fetch(CRC32_Handle *handle, <span class="dt">uint32_t</span> *crc32) {
+    *crc32 = handle-&gt;crc32;
     handle-&gt;crc32 = handle-&gt;init;
 }
 
