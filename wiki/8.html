@@ -51,7 +51,7 @@
 <ul>
 <li><code>ubuntu server 14.04</code> (<code>64</code>位)</li>
 <li><code>JDK 1.7</code></li>
-<li><code>android-sdk\_r24.4.1</code></li>
+<li><code>android-sdk_r24.4.1</code></li>
 <li><code>gradle-2.12</code></li>
 <li><code>Android Studio 2.0</code></li>
 </ul>
@@ -71,7 +71,7 @@ sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1</code><
 <pre><code>cd ~
 wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
 tar xvzf android-sdk_r24.4.1-linux.tgz</code></pre>
-<p>编辑 <code>.profile</code> 或者 <code>.bash\_profile</code> 把下面的目录增加到 <code>path</code>的搜索路径中，确保<code>android SDK</code>的一些命令工具可以直接在终端使用，比如 <code>adb</code> 命令。</p>
+<p>编辑 <code>.profile</code> 或者 <code>.bash_profile</code> 把下面的目录增加到 <code>path</code>的搜索路径中，确保<code>android SDK</code>的一些命令工具可以直接在终端使用，比如 <code>adb</code> 命令。</p>
 <pre><code>ANDROID_HOME=$HOME/android-sdk-linux
 PATH=&quot;$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools&quot;</code></pre>
 <p>使环境变量生效</p>

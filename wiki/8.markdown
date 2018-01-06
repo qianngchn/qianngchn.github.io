@@ -8,7 +8,7 @@
 
 * `ubuntu server 14.04` (`64`位)
 * `JDK 1.7`
-* `android-sdk\_r24.4.1`
+* `android-sdk_r24.4.1`
 * `gradle-2.12`
 * `Android Studio 2.0`
 
@@ -36,7 +36,7 @@
     wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
     tar xvzf android-sdk_r24.4.1-linux.tgz
 
-编辑 `.profile` 或者 `.bash\_profile` 把下面的目录增加到 `path`的搜索路径中，确保`android SDK`的一些命令工具可以直接在终端使用，比如 `adb` 命令。
+编辑 `.profile` 或者 `.bash_profile` 把下面的目录增加到 `path`的搜索路径中，确保`android SDK`的一些命令工具可以直接在终端使用，比如 `adb` 命令。
 
     ANDROID_HOME=$HOME/android-sdk-linux
     PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
