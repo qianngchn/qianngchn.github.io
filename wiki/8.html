@@ -114,7 +114,7 @@ wget https://services.gradle.org/distributions/gradle-2.12-bin.zip</code></pre>
 <p>释放到本地<code>Home</code>目录,创建名字为<code>gradle</code>的符号链接，符号连接的好处是方便版本更新，有了新的版本直接修改符号链接即可。</p>
 <pre><code>unzip gradle-2.12-bin.zip 
 ln -s gradle-2.12 gradle</code></pre>
-<p>配置<code>gradle</code>环境变量并使其生效,编辑 <code>~/.profje</code> 文件增加下面内容</p>
+<p>配置<code>gradle</code>环境变量并使其生效,编辑 <code>~/.profile</code> 文件增加下面内容</p>
 <pre><code>GRADLE_HOME=$HOME/gradle
 export PATH=$PATH:$GRADLE_HOME/bin</code></pre>
 <p>保存后使环境变量使其生效</p>

@@ -94,7 +94,7 @@
     unzip gradle-2.12-bin.zip 
     ln -s gradle-2.12 gradle
 
-配置`gradle`环境变量并使其生效,编辑 `~/.profje` 文件增加下面内容
+配置`gradle`环境变量并使其生效,编辑 `~/.profile` 文件增加下面内容
 
     GRADLE_HOME=$HOME/gradle
     export PATH=$PATH:$GRADLE_HOME/bin
